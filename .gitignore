@@ -1,14 +1,7 @@
-# ===== 大二进制与产物（从 APK 自行提取，见 README）=====
-*.apk
-*.so
-*.dll
-*.dat
-dump.cs
-data.unity3d
-*.bin
-*.xz
+# ===== 大二进制由 Git LFS 管理，见 .gitattributes =====
+# （APK / libil2cpp.so / global-metadata.dat / dump.cs 已入库于 files/）
 
-# ===== 内存 dump / frida-server =====
+# ===== 内存 dump / frida-server（体积过大，不入库）=====
 memdump*.bin
 mem*.bin
 seg_*.bin
