@@ -44,3 +44,6 @@ venv/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# 32 位 ARM 版 libil2cpp.so：从 APK 的 lib/armeabi-v7a 提取，50MB，可用 scripts/verify_arm32.py 重现
+files/libil2cpp_arm32.so

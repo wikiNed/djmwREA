@@ -1,15 +1,16 @@
 # djmwREA — 《点击魔王》存档逆向工程
 
 > TapTap 独立游戏 **《点击魔王》(TapDemons) v5.9.2** 的 Unity IL2CPP 存档逆向记录。
-> 完整还原了存档结构、修改工具链，以及 ES3 AES 加密管道。
-> **口令仍未取得** —— 详见 [HANDOVER.md](HANDOVER.md) 第四节「根因」。
+> 存档结构与**完整加密链**已 100% 还原，`.es3` 可直接读写。
+> 口令 `hqgames@2013` 已取得 —— 见 [docs/10](docs/10-ES3口令已取得.md)；
+> 内层还有一层游戏自写的 DES —— 见 [docs/11](docs/11-存档双层加密还原.md)。
 
 ---
 
 ## 这是干什么的
 
 游戏存档是 **14 段用 `$` 拼接的明文 JSON**，结构已 100% 破译，字段级映射全部有据可查。
-修改工具 `savedit.py` 五条命令全部实测通过：
+修改工具 `savedit.py` 十几条命令全部实测通过：
 
 ```
 python scripts/savedit.py baoshiall save.json --level 99 --pinjie 6 --xiyoudu 5   # 宝石全满
@@ -17,10 +18,22 @@ python scripts/savedit.py pets      save.json                                   
 python scripts/savedit.py tree      save.json --days 99999                       # 黄金树永久
 python scripts/savedit.py baoshi    save.json --to 999999                        # 宝石碎片
 python scripts/savedit.py libao     save.json --keep 11,35                       # 礼包码重兑
+python scripts/savedit.py currency  save.json --zuanshi 999999                   # 钻石/经验
+python scripts/savedit.py equip     save.json --level 999                        # 装备全满
+python scripts/savedit.py heroes    save.json --level 60 --shenqi 20             # 英雄/神器
+python scripts/savedit.py resources save.json --mucai 500000                     # 木材/矿石
+python scripts/savedit.py level     save.json --guanka 200                       # 关卡/点击等级
+python scripts/savedit.py chengjiu  save.json --level 99                         # 成就
 ```
 
-**但游戏运行时会把存档加密**（ES3 AES-128-CBC，`key = PBKDF2-HMAC-SHA1(password, salt, 100, 16)`）。
-加密管道已逐指令还原，唯独 `password` 是运行时生成的字符串，静态挖不到。
+**`saves/*.es3` 现在可以直接改**，不必先手动解密 —— 工具会透明完成
+「ES3 AES 第一层 → 游戏自写 DES 第二层」的解包与封回：
+
+```
+python scripts/savedit.py currency saves/SaveFile_orig.es3 --zuanshi 888888
+```
+
+全部回归：`python tools/test_savedit.py` → **ALL PASS**。
 
 ---
 
@@ -49,21 +62,27 @@ python scripts/savedit.py baoshiall saves/playerDate_03.json --level 99
 段9 统计已重算 (品阶 7 项 + 品质 6 项)，最大品质计数: 497
 ```
 
-### 解密真实存档（需要先拿到口令）
+### 双向读写真实存档
+
+口令 `hqgames@2013` 已取得，`.es3` 可以直接改：
 
 ```python
-from es3decrypt import decrypt_or_raise
+from es3save import read_save, write_save
 
-plain = decrypt_or_raise('saves/SaveFile.es3', password)
+plain = read_save('saves/SaveFile_orig.es3')   # 两层都解开，返回 14 段明文
 # plain = b'{"DateID":0,...}${"DateID":1,...}$...'
+write_save('saves/out.es3', plain)             # 两层都封回
 ```
 
-或命令行（可一次试多个口令）：
+或命令行：
 
 ```bash
-python scripts/es3decrypt.py saves/SaveFile.es3 "口令1" "口令2"
+python scripts/es3save.py unpack saves/SaveFile_orig.es3 plain.json
+python scripts/es3save.py pack   plain.json            out.es3
+python scripts/es3save.py verify out.es3               # 回读校验
 ```
 
+`scripts/es3decrypt.py` 只解**第一层**，保留它是为了研究用途（打印 ES3 桶的原始条目）。
 **口令错误时 `decrypt_or_raise()` 会抛 `PasswordError`**，不会静默返回乱码
 （AES-CBC 用错口令也会解出等长字节，所以必须校验明文形态）。
 用 `check_password(path, pw)` 可快速判定单个口令。
@@ -77,7 +96,11 @@ python scripts/es3decrypt.py saves/SaveFile.es3 "口令1" "口令2"
 | `unitypy_*.py` 读资源 | `UnityPy` |
 | `frida_*.py` 运行时 hook | `frida` / `frida-tools` |
 
-### 在自己的 ARM64 真机上取口令
+### 在自己的 ARM64 真机上取口令（已完成，留作方法论）
+
+> 口令已经静态挖到了（`hqgames@2013`），本节不再需要执行，
+> 保留是因为它是「如果静态失败该怎么办」的通用解法。
+> 完整取证过程见 [docs/10](docs/10-ES3口令已取得.md)。
 
 ```bash
 # 1. 取 base
@@ -93,7 +116,7 @@ python scripts/frida_hook_es3_ctor.py <pid> <base>
 ```
 
 hook 点是 `ES3Settings..ctor(EncryptionType, string)` @ RVA `0x175226C`，
-参数 `x2` 就是 `password`（Il2CppString*）。拿到后 `decrypt()` 即可。
+参数 `x2` 就是 `password`（Il2CppString*）。拿到后 `read_save()` 即可。
 
 ---
 
@@ -130,15 +153,23 @@ docs/
   07-ES3口令追踪-阶段性结论.md   ★ 追踪证据与失败路径
   08-模拟器翻译层调研.md         ★ Houdini 为何不可 hook
   09-dump关键类摘录.md           9 个关键类的 dump.cs 摘录
+  10-ES3口令已取得.md            ★ 口令 hqgames@2013 的完整取证链
+  11-存档双层加密还原.md         ★ ES3-AES 套 DES，含双向封包
 notes/
   REA学习笔记.md                 REA 工具链方法论
   存档修改速查表.md               ★ 字段速查
   点击魔王_逆向分析报告.md        完整逆向报告
-scripts/                         77 个脚本
-  savedit.py                    ★ 主工具
-  es3decrypt.py                 ★ ES3 解密
-  frida_hook_es3_ctor.py        ★ 真机取口令
+scripts/                         80+ 个脚本
+  savedit.py                    ★ 主工具（.json / .es3 皆可直接读写）
+  es3save.py                    ★ 两层拆封/封装
+  es3decrypt.py                 只解第一层（研究用）
+  des_check.py                  DES 内层模式枚举（研究用）
+  rela_resolve.py               ★ ELF 重定位解析
+  peek_literal.py               ★ 按 usage index 读 metadata 字面量
   disasm_range.py               ★ capstone 反汇编 + dump.cs 自动标注
+tools/
+  smoke_test.py                 环境冒烟测试（3 项）
+  test_savedit.py               ★ 存档编辑全量回归（30 项）
 saves/                           演示存档（明文）+ 真实存档样本（加密）
 emu-notes/                       模拟器操作脚本与结论
 evidence/                        frida 输出、maps、base 验证记录
@@ -156,9 +187,19 @@ evidence/                        frida 输出、maps、base 验证记录
 | `AESEncryptionAlgorithm.Decrypt(Stream)` | `0x178329C` |
 | `Rfc2898DeriveBytes..ctor(string,byte[],int)` | `0x27A87E0` |
 | `ShuJuDate.SaveGame` | `0x18A7034` |
+| `ShuJuDate.BaoCunDate` | `0x18A71B4` |
+| `ShuJuDate.Encrypt(string,string)` | `0x18A8A68` |
+
+### 关键静态槽
+
+| VA | 用途 |
+|---|---|
+| `0x35e7408` (GOT) | → addend `0x36FC618` → `0xA0005EF3` → usage index 12153 → 口令 |
+| `0x35ee2b0` (GOT) | → addend `0x36f1f10` → `0xA0003529` → DES key `PJSQJ678` |
 
 **`RVA ≠ file offset`** —— ELF 段间有 `0x4000` / `0x8000` 差值，
 正确换算：`fileoff = RVA - p_vaddr + p_offset`，必须按 program header 分段算。
+`scripts/rela_resolve.py` 里的 `Elf.va2off()` 已实现，**不要再用固定偏移**。
 
 ---
 

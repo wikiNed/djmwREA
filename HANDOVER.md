@@ -3,16 +3,48 @@
 > **项目**：TapTap 独立游戏《点击魔王》(TapDemons) v5.9.2 存档逆向
 > **包名**：`game.taptap.HQGAMES.TapDemons`
 > **引擎**：Unity + IL2CPP（ARM64）
-> **状态**：存档结构 100% 破译、修改工具全通过；**真实存档的 ES3 AES 口令未取得**
+> **状态**：存档结构 100% 破译、**双层加密 100% 还原**、口令与 DES key 均已取得、
+> `saves/*.es3` 可直接读写、回归 30/30 通过
 > **最后更新**：2026-10-28
+
+---
+
+## 〇、本轮的突破（补充在原有文档之前）
+
+> **原文档的第四、五节已经过时**——口令没有卡住，是用纯静态方法挖到的。
+
+| 项 | 结果 | 文档 |
+|---|---|---|
+| ES3 AES 口令 | **`hqgames@2013`** | [docs/10](docs/10-ES3口令已取得.md) |
+| 内层 DES key | **`PJSQJ678`**（`ShuJuDate.MIMA`，`iv == key`） | [docs/11](docs/11-存档双层加密还原.md) |
+
+取证链（一行版）：
+
+```
+0x35e7408(GOT) → addend 0x36FC618 → 0xA0005EF3
+  → usage index = 0x5EF3 >> 1 = 12153
+  → stringLiteral 表第 12153 行（len-first 格式）→ "hqgames@2013"
+```
+
+**原文档认为卡死的原因全部被绕过了**：不需要真机、不需要 frida、
+不需要内存搜索——口令就是 metadata 里一条普通字面量，
+只是它被 il2cpp 的 `Il2CppMetadataUsage` 哨兵机制（`0xA0000000|(idx<<1)|1`）
+包了四层间接（GOT → `.data` 槽 → 哨兵值 → usage 表下标）。
+
+**因此第五节「下一步」里的路线 A/B/C/D 全部作废**，实际采用的是「路线 C+」：
+解析 ELF 重定位 + 解析 metadata usage 表。原路线 C 之所以失败，
+是因为 `find_slot_writers.py` 只认 `str` 直写，而这批槽是**运行时由 il2cpp 初始化器填充**的，
+静态代码里永远找不到 `str`（实测 10 处访问全是 `ldr`）。
 
 ---
 
 ## 一、给接手人的三句话
 
-1. **存档格式已完全搞清楚**——14 段用 `$` 拼接的明文 JSON，字段级映射全部有据可查，修改工具 `savedit.py` 五条命令全部实测通过。
-2. **卡点是口令**——游戏运行时把存档用 ES3 AES 加密写盘，`key = PBKDF2-HMAC-SHA1(password, salt, 100, 16)`，管道逐指令还原完毕，但 `password` 那串字符串拿不到。
-3. **换台 ARM64 真机，十分钟能解决**——所有失败都源于 MuMu 12 的 x86 翻译层（Intel Houdini）无法被 frida hook。真机上 `base + RVA` 直接可用。
+1. **存档格式与加密链都已完全搞清楚**——14 段 `$` 拼接的 JSON，
+   外层 ES3 AES、内层游戏自写 DES，两层密钥都在手，`saves/*.es3` 直接改。
+2. **`savedit.py` 十几条命令 + 30 项回归全通过**，`.json` 与 `.es3` 用法完全一致。
+3. **原文档的模拟器/frida 分析仍然有价值**（作为「为什么静态更省事」的对照），
+   但**不再是必读的路障**——真机上跑 frida 只是可选的验证手段。
 
 ---
 
@@ -219,52 +251,56 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
 
 ---
 
-## 五、下一步（按成本排序）
+## 五、原定下一步（已作废，保留作方法论）
 
-### 路线 A：真机 ARM64 ★★★★★ 推荐
+> **本节四条路线全部不再需要** —— 口令与 DES key 已用纯静态方法取得。
+> 保留是因为它们写清了「静态失败时该怎么办」的备选思路。
 
-**成本最低、成功率最高。** 任意 Android 手机 + USB 调试即可。
+### 实际采用的路线 C+：静态解析 il2cpp 初始化链 ★★★★★ **已成功**
 
-```bash
-# 1. 取 base（真机上 libil2cpp.so 是正常 r-xp，可直接 hook）
-adb shell "cat /proc/\$(pidof game.taptap.HQGAMES.TapDemons)/maps | grep libil2cpp" | head -1
+不需要设备、不需要 hook、不需要内存搜索。三步：
 
-# 2. 推 frida-server（arm64）
-adb push frida-server-*-android-arm64 /data/local/tmp/fs
-adb shell "chmod 755 /data/local/tmp/fs && su -c '/data/local/tmp/fs -l 0.0.0.0:27042 &'"
-adb forward tcp:27042 tcp:27042
+1. **解析 ELF 重定位**（`scripts/rela_resolve.py`）：
+   `0x35e7408` 在 `.got`，`.rela.dyn` 给出 `type=1027 (R_AARCH64_RELATIVE)`、`addend=0x36FC618`。
+   > ⚠️ 原 docs/07 写的 addend `0x36F5DB0` 是**错的**（追到了 `.data` 里无关的一段）。
+2. **识别 il2cpp metadata usage 哨兵**（`scripts/peek_literal.py`）：
+   `.data` 中 `0x36e4a90 .. 0x3705208` 有 16623 项，
+   全是 `0xA0000000 | ((idx << 1) | 1)`，`idx = (0x5EF3 >> 1) = 12153`。
+3. **按 index 查 stringLiteral 表**：
+   `global-metadata.dat` 表头 `off=0x100 size=0x207b8`，行格式 **length-first** `(int32 len, int32 off)`，
+   内容在 `off=0x208b8` 起的 literalData 里。第 12153 行 → `hqgames@2013`。
 
-# 3. hook ES3Settings..ctor，直接打印 password
-#    运行时地址 = base + 0x175226C
-```
+### 路线 A：真机 ARM64 ★★★★☆（可选验证）
 
-**`scripts/frida_hook_settings.py` 已写好**，只需把 `BASE` 改成真机的 base 即可。
-hook 时 `x2` 就是 password 指针（Il2CppString*），`x2+0x10` 起是 UTF-16 字符数据，长度在 `x2+0x10`（int）。
-
-拿到口令后：
-```python
-from scripts.es3decrypt import decrypt
-data = decrypt(r'emu/SaveFile.es3', password)
-```
+若想交叉验证静态结论，真机 hook 仍是最快的：
+`base + 0x175226C` 处 `x2` 即 password。但**已经没有必要**。
 
 ### 路线 B：官方 ARM64 AVD ★★☆☆☆
 
-需下载 ~8–10 GB（SDK + arm64 system image）。但 x86 主机上是 **qemu 全模拟、无硬件加速**，
-Unity 3D 游戏大概率跑不起来。
+需下载 ~8–10 GB。x86 主机上是 qemu 全模拟，性能不可用。
 
-### 路线 C：纯静态挖初始化函数 ★★★☆☆
+### 路线 C（原案）：纯静态挖写入指令 ★☆☆☆☆ 已证明走不通
 
-不需要设备。需要扩展 `scripts/find_slot_writers.py` 识别"间接写入"形态
-（`str xN, [xM]`，其中 `xM` 由前序计算得到）。工作量不小，且没有 frida 反馈验证，属于盲搜。
+原计划扩展 `find_slot_writers.py` 识别间接写入（`str xN, [xM]`）。
+**实测证明这条路是死路**：`0x35e7408` 在 `.text` 里共 10 处访问，**全部是 `ldr`，零处 `str`** ——
+这类槽由 il2cpp 的类初始化器在运行时填充，根本不存在对应的 `str` 指令。
+正确方向是**读重定位 + 读 metadata**，不是找写入点。
 
-### 路线 D：绕开口令 — 直接改内存 ★★☆☆☆
+### 路线 D：绕开密钥 — 直接改内存 ★★☆☆☆
 
-游戏运行时把存档 `Load` 成 `ShuJuDate.gameDate` 对象。如果能定位该对象在堆上的地址，
-可以直接改内存而不碰存档。但同样受制于无法 hook。
+同样受制于无法 hook。且现在已有明文读写能力，无需此路。
 
-**备选**：`scripts/find_plaintext.py` / `scripts/scan_mem.py` 已在模拟器上零命中，
-但如果能在**游戏刚读完存档、尚未加密回写**的那一瞬间 dump 堆，理论上能抓到明文。
-需要精确的时机控制——真机上用 frida hook `LoadGame` 的返回点即可。
+---
+
+## 五之二、现在该做什么
+
+1. **验证**：`python tools/test_savedit.py`（30 项）+ `python tools/smoke_test.py`（3 项）。
+2. **实战**：直接对 `.es3` 跑编辑命令，例如
+   `python scripts/savedit.py currency saves/SaveFile_orig.es3 --zuanshi 888888`。
+3. **可选的延伸**：
+   - 补全 `Date_*` 各段里尚未做编辑器的字段（现有命令覆盖了货币/装备/英雄/资源/关卡/成就/宝石/宠物/黄金树/礼包码）。
+   - 若游戏后续版本改了 `PASSWORD` / `MIMA`，按 docs/10 + docs/11 的链路重跑一遍即可
+     （两处都是 metadata 字面量，脚本通用）。
 
 ---
 
@@ -278,6 +314,8 @@ docs/
   07-ES3口令追踪-阶段性结论.md      口令追踪的全部证据与失败路径 ★★★
   08-模拟器翻译层调研.md            MuMu/Houdini 为什么不可 hook ★★★
   09-dump关键类摘录.md              dump.cs 中 9 个关键类的完整摘录
+  10-ES3口令已取得.md               ★ 口令 hqgames@2013 的完整取证链
+  11-存档双层加密还原.md            ★ ES3-AES 套 DES，含双向封包与踩坑
 
 notes/
   REA学习笔记.md                    REA 工具链方法论（项目起点）
@@ -418,6 +456,8 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 
 ## 十、一句话总结
 
-> 存档本身是明文 JSON，改起来毫无难度；难的是游戏把它加密了。
-> 加密算法已经完全还原，只差一个运行时生成的字符串。
-> **换 ARM64 真机，hook `0x175226C`，`x2` 就是那串口令。**
+> 存档是 14 段明文 JSON，外套两层加密：ES3 的 AES 与游戏自写的 DES。
+> 两把钥匙都没藏在运行时——**它们是 `global-metadata.dat` 里的两条普通字符串字面量**
+> （`hqgames@2013` 和 `PJSQJ678`），只是被 il2cpp 的 metadata-usage 哨兵机制
+> 包了四层间接：`GOT 槽 → .data 槽 → 0xA0005EF3 → usage index 12153`。
+> **找 `str` 指令是死路；解析重定位读 metadata 才是正解。**
