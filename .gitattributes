@@ -1,0 +1,15 @@
+* text=auto eol=lf
+
+*.md   text eol=lf
+*.py   text eol=lf
+*.sh   text eol=lf
+*.json text eol=lf
+*.txt  text eol=lf
+
+# 二进制样本：不做换行转换，不做文本 diff
+*.es3  binary
+*.png  binary
+*.apk  binary
+*.so   binary
+*.dat  binary
+*.bin  binary

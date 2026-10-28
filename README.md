@@ -1,0 +1,149 @@
+# djmwREA — 《点击魔王》存档逆向工程
+
+> TapTap 独立游戏 **《点击魔王》(TapDemons) v5.9.2** 的 Unity IL2CPP 存档逆向记录。
+> 完整还原了存档结构、修改工具链，以及 ES3 AES 加密管道。
+> **口令仍未取得** —— 详见 [HANDOVER.md](HANDOVER.md) 第四节「根因」。
+
+---
+
+## 这是干什么的
+
+游戏存档是 **14 段用 `$` 拼接的明文 JSON**，结构已 100% 破译，字段级映射全部有据可查。
+修改工具 `savedit.py` 五条命令全部实测通过：
+
+```
+python scripts/savedit.py baoshiall save.json --level 99 --pinjie 6 --xiyoudu 5   # 宝石全满
+python scripts/savedit.py pets      save.json                                    # 宠物全获取
+python scripts/savedit.py tree      save.json --days 99999                       # 黄金树永久
+python scripts/savedit.py baoshi    save.json --to 999999                        # 宝石碎片
+python scripts/savedit.py libao     save.json --keep 11,35                       # 礼包码重兑
+```
+
+**但游戏运行时会把存档加密**（ES3 AES-128-CBC，`key = PBKDF2-HMAC-SHA1(password, salt, 100, 16)`）。
+加密管道已逐指令还原，唯独 `password` 是运行时生成的字符串，静态挖不到。
+
+---
+
+## 快速开始
+
+### 只改演示存档（无需任何逆向环境）
+
+```bash
+pip install pycryptodome
+
+python scripts/savedit.py info      saves/playerDate_03.json
+python scripts/savedit.py roundtrip saves/playerDate_03.json    # 无损验证
+python scripts/savedit.py baoshiall saves/playerDate_03.json --level 99
+```
+
+`saves/playerDate_*.json` 是官方放出的**明文**演示存档，可直接编辑。
+
+### 解密真实存档（需要先拿到口令）
+
+```python
+from scripts.es3decrypt import decrypt
+plain = decrypt('saves/SaveFile.es3', password)
+# plain = b'{"DateID":0,...}${"DateID":1,...}$...'
+```
+
+### 在自己的 ARM64 真机上取口令
+
+```bash
+# 1. 取 base
+adb shell "cat /proc/\$(pidof game.taptap.HQGAMES.TapDemons)/maps | grep libil2cpp" | head -1
+
+# 2. 推 frida-server（arm64）
+adb push frida-server-*-android-arm64 /data/local/tmp/fs
+adb shell "su -c 'chmod 755 /data/local/tmp/fs; /data/local/tmp/fs &'"
+adb forward tcp:27042 tcp:27042
+
+# 3. hook ES3Settings..ctor，直接打印口令
+python scripts/frida_hook_es3_ctor.py <pid> <base>
+```
+
+hook 点是 `ES3Settings..ctor(EncryptionType, string)` @ RVA `0x175226C`，
+参数 `x2` 就是 `password`（Il2CppString*）。拿到后 `decrypt()` 即可。
+
+---
+
+## 为什么在模拟器上不行
+
+本项目的全部失败都源于一个根因：**MuMu 12 的 x86 翻译层（Intel Houdini）**。
+
+`libil2cpp.so` 的 ARM 主体代码段在进程里是 **`r--p`（只读、不可执行）**：
+
+```
+08b1b000 r-xp 017c3000   4KB stub
+08b1c000 r--p 017c4000   ARM 主体代码（不可执行！）
+```
+
+CPU 从不直接执行 ARM 指令，Houdini 把它当数据读入、翻译成 x86、
+放进 code cache（`0xd4ec000`，62 MB，`rwx`）执行。
+**frida 的 ARM inline hook 需要 `rwx`，写入 `r--p` 段就是 SIGILL。**
+
+在 62 MB code cache 里搜 ARM 源地址常量（32 位 / 64 位）：**全部零命中**，
+因为 Houdini 的 TB 表用哈希索引。
+
+详见 [docs/08-模拟器翻译层调研.md](docs/08-模拟器翻译层调研.md)。
+
+---
+
+## 目录
+
+```
+HANDOVER.md            ★ 交接文档：成果、失败路径、下一步
+docs/
+  05-IL2CPP黄金树宠物宝石.md     字段定位
+  06-存档修改实战.md             ★ 五条命令完整实战
+  07-ES3密钥攻关.md              加密管道还原过程
+  07-ES3口令追踪-阶段性结论.md   ★ 追踪证据与失败路径
+  08-模拟器翻译层调研.md         ★ Houdini 为何不可 hook
+  09-dump关键类摘录.md           9 个关键类的 dump.cs 摘录
+notes/
+  REA学习笔记.md                 REA 工具链方法论
+  存档修改速查表.md               ★ 字段速查
+  点击魔王_逆向分析报告.md        完整逆向报告
+scripts/                         77 个脚本
+  savedit.py                    ★ 主工具
+  es3decrypt.py                 ★ ES3 解密
+  frida_hook_es3_ctor.py        ★ 真机取口令
+  disasm_range.py               ★ capstone 反汇编 + dump.cs 自动标注
+saves/                           演示存档（明文）+ 真实存档样本（加密）
+emu-notes/                       模拟器操作脚本与结论
+evidence/                        frida 输出、maps、base 验证记录
+```
+
+---
+
+## 关键地址
+
+| 符号 | RVA |
+|---|---|
+| `ES3Settings..ctor(EncryptionType,string)` | `0x175226C` |
+| `SaveManager..ctor` | `0x17A64D8` |
+| `AESEncryptionAlgorithm.Encrypt(Stream)` | `0x1782D44` |
+| `AESEncryptionAlgorithm.Decrypt(Stream)` | `0x178329C` |
+| `Rfc2898DeriveBytes..ctor(string,byte[],int)` | `0x27A87E0` |
+| `ShuJuDate.SaveGame` | `0x18A7034` |
+
+**`RVA ≠ file offset`** —— ELF 段间有 `0x4000` / `0x8000` 差值，
+正确换算：`fileoff = RVA - p_vaddr + p_offset`，必须按 program header 分段算。
+
+---
+
+## 自行获取的大文件
+
+| 文件 | 大小 | 来源 |
+|---|---|---|
+| `TapDemons_v5.9.2.apk` | 132 MB | TapTap 搜索「点击魔王」 |
+| `libil2cpp.so` | 56 MB | APK `lib/arm64-v8a/`，MD5 `3466135958c06c40a50d4fa8bd458d0e` |
+| `global-metadata.dat` | 10 MB | APK `assets/bin/Data/Managed/Metadata/` |
+| `dump.cs` | 22 MB | `Il2CppDumper.exe libil2cpp.so global-metadata.dat out/` |
+
+---
+
+## 免责声明
+
+本项目仅用于**个人学习与逆向技术研究**。所有分析均针对单机存档数据，
+不涉及网络协议、不提供任何在线作弊或破坏游戏公平性的手段。
+请勿用于商业用途或传播修改后的存档。游戏版权归原作者所有。

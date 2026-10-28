@@ -1,0 +1,45 @@
+# ===== 大二进制与产物（从 APK 自行提取，见 README）=====
+*.apk
+*.so
+*.dll
+*.dat
+dump.cs
+data.unity3d
+*.bin
+*.xz
+
+# ===== 内存 dump / frida-server =====
+memdump*.bin
+mem*.bin
+seg_*.bin
+fs
+fs-arm64
+frida-server*
+
+# ===== 工具链 =====
+jdk/
+ghidra/
+ghidra_out/
+install/
+node_modules/
+*.tgz
+pkg/
+tools/
+
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ===== 编辑器 =====
+.vscode/
+.idea/
+*.swp
+*~
+
+# ===== 系统 =====
+Thumbs.db
+desktop.ini
+.DS_Store

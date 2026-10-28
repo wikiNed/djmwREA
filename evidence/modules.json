@@ -1,0 +1,1487 @@
+[
+ {
+  "n": "app_process64",
+  "b": "0x5a89a2ac3000",
+  "s": 20480
+ },
+ {
+  "n": "linker64",
+  "b": "0x7d3cf3366000",
+  "s": 1424864
+ },
+ {
+  "n": "libandroid_runtime.so",
+  "b": "0x7d3cd9e23000",
+  "s": 2252800
+ },
+ {
+  "n": "libbinder.so",
+  "b": "0x7d3cde08c000",
+  "s": 716800
+ },
+ {
+  "n": "libcutils.so",
+  "b": "0x7d3cf1d9b000",
+  "s": 81920
+ },
+ {
+  "n": "libhidlbase.so",
+  "b": "0x7d3cf1c8d000",
+  "s": 733184
+ },
+ {
+  "n": "liblog.so",
+  "b": "0x7d3cdf59a000",
+  "s": 73728
+ },
+ {
+  "n": "libnativeloader.so",
+  "b": "0x7d3cd928c000",
+  "s": 180224
+ },
+ {
+  "n": "libsigchain.so",
+  "b": "0x7d3cddee0000",
+  "s": 40960
+ },
+ {
+  "n": "libutils.so",
+  "b": "0x7d3cda0c0000",
+  "s": 126976
+ },
+ {
+  "n": "libwilhelm.so",
+  "b": "0x7d3cd96e0000",
+  "s": 270336
+ },
+ {
+  "n": "libc++.so",
+  "b": "0x7d3ce7742000",
+  "s": 753664
+ },
+ {
+  "n": "libc.so",
+  "b": "0x7d3cee018000",
+  "s": 6520832
+ },
+ {
+  "n": "libm.so",
+  "b": "0x7d3cde02d000",
+  "s": 307200
+ },
+ {
+  "n": "libdl.so",
+  "b": "0x7d3cdf291000",
+  "s": 20480
+ },
+ {
+  "n": "libbase.so",
+  "b": "0x7d3cf2159000",
+  "s": 270336
+ },
+ {
+  "n": "libharfbuzz_ng.so",
+  "b": "0x7d3cd5ef9000",
+  "s": 1060864
+ },
+ {
+  "n": "libhwui.so",
+  "b": "0x7d3cd3600000",
+  "s": 14974976
+ },
+ {
+  "n": "libminikin.so",
+  "b": "0x7d3cd9242000",
+  "s": 253952
+ },
+ {
+  "n": "libz.so",
+  "b": "0x7d3cd5dd2000",
+  "s": 114688
+ },
+ {
+  "n": "audioclient-types-aidl-cpp.so",
+  "b": "0x7d3cd9ba8000",
+  "s": 57344
+ },
+ {
+  "n": "audioflinger-aidl-cpp.so",
+  "b": "0x7d3cede4c000",
+  "s": 204800
+ },
+ {
+  "n": "audiopolicy-types-aidl-cpp.so",
+  "b": "0x7d3cf258e000",
+  "s": 28672
+ },
+ {
+  "n": "spatializer-aidl-cpp.so",
+  "b": "0x7d3cf1b8d000",
+  "s": 81920
+ },
+ {
+  "n": "av-types-aidl-cpp.so",
+  "b": "0x7d3cf2360000",
+  "s": 20480
+ },
+ {
+  "n": "android.hardware.camera.device@3.2.so",
+  "b": "0x7d3cf1a0d000",
+  "s": 208896
+ },
+ {
+  "n": "libandroidicu.so",
+  "b": "0x7d3ce7503000",
+  "s": 36864
+ },
+ {
+  "n": "libbpf_android.so",
+  "b": "0x7d3cf26ac000",
+  "s": 65536
+ },
+ {
+  "n": "libnetdbpf.so",
+  "b": "0x7d3ce1a4d000",
+  "s": 73728
+ },
+ {
+  "n": "libnetdutils.so",
+  "b": "0x7d3cd9411000",
+  "s": 94208
+ },
+ {
+  "n": "libmemtrack.so",
+  "b": "0x7d3cd9944000",
+  "s": 24576
+ },
+ {
+  "n": "libandroidfw.so",
+  "b": "0x7d3cd92c3000",
+  "s": 593920
+ },
+ {
+  "n": "libappfuse.so",
+  "b": "0x7d3cd98ee000",
+  "s": 61440
+ },
+ {
+  "n": "libcrypto.so",
+  "b": "0x7d3ce4c64000",
+  "s": 1617920
+ },
+ {
+  "n": "libdebuggerd_client.so",
+  "b": "0x7d3ce39c7000",
+  "s": 49152
+ },
+ {
+  "n": "libui.so",
+  "b": "0x7d3cda12d000",
+  "s": 323584
+ },
+ {
+  "n": "libgraphicsenv.so",
+  "b": "0x7d3cf1a51000",
+  "s": 61440
+ },
+ {
+  "n": "libgui.so",
+  "b": "0x7d3cd34aa000",
+  "s": 1359872
+ },
+ {
+  "n": "libmediandk.so",
+  "b": "0x7d3cdf5d0000",
+  "s": 172032
+ },
+ {
+  "n": "libpermission.so",
+  "b": "0x7d3cdd9d4000",
+  "s": 81920
+ },
+ {
+  "n": "libsensor.so",
+  "b": "0x7d3cdf38e000",
+  "s": 102400
+ },
+ {
+  "n": "libinput.so",
+  "b": "0x7d3ce3913000",
+  "s": 417792
+ },
+ {
+  "n": "libcamera_client.so",
+  "b": "0x7d3cddf41000",
+  "s": 462848
+ },
+ {
+  "n": "libcamera_metadata.so",
+  "b": "0x7d3ce75aa000",
+  "s": 61440
+ },
+ {
+  "n": "libsqlite.so",
+  "b": "0x7d3ce1a98000",
+  "s": 1232896
+ },
+ {
+  "n": "libEGL.so",
+  "b": "0x7d3cdd856000",
+  "s": 942080
+ },
+ {
+  "n": "libGLESv1_CM.so",
+  "b": "0x7d3cdddb2000",
+  "s": 45056
+ },
+ {
+  "n": "libGLESv2.so",
+  "b": "0x7d3ce789d000",
+  "s": 110592
+ },
+ {
+  "n": "libGLESv3.so",
+  "b": "0x7d3cddcc8000",
+  "s": 110592
+ },
+ {
+  "n": "libincfs.so",
+  "b": "0x7d3ce7688000",
+  "s": 192512
+ },
+ {
+  "n": "libdataloader.so",
+  "b": "0x7d3cdda25000",
+  "s": 86016
+ },
+ {
+  "n": "libvulkan.so",
+  "b": "0x7d3cf244f000",
+  "s": 184320
+ },
+ {
+  "n": "libETC1.so",
+  "b": "0x7d3ce9b1e000",
+  "s": 20480
+ },
+ {
+  "n": "libjpeg.so",
+  "b": "0x7d3cd9563000",
+  "s": 618496
+ },
+ {
+  "n": "libhardware.so",
+  "b": "0x7d3cd5d63000",
+  "s": 16384
+ },
+ {
+  "n": "libhardware_legacy.so",
+  "b": "0x7d3cdddc5000",
+  "s": 32768
+ },
+ {
+  "n": "libselinux.so",
+  "b": "0x7d3cdf7cd000",
+  "s": 118784
+ },
+ {
+  "n": "libmedia.so",
+  "b": "0x7d3ce3b30000",
+  "s": 667648
+ },
+ {
+  "n": "libmedia_helper.so",
+  "b": "0x7d3cddd1a000",
+  "s": 122880
+ },
+ {
+  "n": "libmediametrics.so",
+  "b": "0x7d3cd975b000",
+  "s": 81920
+ },
+ {
+  "n": "libmeminfo.so",
+  "b": "0x7d3cd949c000",
+  "s": 98304
+ },
+ {
+  "n": "libaudioclient.so",
+  "b": "0x7d3cf1ed2000",
+  "s": 712704
+ },
+ {
+  "n": "libaudiofoundation.so",
+  "b": "0x7d3cf2606000",
+  "s": 237568
+ },
+ {
+  "n": "libaudiopolicy.so",
+  "b": "0x7d3cd5d97000",
+  "s": 86016
+ },
+ {
+  "n": "libusbhost.so",
+  "b": "0x7d3cd5e22000",
+  "s": 28672
+ },
+ {
+  "n": "libpdfium.so",
+  "b": "0x7d3cd6005000",
+  "s": 4169728
+ },
+ {
+  "n": "libimg_utils.so",
+  "b": "0x7d3cd9894000",
+  "s": 86016
+ },
+ {
+  "n": "libnetd_client.so",
+  "b": "0x7d3cf1bed000",
+  "s": 45056
+ },
+ {
+  "n": "libprocessgroup.so",
+  "b": "0x7d3ce9a7b000",
+  "s": 372736
+ },
+ {
+  "n": "libnativebridge_lazy.so",
+  "b": "0x7d3cd5c6c000",
+  "s": 16384
+ },
+ {
+  "n": "libnativeloader_lazy.so",
+  "b": "0x7d3cf1f80000",
+  "s": 20480
+ },
+ {
+  "n": "libmemunreachable.so",
+  "b": "0x7d3ce7848000",
+  "s": 217088
+ },
+ {
+  "n": "libvintf.so",
+  "b": "0x7d3cdf710000",
+  "s": 659456
+ },
+ {
+  "n": "libnativedisplay.so",
+  "b": "0x7d3cf23e1000",
+  "s": 86016
+ },
+ {
+  "n": "libnativewindow.so",
+  "b": "0x7d3cddf1c000",
+  "s": 32768
+ },
+ {
+  "n": "libdl_android.so",
+  "b": "0x7d3cdf871000",
+  "s": 12288
+ },
+ {
+  "n": "libtimeinstate.so",
+  "b": "0x7d3ce765d000",
+  "s": 73728
+ },
+ {
+  "n": "server_configurable_flags.so",
+  "b": "0x7d3cd938f000",
+  "s": 20480
+ },
+ {
+  "n": "libvndksupport.so",
+  "b": "0x7d3ce7464000",
+  "s": 16384
+ },
+ {
+  "n": "libnativebridge.so",
+  "b": "0x7d3cf1b6f000",
+  "s": 45056
+ },
+ {
+  "n": "libbase.so",
+  "b": "0x7d3ce799c000",
+  "s": 270336
+ },
+ {
+  "n": "libartbase.so",
+  "b": "0x7d3cf1e28000",
+  "s": 278528
+ },
+ {
+  "n": "libc++.so",
+  "b": "0x7d3cea079000",
+  "s": 753664
+ },
+ {
+  "n": "framework-permission-aidl-cpp.so",
+  "b": "0x7d3cf23b2000",
+  "s": 45056
+ },
+ {
+  "n": "libmedia_codeclist.so",
+  "b": "0x7d3cddbae000",
+  "s": 69632
+ },
+ {
+  "n": "libaudioclient_aidl_conversion.so",
+  "b": "0x7d3cf224e000",
+  "s": 184320
+ },
+ {
+  "n": "libaudiomanager.so",
+  "b": "0x7d3cdd99b000",
+  "s": 28672
+ },
+ {
+  "n": "libdatasource.so",
+  "b": "0x7d3ce7720000",
+  "s": 90112
+ },
+ {
+  "n": "libstagefright.so",
+  "b": "0x7d3ce7a06000",
+  "s": 1986560
+ },
+ {
+  "n": "libstagefright_foundation.so",
+  "b": "0x7d3cdf408000",
+  "s": 225280
+ },
+ {
+  "n": "libstagefright_http_support.so",
+  "b": "0x7d3cf250b000",
+  "s": 20480
+ },
+ {
+  "n": "libicu.so",
+  "b": "0x7d3cdd66f000",
+  "s": 65536
+ },
+ {
+  "n": "libpng.so",
+  "b": "0x7d3cdf304000",
+  "s": 245760
+ },
+ {
+  "n": "libdng_sdk.so",
+  "b": "0x7d3cdf60c000",
+  "s": 884736
+ },
+ {
+  "n": "libpiex.so",
+  "b": "0x7d3cf1fde000",
+  "s": 114688
+ },
+ {
+  "n": "libexpat.so",
+  "b": "0x7d3cf2653000",
+  "s": 172032
+ },
+ {
+  "n": "libbinder_ndk.so",
+  "b": "0x7d3cd5c9b000",
+  "s": 94208
+ },
+ {
+  "n": "libheif.so",
+  "b": "0x7d3cdde09000",
+  "s": 36864
+ },
+ {
+  "n": "libprotobuf-cpp-lite.so",
+  "b": "0x7d3cdda41000",
+  "s": 507904
+ },
+ {
+  "n": "libft2.so",
+  "b": "0x7d3cf1a81000",
+  "s": 688128
+ },
+ {
+  "n": "libsync.so",
+  "b": "0x7d3cdd688000",
+  "s": 20480
+ },
+ {
+  "n": "audio_common-aidl-cpp.so",
+  "b": "0x7d3cd5ce5000",
+  "s": 16384
+ },
+ {
+  "n": "effect-aidl-cpp.so",
+  "b": "0x7d3ce3868000",
+  "s": 53248
+ },
+ {
+  "n": "shared-file-region-aidl-cpp.so",
+  "b": "0x7d3cd9a17000",
+  "s": 12288
+ },
+ {
+  "n": "android.hardware.camera.common@1.0.so",
+  "b": "0x7d3cdfb84000",
+  "s": 16384
+ },
+ {
+  "n": "android.hardware.graphics.common@1.0.so",
+  "b": "0x7d3ce7573000",
+  "s": 12288
+ },
+ {
+  "n": "libbase.so",
+  "b": "0x7d3cf20c2000",
+  "s": 270336
+ },
+ {
+  "n": "libicuuc.so",
+  "b": "0x7d3cd9c1b000",
+  "s": 1953792
+ },
+ {
+  "n": "libicui18n.so",
+  "b": "0x7d3cdf890000",
+  "s": 2875392
+ },
+ {
+  "n": "libc++.so",
+  "b": "0x7d3cedf43000",
+  "s": 753664
+ },
+ {
+  "n": "libbpf.so",
+  "b": "0x7d3cd5e8f000",
+  "s": 45056
+ },
+ {
+  "n": "android.hardware.memtrack@1.0.so",
+  "b": "0x7d3cdfbe9000",
+  "s": 81920
+ },
+ {
+  "n": "android.hardware.memtrack-V1-ndk_platform.so",
+  "b": "0x7d3cdf468000",
+  "s": 45056
+ },
+ {
+  "n": "libprocinfo.so",
+  "b": "0x7d3cf1c1a000",
+  "s": 20480
+ },
+ {
+  "n": "android.hardware.graphics.allocator@2.0.so",
+  "b": "0x7d3cd950b000",
+  "s": 90112
+ },
+ {
+  "n": "android.hardware.graphics.allocator@3.0.so",
+  "b": "0x7d3cddb14000",
+  "s": 90112
+ },
+ {
+  "n": "android.hardware.graphics.allocator@4.0.so",
+  "b": "0x7d3cd97aa000",
+  "s": 81920
+ },
+ {
+  "n": "android.hardware.graphics.common-V2-ndk_platform.so",
+  "b": "0x7d3cd9a72000",
+  "s": 28672
+ },
+ {
+  "n": "android.hardware.graphics.common@1.2.so",
+  "b": "0x7d3cedf03000",
+  "s": 12288
+ },
+ {
+  "n": "android.hardware.graphics.mapper@2.0.so",
+  "b": "0x7d3ce748c000",
+  "s": 98304
+ },
+ {
+  "n": "android.hardware.graphics.mapper@2.1.so",
+  "b": "0x7d3cdd6d6000",
+  "s": 102400
+ },
+ {
+  "n": "android.hardware.graphics.mapper@3.0.so",
+  "b": "0x7d3cd94cd000",
+  "s": 106496
+ },
+ {
+  "n": "android.hardware.graphics.mapper@4.0.so",
+  "b": "0x7d3cdf804000",
+  "s": 135168
+ },
+ {
+  "n": "libgralloctypes.so",
+  "b": "0x7d3cdf3d2000",
+  "s": 94208
+ },
+ {
+  "n": "android.hardware.graphics.bufferqueue@1.0.so",
+  "b": "0x7d3cd9b02000",
+  "s": 212992
+ },
+ {
+  "n": "android.hardware.graphics.bufferqueue@2.0.so",
+  "b": "0x7d3ce78cd000",
+  "s": 192512
+ },
+ {
+  "n": "android.hardware.graphics.common@1.1.so",
+  "b": "0x7d3cf1d41000",
+  "s": 12288
+ },
+ {
+  "n": "android.hidl.token@1.0-utils.so",
+  "b": "0x7d3cdd80f000",
+  "s": 24576
+ },
+ {
+  "n": "android.frameworks.bufferhub@1.0.so",
+  "b": "0x7d3cd9a99000",
+  "s": 131072
+ },
+ {
+  "n": "libbufferhub.so",
+  "b": "0x7d3cee69b000",
+  "s": 73728
+ },
+ {
+  "n": "libbufferhubqueue.so",
+  "b": "0x7d3cd9655000",
+  "s": 131072
+ },
+ {
+  "n": "libpdx_default_transport.so",
+  "b": "0x7d3cd9602000",
+  "s": 167936
+ },
+ {
+  "n": "libandroid_runtime_lazy.so",
+  "b": "0x7d3ce761b000",
+  "s": 16384
+ },
+ {
+  "n": "libmediadrm.so",
+  "b": "0x7d3cd4500000",
+  "s": 262144
+ },
+ {
+  "n": "libmedia_omx.so",
+  "b": "0x7d3cd9902000",
+  "s": 212992
+ },
+ {
+  "n": "libmedia_jni_utils.so",
+  "b": "0x7d3cddb51000",
+  "s": 20480
+ },
+ {
+  "n": "libmediandk_utils.so",
+  "b": "0x7d3cf21c5000",
+  "s": 20480
+ },
+ {
+  "n": "libbacktrace.so",
+  "b": "0x7d3cf22cf000",
+  "s": 176128
+ },
+ {
+  "n": "android.hardware.configstore@1.0.so",
+  "b": "0x7d3cddfdc000",
+  "s": 122880
+ },
+ {
+  "n": "android.hardware.configstore-utils.so",
+  "b": "0x7d3cf25eb000",
+  "s": 16384
+ },
+ {
+  "n": "libSurfaceFlingerProp.so",
+  "b": "0x7d3cd93c9000",
+  "s": 94208
+ },
+ {
+  "n": "libziparchive.so",
+  "b": "0x7d3cd99d0000",
+  "s": 81920
+ },
+ {
+  "n": "android.system.suspend@1.0.so",
+  "b": "0x7d3cdf253000",
+  "s": 118784
+ },
+ {
+  "n": "libpcre2.so",
+  "b": "0x7d3cdd79d000",
+  "s": 385024
+ },
+ {
+  "n": "libpackagelistparser.so",
+  "b": "0x7d3cddd4e000",
+  "s": 16384
+ },
+ {
+  "n": "mediametricsservice-aidl-cpp.so",
+  "b": "0x7d3cf2405000",
+  "s": 32768
+ },
+ {
+  "n": "audiopolicy-aidl-cpp.so",
+  "b": "0x7d3cdde4e000",
+  "s": 196608
+ },
+ {
+  "n": "capture_state_listener-aidl-cpp.so",
+  "b": "0x7d3cd9982000",
+  "s": 32768
+ },
+ {
+  "n": "libaudioutils.so",
+  "b": "0x7d3cf2207000",
+  "s": 184320
+ },
+ {
+  "n": "libmediautils.so",
+  "b": "0x7d3cf2540000",
+  "s": 258048
+ },
+ {
+  "n": "libnblog.so",
+  "b": "0x7d3cdf540000",
+  "s": 262144
+ },
+ {
+  "n": "libshmemcompat.so",
+  "b": "0x7d3ce38f0000",
+  "s": 16384
+ },
+ {
+  "n": "libvibrator.so",
+  "b": "0x7d3cddeae000",
+  "s": 57344
+ },
+ {
+  "n": "libcgrouprc.so",
+  "b": "0x7d3ce7822000",
+  "s": 24576
+ },
+ {
+  "n": "libhidl-gen-utils.so",
+  "b": "0x7d3ce3988000",
+  "s": 65536
+ },
+ {
+  "n": "libtinyxml2.so",
+  "b": "0x7d3ce388f000",
+  "s": 94208
+ },
+ {
+  "n": "libziparchive.so",
+  "b": "0x7d3cea1c9000",
+  "s": 81920
+ },
+ {
+  "n": "libartpalette.so",
+  "b": "0x7d3cd5d1f000",
+  "s": 20480
+ },
+ {
+  "n": "android.hardware.media.omx@1.0.so",
+  "b": "0x7d3ce7900000",
+  "s": 413696
+ },
+ {
+  "n": "libstagefright_framecapture_utils.so",
+  "b": "0x7d3cd9202000",
+  "s": 221184
+ },
+ {
+  "n": "libcodec2.so",
+  "b": "0x7d3cd9803000",
+  "s": 12288
+ },
+ {
+  "n": "libcodec2_vndk.so",
+  "b": "0x7d3ce3a40000",
+  "s": 716800
+ },
+ {
+  "n": "libmedia_omx_client.so",
+  "b": "0x7d3ce3a0e000",
+  "s": 28672
+ },
+ {
+  "n": "libsfplugin_ccodec.so",
+  "b": "0x7d3cf2007000",
+  "s": 708608
+ },
+ {
+  "n": "libsfplugin_ccodec_utils.so",
+  "b": "0x7d3cee6cf000",
+  "s": 454656
+ },
+ {
+  "n": "libstagefright_codecbase.so",
+  "b": "0x7d3cd44c8000",
+  "s": 40960
+ },
+ {
+  "n": "libstagefright_omx_utils.so",
+  "b": "0x7d3cd946e000",
+  "s": 28672
+ },
+ {
+  "n": "libRScpp.so",
+  "b": "0x7d3cde178000",
+  "s": 286720
+ },
+ {
+  "n": "libhidlallocatorutils.so",
+  "b": "0x7d3cd968c000",
+  "s": 12288
+ },
+ {
+  "n": "libhidlmemory.so",
+  "b": "0x7d3cd9b6c000",
+  "s": 32768
+ },
+ {
+  "n": "android.hidl.allocator@1.0.so",
+  "b": "0x7d3cd9adb000",
+  "s": 86016
+ },
+ {
+  "n": "android.hardware.cas.native@1.0.so",
+  "b": "0x7d3cddc42000",
+  "s": 94208
+ },
+ {
+  "n": "android.hardware.drm@1.0.so",
+  "b": "0x7d3cda19e000",
+  "s": 380928
+ },
+ {
+  "n": "android.hardware.common-V2-ndk_platform.so",
+  "b": "0x7d3cddc8e000",
+  "s": 24576
+ },
+ {
+  "n": "android.hardware.media@1.0.so",
+  "b": "0x7d3cf2336000",
+  "s": 12288
+ },
+ {
+  "n": "android.hidl.token@1.0.so",
+  "b": "0x7d3cdd95f000",
+  "s": 90112
+ },
+ {
+  "n": "libmediadrmmetrics_lite.so",
+  "b": "0x7d3ce74d0000",
+  "s": 131072
+ },
+ {
+  "n": "android.hardware.drm@1.1.so",
+  "b": "0x7d3cdf340000",
+  "s": 253952
+ },
+ {
+  "n": "android.hardware.drm@1.2.so",
+  "b": "0x7d3cede9c000",
+  "s": 385024
+ },
+ {
+  "n": "android.hardware.drm@1.3.so",
+  "b": "0x7d3cd9bd0000",
+  "s": 147456
+ },
+ {
+  "n": "android.hardware.drm@1.4.so",
+  "b": "0x7d3cdd71c000",
+  "s": 339968
+ },
+ {
+  "n": "libunwindstack.so",
+  "b": "0x7d3ce9b6c000",
+  "s": 602112
+ },
+ {
+  "n": "android.hardware.configstore@1.1.so",
+  "b": "0x7d3cf1e9e000",
+  "s": 106496
+ },
+ {
+  "n": "libspeexresampler.so",
+  "b": "0x7d3cdf52b000",
+  "s": 24576
+ },
+ {
+  "n": "libshmemutil.so",
+  "b": "0x7d3cddbde000",
+  "s": 12288
+ },
+ {
+  "n": "android.hardware.media.bufferpool@2.0.so",
+  "b": "0x7d3ce76c8000",
+  "s": 204800
+ },
+ {
+  "n": "libion.so",
+  "b": "0x7d3cdf4b8000",
+  "s": 20480
+ },
+ {
+  "n": "libdmabufheap.so",
+  "b": "0x7d3cdf4da000",
+  "s": 98304
+ },
+ {
+  "n": "libfmq.so",
+  "b": "0x7d3cd987b000",
+  "s": 20480
+ },
+ {
+  "n": "libstagefright_bufferpool@2.0.1.so",
+  "b": "0x7d3cf2484000",
+  "s": 200704
+ },
+ {
+  "n": "android.hardware.media.c2@1.0.so",
+  "b": "0x7d3cd4555000",
+  "s": 544768
+ },
+ {
+  "n": "libcodec2_client.so",
+  "b": "0x7d3cee7d3000",
+  "s": 180224
+ },
+ {
+  "n": "libstagefright_bufferqueue_helper.so",
+  "b": "0x7d3cea19c000",
+  "s": 98304
+ },
+ {
+  "n": "libstagefright_omx.so",
+  "b": "0x7d3cee750000",
+  "s": 335872
+ },
+ {
+  "n": "libstagefright_xmlparser.so",
+  "b": "0x7d3ce75de000",
+  "s": 110592
+ },
+ {
+  "n": "android.hidl.memory@1.0.so",
+  "b": "0x7d3cf1dd2000",
+  "s": 131072
+ },
+ {
+  "n": "android.hidl.memory.token@1.0.so",
+  "b": "0x7d3cf26c9000",
+  "s": 81920
+ },
+ {
+  "n": "android.hardware.cas@1.0.so",
+  "b": "0x7d3cf24c4000",
+  "s": 241664
+ },
+ {
+  "n": "liblzma.so",
+  "b": "0x7d3cd97cc000",
+  "s": 212992
+ },
+ {
+  "n": "android.hidl.safe_union@1.0.so",
+  "b": "0x7d3cddc08000",
+  "s": 12288
+ },
+ {
+  "n": "android.hardware.media.c2@1.1.so",
+  "b": "0x7d3cd5e4b000",
+  "s": 184320
+ },
+ {
+  "n": "android.hardware.media.c2@1.2.so",
+  "b": "0x7d3cdf2cf000",
+  "s": 200704
+ },
+ {
+  "n": "libcodec2_hidl_client@1.0.so",
+  "b": "0x7d3cf1c5c000",
+  "s": 118784
+ },
+ {
+  "n": "libcodec2_hidl_client@1.1.so",
+  "b": "0x7d3cddace000",
+  "s": 12288
+ },
+ {
+  "n": "libcodec2_hidl_client@1.2.so",
+  "b": "0x7d3cf2286000",
+  "s": 12288
+ },
+ {
+  "n": "libnativehelper.so",
+  "b": "0x7d3cf2f6b000",
+  "s": 32768
+ },
+ {
+  "n": "libart.so",
+  "b": "0x7d3a3d800000",
+  "s": 14835712
+ },
+ {
+  "n": "libbacktrace.so",
+  "b": "0x7d3cf2cc5000",
+  "s": 176128
+ },
+ {
+  "n": "liblz4.so",
+  "b": "0x7d3cf2bcf000",
+  "s": 172032
+ },
+ {
+  "n": "liblzma.so",
+  "b": "0x7d3cf2c0c000",
+  "s": 212992
+ },
+ {
+  "n": "libunwindstack.so",
+  "b": "0x7d3a41662000",
+  "s": 602112
+ },
+ {
+  "n": "libdexfile.so",
+  "b": "0x7d3a3cf58000",
+  "s": 307200
+ },
+ {
+  "n": "libprofile.so",
+  "b": "0x7d3cf2e56000",
+  "s": 163840
+ },
+ {
+  "n": "libstatssocket.so",
+  "b": "0x7d3cf2d1b000",
+  "s": 28672
+ },
+ {
+  "n": "heapprofd_client_api.so",
+  "b": "0x7d3cf2e00000",
+  "s": 94208
+ },
+ {
+  "n": "libartpalette-system.so",
+  "b": "0x7d3cf2b5a000",
+  "s": 45056
+ },
+ {
+  "n": "libtombstoned_client.so",
+  "b": "0x7d3cf2bb1000",
+  "s": 32768
+ },
+ {
+  "n": "boot.oat",
+  "b": "0x6f37d000",
+  "s": 4866048
+ },
+ {
+  "n": "boot-core-libart.oat",
+  "b": "0x6f821000",
+  "s": 413696
+ },
+ {
+  "n": "boot-okhttp.oat",
+  "b": "0x6f886000",
+  "s": 327680
+ },
+ {
+  "n": "boot-bouncycastle.oat",
+  "b": "0x6f8d6000",
+  "s": 147456
+ },
+ {
+  "n": "boot-apache-xml.oat",
+  "b": "0x6f8fa000",
+  "s": 32768
+ },
+ {
+  "n": "boot-framework.oat",
+  "b": "0x70953000",
+  "s": 10199040
+ },
+ {
+  "n": "boot-framework-graphics.oat",
+  "b": "0x7130d000",
+  "s": 20480
+ },
+ {
+  "n": "boot-ext.oat",
+  "b": "0x71312000",
+  "s": 139264
+ },
+ {
+  "n": "boot-telephony-common.oat",
+  "b": "0x71334000",
+  "s": 53248
+ },
+ {
+  "n": "boot-voip-common.oat",
+  "b": "0x71341000",
+  "s": 36864
+ },
+ {
+  "n": "boot-ims-common.oat",
+  "b": "0x7134a000",
+  "s": 24576
+ },
+ {
+  "n": "boot-core-icu4j.oat",
+  "b": "0x71350000",
+  "s": 1261568
+ },
+ {
+  "n": "libadbconnection.so",
+  "b": "0x7d3a359c6000",
+  "s": 69632
+ },
+ {
+  "n": "libadbconnection_client.so",
+  "b": "0x7d3a35980000",
+  "s": 241664
+ },
+ {
+  "n": "libnb.so",
+  "b": "0x7d3a35943000",
+  "s": 20480
+ },
+ {
+  "n": "libperfetto_hprof.so",
+  "b": "0x7d3a3587d000",
+  "s": 790528
+ },
+ {
+  "n": "libandroid.so",
+  "b": "0x7d3a357d0000",
+  "s": 188416
+ },
+ {
+  "n": "libactivitymanager_aidl.so",
+  "b": "0x7d3a35830000",
+  "s": 49152
+ },
+ {
+  "n": "libxml2.so",
+  "b": "0x7d3a35668000",
+  "s": 1372160
+ },
+ {
+  "n": "libpowermanager.so",
+  "b": "0x7d3a35589000",
+  "s": 192512
+ },
+ {
+  "n": "android.hardware.power@1.0.so",
+  "b": "0x7d3a35602000",
+  "s": 90112
+ },
+ {
+  "n": "android.hardware.power@1.1.so",
+  "b": "0x7d3a355d5000",
+  "s": 94208
+ },
+ {
+  "n": "android.hardware.power-V2-cpp.so",
+  "b": "0x7d3a35562000",
+  "s": 65536
+ },
+ {
+  "n": "libaaudio.so",
+  "b": "0x7d3a35520000",
+  "s": 24576
+ },
+ {
+  "n": "libaaudio_internal.so",
+  "b": "0x7d3a354c2000",
+  "s": 253952
+ },
+ {
+  "n": "aaudio-aidl-cpp.so",
+  "b": "0x7d3a354ad000",
+  "s": 65536
+ },
+ {
+  "n": "libamidi.so",
+  "b": "0x7d3a35467000",
+  "s": 45056
+ },
+ {
+  "n": "libcamera2ndk.so",
+  "b": "0x7d3a35410000",
+  "s": 196608
+ },
+ {
+  "n": "libjnigraphics.so",
+  "b": "0x7d3a353ee000",
+  "s": 28672
+ },
+ {
+  "n": "libOpenMAXAL.so",
+  "b": "0x7d3a353bb000",
+  "s": 16384
+ },
+ {
+  "n": "libOpenSLES.so",
+  "b": "0x7d3a35371000",
+  "s": 16384
+ },
+ {
+  "n": "libRS.so",
+  "b": "0x7d3a352eb000",
+  "s": 86016
+ },
+ {
+  "n": "libutilscallstack.so",
+  "b": "0x7d3a35333000",
+  "s": 28672
+ },
+ {
+  "n": "android.hardware.renderscript@1.0.so",
+  "b": "0x7d3a35258000",
+  "s": 339968
+ },
+ {
+  "n": "libstdc++.so",
+  "b": "0x7d3a35209000",
+  "s": 20480
+ },
+ {
+  "n": "libwebviewchromium_plat_support.so",
+  "b": "0x7d3a351d0000",
+  "s": 28672
+ },
+ {
+  "n": "libcallhost.so",
+  "b": "0x7d3a3515f000",
+  "s": 106496
+ },
+ {
+  "n": "libnemuinitaidl.so",
+  "b": "0x7d3a351ae000",
+  "s": 73728
+ },
+ {
+  "n": "libicu_jni.so",
+  "b": "0x7d3a35102000",
+  "s": 86016
+ },
+ {
+  "n": "libjavacore.so",
+  "b": "0x7d3a337c0000",
+  "s": 262144
+ },
+ {
+  "n": "libandroidio.so",
+  "b": "0x7d3a33793000",
+  "s": 16384
+ },
+ {
+  "n": "libcrypto.so",
+  "b": "0x7d3a31647000",
+  "s": 1617920
+ },
+ {
+  "n": "libexpat.so",
+  "b": "0x7d3a33741000",
+  "s": 172032
+ },
+ {
+  "n": "libopenjdk.so",
+  "b": "0x7d3a336c4000",
+  "s": 241664
+ },
+ {
+  "n": "libopenjdkjvm.so",
+  "b": "0x7d3a33735000",
+  "s": 45056
+ },
+ {
+  "n": "libart-compiler.so",
+  "b": "0x7d3a2e200000",
+  "s": 9846784
+ },
+ {
+  "n": "libstats_jni.so",
+  "b": "0x7d3a336a8000",
+  "s": 12288
+ },
+ {
+  "n": "libjavacrypto.so",
+  "b": "0x7d3a24963000",
+  "s": 319488
+ },
+ {
+  "n": "libcrypto.so",
+  "b": "0x7d3a2645c000",
+  "s": 1617920
+ },
+ {
+  "n": "libssl.so",
+  "b": "0x7d3a26628000",
+  "s": 401408
+ },
+ {
+  "n": "libc++.so",
+  "b": "0x7d3a26747000",
+  "s": 753664
+ },
+ {
+  "n": "libhp12_x86_64.so",
+  "b": "0x7d3a1f23b000",
+  "s": 3616768
+ },
+ {
+  "n": "libjsoncpp.so",
+  "b": "0x7d3a2c0c6000",
+  "s": 221184
+ },
+ {
+  "n": "libhoudini.so",
+  "b": "0x7d3a2afb0000",
+  "s": 12800000
+ },
+ {
+  "n": "base.odex",
+  "b": "0x7d3a1b310000",
+  "s": 25907200
+ },
+ {
+  "n": "libframework-connectivity-jni.so",
+  "b": "0x7d3a29df6000",
+  "s": 28672
+ },
+ {
+  "n": "libEGL_emulation.so",
+  "b": "0x7d3a1b245000",
+  "s": 233472
+ },
+ {
+  "n": "libOpenglSystemCommon.so",
+  "b": "0x7d3a1b282000",
+  "s": 245760
+ },
+ {
+  "n": "libvulkan_enc.so",
+  "b": "0x7d3a1a6c2000",
+  "s": 2244608
+ },
+ {
+  "n": "libandroidemu.so",
+  "b": "0x7d3a1b2c4000",
+  "s": 81920
+ },
+ {
+  "n": "lib_renderControl_enc.so",
+  "b": "0x7d3a1b20f000",
+  "s": 45056
+ },
+ {
+  "n": "libGLESv2_enc.so",
+  "b": "0x7d3a1b0cc000",
+  "s": 454656
+ },
+ {
+  "n": "libGLESv1_enc.so",
+  "b": "0x7d3a1b143000",
+  "s": 352256
+ },
+ {
+  "n": "libdrm.so",
+  "b": "0x7d3a1b1c5000",
+  "s": 98304
+ },
+ {
+  "n": "libGLESv1_CM_emulation.so",
+  "b": "0x7d3a1ecdf000",
+  "s": 98304
+ },
+ {
+  "n": "libGLESv2_emulation.so",
+  "b": "0x7d3a1ec80000",
+  "s": 172032
+ },
+ {
+  "n": "android.hardware.graphics.mapper@2.0-impl.so",
+  "b": "0x7d3a1ec64000",
+  "s": 40960
+ },
+ {
+  "n": "gralloc.kona.so",
+  "b": "0x7d3a1b090000",
+  "s": 110592
+ },
+ {
+  "n": "android.hardware.graphics.allocator@2.0-impl.so",
+  "b": "0x7d3a1b05f000",
+  "s": 28672
+ },
+ {
+  "n": "libtcb.so",
+  "b": "0xd0e8000",
+  "s": 1581056
+ },
+ {
+  "n": "vulkan.ranchu.so",
+  "b": "0x7d3a106e2000",
+  "s": 28672
+ },
+ {
+  "n": "system@product@app@TrichromeWebView@TrichromeWebView.apk@classes.dex",
+  "b": "0x7d391da7a000",
+  "s": 745472
+ },
+ {
+  "n": "libmonochrome_64.so",
+  "b": "0x7d3911c7f000",
+  "s": 137842688
+ },
+ {
+  "n": "libmedia_jni.so",
+  "b": "0x7d38ffe71000",
+  "s": 638976
+ },
+ {
+  "n": "libmediadrmmetrics_consumer.so",
+  "b": "0x7d3906e8d000",
+  "s": 36864
+ },
+ {
+  "n": "libmtp.so",
+  "b": "0x7d38fffc8000",
+  "s": 217088
+ },
+ {
+  "n": "libsonivox.so",
+  "b": "0x7d3903749000",
+  "s": 626688
+ },
+ {
+  "n": "libmediadrmmetrics_full.so",
+  "b": "0x7d3903441000",
+  "s": 155648
+ },
+ {
+  "n": "libasyncio.so",
+  "b": "0x7d3906e7c000",
+  "s": 12288
+ },
+ {
+  "n": "libprotobuf-cpp-full.so",
+  "b": "0x7d39034aa000",
+  "s": 2396160
+ }
+]

@@ -1,0 +1,1746 @@
+12c00000-2ac00000 rw-p 00000000 00:00 0                                  [anon:dalvik-main space (region space)]
+52c00000-54c00000 r--s 00000000 00:01 15945                              /memfd:jit-zygote-cache (deleted)
+54c00000-56c00000 r-xs 02000000 00:01 15945                              /memfd:jit-zygote-cache (deleted)
+56c00000-56c04000 rw-p 00000000 00:00 0                                  [anon:dalvik-large object space allocation]
+56c0f000-56c3c000 rw-p 00000000 00:00 0                                  [anon:dalvik-large object space allocation]
+56c43000-56c47000 rw-p 00000000 00:00 0                                  [anon:dalvik-large object space allocation]
+56c47000-58c47000 r--s 00000000 00:01 75319                              /memfd:jit-cache (deleted)
+58c47000-5ac47000 r-xs 02000000 00:01 75319                              /memfd:jit-cache (deleted)
+6f087000-6f2e1000 rw-p 00000000 00:00 0                                  [anon:dalvik-/apex/com.android.art/javalib/boot.art]
+6f2e1000-6f322000 rw-p 00000000 00:00 0                                  [anon:dalvik-/apex/com.android.art/javalib/boot-core-libart.art]
+6f322000-6f348000 rw-p 00000000 00:00 0                                  [anon:dalvik-/apex/com.android.art/javalib/boot-okhttp.art]
+6f348000-6f37c000 rw-p 00000000 00:00 0                                  [anon:dalvik-/apex/com.android.art/javalib/boot-bouncycastle.art]
+6f37c000-6f37d000 rw-p 00000000 00:00 0                                  [anon:dalvik-/apex/com.android.art/javalib/boot-apache-xml.art]
+6f37d000-6f42a000 r--p 00000000 08:06 115                                /apex/com.android.art/javalib/x86_64/boot.oat
+6f42a000-6f812000 r-xp 000ad000 08:06 115                                /apex/com.android.art/javalib/x86_64/boot.oat
+6f812000-6f813000 rw-p 00000000 00:00 0                                  [anon:.bss]
+6f813000-6f81f000 rw-p 00000000 08:06 116                                /apex/com.android.art/javalib/x86_64/boot.vdex
+6f81f000-6f820000 r--p 00495000 08:06 115                                /apex/com.android.art/javalib/x86_64/boot.oat
+6f820000-6f821000 rw-p 00496000 08:06 115                                /apex/com.android.art/javalib/x86_64/boot.oat
+6f821000-6f830000 r--p 00000000 08:06 109                                /apex/com.android.art/javalib/x86_64/boot-core-libart.oat
+6f830000-6f881000 r-xp 0000f000 08:06 109                                /apex/com.android.art/javalib/x86_64/boot-core-libart.oat
+6f881000-6f882000 rw-p 00000000 00:00 0                                  [anon:.bss]
+6f882000-6f884000 rw-p 00000000 08:06 110                                /apex/com.android.art/javalib/x86_64/boot-core-libart.vdex
+6f884000-6f885000 r--p 00060000 08:06 109                                /apex/com.android.art/javalib/x86_64/boot-core-libart.oat
+6f885000-6f886000 rw-p 00061000 08:06 109                                /apex/com.android.art/javalib/x86_64/boot-core-libart.oat
+6f886000-6f893000 r--p 00000000 08:06 112                                /apex/com.android.art/javalib/x86_64/boot-okhttp.oat
+6f893000-6f8d2000 r-xp 0000d000 08:06 112                                /apex/com.android.art/javalib/x86_64/boot-okhttp.oat
+6f8d2000-6f8d3000 rw-p 00000000 00:00 0                                  [anon:.bss]
+6f8d3000-6f8d4000 rw-p 00000000 08:06 113                                /apex/com.android.art/javalib/x86_64/boot-okhttp.vdex
+6f8d4000-6f8d5000 r--p 0004c000 08:06 112                                /apex/com.android.art/javalib/x86_64/boot-okhttp.oat
+6f8d5000-6f8d6000 rw-p 0004d000 08:06 112                                /apex/com.android.art/javalib/x86_64/boot-okhttp.oat
+6f8d6000-6f8dd000 r--p 00000000 08:06 106                                /apex/com.android.art/javalib/x86_64/boot-bouncycastle.oat
+6f8dd000-6f8f1000 r-xp 00007000 08:06 106                                /apex/com.android.art/javalib/x86_64/boot-bouncycastle.oat
+6f8f1000-6f8f2000 rw-p 00000000 00:00 0                                  [anon:.bss]
+6f8f2000-6f8f8000 rw-p 00000000 08:06 107                                /apex/com.android.art/javalib/x86_64/boot-bouncycastle.vdex
+6f8f8000-6f8f9000 r--p 0001b000 08:06 106                                /apex/com.android.art/javalib/x86_64/boot-bouncycastle.oat
+6f8f9000-6f8fa000 rw-p 0001c000 08:06 106                                /apex/com.android.art/javalib/x86_64/boot-bouncycastle.oat
+6f8fa000-6f8fd000 r--p 00000000 08:06 103                                /apex/com.android.art/javalib/x86_64/boot-apache-xml.oat
+6f8fd000-6f900000 rw-p 00000000 08:06 104                                /apex/com.android.art/javalib/x86_64/boot-apache-xml.vdex
+6f900000-6f901000 r--p 00003000 08:06 103                                /apex/com.android.art/javalib/x86_64/boot-apache-xml.oat
+6f901000-6f902000 rw-p 00004000 08:06 103                                /apex/com.android.art/javalib/x86_64/boot-apache-xml.oat
+6f902000-7051a000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-framework.art]
+7051a000-7051b000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-framework-graphics.art]
+7051b000-70539000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-ext.art]
+70539000-706eb000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-telephony-common.art]
+706eb000-70792000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-voip-common.art]
+70792000-707dc000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-ims-common.art]
+707dc000-70953000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-core-icu4j.art]
+70953000-70ae9000 r--p 00000000 08:06 2381                               /system/framework/x86_64/boot-framework.oat
+70ae9000-712b8000 r-xp 00196000 08:06 2381                               /system/framework/x86_64/boot-framework.oat
+712b8000-712ba000 r--p 00965000 08:06 2381                               /system/framework/x86_64/boot-framework.oat
+712ba000-712bb000 rw-p 00000000 00:00 0                                  [anon:.bss]
+712bb000-7130b000 rw-p 00000000 08:06 2315                               /system/framework/boot-framework.vdex
+7130b000-7130c000 r--p 00967000 08:06 2381                               /system/framework/x86_64/boot-framework.oat
+7130c000-7130d000 rw-p 00968000 08:06 2381                               /system/framework/x86_64/boot-framework.oat
+7130d000-7130f000 r--p 00000000 08:06 2378                               /system/framework/x86_64/boot-framework-graphics.oat
+7130f000-71310000 rw-p 00000000 08:06 2314                               /system/framework/boot-framework-graphics.vdex
+71310000-71311000 r--p 00002000 08:06 2378                               /system/framework/x86_64/boot-framework-graphics.oat
+71311000-71312000 rw-p 00003000 08:06 2378                               /system/framework/x86_64/boot-framework-graphics.oat
+71312000-71317000 r--p 00000000 08:06 2375                               /system/framework/x86_64/boot-ext.oat
+71317000-71330000 r-xp 00005000 08:06 2375                               /system/framework/x86_64/boot-ext.oat
+71330000-71331000 r--p 0001e000 08:06 2375                               /system/framework/x86_64/boot-ext.oat
+71331000-71332000 rw-p 00000000 08:06 2313                               /system/framework/boot-ext.vdex
+71332000-71333000 r--p 0001f000 08:06 2375                               /system/framework/x86_64/boot-ext.oat
+71333000-71334000 rw-p 00020000 08:06 2375                               /system/framework/x86_64/boot-ext.oat
+71334000-71339000 r--p 00000000 08:06 2387                               /system/framework/x86_64/boot-telephony-common.oat
+71339000-7133f000 rw-p 00000000 08:06 2317                               /system/framework/boot-telephony-common.vdex
+7133f000-71340000 r--p 00005000 08:06 2387                               /system/framework/x86_64/boot-telephony-common.oat
+71340000-71341000 rw-p 00006000 08:06 2387                               /system/framework/x86_64/boot-telephony-common.oat
+71341000-71344000 r--p 00000000 08:06 2390                               /system/framework/x86_64/boot-voip-common.oat
+71344000-71345000 r-xp 00003000 08:06 2390                               /system/framework/x86_64/boot-voip-common.oat
+71345000-71348000 rw-p 00000000 08:06 2318                               /system/framework/boot-voip-common.vdex
+71348000-71349000 r--p 00004000 08:06 2390                               /system/framework/x86_64/boot-voip-common.oat
+71349000-7134a000 rw-p 00005000 08:06 2390                               /system/framework/x86_64/boot-voip-common.oat
+7134a000-7134c000 r--p 00000000 08:06 2384                               /system/framework/x86_64/boot-ims-common.oat
+7134c000-7134e000 rw-p 00000000 08:06 2316                               /system/framework/boot-ims-common.vdex
+7134e000-7134f000 r--p 00002000 08:06 2384                               /system/framework/x86_64/boot-ims-common.oat
+7134f000-71350000 rw-p 00003000 08:06 2384                               /system/framework/x86_64/boot-ims-common.oat
+71350000-7137f000 r--p 00000000 08:06 2372                               /system/framework/x86_64/boot-core-icu4j.oat
+7137f000-7147a000 r-xp 0002f000 08:06 2372                               /system/framework/x86_64/boot-core-icu4j.oat
+7147a000-7147b000 r--p 0012a000 08:06 2372                               /system/framework/x86_64/boot-core-icu4j.oat
+7147b000-7147c000 rw-p 00000000 00:00 0                                  [anon:.bss]
+7147c000-71482000 rw-p 00000000 08:06 2312                               /system/framework/boot-core-icu4j.vdex
+71482000-71483000 r--p 0012b000 08:06 2372                               /system/framework/x86_64/boot-core-icu4j.oat
+71483000-71484000 rw-p 0012c000 08:06 2372                               /system/framework/x86_64/boot-core-icu4j.oat
+71484000-71639000 rw-p 00000000 00:00 0                                  [anon:dalvik-zygote space]
+71639000-7163a000 rw-p 00000000 00:00 0                                  [anon:dalvik-non moving space]
+7163a000-7163f000 rw-p 00000000 00:00 0                                  [anon:dalvik-non moving space]
+7163f000-74485000 ---p 00000000 00:00 0                                  [anon:dalvik-non moving space]
+74485000-75484000 rw-p 00000000 00:00 0                                  [anon:dalvik-non moving space]
+ebad6000-ebad7000 ---p 00000000 00:00 0                                  [anon:dalvik-Sentinel fault page]
+5a89a2ac3000-5a89a2ac5000 r--p 00000000 08:06 595                        /system/bin/app_process64
+5a89a2ac5000-5a89a2ac7000 r-xp 00001000 08:06 595                        /system/bin/app_process64
+5a89a2ac7000-5a89a2ac8000 r--p 00002000 08:06 595                        /system/bin/app_process64
+7d3a166cc000-7d3a166fe000 r--p 00000000 08:23 6684978                    /data/app/~~KedFN1M7-JFHVu68KBLQaw==/game.taptap.HQGAMES.TapDemons-xPHJx-NOv93-dXzGGN878w==/oat/x86_64/base.odex
+7d3a166fe000-7d3a17f7f000 rw-p 00000000 08:23 6684979                    /data/app/~~KedFN1M7-JFHVu68KBLQaw==/game.taptap.HQGAMES.TapDemons-xPHJx-NOv93-dXzGGN878w==/oat/x86_64/base.vdex
+7d3a17f7f000-7d3a17f80000 r--p 00032000 08:23 6684978                    /data/app/~~KedFN1M7-JFHVu68KBLQaw==/game.taptap.HQGAMES.TapDemons-xPHJx-NOv93-dXzGGN878w==/oat/x86_64/base.odex
+7d3a17f80000-7d3a17f81000 rw-p 00033000 08:23 6684978                    /data/app/~~KedFN1M7-JFHVu68KBLQaw==/game.taptap.HQGAMES.TapDemons-xPHJx-NOv93-dXzGGN878w==/oat/x86_64/base.odex
+7d3a18000000-7d3a1a800000 ---p 00000000 00:00 0 
+7d3a1a940000-7d3a1af83000 r-xp 00000000 08:06 3862                       /system/lib64/libhoudini.so
+7d3a1af83000-7d3a1b130000 r-xp 00643000 08:06 3862                       /system/lib64/libhoudini.so
+7d3a1b130000-7d3a1b15a000 r--p 007ef000 08:06 3862                       /system/lib64/libhoudini.so
+7d3a1b15a000-7d3a1b216000 rw-p 00819000 08:06 3862                       /system/lib64/libhoudini.so
+7d3a1b216000-7d3a1b575000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a1b600000-7d3a1ea00000 ---p 00000000 00:00 0 
+7d3a1ec32000-7d3a1ec35000 ---p 00000000 00:00 0 
+7d3a1ed43000-7d3a1ed46000 ---p 00000000 00:00 0 
+7d3a1ed6f000-7d3a1ed72000 ---p 00000000 00:00 0 
+7d3a1ed91000-7d3a1edb0000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a1ee00000-7d3a22800000 ---p 00000000 00:00 0 
+7d3a22963000-7d3a24963000 rw-s 00000000 00:01 75319                      /memfd:jit-cache (deleted)
+7d3a24963000-7d3a24981000 r--p 00000000 08:06 204                        /apex/com.android.conscrypt/lib64/libjavacrypto.so
+7d3a24981000-7d3a249ac000 r-xp 0001d000 08:06 204                        /apex/com.android.conscrypt/lib64/libjavacrypto.so
+7d3a249ac000-7d3a249ae000 r--p 00047000 08:06 204                        /apex/com.android.conscrypt/lib64/libjavacrypto.so
+7d3a249ae000-7d3a249b0000 rw-p 00048000 08:06 204                        /apex/com.android.conscrypt/lib64/libjavacrypto.so
+7d3a249b0000-7d3a249b1000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a24a00000-7d3a26400000 ---p 00000000 00:00 0 
+7d3a2645c000-7d3a264c0000 r--p 00000000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a264c0000-7d3a265cf000 r-xp 00063000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a265cf000-7d3a265e0000 r--p 00171000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a265e0000-7d3a265e1000 rw-p 00181000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a265e1000-7d3a265e7000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a26628000-7d3a26646000 r--p 00000000 08:06 3991                       /system/lib64/libssl.so
+7d3a26646000-7d3a26685000 r-xp 0001d000 08:06 3991                       /system/lib64/libssl.so
+7d3a26685000-7d3a26688000 r--p 0005b000 08:06 3991                       /system/lib64/libssl.so
+7d3a26688000-7d3a2668a000 rw-p 0005d000 08:06 3991                       /system/lib64/libssl.so
+7d3a26747000-7d3a26796000 r--p 00000000 08:06 3746                       /system/lib64/libc++.so
+7d3a26796000-7d3a267f4000 r-xp 0004e000 08:06 3746                       /system/lib64/libc++.so
+7d3a267f4000-7d3a267fb000 r--p 000ab000 08:06 3746                       /system/lib64/libc++.so
+7d3a267fb000-7d3a267fc000 rw-p 000b1000 08:06 3746                       /system/lib64/libc++.so
+7d3a267fc000-7d3a267ff000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a26800000-7d3a28400000 ---p 00000000 00:00 0 
+7d3a28444000-7d3a29cd7000 r--s 00000000 08:06 219                        /apex/com.android.i18n/etc/icu/icudt68l.dat
+7d3a2a00c000-7d3a2a106000 rw-p 00000000 00:00 0                          [anon:dalvik-allocspace non moving space mark-bitmap 1]
+7d3a2a106000-7d3a2a200000 rw-p 00000000 00:00 0                          [anon:dalvik-allocspace non moving space live-bitmap 1]
+7d3a2aa00000-7d3a2aa20000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a2aa20000-7d3a2aa21000 ---p 00000000 00:00 0 
+7d3a2aa21000-7d3a2aa22000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6620]
+7d3a2aa22000-7d3a2ab28000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6620]
+7d3a2ab28000-7d3a2ab29000 ---p 00000000 00:00 0 
+7d3a2ab29000-7d3a2ac29000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a2ac29000-7d3a2ac2b000 r--p 00000000 08:06 540                        /apex/com.android.tethering/lib64/libframework-connectivity-jni.so
+7d3a2ac2b000-7d3a2ac2e000 r-xp 00001000 08:06 540                        /apex/com.android.tethering/lib64/libframework-connectivity-jni.so
+7d3a2ac2e000-7d3a2ac2f000 r--p 00003000 08:06 540                        /apex/com.android.tethering/lib64/libframework-connectivity-jni.so
+7d3a2ac2f000-7d3a2ac30000 rw-p 00003000 08:06 540                        /apex/com.android.tethering/lib64/libframework-connectivity-jni.so
+7d3a2ac4c000-7d3a2ac8c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a2ac8c000-7d3a2acac000 r--s 00000000 00:11 2235                       /dev/__properties__/u:object_r:graphics_config_prop:s0
+7d3a2acac000-7d3a2accc000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a2accc000-7d3a2ad6d000 r--s 08370000 08:23 6684954                    /data/app/~~KedFN1M7-JFHVu68KBLQaw==/game.taptap.HQGAMES.TapDemons-xPHJx-NOv93-dXzGGN878w==/base.apk
+7d3a2ad6d000-7d3a2ad6e000 ---p 00000000 00:00 0 
+7d3a2ad6e000-7d3a2ad6f000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6619]
+7d3a2ad6f000-7d3a2ae69000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6619]
+7d3a2ae69000-7d3a2ae6a000 ---p 00000000 00:00 0 
+7d3a2ae6a000-7d3a2aeea000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a2aeea000-7d3a2af58000 r--p 00000000 08:06 2337                       /system/framework/org.apache.http.legacy.jar
+7d3a2af58000-7d3a2b396000 r--s 013da000 08:06 2326                       /system/framework/framework-res.apk
+7d3a2b396000-7d3a2b3e1000 r--s 0191a000 08:06 2326                       /system/framework/framework-res.apk
+7d3a2b3e1000-7d3a2b42d000 r--s 00000000 00:01 16755                      /dev/ashmem/fontMap (deleted)
+7d3a2b42d000-7d3a2b477000 r--p 00000000 08:06 2295                       /system/fonts/Roboto-Regular.ttf
+7d3a2b477000-7d3a2b478000 ---p 00000000 00:00 0 
+7d3a2b478000-7d3a2b479000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6618]
+7d3a2b479000-7d3a2b573000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6618]
+7d3a2b573000-7d3a2b575000 ---p 00000000 00:00 0 
+7d3a2b575000-7d3a2b576000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6616]
+7d3a2b576000-7d3a2b670000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6616]
+7d3a2b670000-7d3a2b672000 ---p 00000000 00:00 0 
+7d3a2b672000-7d3a2b673000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6615]
+7d3a2b673000-7d3a2b76d000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6615]
+7d3a2b76d000-7d3a2b76e000 ---p 00000000 00:00 0 
+7d3a2b76e000-7d3a2b86c000 r--p 00000000 00:11 2710                       /dev/binder
+7d3a2b86c000-7d3a2b86d000 ---p 00000000 00:00 0 
+7d3a2b86d000-7d3a2b86e000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6614]
+7d3a2b86e000-7d3a2b974000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6614]
+7d3a2b974000-7d3a2b976000 ---p 00000000 00:00 0 
+7d3a2b976000-7d3a2b977000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6613]
+7d3a2b977000-7d3a2ba7d000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6613]
+7d3a2ba7d000-7d3a2ba7f000 ---p 00000000 00:00 0 
+7d3a2ba7f000-7d3a2ba80000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6612]
+7d3a2ba80000-7d3a2bb86000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6612]
+7d3a2bb86000-7d3a2bb88000 ---p 00000000 00:00 0 
+7d3a2bb88000-7d3a2bb89000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6611]
+7d3a2bb89000-7d3a2bc8f000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6611]
+7d3a2bc8f000-7d3a2bc91000 ---p 00000000 00:00 0 
+7d3a2bc91000-7d3a2bc92000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6610]
+7d3a2bc92000-7d3a2bd94000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6610]
+7d3a2bd94000-7d3a2bd96000 ---p 00000000 00:00 0 
+7d3a2bd96000-7d3a2bd97000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6609]
+7d3a2bd97000-7d3a2be91000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6609]
+7d3a2be91000-7d3a2be93000 ---p 00000000 00:00 0 
+7d3a2be93000-7d3a2be94000 ---p 00000000 00:00 0                          [anon:stack_and_tls:6608]
+7d3a2be94000-7d3a2bf8e000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:6608]
+7d3a2bf8e000-7d3a2bf8f000 ---p 00000000 00:00 0 
+7d3a2bf8f000-7d3a2c0c6000 rw-p 00000000 00:00 0 
+7d3a2c0c6000-7d3a2c0db000 r--p 00000000 08:06 3881                       /system/lib64/libjsoncpp.so
+7d3a2c0db000-7d3a2c0f9000 r-xp 00014000 08:06 3881                       /system/lib64/libjsoncpp.so
+7d3a2c0f9000-7d3a2c0fb000 r--p 00031000 08:06 3881                       /system/lib64/libjsoncpp.so
+7d3a2c0fb000-7d3a2c0fc000 rw-p 00032000 08:06 3881                       /system/lib64/libjsoncpp.so
+7d3a2c100000-7d3a2c120000 r--s 00000000 00:11 2137                       /dev/__properties__/u:object_r:binder_cache_system_server_prop:s0
+7d3a2c120000-7d3a2c140000 r--s 00000000 00:11 2351                       /dev/__properties__/u:object_r:vndk_prop:s0
+7d3a2c140000-7d3a2c160000 r--s 00000000 00:11 2297                       /dev/__properties__/u:object_r:qemu_sf_lcd_density_prop:s0
+7d3a2c160000-7d3a2c180000 r--s 00000000 00:11 2318                       /dev/__properties__/u:object_r:surfaceflinger_prop:s0
+7d3a2c180000-7d3a2c1a0000 r--s 00000000 00:11 2259                       /dev/__properties__/u:object_r:log_prop:s0
+7d3a2c1a0000-7d3a2c1c0000 r--s 00000000 00:11 2153                       /dev/__properties__/u:object_r:build_odm_prop:s0
+7d3a2c1c0000-7d3a2c1e0000 r--s 00000000 00:11 2249                       /dev/__properties__/u:object_r:init_svc_debug_prop:s0
+7d3a2c1e0000-7d3a2e1e0000 rw-s 02000000 00:01 75319                      /memfd:jit-cache (deleted)
+7d3a2e1e0000-7d3a2e200000 r--s 00000000 00:11 2308                       /dev/__properties__/u:object_r:serialno_prop:s0
+7d3a2e200000-7d3a2e2e7000 r--p 00000000 08:06 153                        /apex/com.android.art/lib64/libart-compiler.so
+7d3a2e2e7000-7d3a2e4e6000 ---p 00000000 00:00 0 
+7d3a2e4e6000-7d3a2e750000 r-xp 000e6000 08:06 153                        /apex/com.android.art/lib64/libart-compiler.so
+7d3a2e750000-7d3a2e94f000 ---p 00000000 00:00 0 
+7d3a2e94f000-7d3a2e964000 r--p 0034f000 08:06 153                        /apex/com.android.art/lib64/libart-compiler.so
+7d3a2e964000-7d3a2eb63000 ---p 00000000 00:00 0 
+7d3a2eb63000-7d3a2eb64000 rw-p 00363000 08:06 153                        /apex/com.android.art/lib64/libart-compiler.so
+7d3a2eb80000-7d3a2eba0000 r--s 00000000 00:11 2256                       /dev/__properties__/u:object_r:lmkd_config_prop:s0
+7d3a2eba0000-7d3a2ebc0000 r--s 00000000 00:11 2365                       /dev/__properties__/u:object_r:zygote_wrap_prop:s0
+7d3a2ebc0000-7d3a2ebe0000 r--s 00000000 00:11 2165                       /dev/__properties__/u:object_r:config_prop:s0
+7d3a2ebe0000-7d3a2ec00000 r--s 00000000 00:11 2239                       /dev/__properties__/u:object_r:hdmi_config_prop:s0
+7d3a2ec00000-7d3a31600000 ---p 00000000 00:00 0 
+7d3a31607000-7d3a31627000 r--s 00000000 00:11 2284                       /dev/__properties__/u:object_r:packagemanager_config_prop:s0
+7d3a31627000-7d3a31647000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a31647000-7d3a316ab000 r--p 00000000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a316ab000-7d3a317ba000 r-xp 00063000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a317ba000-7d3a317cb000 r--p 00171000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a317cb000-7d3a317cc000 rw-p 00181000 08:06 3806                       /system/lib64/libcrypto.so
+7d3a317cc000-7d3a317d2000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a317e0000-7d3a31800000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a31800000-7d3a33600000 ---p 00000000 00:00 0 
+7d3a33608000-7d3a33688000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a33688000-7d3a336a8000 r--s 00000000 00:11 2294                       /dev/__properties__/u:object_r:property_service_version_prop:s0
+7d3a336a8000-7d3a336a9000 r--p 00000000 08:06 432                        /apex/com.android.os.statsd/lib64/libstats_jni.so
+7d3a336a9000-7d3a336aa000 r-xp 00000000 08:06 432                        /apex/com.android.os.statsd/lib64/libstats_jni.so
+7d3a336aa000-7d3a336ab000 r--p 00000000 08:06 432                        /apex/com.android.os.statsd/lib64/libstats_jni.so
+7d3a336c4000-7d3a336de000 r--p 00000000 08:06 175                        /apex/com.android.art/lib64/libopenjdk.so
+7d3a336de000-7d3a336fb000 r-xp 00019000 08:06 175                        /apex/com.android.art/lib64/libopenjdk.so
+7d3a336fb000-7d3a336fd000 r--p 00035000 08:06 175                        /apex/com.android.art/lib64/libopenjdk.so
+7d3a336fd000-7d3a336ff000 rw-p 00036000 08:06 175                        /apex/com.android.art/lib64/libopenjdk.so
+7d3a33715000-7d3a33735000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a33735000-7d3a33739000 r--p 00000000 08:06 176                        /apex/com.android.art/lib64/libopenjdkjvm.so
+7d3a33739000-7d3a3373e000 r-xp 00003000 08:06 176                        /apex/com.android.art/lib64/libopenjdkjvm.so
+7d3a3373e000-7d3a33740000 r--p 00007000 08:06 176                        /apex/com.android.art/lib64/libopenjdkjvm.so
+7d3a33741000-7d3a3374d000 r--p 00000000 08:06 166                        /apex/com.android.art/lib64/libexpat.so
+7d3a3374d000-7d3a33768000 r-xp 0000b000 08:06 166                        /apex/com.android.art/lib64/libexpat.so
+7d3a33768000-7d3a3376b000 r--p 00025000 08:06 166                        /apex/com.android.art/lib64/libexpat.so
+7d3a33773000-7d3a33793000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a33793000-7d3a33794000 r--p 00000000 08:06 152                        /apex/com.android.art/lib64/libandroidio.so
+7d3a33794000-7d3a33795000 r-xp 00000000 08:06 152                        /apex/com.android.art/lib64/libandroidio.so
+7d3a33795000-7d3a33796000 r--p 00000000 08:06 152                        /apex/com.android.art/lib64/libandroidio.so
+7d3a33796000-7d3a33797000 rw-p 00000000 08:06 152                        /apex/com.android.art/lib64/libandroidio.so
+7d3a337a0000-7d3a337c0000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a337c0000-7d3a337d3000 r--p 00000000 08:06 167                        /apex/com.android.art/lib64/libjavacore.so
+7d3a337d3000-7d3a337fb000 r-xp 00012000 08:06 167                        /apex/com.android.art/lib64/libjavacore.so
+7d3a337fb000-7d3a337fd000 r--p 00039000 08:06 167                        /apex/com.android.art/lib64/libjavacore.so
+7d3a337fd000-7d3a337ff000 rw-p 0003a000 08:06 167                        /apex/com.android.art/lib64/libjavacore.so
+7d3a337ff000-7d3a33800000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a3380f000-7d3a3386f000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a3386f000-7d3a35102000 r--s 00000000 08:06 219                        /apex/com.android.i18n/etc/icu/icudt68l.dat
+7d3a35102000-7d3a35109000 r--p 00000000 08:06 235                        /apex/com.android.i18n/lib64/libicu_jni.so
+7d3a35109000-7d3a35114000 r-xp 00006000 08:06 235                        /apex/com.android.i18n/lib64/libicu_jni.so
+7d3a35114000-7d3a35116000 r--p 00010000 08:06 235                        /apex/com.android.i18n/lib64/libicu_jni.so
+7d3a35116000-7d3a35117000 rw-p 00011000 08:06 235                        /apex/com.android.i18n/lib64/libicu_jni.so
+7d3a3511f000-7d3a3515f000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a3515f000-7d3a35168000 r--p 00000000 08:06 3748                       /system/lib64/libcallhost.so
+7d3a35168000-7d3a35176000 r-xp 00008000 08:06 3748                       /system/lib64/libcallhost.so
+7d3a35176000-7d3a35178000 r--p 00015000 08:06 3748                       /system/lib64/libcallhost.so
+7d3a35178000-7d3a35179000 rw-p 00016000 08:06 3748                       /system/lib64/libcallhost.so
+7d3a3518e000-7d3a351ae000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a351ae000-7d3a351b5000 r--p 00000000 08:06 3941                       /system/lib64/libnemuinitaidl.so
+7d3a351b5000-7d3a351bb000 r-xp 00006000 08:06 3941                       /system/lib64/libnemuinitaidl.so
+7d3a351bb000-7d3a351bf000 r--p 0000b000 08:06 3941                       /system/lib64/libnemuinitaidl.so
+7d3a351bf000-7d3a351c0000 rw-p 0000e000 08:06 3941                       /system/lib64/libnemuinitaidl.so
+7d3a351d0000-7d3a351d2000 r--p 00000000 08:06 4033                       /system/lib64/libwebviewchromium_plat_support.so
+7d3a351d2000-7d3a351d5000 r-xp 00001000 08:06 4033                       /system/lib64/libwebviewchromium_plat_support.so
+7d3a351d5000-7d3a351d6000 r--p 00003000 08:06 4033                       /system/lib64/libwebviewchromium_plat_support.so
+7d3a351d6000-7d3a351d7000 rw-p 00003000 08:06 4033                       /system/lib64/libwebviewchromium_plat_support.so
+7d3a351e9000-7d3a35209000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a35209000-7d3a3520b000 r--p 00000000 08:06 4008                       /system/lib64/libstdc++.so
+7d3a3520b000-7d3a3520d000 r-xp 00001000 08:06 4008                       /system/lib64/libstdc++.so
+7d3a3520d000-7d3a3520e000 r--p 00002000 08:06 4008                       /system/lib64/libstdc++.so
+7d3a35218000-7d3a35258000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a35258000-7d3a35278000 r--p 00000000 08:06 3261                       /system/lib64/android.hardware.renderscript@1.0.so
+7d3a35278000-7d3a352a5000 r-xp 0001f000 08:06 3261                       /system/lib64/android.hardware.renderscript@1.0.so
+7d3a352a5000-7d3a352aa000 r--p 0004b000 08:06 3261                       /system/lib64/android.hardware.renderscript@1.0.so
+7d3a352aa000-7d3a352ab000 rw-p 0004f000 08:06 3261                       /system/lib64/android.hardware.renderscript@1.0.so
+7d3a352ab000-7d3a352cb000 rw-p 00000000 00:00 0                          [anon:dalvik-CompilerMetadata]
+7d3a352cb000-7d3a352eb000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a352eb000-7d3a352f3000 r--p 00000000 08:06 3689                       /system/lib64/libRS.so
+7d3a352f3000-7d3a352fd000 r-xp 00007000 08:06 3689                       /system/lib64/libRS.so
+7d3a352fd000-7d3a352fe000 r--p 00010000 08:06 3689                       /system/lib64/libRS.so
+7d3a352fe000-7d3a352ff000 rw-p 00010000 08:06 3689                       /system/lib64/libRS.so
+7d3a352ff000-7d3a35300000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a35313000-7d3a35333000 r--s 00000000 00:11 2242                       /dev/__properties__/u:object_r:hw_timeout_multiplier_prop:s0
+7d3a35333000-7d3a35336000 r--p 00000000 08:06 4023                       /system/lib64/libutilscallstack.so
+7d3a35336000-7d3a35339000 r-xp 00002000 08:06 4023                       /system/lib64/libutilscallstack.so
+7d3a35339000-7d3a3533a000 r--p 00004000 08:06 4023                       /system/lib64/libutilscallstack.so
+7d3a35351000-7d3a35371000 r--s 00000000 00:11 2224                       /dev/__properties__/u:object_r:exported_default_prop:s0
+7d3a35371000-7d3a35373000 r--p 00000000 08:06 3687                       /system/lib64/libOpenSLES.so
+7d3a35373000-7d3a35374000 r-xp 00001000 08:06 3687                       /system/lib64/libOpenSLES.so
+7d3a35374000-7d3a35375000 r--p 00001000 08:06 3687                       /system/lib64/libOpenSLES.so
+7d3a3537b000-7d3a3539b000 r--s 00000000 00:11 2300                       /dev/__properties__/u:object_r:radio_prop:s0
+7d3a3539b000-7d3a353bb000 r--s 00000000 00:11 2146                       /dev/__properties__/u:object_r:bootloader_prop:s0
+7d3a353bb000-7d3a353bd000 r--p 00000000 08:06 3686                       /system/lib64/libOpenMAXAL.so
+7d3a353bd000-7d3a353be000 r-xp 00001000 08:06 3686                       /system/lib64/libOpenMAXAL.so
+7d3a353be000-7d3a353bf000 r--p 00001000 08:06 3686                       /system/lib64/libOpenMAXAL.so
+7d3a353ce000-7d3a353ee000 r--s 00000000 00:11 2311                       /dev/__properties__/u:object_r:soc_prop:s0
+7d3a353ee000-7d3a353f1000 r--p 00000000 08:06 3879                       /system/lib64/libjnigraphics.so
+7d3a353f1000-7d3a353f4000 r-xp 00002000 08:06 3879                       /system/lib64/libjnigraphics.so
+7d3a353f4000-7d3a353f5000 r--p 00004000 08:06 3879                       /system/lib64/libjnigraphics.so
+7d3a35410000-7d3a3541f000 r--p 00000000 08:06 3749                       /system/lib64/libcamera2ndk.so
+7d3a3541f000-7d3a3543d000 r-xp 0000e000 08:06 3749                       /system/lib64/libcamera2ndk.so
+7d3a3543d000-7d3a3543f000 r--p 0002b000 08:06 3749                       /system/lib64/libcamera2ndk.so
+7d3a3543f000-7d3a35440000 rw-p 0002c000 08:06 3749                       /system/lib64/libcamera2ndk.so
+7d3a35447000-7d3a35467000 r--s 00000000 00:11 2155                       /dev/__properties__/u:object_r:build_vendor_prop:s0
+7d3a35467000-7d3a3546b000 r--p 00000000 08:06 3706                       /system/lib64/libamidi.so
+7d3a3546b000-7d3a3546f000 r-xp 00003000 08:06 3706                       /system/lib64/libamidi.so
+7d3a3546f000-7d3a35471000 r--p 00006000 08:06 3706                       /system/lib64/libamidi.so
+7d3a35471000-7d3a35472000 rw-p 00007000 08:06 3706                       /system/lib64/libamidi.so
+7d3a35481000-7d3a35482000 ---p 00000000 00:00 0 
+7d3a35482000-7d3a354ac000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3a354ac000-7d3a354ad000 ---p 00000000 00:00 0 
+7d3a354ad000-7d3a354b3000 r--p 00000000 08:06 3141                       /system/lib64/aaudio-aidl-cpp.so
+7d3a354b3000-7d3a354b9000 r-xp 00005000 08:06 3141                       /system/lib64/aaudio-aidl-cpp.so
+7d3a354b9000-7d3a354bc000 r--p 0000a000 08:06 3141                       /system/lib64/aaudio-aidl-cpp.so
+7d3a354bc000-7d3a354bd000 rw-p 0000c000 08:06 3141                       /system/lib64/aaudio-aidl-cpp.so
+7d3a354c2000-7d3a354df000 r--p 00000000 08:06 3700                       /system/lib64/libaaudio_internal.so
+7d3a354df000-7d3a354fa000 r-xp 0001c000 08:06 3700                       /system/lib64/libaaudio_internal.so
+7d3a354fa000-7d3a354ff000 r--p 00036000 08:06 3700                       /system/lib64/libaaudio_internal.so
+7d3a354ff000-7d3a35500000 rw-p 0003a000 08:06 3700                       /system/lib64/libaaudio_internal.so
+7d3a35500000-7d3a35520000 r--s 00000000 00:11 2142                       /dev/__properties__/u:object_r:boot_status_prop:s0
+7d3a35520000-7d3a35523000 r--p 00000000 08:06 3699                       /system/lib64/libaaudio.so
+7d3a35523000-7d3a35525000 r-xp 00002000 08:06 3699                       /system/lib64/libaaudio.so
+7d3a35525000-7d3a35526000 r--p 00003000 08:06 3699                       /system/lib64/libaaudio.so
+7d3a35542000-7d3a35562000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a35562000-7d3a35568000 r--p 00000000 08:06 3251                       /system/lib64/android.hardware.power-V2-cpp.so
+7d3a35568000-7d3a3556e000 r-xp 00005000 08:06 3251                       /system/lib64/android.hardware.power-V2-cpp.so
+7d3a3556e000-7d3a35571000 r--p 0000a000 08:06 3251                       /system/lib64/android.hardware.power-V2-cpp.so
+7d3a35571000-7d3a35572000 rw-p 0000c000 08:06 3251                       /system/lib64/android.hardware.power-V2-cpp.so
+7d3a35589000-7d3a3559a000 r--p 00000000 08:06 3960                       /system/lib64/libpowermanager.so
+7d3a3559a000-7d3a355b0000 r-xp 00010000 08:06 3960                       /system/lib64/libpowermanager.so
+7d3a355b0000-7d3a355b7000 r--p 00025000 08:06 3960                       /system/lib64/libpowermanager.so
+7d3a355b7000-7d3a355b8000 rw-p 0002b000 08:06 3960                       /system/lib64/libpowermanager.so
+7d3a355d5000-7d3a355e0000 r--p 00000000 08:06 3256                       /system/lib64/android.hardware.power@1.1.so
+7d3a355e0000-7d3a355e9000 r-xp 0000a000 08:06 3256                       /system/lib64/android.hardware.power@1.1.so
+7d3a355e9000-7d3a355eb000 r--p 00012000 08:06 3256                       /system/lib64/android.hardware.power@1.1.so
+7d3a355eb000-7d3a355ec000 rw-p 00013000 08:06 3256                       /system/lib64/android.hardware.power@1.1.so
+7d3a35602000-7d3a3560c000 r--p 00000000 08:06 3255                       /system/lib64/android.hardware.power@1.0.so
+7d3a3560c000-7d3a35615000 r-xp 00009000 08:06 3255                       /system/lib64/android.hardware.power@1.0.so
+7d3a35615000-7d3a35617000 r--p 00011000 08:06 3255                       /system/lib64/android.hardware.power@1.0.so
+7d3a35617000-7d3a35618000 rw-p 00012000 08:06 3255                       /system/lib64/android.hardware.power@1.0.so
+7d3a35628000-7d3a35668000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a35668000-7d3a356c4000 r--p 00000000 08:06 4036                       /system/lib64/libxml2.so
+7d3a356c4000-7d3a357b1000 r-xp 0005b000 08:06 4036                       /system/lib64/libxml2.so
+7d3a357b1000-7d3a357b5000 r--p 00147000 08:06 4036                       /system/lib64/libxml2.so
+7d3a357b5000-7d3a357b6000 rw-p 0014a000 08:06 4036                       /system/lib64/libxml2.so
+7d3a357b6000-7d3a357b7000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a357d0000-7d3a357e6000 r--p 00000000 08:06 3707                       /system/lib64/libandroid.so
+7d3a357e6000-7d3a357f9000 r-xp 00015000 08:06 3707                       /system/lib64/libandroid.so
+7d3a357f9000-7d3a357fd000 r--p 00027000 08:06 3707                       /system/lib64/libandroid.so
+7d3a357fd000-7d3a357fe000 rw-p 0002a000 08:06 3707                       /system/lib64/libandroid.so
+7d3a35810000-7d3a35830000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a35830000-7d3a35835000 r--p 00000000 08:06 3702                       /system/lib64/libactivitymanager_aidl.so
+7d3a35835000-7d3a35838000 r-xp 00004000 08:06 3702                       /system/lib64/libactivitymanager_aidl.so
+7d3a35838000-7d3a3583b000 r--p 00006000 08:06 3702                       /system/lib64/libactivitymanager_aidl.so
+7d3a3583b000-7d3a3583c000 rw-p 00008000 08:06 3702                       /system/lib64/libactivitymanager_aidl.so
+7d3a35842000-7d3a3587d000 r--s 00000000 08:06 552                        /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+7d3a3587d000-7d3a3589c000 r--p 00000000 08:06 178                        /apex/com.android.art/lib64/libperfetto_hprof.so
+7d3a3589c000-7d3a35938000 r-xp 0001e000 08:06 178                        /apex/com.android.art/lib64/libperfetto_hprof.so
+7d3a35938000-7d3a3593d000 r--p 000b9000 08:06 178                        /apex/com.android.art/lib64/libperfetto_hprof.so
+7d3a3593d000-7d3a3593e000 rw-p 000bd000 08:06 178                        /apex/com.android.art/lib64/libperfetto_hprof.so
+7d3a35943000-7d3a35944000 r--p 00000000 08:06 3938                       /system/lib64/libnb.so
+7d3a35944000-7d3a35946000 r-xp 00000000 08:06 3938                       /system/lib64/libnb.so
+7d3a35946000-7d3a35947000 r--p 00001000 08:06 3938                       /system/lib64/libnb.so
+7d3a35947000-7d3a35948000 rw-p 00001000 08:06 3938                       /system/lib64/libnb.so
+7d3a35960000-7d3a35980000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a35980000-7d3a3598e000 r--p 00000000 08:06 36                         /apex/com.android.adbd/lib64/libadbconnection_client.so
+7d3a3598e000-7d3a359b6000 r-xp 0000d000 08:06 36                         /apex/com.android.adbd/lib64/libadbconnection_client.so
+7d3a359b6000-7d3a359b9000 r--p 00034000 08:06 36                         /apex/com.android.adbd/lib64/libadbconnection_client.so
+7d3a359b9000-7d3a359ba000 rw-p 00036000 08:06 36                         /apex/com.android.adbd/lib64/libadbconnection_client.so
+7d3a359ba000-7d3a359bb000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a359c6000-7d3a359cb000 r--p 00000000 08:06 151                        /apex/com.android.art/lib64/libadbconnection.so
+7d3a359cb000-7d3a359d4000 r-xp 00004000 08:06 151                        /apex/com.android.art/lib64/libadbconnection.so
+7d3a359d4000-7d3a359d6000 r--p 0000c000 08:06 151                        /apex/com.android.art/lib64/libadbconnection.so
+7d3a359d6000-7d3a359d7000 rw-p 0000d000 08:06 151                        /apex/com.android.art/lib64/libadbconnection.so
+7d3a359f0000-7d3a35a30000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a35a30000-7d3a35af6000 r--p 00000000 08:06 573                        /apex/com.android.wifi/javalib/framework-wifi.jar
+7d3a35af6000-7d3a35c86000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3a35c86000-7d3a35d86000 rw-p 00000000 00:00 0                          [anon:dalvik-non-moving-space inter region ref bitmap]
+7d3a35d86000-7d3a36d86000 rw-p 00000000 00:00 0                          [anon:dalvik-region-space inter region ref bitmap]
+7d3a36d86000-7d3a36f86000 rw-p 00000000 00:00 0                          [anon:dalvik-rb copying gc mark stack]
+7d3a36f86000-7d3a37786000 rw-p 00000000 00:00 0                          [anon:dalvik-concurrent copying gc mark stack]
+7d3a37786000-7d3a37986000 rw-p 00000000 00:00 0                          [anon:dalvik-rb copying gc mark stack]
+7d3a37986000-7d3a38186000 rw-p 00000000 00:00 0                          [anon:dalvik-concurrent copying gc mark stack]
+7d3a38186000-7d3a38987000 rw-p 00000000 00:00 0                          [anon:dalvik-live stack]
+7d3a38987000-7d3a39188000 rw-p 00000000 00:00 0                          [anon:dalvik-allocation stack]
+7d3a39188000-7d3a39589000 rw-p 00000000 00:00 0                          [anon:dalvik-card table]
+7d3a39589000-7d3a3a589000 rw-p 00000000 00:00 0                          [anon:dalvik-region space live bitmap]
+7d3a3a589000-7d3a3a689000 rw-p 00000000 00:00 0                          [anon:dalvik-allocspace zygote / non moving space mark-bitmap 0]
+7d3a3a689000-7d3a3a8de000 r--p 00004000 08:06 221                        /apex/com.android.i18n/javalib/core-icu4j.jar
+7d3a3a8de000-7d3a3ac1b000 r--p 00000000 08:06 2345                       /system/framework/telephony-common.jar
+7d3a3ac1b000-7d3a3b1b8000 r--p 0195b000 08:06 2327                       /system/framework/framework.jar
+7d3a3b1b8000-7d3a3ba17000 r--p 010fd000 08:06 2327                       /system/framework/framework.jar
+7d3a3ba17000-7d3a3c296000 r--p 0087f000 08:06 2327                       /system/framework/framework.jar
+7d3a3c296000-7d3a3cb11000 r--p 00005000 08:06 2327                       /system/framework/framework.jar
+7d3a3cb11000-7d3a3cf58000 r--p 00000000 08:06 83                         /apex/com.android.art/javalib/core-oj.jar
+7d3a3cf58000-7d3a3cf73000 r--p 00000000 08:06 163                        /apex/com.android.art/lib64/libdexfile.so
+7d3a3cf73000-7d3a3cfa0000 r-xp 0001a000 08:06 163                        /apex/com.android.art/lib64/libdexfile.so
+7d3a3cfa0000-7d3a3cfa3000 r--p 00046000 08:06 163                        /apex/com.android.art/lib64/libdexfile.so
+7d3a3cfc0000-7d3a3d000000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a3d000000-7d3a3d800000 ---p 00000000 00:00 0 
+7d3a3d800000-7d3a3d97c000 r--p 00000000 08:06 156                        /apex/com.android.art/lib64/libart.so
+7d3a3d97c000-7d3a3db7b000 ---p 00000000 00:00 0 
+7d3a3db7b000-7d3a3e20d000 r-xp 0017b000 08:06 156                        /apex/com.android.art/lib64/libart.so
+7d3a3e20d000-7d3a3e40c000 ---p 00000000 00:00 0 
+7d3a3e40c000-7d3a3e420000 r--p 0080c000 08:06 156                        /apex/com.android.art/lib64/libart.so
+7d3a3e420000-7d3a3e61f000 ---p 00000000 00:00 0 
+7d3a3e61f000-7d3a3e622000 rw-p 0081f000 08:06 156                        /apex/com.android.art/lib64/libart.so
+7d3a3e622000-7d3a3e626000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3a3e63c000-7d3a3e65c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a3e65c000-7d3a3e697000 r--s 00000000 08:06 552                        /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+7d3a3e697000-7d3a3e6b7000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a3e6b7000-7d3a3e800000 r--p 00000000 08:06 81                         /apex/com.android.art/javalib/bouncycastle.jar
+7d3a3e800000-7d3a41600000 ---p 00000000 00:00 0 
+7d3a41602000-7d3a41662000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3a41662000-7d3a41695000 r--p 00000000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3a41695000-7d3a416ee000 r-xp 00032000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3a416ee000-7d3a416f4000 r--p 0008a000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3a416f4000-7d3a416f5000 rw-p 0008f000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3a41700000-7d3a41800000 rw-p 00000000 00:00 0                          [anon:dalvik-allocspace zygote / non moving space live-bitmap 0]
+7d3a41800000-7d3a43400000 ---p 00000000 00:00 0 
+7d3a4341d000-7d3a434aa000 r--p 00000000 08:06 248                        /apex/com.android.ipsec/javalib/android.net.ipsec.ike.jar
+7d3a434aa000-7d3a434b2000 ---p 00000000 00:00 0 
+7d3a434b2000-7d3a434f2000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a434f2000-7d3a435b2000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a435b2000-7d3a534b2000 ---p 00000000 00:00 0 
+7d3a534b2000-7d3a534f2000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a534f2000-7d3a634b9000 ---p 00000000 00:00 0 
+7d3a634b9000-7d3a635b9000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a635b9000-7d3a63739000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a63739000-7d3a734ab000 ---p 00000000 00:00 0 
+7d3a734ab000-7d3a734eb000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a734eb000-7d3a7356b000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a7356b000-7d3a834b7000 ---p 00000000 00:00 0 
+7d3a834b7000-7d3a83577000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a83577000-7d3a83677000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a83677000-7d3a934b6000 ---p 00000000 00:00 0 
+7d3a934b6000-7d3a934f6000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3a934f6000-7d3aa34b2000 ---p 00000000 00:00 0 
+7d3aa34b2000-7d3aa34f2000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3aa34f2000-7d3ab34ac000 ---p 00000000 00:00 0 
+7d3ab34ac000-7d3ab34ec000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ab34ec000-7d3ab352c000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ab352c000-7d3ac34ba000 ---p 00000000 00:00 0 
+7d3ac34ba000-7d3ac36ba000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ac36ba000-7d3ac3a7a000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ac3a7a000-7d3ad34ba000 ---p 00000000 00:00 0 
+7d3ad34ba000-7d3ad34fa000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ad34fa000-7d3ae34b5000 ---p 00000000 00:00 0 
+7d3ae34b5000-7d3ae34f5000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ae34f5000-7d3ae3735000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ae3735000-7d3af34b6000 ---p 00000000 00:00 0 
+7d3af34b6000-7d3af34f6000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3af34f6000-7d3af3536000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3af3536000-7d3b034ab000 ---p 00000000 00:00 0 
+7d3b034ab000-7d3b0366b000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b0366b000-7d3b038eb000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b038eb000-7d3b134b6000 ---p 00000000 00:00 0 
+7d3b134b6000-7d3b134f6000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b134f6000-7d3b234ab000 ---p 00000000 00:00 0 
+7d3b234ab000-7d3b2352b000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b2352b000-7d3b2366b000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b2366b000-7d3b334af000 ---p 00000000 00:00 0 
+7d3b334af000-7d3b334ef000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b334ef000-7d3b434b3000 ---p 00000000 00:00 0 
+7d3b434b3000-7d3b434f3000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b434f3000-7d3b534ac000 ---p 00000000 00:00 0 
+7d3b534ac000-7d3b534ec000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b534ec000-7d3b634b6000 ---p 00000000 00:00 0 
+7d3b634b6000-7d3b635f6000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b635f6000-7d3b734b9000 ---p 00000000 00:00 0 
+7d3b734b9000-7d3b734f9000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b734f9000-7d3b834b8000 ---p 00000000 00:00 0 
+7d3b834b8000-7d3b834f8000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b834f8000-7d3b934ad000 ---p 00000000 00:00 0 
+7d3b934ad000-7d3b934ed000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b934ed000-7d3b939ad000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3b939ad000-7d3ba34b1000 ---p 00000000 00:00 0 
+7d3ba34b1000-7d3ba34f1000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3ba34f1000-7d3bb34b2000 ---p 00000000 00:00 0 
+7d3bb34b2000-7d3bb34f2000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3bb34f2000-7d3bc34b3000 ---p 00000000 00:00 0 
+7d3bc34b3000-7d3bc34f3000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3bc34f3000-7d3bc4433000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3bc4433000-7d3bd34b4000 ---p 00000000 00:00 0 
+7d3bd34b4000-7d3bd34f4000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3bd34f4000-7d3be34b4000 ---p 00000000 00:00 0 
+7d3be34b4000-7d3be34f4000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3be34f4000-7d3bf34b0000 ---p 00000000 00:00 0 
+7d3bf34b0000-7d3bf34f0000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3bf34f0000-7d3c034ba000 ---p 00000000 00:00 0 
+7d3c034ba000-7d3c034fa000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3c034fa000-7d3c134b3000 ---p 00000000 00:00 0 
+7d3c134b3000-7d3c134f3000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3c134f3000-7d3c234af000 ---p 00000000 00:00 0 
+7d3c234af000-7d3c234ef000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3c234ef000-7d3c334b9000 ---p 00000000 00:00 0 
+7d3c334b9000-7d3c334f9000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3c334f9000-7d3c434ab000 ---p 00000000 00:00 0 
+7d3c434ab000-7d3c434eb000 rw-p 00000000 00:00 0                          [anon:scudo:primary]
+7d3c434eb000-7d3c534aa000 ---p 00000000 00:00 0 
+7d3c534aa000-7d3c534ad000 ---p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c534ad000-7d3c534ae000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c534ae000-7d3c808f7000 ---p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c808f7000-7d3c808f8000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c808f8000-7d3c91e7a000 ---p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c91e7a000-7d3c91e7b000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c91e7b000-7d3c91e7c000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c91e7c000-7d3c91e7d000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c91e7d000-7d3c91e90000 ---p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c91e90000-7d3c91e91000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c91e91000-7d3c91e92000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c91e92000-7d3c93498000 ---p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c93498000-7d3c93499000 r--p 00000000 00:00 0                          [anon:cfi shadow]
+7d3c93499000-7d3cd34aa000 ---p 00000000 00:00 0                          [anon:cfi shadow]
+7d3cd34aa000-7d3cd352f000 r--p 00000000 08:06 3851                       /system/lib64/libgui.so
+7d3cd352f000-7d3cd35cf000 r-xp 00084000 08:06 3851                       /system/lib64/libgui.so
+7d3cd35cf000-7d3cd35f4000 r--p 00123000 08:06 3851                       /system/lib64/libgui.so
+7d3cd35f4000-7d3cd35f5000 rw-p 00147000 08:06 3851                       /system/lib64/libgui.so
+7d3cd35f5000-7d3cd35f6000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cd3600000-7d3cd3796000 r--p 00000000 08:06 3863                       /system/lib64/libhwui.so
+7d3cd3796000-7d3cd3995000 ---p 00000000 00:00 0 
+7d3cd3995000-7d3cd4014000 r-xp 00195000 08:06 3863                       /system/lib64/libhwui.so
+7d3cd4014000-7d3cd4213000 ---p 00000000 00:00 0 
+7d3cd4213000-7d3cd423a000 r--p 00813000 08:06 3863                       /system/lib64/libhwui.so
+7d3cd423a000-7d3cd4439000 ---p 00000000 00:00 0 
+7d3cd4439000-7d3cd4442000 rw-p 00839000 08:06 3863                       /system/lib64/libhwui.so
+7d3cd4442000-7d3cd4448000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cd444e000-7d3cd44c8000 r--p 00000000 08:06 267                        /apex/com.android.media/javalib/updatable-media.jar
+7d3cd44c8000-7d3cd44cc000 r--p 00000000 08:06 3997                       /system/lib64/libstagefright_codecbase.so
+7d3cd44cc000-7d3cd44cd000 ---p 00000000 00:00 0 
+7d3cd44cd000-7d3cd44d1000 r-xp 00004000 08:06 3997                       /system/lib64/libstagefright_codecbase.so
+7d3cd44d1000-7d3cd44d2000 r--p 00007000 08:06 3997                       /system/lib64/libstagefright_codecbase.so
+7d3cd44e0000-7d3cd4500000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd4500000-7d3cd4519000 r--p 00000000 08:06 3916                       /system/lib64/libmediadrm.so
+7d3cd4519000-7d3cd453b000 r-xp 00018000 08:06 3916                       /system/lib64/libmediadrm.so
+7d3cd453b000-7d3cd453f000 r--p 00039000 08:06 3916                       /system/lib64/libmediadrm.so
+7d3cd453f000-7d3cd4540000 rw-p 0003c000 08:06 3916                       /system/lib64/libmediadrm.so
+7d3cd4555000-7d3cd458a000 r--p 00000000 08:06 3243                       /system/lib64/android.hardware.media.c2@1.0.so
+7d3cd458a000-7d3cd45ce000 r-xp 00034000 08:06 3243                       /system/lib64/android.hardware.media.c2@1.0.so
+7d3cd45ce000-7d3cd45d9000 r--p 00077000 08:06 3243                       /system/lib64/android.hardware.media.c2@1.0.so
+7d3cd45d9000-7d3cd45da000 rw-p 00081000 08:06 3243                       /system/lib64/android.hardware.media.c2@1.0.so
+7d3cd45e0000-7d3cd4600000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd4600000-7d3cd5c00000 ---p 00000000 00:00 0 
+7d3cd5c0c000-7d3cd5c6c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5c6c000-7d3cd5c6d000 r--p 00000000 08:06 3934                       /system/lib64/libnativebridge_lazy.so
+7d3cd5c6d000-7d3cd5c6e000 r-xp 00000000 08:06 3934                       /system/lib64/libnativebridge_lazy.so
+7d3cd5c6e000-7d3cd5c6f000 r--p 00000000 08:06 3934                       /system/lib64/libnativebridge_lazy.so
+7d3cd5c6f000-7d3cd5c70000 rw-p 00000000 08:06 3934                       /system/lib64/libnativebridge_lazy.so
+7d3cd5c7b000-7d3cd5c9b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5c9b000-7d3cd5ca5000 r--p 00000000 08:06 3738                       /system/lib64/libbinder_ndk.so
+7d3cd5ca5000-7d3cd5caf000 r-xp 00009000 08:06 3738                       /system/lib64/libbinder_ndk.so
+7d3cd5caf000-7d3cd5cb1000 r--p 00012000 08:06 3738                       /system/lib64/libbinder_ndk.so
+7d3cd5cb1000-7d3cd5cb2000 rw-p 00013000 08:06 3738                       /system/lib64/libbinder_ndk.so
+7d3cd5cc5000-7d3cd5ce5000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5ce5000-7d3cd5ce6000 r--p 00000000 08:06 3650                       /system/lib64/audio_common-aidl-cpp.so
+7d3cd5ce6000-7d3cd5ce8000 r-xp 00000000 08:06 3650                       /system/lib64/audio_common-aidl-cpp.so
+7d3cd5ce8000-7d3cd5ce9000 r--p 00001000 08:06 3650                       /system/lib64/audio_common-aidl-cpp.so
+7d3cd5cff000-7d3cd5d1f000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5d1f000-7d3cd5d21000 r--p 00000000 08:06 158                        /apex/com.android.art/lib64/libartpalette.so
+7d3cd5d21000-7d3cd5d22000 r-xp 00001000 08:06 158                        /apex/com.android.art/lib64/libartpalette.so
+7d3cd5d22000-7d3cd5d23000 r--p 00001000 08:06 158                        /apex/com.android.art/lib64/libartpalette.so
+7d3cd5d23000-7d3cd5d24000 rw-p 00001000 08:06 158                        /apex/com.android.art/lib64/libartpalette.so
+7d3cd5d43000-7d3cd5d63000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5d63000-7d3cd5d64000 r--p 00000000 08:06 3852                       /system/lib64/libhardware.so
+7d3cd5d64000-7d3cd5d66000 r-xp 00000000 08:06 3852                       /system/lib64/libhardware.so
+7d3cd5d66000-7d3cd5d67000 r--p 00001000 08:06 3852                       /system/lib64/libhardware.so
+7d3cd5d77000-7d3cd5d97000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5d97000-7d3cd5da0000 r--p 00000000 08:06 3725                       /system/lib64/libaudiopolicy.so
+7d3cd5da0000-7d3cd5daa000 r-xp 00008000 08:06 3725                       /system/lib64/libaudiopolicy.so
+7d3cd5daa000-7d3cd5dac000 r--p 00011000 08:06 3725                       /system/lib64/libaudiopolicy.so
+7d3cd5db2000-7d3cd5dd2000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5dd2000-7d3cd5dda000 r--p 00000000 08:06 4038                       /system/lib64/libz.so
+7d3cd5dda000-7d3cd5dec000 r-xp 00007000 08:06 4038                       /system/lib64/libz.so
+7d3cd5dec000-7d3cd5ded000 r--p 00018000 08:06 4038                       /system/lib64/libz.so
+7d3cd5ded000-7d3cd5dee000 rw-p 00018000 08:06 4038                       /system/lib64/libz.so
+7d3cd5e02000-7d3cd5e22000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5e22000-7d3cd5e24000 r--p 00000000 08:06 4021                       /system/lib64/libusbhost.so
+7d3cd5e24000-7d3cd5e27000 r-xp 00001000 08:06 4021                       /system/lib64/libusbhost.so
+7d3cd5e27000-7d3cd5e29000 r--p 00003000 08:06 4021                       /system/lib64/libusbhost.so
+7d3cd5e2b000-7d3cd5e4b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5e4b000-7d3cd5e5f000 r--p 00000000 08:06 3244                       /system/lib64/android.hardware.media.c2@1.1.so
+7d3cd5e5f000-7d3cd5e73000 r-xp 00013000 08:06 3244                       /system/lib64/android.hardware.media.c2@1.1.so
+7d3cd5e73000-7d3cd5e77000 r--p 00026000 08:06 3244                       /system/lib64/android.hardware.media.c2@1.1.so
+7d3cd5e77000-7d3cd5e78000 rw-p 00029000 08:06 3244                       /system/lib64/android.hardware.media.c2@1.1.so
+7d3cd5e8f000-7d3cd5e93000 r--p 00000000 08:06 3742                       /system/lib64/libbpf.so
+7d3cd5e93000-7d3cd5e98000 r-xp 00003000 08:06 3742                       /system/lib64/libbpf.so
+7d3cd5e98000-7d3cd5e9a000 r--p 00007000 08:06 3742                       /system/lib64/libbpf.so
+7d3cd5eb9000-7d3cd5ef9000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd5ef9000-7d3cd5f38000 r--p 00000000 08:06 3854                       /system/lib64/libharfbuzz_ng.so
+7d3cd5f38000-7d3cd5ff8000 r-xp 0003e000 08:06 3854                       /system/lib64/libharfbuzz_ng.so
+7d3cd5ff8000-7d3cd5ffa000 r--p 000fd000 08:06 3854                       /system/lib64/libharfbuzz_ng.so
+7d3cd5ffa000-7d3cd5ffb000 rw-p 000fe000 08:06 3854                       /system/lib64/libharfbuzz_ng.so
+7d3cd5ffb000-7d3cd5ffc000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cd6005000-7d3cd61db000 r--p 00000000 08:06 3952                       /system/lib64/libpdfium.so
+7d3cd61db000-7d3cd63e5000 r-xp 001d5000 08:06 3952                       /system/lib64/libpdfium.so
+7d3cd63e5000-7d3cd63f3000 r--p 003de000 08:06 3952                       /system/lib64/libpdfium.so
+7d3cd63f3000-7d3cd63f7000 rw-p 003eb000 08:06 3952                       /system/lib64/libpdfium.so
+7d3cd63f7000-7d3cd63ff000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cd6400000-7d3cd9200000 ---p 00000000 00:00 0 
+7d3cd9202000-7d3cd9214000 r--p 00000000 08:06 4001                       /system/lib64/libstagefright_framecapture_utils.so
+7d3cd9214000-7d3cd9235000 r-xp 00011000 08:06 4001                       /system/lib64/libstagefright_framecapture_utils.so
+7d3cd9235000-7d3cd9237000 r--p 00031000 08:06 4001                       /system/lib64/libstagefright_framecapture_utils.so
+7d3cd9237000-7d3cd9238000 rw-p 00032000 08:06 4001                       /system/lib64/libstagefright_framecapture_utils.so
+7d3cd9242000-7d3cd9256000 r--p 00000000 08:06 3932                       /system/lib64/libminikin.so
+7d3cd9256000-7d3cd927d000 r-xp 00013000 08:06 3932                       /system/lib64/libminikin.so
+7d3cd927d000-7d3cd927f000 r--p 00039000 08:06 3932                       /system/lib64/libminikin.so
+7d3cd927f000-7d3cd9280000 rw-p 0003a000 08:06 3932                       /system/lib64/libminikin.so
+7d3cd928c000-7d3cd929a000 r--p 00000000 08:06 173                        /apex/com.android.art/lib64/libnativeloader.so
+7d3cd929a000-7d3cd92b5000 r-xp 0000d000 08:06 173                        /apex/com.android.art/lib64/libnativeloader.so
+7d3cd92b5000-7d3cd92b7000 r--p 00027000 08:06 173                        /apex/com.android.art/lib64/libnativeloader.so
+7d3cd92b7000-7d3cd92b8000 rw-p 00028000 08:06 173                        /apex/com.android.art/lib64/libnativeloader.so
+7d3cd92c3000-7d3cd92fd000 r--p 00000000 08:06 3712                       /system/lib64/libandroidfw.so
+7d3cd92fd000-7d3cd934f000 r-xp 00039000 08:06 3712                       /system/lib64/libandroidfw.so
+7d3cd934f000-7d3cd9352000 r--p 0008a000 08:06 3712                       /system/lib64/libandroidfw.so
+7d3cd9352000-7d3cd9353000 rw-p 0008c000 08:06 3712                       /system/lib64/libandroidfw.so
+7d3cd9353000-7d3cd9354000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cd936f000-7d3cd938f000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd938f000-7d3cd9391000 r--p 00000000 08:06 4047                       /system/lib64/server_configurable_flags.so
+7d3cd9391000-7d3cd9393000 r-xp 00001000 08:06 4047                       /system/lib64/server_configurable_flags.so
+7d3cd9393000-7d3cd9394000 r--p 00002000 08:06 4047                       /system/lib64/server_configurable_flags.so
+7d3cd93a9000-7d3cd93c9000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd93c9000-7d3cd93d3000 r--p 00000000 08:06 3695                       /system/lib64/libSurfaceFlingerProp.so
+7d3cd93d3000-7d3cd93d4000 ---p 00000000 00:00 0 
+7d3cd93d4000-7d3cd93de000 r-xp 0000a000 08:06 3695                       /system/lib64/libSurfaceFlingerProp.so
+7d3cd93de000-7d3cd93df000 r--p 00013000 08:06 3695                       /system/lib64/libSurfaceFlingerProp.so
+7d3cd93df000-7d3cd93e0000 rw-p 00013000 08:06 3695                       /system/lib64/libSurfaceFlingerProp.so
+7d3cd93f1000-7d3cd9411000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9411000-7d3cd9418000 r--p 00000000 08:06 3944                       /system/lib64/libnetdutils.so
+7d3cd9418000-7d3cd9419000 ---p 00000000 00:00 0 
+7d3cd9419000-7d3cd9425000 r-xp 00007000 08:06 3944                       /system/lib64/libnetdutils.so
+7d3cd9425000-7d3cd9427000 r--p 00012000 08:06 3944                       /system/lib64/libnetdutils.so
+7d3cd9427000-7d3cd9428000 rw-p 00013000 08:06 3944                       /system/lib64/libnetdutils.so
+7d3cd942e000-7d3cd946e000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd946e000-7d3cd9470000 r--p 00000000 08:06 4004                       /system/lib64/libstagefright_omx_utils.so
+7d3cd9470000-7d3cd9471000 ---p 00000000 00:00 0 
+7d3cd9471000-7d3cd9473000 r-xp 00002000 08:06 4004                       /system/lib64/libstagefright_omx_utils.so
+7d3cd9473000-7d3cd9474000 r--p 00003000 08:06 4004                       /system/lib64/libstagefright_omx_utils.so
+7d3cd9474000-7d3cd9475000 rw-p 00003000 08:06 4004                       /system/lib64/libstagefright_omx_utils.so
+7d3cd947c000-7d3cd949c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd949c000-7d3cd94a5000 r--p 00000000 08:06 3927                       /system/lib64/libmeminfo.so
+7d3cd94a5000-7d3cd94b1000 r-xp 00008000 08:06 3927                       /system/lib64/libmeminfo.so
+7d3cd94b1000-7d3cd94b3000 r--p 00013000 08:06 3927                       /system/lib64/libmeminfo.so
+7d3cd94b3000-7d3cd94b4000 rw-p 00014000 08:06 3927                       /system/lib64/libmeminfo.so
+7d3cd94cd000-7d3cd94d9000 r--p 00000000 08:06 3228                       /system/lib64/android.hardware.graphics.mapper@3.0.so
+7d3cd94d9000-7d3cd94e3000 r-xp 0000b000 08:06 3228                       /system/lib64/android.hardware.graphics.mapper@3.0.so
+7d3cd94e3000-7d3cd94e6000 r--p 00014000 08:06 3228                       /system/lib64/android.hardware.graphics.mapper@3.0.so
+7d3cd94e6000-7d3cd94e7000 rw-p 00016000 08:06 3228                       /system/lib64/android.hardware.graphics.mapper@3.0.so
+7d3cd94eb000-7d3cd950b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd950b000-7d3cd9515000 r--p 00000000 08:06 3212                       /system/lib64/android.hardware.graphics.allocator@2.0.so
+7d3cd9515000-7d3cd951d000 r-xp 00009000 08:06 3212                       /system/lib64/android.hardware.graphics.allocator@2.0.so
+7d3cd951d000-7d3cd9520000 r--p 00010000 08:06 3212                       /system/lib64/android.hardware.graphics.allocator@2.0.so
+7d3cd9520000-7d3cd9521000 rw-p 00012000 08:06 3212                       /system/lib64/android.hardware.graphics.allocator@2.0.so
+7d3cd9523000-7d3cd9563000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9563000-7d3cd9590000 r--p 00000000 08:06 3880                       /system/lib64/libjpeg.so
+7d3cd9590000-7d3cd95f8000 r-xp 0002c000 08:06 3880                       /system/lib64/libjpeg.so
+7d3cd95f8000-7d3cd95f9000 r--p 00093000 08:06 3880                       /system/lib64/libjpeg.so
+7d3cd95f9000-7d3cd95fa000 rw-p 00093000 08:06 3880                       /system/lib64/libjpeg.so
+7d3cd9602000-7d3cd9614000 r--p 00000000 08:06 3953                       /system/lib64/libpdx_default_transport.so
+7d3cd9614000-7d3cd9628000 r-xp 00011000 08:06 3953                       /system/lib64/libpdx_default_transport.so
+7d3cd9628000-7d3cd962a000 r--p 00024000 08:06 3953                       /system/lib64/libpdx_default_transport.so
+7d3cd962a000-7d3cd962b000 rw-p 00025000 08:06 3953                       /system/lib64/libpdx_default_transport.so
+7d3cd9635000-7d3cd9655000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9655000-7d3cd9661000 r--p 00000000 08:06 3745                       /system/lib64/libbufferhubqueue.so
+7d3cd9661000-7d3cd9672000 r-xp 0000b000 08:06 3745                       /system/lib64/libbufferhubqueue.so
+7d3cd9672000-7d3cd9674000 r--p 0001b000 08:06 3745                       /system/lib64/libbufferhubqueue.so
+7d3cd9674000-7d3cd9675000 rw-p 0001c000 08:06 3745                       /system/lib64/libbufferhubqueue.so
+7d3cd968c000-7d3cd968d000 r--p 00000000 08:06 3859                       /system/lib64/libhidlallocatorutils.so
+7d3cd968d000-7d3cd968e000 r-xp 00000000 08:06 3859                       /system/lib64/libhidlallocatorutils.so
+7d3cd968e000-7d3cd968f000 r--p 00000000 08:06 3859                       /system/lib64/libhidlallocatorutils.so
+7d3cd96a0000-7d3cd96e0000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd96e0000-7d3cd96f9000 r--p 00000000 08:06 4035                       /system/lib64/libwilhelm.so
+7d3cd96f9000-7d3cd971b000 r-xp 00018000 08:06 4035                       /system/lib64/libwilhelm.so
+7d3cd971b000-7d3cd9721000 r--p 00039000 08:06 4035                       /system/lib64/libwilhelm.so
+7d3cd9721000-7d3cd9722000 rw-p 0003e000 08:06 4035                       /system/lib64/libwilhelm.so
+7d3cd973b000-7d3cd975b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd975b000-7d3cd9761000 r--p 00000000 08:06 3922                       /system/lib64/libmediametrics.so
+7d3cd9761000-7d3cd9762000 ---p 00000000 00:00 0 
+7d3cd9762000-7d3cd976d000 r-xp 00006000 08:06 3922                       /system/lib64/libmediametrics.so
+7d3cd976d000-7d3cd976e000 r--p 00010000 08:06 3922                       /system/lib64/libmediametrics.so
+7d3cd976e000-7d3cd976f000 rw-p 00010000 08:06 3922                       /system/lib64/libmediametrics.so
+7d3cd978a000-7d3cd97aa000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd97aa000-7d3cd97b4000 r--p 00000000 08:06 3214                       /system/lib64/android.hardware.graphics.allocator@4.0.so
+7d3cd97b4000-7d3cd97bb000 r-xp 00009000 08:06 3214                       /system/lib64/android.hardware.graphics.allocator@4.0.so
+7d3cd97bb000-7d3cd97bd000 r--p 0000f000 08:06 3214                       /system/lib64/android.hardware.graphics.allocator@4.0.so
+7d3cd97bd000-7d3cd97be000 rw-p 00010000 08:06 3214                       /system/lib64/android.hardware.graphics.allocator@4.0.so
+7d3cd97cc000-7d3cd97d5000 r--p 00000000 08:06 3905                       /system/lib64/liblzma.so
+7d3cd97d5000-7d3cd97f7000 r-xp 00008000 08:06 3905                       /system/lib64/liblzma.so
+7d3cd97f7000-7d3cd97f9000 r--p 00029000 08:06 3905                       /system/lib64/liblzma.so
+7d3cd97f9000-7d3cd97fa000 rw-p 0002a000 08:06 3905                       /system/lib64/liblzma.so
+7d3cd97fa000-7d3cd9800000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cd9803000-7d3cd9804000 r--p 00000000 08:06 3761                       /system/lib64/libcodec2.so
+7d3cd9804000-7d3cd9805000 r-xp 00000000 08:06 3761                       /system/lib64/libcodec2.so
+7d3cd9805000-7d3cd9806000 r--p 00000000 08:06 3761                       /system/lib64/libcodec2.so
+7d3cd980d000-7d3cd987b000 r--p 00000000 08:06 2337                       /system/framework/org.apache.http.legacy.jar
+7d3cd987b000-7d3cd987d000 r--p 00000000 08:06 3842                       /system/lib64/libfmq.so
+7d3cd987d000-7d3cd987f000 r-xp 00001000 08:06 3842                       /system/lib64/libfmq.so
+7d3cd987f000-7d3cd9880000 r--p 00002000 08:06 3842                       /system/lib64/libfmq.so
+7d3cd9894000-7d3cd989d000 r--p 00000000 08:06 3867                       /system/lib64/libimg_utils.so
+7d3cd989d000-7d3cd98a5000 r-xp 00008000 08:06 3867                       /system/lib64/libimg_utils.so
+7d3cd98a5000-7d3cd98a8000 r--p 0000f000 08:06 3867                       /system/lib64/libimg_utils.so
+7d3cd98a8000-7d3cd98a9000 rw-p 00011000 08:06 3867                       /system/lib64/libimg_utils.so
+7d3cd98ae000-7d3cd98ee000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd98ee000-7d3cd98f4000 r--p 00000000 08:06 3713                       /system/lib64/libappfuse.so
+7d3cd98f4000-7d3cd98fb000 r-xp 00005000 08:06 3713                       /system/lib64/libappfuse.so
+7d3cd98fb000-7d3cd98fc000 r--p 0000b000 08:06 3713                       /system/lib64/libappfuse.so
+7d3cd98fc000-7d3cd98fd000 rw-p 0000b000 08:06 3713                       /system/lib64/libappfuse.so
+7d3cd9902000-7d3cd9917000 r--p 00000000 08:06 3914                       /system/lib64/libmedia_omx.so
+7d3cd9917000-7d3cd9918000 ---p 00000000 00:00 0 
+7d3cd9918000-7d3cd992e000 r-xp 00015000 08:06 3914                       /system/lib64/libmedia_omx.so
+7d3cd992e000-7d3cd9935000 r--p 0002a000 08:06 3914                       /system/lib64/libmedia_omx.so
+7d3cd9935000-7d3cd9936000 rw-p 00030000 08:06 3914                       /system/lib64/libmedia_omx.so
+7d3cd9944000-7d3cd9946000 r--p 00000000 08:06 3928                       /system/lib64/libmemtrack.so
+7d3cd9946000-7d3cd9948000 r-xp 00001000 08:06 3928                       /system/lib64/libmemtrack.so
+7d3cd9948000-7d3cd9949000 r--p 00002000 08:06 3928                       /system/lib64/libmemtrack.so
+7d3cd9949000-7d3cd994a000 rw-p 00002000 08:06 3928                       /system/lib64/libmemtrack.so
+7d3cd9962000-7d3cd9982000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9982000-7d3cd9986000 r--p 00000000 08:06 3661                       /system/lib64/capture_state_listener-aidl-cpp.so
+7d3cd9986000-7d3cd9987000 r-xp 00003000 08:06 3661                       /system/lib64/capture_state_listener-aidl-cpp.so
+7d3cd9987000-7d3cd9989000 r--p 00003000 08:06 3661                       /system/lib64/capture_state_listener-aidl-cpp.so
+7d3cd9989000-7d3cd998a000 rw-p 00004000 08:06 3661                       /system/lib64/capture_state_listener-aidl-cpp.so
+7d3cd9990000-7d3cd99d0000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd99d0000-7d3cd99d9000 r--p 00000000 08:06 4039                       /system/lib64/libziparchive.so
+7d3cd99d9000-7d3cd99e2000 r-xp 00008000 08:06 4039                       /system/lib64/libziparchive.so
+7d3cd99e2000-7d3cd99e4000 r--p 00010000 08:06 4039                       /system/lib64/libziparchive.so
+7d3cd99f7000-7d3cd9a17000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9a17000-7d3cd9a18000 r--p 00000000 08:06 4049                       /system/lib64/shared-file-region-aidl-cpp.so
+7d3cd9a18000-7d3cd9a19000 r-xp 00000000 08:06 4049                       /system/lib64/shared-file-region-aidl-cpp.so
+7d3cd9a19000-7d3cd9a1a000 r--p 00000000 08:06 4049                       /system/lib64/shared-file-region-aidl-cpp.so
+7d3cd9a32000-7d3cd9a72000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9a72000-7d3cd9a75000 r--p 00000000 08:06 3217                       /system/lib64/android.hardware.graphics.common-V2-ndk_platform.so
+7d3cd9a75000-7d3cd9a77000 r-xp 00002000 08:06 3217                       /system/lib64/android.hardware.graphics.common-V2-ndk_platform.so
+7d3cd9a77000-7d3cd9a78000 r--p 00003000 08:06 3217                       /system/lib64/android.hardware.graphics.common-V2-ndk_platform.so
+7d3cd9a78000-7d3cd9a79000 rw-p 00003000 08:06 3217                       /system/lib64/android.hardware.graphics.common-V2-ndk_platform.so
+7d3cd9a79000-7d3cd9a99000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9a99000-7d3cd9aa8000 r--p 00000000 08:06 3142                       /system/lib64/android.frameworks.bufferhub@1.0.so
+7d3cd9aa8000-7d3cd9ab5000 r-xp 0000e000 08:06 3142                       /system/lib64/android.frameworks.bufferhub@1.0.so
+7d3cd9ab5000-7d3cd9ab8000 r--p 0001a000 08:06 3142                       /system/lib64/android.frameworks.bufferhub@1.0.so
+7d3cd9ab8000-7d3cd9ab9000 rw-p 0001c000 08:06 3142                       /system/lib64/android.frameworks.bufferhub@1.0.so
+7d3cd9abb000-7d3cd9adb000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9adb000-7d3cd9ae5000 r--p 00000000 08:06 3285                       /system/lib64/android.hidl.allocator@1.0.so
+7d3cd9ae5000-7d3cd9aed000 r-xp 00009000 08:06 3285                       /system/lib64/android.hidl.allocator@1.0.so
+7d3cd9aed000-7d3cd9aef000 r--p 00010000 08:06 3285                       /system/lib64/android.hidl.allocator@1.0.so
+7d3cd9aef000-7d3cd9af0000 rw-p 00011000 08:06 3285                       /system/lib64/android.hidl.allocator@1.0.so
+7d3cd9b02000-7d3cd9b19000 r--p 00000000 08:06 3215                       /system/lib64/android.hardware.graphics.bufferqueue@1.0.so
+7d3cd9b19000-7d3cd9b31000 r-xp 00016000 08:06 3215                       /system/lib64/android.hardware.graphics.bufferqueue@1.0.so
+7d3cd9b31000-7d3cd9b35000 r--p 0002d000 08:06 3215                       /system/lib64/android.hardware.graphics.bufferqueue@1.0.so
+7d3cd9b35000-7d3cd9b36000 rw-p 00030000 08:06 3215                       /system/lib64/android.hardware.graphics.bufferqueue@1.0.so
+7d3cd9b4c000-7d3cd9b6c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9b6c000-7d3cd9b6f000 r--p 00000000 08:06 3861                       /system/lib64/libhidlmemory.so
+7d3cd9b6f000-7d3cd9b71000 r-xp 00002000 08:06 3861                       /system/lib64/libhidlmemory.so
+7d3cd9b71000-7d3cd9b73000 r--p 00003000 08:06 3861                       /system/lib64/libhidlmemory.so
+7d3cd9b73000-7d3cd9b74000 rw-p 00004000 08:06 3861                       /system/lib64/libhidlmemory.so
+7d3cd9b88000-7d3cd9ba8000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9ba8000-7d3cd9bae000 r--p 00000000 08:06 3651                       /system/lib64/audioclient-types-aidl-cpp.so
+7d3cd9bae000-7d3cd9bb5000 r-xp 00005000 08:06 3651                       /system/lib64/audioclient-types-aidl-cpp.so
+7d3cd9bb5000-7d3cd9bb6000 r--p 0000b000 08:06 3651                       /system/lib64/audioclient-types-aidl-cpp.so
+7d3cd9bd0000-7d3cd9be1000 r--p 00000000 08:06 3199                       /system/lib64/android.hardware.drm@1.3.so
+7d3cd9be1000-7d3cd9bef000 r-xp 00010000 08:06 3199                       /system/lib64/android.hardware.drm@1.3.so
+7d3cd9bef000-7d3cd9bf3000 r--p 0001d000 08:06 3199                       /system/lib64/android.hardware.drm@1.3.so
+7d3cd9bf3000-7d3cd9bf4000 rw-p 00020000 08:06 3199                       /system/lib64/android.hardware.drm@1.3.so
+7d3cd9bfb000-7d3cd9c1b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9c1b000-7d3cd9cd5000 r--p 00000000 08:06 237                        /apex/com.android.i18n/lib64/libicuuc.so
+7d3cd9cd5000-7d3cd9de0000 r-xp 000b9000 08:06 237                        /apex/com.android.i18n/lib64/libicuuc.so
+7d3cd9de0000-7d3cd9df5000 r--p 001c3000 08:06 237                        /apex/com.android.i18n/lib64/libicuuc.so
+7d3cd9df5000-7d3cd9df6000 rw-p 001d7000 08:06 237                        /apex/com.android.i18n/lib64/libicuuc.so
+7d3cd9df6000-7d3cd9df8000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cd9e03000-7d3cd9e23000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cd9e23000-7d3cd9eef000 r--p 00000000 08:06 3708                       /system/lib64/libandroid_runtime.so
+7d3cd9eef000-7d3cda027000 r-xp 000cb000 08:06 3708                       /system/lib64/libandroid_runtime.so
+7d3cda027000-7d3cda045000 r--p 00202000 08:06 3708                       /system/lib64/libandroid_runtime.so
+7d3cda045000-7d3cda047000 rw-p 0021f000 08:06 3708                       /system/lib64/libandroid_runtime.so
+7d3cda047000-7d3cda049000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cda061000-7d3cda0c0000 r--p 00000000 08:06 534                        /apex/com.android.tethering/javalib/framework-connectivity.jar
+7d3cda0c0000-7d3cda0cf000 r--p 00000000 08:06 4022                       /system/lib64/libutils.so
+7d3cda0cf000-7d3cda0dd000 r-xp 0000e000 08:06 4022                       /system/lib64/libutils.so
+7d3cda0dd000-7d3cda0de000 r--p 0001b000 08:06 4022                       /system/lib64/libutils.so
+7d3cda0de000-7d3cda0df000 rw-p 0001b000 08:06 4022                       /system/lib64/libutils.so
+7d3cda0ed000-7d3cda12d000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cda12d000-7d3cda153000 r--p 00000000 08:06 4019                       /system/lib64/libui.so
+7d3cda153000-7d3cda177000 r-xp 00025000 08:06 4019                       /system/lib64/libui.so
+7d3cda177000-7d3cda17a000 r--p 00048000 08:06 4019                       /system/lib64/libui.so
+7d3cda17a000-7d3cda17b000 rw-p 0004a000 08:06 4019                       /system/lib64/libui.so
+7d3cda17b000-7d3cda17c000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cda17e000-7d3cda19e000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cda19e000-7d3cda1c2000 r--p 00000000 08:06 3196                       /system/lib64/android.hardware.drm@1.0.so
+7d3cda1c2000-7d3cda1f3000 r-xp 00023000 08:06 3196                       /system/lib64/android.hardware.drm@1.0.so
+7d3cda1f3000-7d3cda1fa000 r--p 00053000 08:06 3196                       /system/lib64/android.hardware.drm@1.0.so
+7d3cda1fa000-7d3cda1fb000 rw-p 00059000 08:06 3196                       /system/lib64/android.hardware.drm@1.0.so
+7d3cda200000-7d3cdd600000 ---p 00000000 00:00 0 
+7d3cdd606000-7d3cdd66f000 r--p 00000000 08:06 195                        /apex/com.android.conscrypt/javalib/conscrypt.jar
+7d3cdd66f000-7d3cdd67a000 r--p 00000000 08:06 234                        /apex/com.android.i18n/lib64/libicu.so
+7d3cdd67a000-7d3cdd67d000 r-xp 0000a000 08:06 234                        /apex/com.android.i18n/lib64/libicu.so
+7d3cdd67d000-7d3cdd67f000 r--p 0000c000 08:06 234                        /apex/com.android.i18n/lib64/libicu.so
+7d3cdd688000-7d3cdd689000 r--p 00000000 08:06 4009                       /system/lib64/libsync.so
+7d3cdd689000-7d3cdd68b000 r-xp 00000000 08:06 4009                       /system/lib64/libsync.so
+7d3cdd68b000-7d3cdd68c000 r--p 00001000 08:06 4009                       /system/lib64/libsync.so
+7d3cdd68c000-7d3cdd68d000 rw-p 00001000 08:06 4009                       /system/lib64/libsync.so
+7d3cdd696000-7d3cdd6d6000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdd6d6000-7d3cdd6e2000 r--p 00000000 08:06 3227                       /system/lib64/android.hardware.graphics.mapper@2.1.so
+7d3cdd6e2000-7d3cdd6eb000 r-xp 0000b000 08:06 3227                       /system/lib64/android.hardware.graphics.mapper@2.1.so
+7d3cdd6eb000-7d3cdd6ee000 r--p 00013000 08:06 3227                       /system/lib64/android.hardware.graphics.mapper@2.1.so
+7d3cdd6ee000-7d3cdd6ef000 rw-p 00015000 08:06 3227                       /system/lib64/android.hardware.graphics.mapper@2.1.so
+7d3cdd6fc000-7d3cdd71c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdd71c000-7d3cdd744000 r--p 00000000 08:06 3200                       /system/lib64/android.hardware.drm@1.4.so
+7d3cdd744000-7d3cdd766000 r-xp 00027000 08:06 3200                       /system/lib64/android.hardware.drm@1.4.so
+7d3cdd766000-7d3cdd76e000 r--p 00048000 08:06 3200                       /system/lib64/android.hardware.drm@1.4.so
+7d3cdd76e000-7d3cdd76f000 rw-p 0004f000 08:06 3200                       /system/lib64/android.hardware.drm@1.4.so
+7d3cdd77d000-7d3cdd79d000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdd79d000-7d3cdd7c4000 r--p 00000000 08:06 3951                       /system/lib64/libpcre2.so
+7d3cdd7c4000-7d3cdd7f8000 r-xp 00026000 08:06 3951                       /system/lib64/libpcre2.so
+7d3cdd7f8000-7d3cdd7fa000 r--p 00059000 08:06 3951                       /system/lib64/libpcre2.so
+7d3cdd7fa000-7d3cdd7fb000 rw-p 0005a000 08:06 3951                       /system/lib64/libpcre2.so
+7d3cdd80f000-7d3cdd811000 r--p 00000000 08:06 3289                       /system/lib64/android.hidl.token@1.0-utils.so
+7d3cdd811000-7d3cdd812000 r-xp 00001000 08:06 3289                       /system/lib64/android.hidl.token@1.0-utils.so
+7d3cdd812000-7d3cdd814000 r--p 00001000 08:06 3289                       /system/lib64/android.hidl.token@1.0-utils.so
+7d3cdd814000-7d3cdd815000 rw-p 00002000 08:06 3289                       /system/lib64/android.hidl.token@1.0-utils.so
+7d3cdd816000-7d3cdd856000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdd856000-7d3cdd8b7000 r--p 00000000 08:06 3678                       /system/lib64/libEGL.so
+7d3cdd8b7000-7d3cdd926000 r-xp 00060000 08:06 3678                       /system/lib64/libEGL.so
+7d3cdd926000-7d3cdd92c000 r--p 000ce000 08:06 3678                       /system/lib64/libEGL.so
+7d3cdd92c000-7d3cdd934000 rw-p 000d3000 08:06 3678                       /system/lib64/libEGL.so
+7d3cdd934000-7d3cdd93c000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cdd93f000-7d3cdd95f000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdd95f000-7d3cdd969000 r--p 00000000 08:06 3290                       /system/lib64/android.hidl.token@1.0.so
+7d3cdd969000-7d3cdd972000 r-xp 00009000 08:06 3290                       /system/lib64/android.hidl.token@1.0.so
+7d3cdd972000-7d3cdd974000 r--p 00011000 08:06 3290                       /system/lib64/android.hidl.token@1.0.so
+7d3cdd974000-7d3cdd975000 rw-p 00012000 08:06 3290                       /system/lib64/android.hidl.token@1.0.so
+7d3cdd97b000-7d3cdd99b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdd99b000-7d3cdd99e000 r--p 00000000 08:06 3724                       /system/lib64/libaudiomanager.so
+7d3cdd99e000-7d3cdd9a0000 r-xp 00002000 08:06 3724                       /system/lib64/libaudiomanager.so
+7d3cdd9a0000-7d3cdd9a1000 r--p 00003000 08:06 3724                       /system/lib64/libaudiomanager.so
+7d3cdd9a1000-7d3cdd9a2000 rw-p 00003000 08:06 3724                       /system/lib64/libaudiomanager.so
+7d3cdd9b4000-7d3cdd9d4000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdd9d4000-7d3cdd9dd000 r--p 00000000 08:06 3956                       /system/lib64/libpermission.so
+7d3cdd9dd000-7d3cdd9e3000 r-xp 00008000 08:06 3956                       /system/lib64/libpermission.so
+7d3cdd9e3000-7d3cdd9e7000 r--p 0000d000 08:06 3956                       /system/lib64/libpermission.so
+7d3cdd9e7000-7d3cdd9e8000 rw-p 00010000 08:06 3956                       /system/lib64/libpermission.so
+7d3cdda05000-7d3cdda25000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdda25000-7d3cdda2b000 r--p 00000000 08:06 3809                       /system/lib64/libdataloader.so
+7d3cdda2b000-7d3cdda37000 r-xp 00005000 08:06 3809                       /system/lib64/libdataloader.so
+7d3cdda37000-7d3cdda38000 r--p 00010000 08:06 3809                       /system/lib64/libdataloader.so
+7d3cdda38000-7d3cdda39000 rw-p 00010000 08:06 3809                       /system/lib64/libdataloader.so
+7d3cdda39000-7d3cdda3a000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cdda41000-7d3cdda79000 r--p 00000000 08:06 3965                       /system/lib64/libprotobuf-cpp-lite.so
+7d3cdda79000-7d3cddab9000 r-xp 00037000 08:06 3965                       /system/lib64/libprotobuf-cpp-lite.so
+7d3cddab9000-7d3cddabc000 r--p 00076000 08:06 3965                       /system/lib64/libprotobuf-cpp-lite.so
+7d3cddabc000-7d3cddabd000 rw-p 00078000 08:06 3965                       /system/lib64/libprotobuf-cpp-lite.so
+7d3cddace000-7d3cddacf000 r--p 00000000 08:06 3767                       /system/lib64/libcodec2_hidl_client@1.1.so
+7d3cddacf000-7d3cddad0000 r-xp 00000000 08:06 3767                       /system/lib64/libcodec2_hidl_client@1.1.so
+7d3cddad0000-7d3cddad1000 r--p 00000000 08:06 3767                       /system/lib64/libcodec2_hidl_client@1.1.so
+7d3cddad4000-7d3cddb14000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cddb14000-7d3cddb1e000 r--p 00000000 08:06 3213                       /system/lib64/android.hardware.graphics.allocator@3.0.so
+7d3cddb1e000-7d3cddb26000 r-xp 00009000 08:06 3213                       /system/lib64/android.hardware.graphics.allocator@3.0.so
+7d3cddb26000-7d3cddb29000 r--p 00010000 08:06 3213                       /system/lib64/android.hardware.graphics.allocator@3.0.so
+7d3cddb29000-7d3cddb2a000 rw-p 00012000 08:06 3213                       /system/lib64/android.hardware.graphics.allocator@3.0.so
+7d3cddb31000-7d3cddb51000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cddb51000-7d3cddb53000 r--p 00000000 08:06 3913                       /system/lib64/libmedia_jni_utils.so
+7d3cddb53000-7d3cddb54000 r-xp 00001000 08:06 3913                       /system/lib64/libmedia_jni_utils.so
+7d3cddb54000-7d3cddb56000 r--p 00001000 08:06 3913                       /system/lib64/libmedia_jni_utils.so
+7d3cddb6e000-7d3cddbae000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cddbae000-7d3cddbb4000 r--p 00000000 08:06 3909                       /system/lib64/libmedia_codeclist.so
+7d3cddbb4000-7d3cddbb5000 ---p 00000000 00:00 0 
+7d3cddbb5000-7d3cddbbc000 r-xp 00006000 08:06 3909                       /system/lib64/libmedia_codeclist.so
+7d3cddbbc000-7d3cddbbe000 r--p 0000c000 08:06 3909                       /system/lib64/libmedia_codeclist.so
+7d3cddbbe000-7d3cddbbf000 rw-p 0000d000 08:06 3909                       /system/lib64/libmedia_codeclist.so
+7d3cddbde000-7d3cddbdf000 r--p 00000000 08:06 3982                       /system/lib64/libshmemutil.so
+7d3cddbdf000-7d3cddbe0000 r-xp 00000000 08:06 3982                       /system/lib64/libshmemutil.so
+7d3cddbe0000-7d3cddbe1000 r--p 00000000 08:06 3982                       /system/lib64/libshmemutil.so
+7d3cddbe8000-7d3cddc08000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cddc08000-7d3cddc09000 r--p 00000000 08:06 3288                       /system/lib64/android.hidl.safe_union@1.0.so
+7d3cddc09000-7d3cddc0a000 r-xp 00000000 08:06 3288                       /system/lib64/android.hidl.safe_union@1.0.so
+7d3cddc0a000-7d3cddc0b000 r--p 00000000 08:06 3288                       /system/lib64/android.hidl.safe_union@1.0.so
+7d3cddc22000-7d3cddc42000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cddc42000-7d3cddc4d000 r--p 00000000 08:06 3188                       /system/lib64/android.hardware.cas.native@1.0.so
+7d3cddc4d000-7d3cddc55000 r-xp 0000a000 08:06 3188                       /system/lib64/android.hardware.cas.native@1.0.so
+7d3cddc55000-7d3cddc58000 r--p 00011000 08:06 3188                       /system/lib64/android.hardware.cas.native@1.0.so
+7d3cddc58000-7d3cddc59000 rw-p 00013000 08:06 3188                       /system/lib64/android.hardware.cas.native@1.0.so
+7d3cddc6e000-7d3cddc8e000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cddc8e000-7d3cddc90000 r--p 00000000 08:06 3190                       /system/lib64/android.hardware.common-V2-ndk_platform.so
+7d3cddc90000-7d3cddc92000 r-xp 00001000 08:06 3190                       /system/lib64/android.hardware.common-V2-ndk_platform.so
+7d3cddc92000-7d3cddc93000 r--p 00002000 08:06 3190                       /system/lib64/android.hardware.common-V2-ndk_platform.so
+7d3cddc93000-7d3cddc94000 rw-p 00002000 08:06 3190                       /system/lib64/android.hardware.common-V2-ndk_platform.so
+7d3cddca8000-7d3cddcc8000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cddcc8000-7d3cddcdb000 r--p 00000000 08:06 3684                       /system/lib64/libGLESv3.so
+7d3cddcdb000-7d3cddce2000 r-xp 00012000 08:06 3684                       /system/lib64/libGLESv3.so
+7d3cddce2000-7d3cddce3000 r--p 00018000 08:06 3684                       /system/lib64/libGLESv3.so
+7d3cddcf5000-7d3cddcf6000 ---p 00000000 00:00 0 
+7d3cddcf6000-7d3cddd19000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cddd19000-7d3cddd1a000 ---p 00000000 00:00 0 
+7d3cddd1a000-7d3cddd28000 r--p 00000000 08:06 3911                       /system/lib64/libmedia_helper.so
+7d3cddd28000-7d3cddd36000 r-xp 0000d000 08:06 3911                       /system/lib64/libmedia_helper.so
+7d3cddd36000-7d3cddd38000 r--p 0001a000 08:06 3911                       /system/lib64/libmedia_helper.so
+7d3cddd4e000-7d3cddd4f000 r--p 00000000 08:06 3949                       /system/lib64/libpackagelistparser.so
+7d3cddd4f000-7d3cddd50000 r-xp 00000000 08:06 3949                       /system/lib64/libpackagelistparser.so
+7d3cddd50000-7d3cddd52000 r--p 00000000 08:06 3949                       /system/lib64/libpackagelistparser.so
+7d3cddd6c000-7d3cddd6d000 ---p 00000000 00:00 0 
+7d3cddd6d000-7d3cdddb1000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cdddb1000-7d3cdddb2000 ---p 00000000 00:00 0 
+7d3cdddb2000-7d3cdddb8000 r--p 00000000 08:06 3680                       /system/lib64/libGLESv1_CM.so
+7d3cdddb8000-7d3cdddbc000 r-xp 00005000 08:06 3680                       /system/lib64/libGLESv1_CM.so
+7d3cdddbc000-7d3cdddbd000 r--p 00008000 08:06 3680                       /system/lib64/libGLESv1_CM.so
+7d3cdddc5000-7d3cdddc8000 r--p 00000000 08:06 3853                       /system/lib64/libhardware_legacy.so
+7d3cdddc8000-7d3cdddcb000 r-xp 00002000 08:06 3853                       /system/lib64/libhardware_legacy.so
+7d3cdddcb000-7d3cdddcc000 r--p 00004000 08:06 3853                       /system/lib64/libhardware_legacy.so
+7d3cdddcc000-7d3cdddcd000 rw-p 00004000 08:06 3853                       /system/lib64/libhardware_legacy.so
+7d3cdddcf000-7d3cdddd0000 ---p 00000000 00:00 0 
+7d3cdddd0000-7d3cdde08000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cdde08000-7d3cdde09000 ---p 00000000 00:00 0 
+7d3cdde09000-7d3cdde0d000 r--p 00000000 08:06 3857                       /system/lib64/libheif.so
+7d3cdde0d000-7d3cdde10000 r-xp 00003000 08:06 3857                       /system/lib64/libheif.so
+7d3cdde10000-7d3cdde12000 r--p 00005000 08:06 3857                       /system/lib64/libheif.so
+7d3cdde15000-7d3cdde16000 ---p 00000000 00:00 0 
+7d3cdde16000-7d3cdde4d000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cdde4d000-7d3cdde4e000 ---p 00000000 00:00 0 
+7d3cdde4e000-7d3cdde5c000 r--p 00000000 08:06 3653                       /system/lib64/audiopolicy-aidl-cpp.so
+7d3cdde5c000-7d3cdde79000 r-xp 0000d000 08:06 3653                       /system/lib64/audiopolicy-aidl-cpp.so
+7d3cdde79000-7d3cdde7d000 r--p 00029000 08:06 3653                       /system/lib64/audiopolicy-aidl-cpp.so
+7d3cdde7d000-7d3cdde7e000 rw-p 0002c000 08:06 3653                       /system/lib64/audiopolicy-aidl-cpp.so
+7d3cdde85000-7d3cdde86000 ---p 00000000 00:00 0 
+7d3cdde86000-7d3cddead000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cddead000-7d3cddeae000 ---p 00000000 00:00 0 
+7d3cddeae000-7d3cddeb4000 r--p 00000000 08:06 4024                       /system/lib64/libvibrator.so
+7d3cddeb4000-7d3cddeb8000 r-xp 00005000 08:06 4024                       /system/lib64/libvibrator.so
+7d3cddeb8000-7d3cddeba000 r--p 00008000 08:06 4024                       /system/lib64/libvibrator.so
+7d3cddeba000-7d3cddebc000 rw-p 00009000 08:06 4024                       /system/lib64/libvibrator.so
+7d3cddec0000-7d3cddec1000 ---p 00000000 00:00 0 
+7d3cddec1000-7d3cddedf000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cddedf000-7d3cddee0000 ---p 00000000 00:00 0 
+7d3cddee0000-7d3cddee2000 r--p 00000000 08:06 180                        /apex/com.android.art/lib64/libsigchain.so
+7d3cddee2000-7d3cddee6000 r-xp 00001000 08:06 180                        /apex/com.android.art/lib64/libsigchain.so
+7d3cddee6000-7d3cddee8000 r--p 00004000 08:06 180                        /apex/com.android.art/lib64/libsigchain.so
+7d3cddee8000-7d3cddee9000 rw-p 00005000 08:06 180                        /apex/com.android.art/lib64/libsigchain.so
+7d3cddee9000-7d3cddeea000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cddef8000-7d3cddef9000 ---p 00000000 00:00 0 
+7d3cddef9000-7d3cddf1b000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cddf1b000-7d3cddf1c000 ---p 00000000 00:00 0 
+7d3cddf1c000-7d3cddf20000 r--p 00000000 08:06 3937                       /system/lib64/libnativewindow.so
+7d3cddf20000-7d3cddf23000 r-xp 00003000 08:06 3937                       /system/lib64/libnativewindow.so
+7d3cddf23000-7d3cddf24000 r--p 00005000 08:06 3937                       /system/lib64/libnativewindow.so
+7d3cddf41000-7d3cddf73000 r--p 00000000 08:06 3750                       /system/lib64/libcamera_client.so
+7d3cddf73000-7d3cddfa4000 r-xp 00031000 08:06 3750                       /system/lib64/libcamera_client.so
+7d3cddfa4000-7d3cddfb1000 r--p 00061000 08:06 3750                       /system/lib64/libcamera_client.so
+7d3cddfb1000-7d3cddfb2000 rw-p 0006d000 08:06 3750                       /system/lib64/libcamera_client.so
+7d3cddfbc000-7d3cddfdc000 r--p 00000000 08:06 51                         /apex/com.android.appsearch/javalib/framework-appsearch.jar
+7d3cddfdc000-7d3cddfe9000 r--p 00000000 08:06 3192                       /system/lib64/android.hardware.configstore@1.0.so
+7d3cddfe9000-7d3cddff6000 r-xp 0000c000 08:06 3192                       /system/lib64/android.hardware.configstore@1.0.so
+7d3cddff6000-7d3cddff9000 r--p 00018000 08:06 3192                       /system/lib64/android.hardware.configstore@1.0.so
+7d3cddff9000-7d3cddffa000 rw-p 0001a000 08:06 3192                       /system/lib64/android.hardware.configstore@1.0.so
+7d3cde00d000-7d3cde02d000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cde02d000-7d3cde04d000 r--p 00000000 08:06 489                        /apex/com.android.runtime/lib64/bionic/libm.so
+7d3cde04d000-7d3cde076000 r-xp 0001f000 08:06 489                        /apex/com.android.runtime/lib64/bionic/libm.so
+7d3cde076000-7d3cde077000 r--p 00047000 08:06 489                        /apex/com.android.runtime/lib64/bionic/libm.so
+7d3cde077000-7d3cde078000 rw-p 00047000 08:06 489                        /apex/com.android.runtime/lib64/bionic/libm.so
+7d3cde08c000-7d3cde0da000 r--p 00000000 08:06 3737                       /system/lib64/libbinder.so
+7d3cde0da000-7d3cde12b000 r-xp 0004d000 08:06 3737                       /system/lib64/libbinder.so
+7d3cde12b000-7d3cde13a000 r--p 0009d000 08:06 3737                       /system/lib64/libbinder.so
+7d3cde13a000-7d3cde13b000 rw-p 000ab000 08:06 3737                       /system/lib64/libbinder.so
+7d3cde158000-7d3cde178000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cde178000-7d3cde18e000 r--p 00000000 08:06 3694                       /system/lib64/libRScpp.so
+7d3cde18e000-7d3cde1bb000 r-xp 00015000 08:06 3694                       /system/lib64/libRScpp.so
+7d3cde1bb000-7d3cde1bd000 r--p 00041000 08:06 3694                       /system/lib64/libRScpp.so
+7d3cde1bd000-7d3cde1be000 rw-p 00042000 08:06 3694                       /system/lib64/libRScpp.so
+7d3cde1c0000-7d3cde200000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cde200000-7d3cdf200000 ---p 00000000 00:00 0 
+7d3cdf213000-7d3cdf253000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf253000-7d3cdf260000 r--p 00000000 08:06 3302                       /system/lib64/android.system.suspend@1.0.so
+7d3cdf260000-7d3cdf26c000 r-xp 0000c000 08:06 3302                       /system/lib64/android.system.suspend@1.0.so
+7d3cdf26c000-7d3cdf26f000 r--p 00017000 08:06 3302                       /system/lib64/android.system.suspend@1.0.so
+7d3cdf26f000-7d3cdf270000 rw-p 00019000 08:06 3302                       /system/lib64/android.system.suspend@1.0.so
+7d3cdf271000-7d3cdf291000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf291000-7d3cdf292000 r--p 00000000 08:06 487                        /apex/com.android.runtime/lib64/bionic/libdl.so
+7d3cdf292000-7d3cdf293000 r-xp 00000000 08:06 487                        /apex/com.android.runtime/lib64/bionic/libdl.so
+7d3cdf293000-7d3cdf294000 r--p 00000000 08:06 487                        /apex/com.android.runtime/lib64/bionic/libdl.so
+7d3cdf294000-7d3cdf295000 ---p 00000000 00:00 0 
+7d3cdf295000-7d3cdf296000 r--p 00000000 00:00 0                          [anon:.bss]
+7d3cdf2af000-7d3cdf2cf000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf2cf000-7d3cdf2e5000 r--p 00000000 08:06 3245                       /system/lib64/android.hardware.media.c2@1.2.so
+7d3cdf2e5000-7d3cdf2fa000 r-xp 00015000 08:06 3245                       /system/lib64/android.hardware.media.c2@1.2.so
+7d3cdf2fa000-7d3cdf2ff000 r--p 00029000 08:06 3245                       /system/lib64/android.hardware.media.c2@1.2.so
+7d3cdf2ff000-7d3cdf300000 rw-p 0002d000 08:06 3245                       /system/lib64/android.hardware.media.c2@1.2.so
+7d3cdf304000-7d3cdf315000 r--p 00000000 08:06 3958                       /system/lib64/libpng.so
+7d3cdf315000-7d3cdf33f000 r-xp 00010000 08:06 3958                       /system/lib64/libpng.so
+7d3cdf33f000-7d3cdf340000 r--p 00039000 08:06 3958                       /system/lib64/libpng.so
+7d3cdf340000-7d3cdf35c000 r--p 00000000 08:06 3197                       /system/lib64/android.hardware.drm@1.1.so
+7d3cdf35c000-7d3cdf377000 r-xp 0001b000 08:06 3197                       /system/lib64/android.hardware.drm@1.1.so
+7d3cdf377000-7d3cdf37d000 r--p 00035000 08:06 3197                       /system/lib64/android.hardware.drm@1.1.so
+7d3cdf37d000-7d3cdf37e000 rw-p 0003a000 08:06 3197                       /system/lib64/android.hardware.drm@1.1.so
+7d3cdf38e000-7d3cdf39a000 r--p 00000000 08:06 3974                       /system/lib64/libsensor.so
+7d3cdf39a000-7d3cdf3a3000 r-xp 0000b000 08:06 3974                       /system/lib64/libsensor.so
+7d3cdf3a3000-7d3cdf3a6000 r--p 00013000 08:06 3974                       /system/lib64/libsensor.so
+7d3cdf3a6000-7d3cdf3a7000 rw-p 00015000 08:06 3974                       /system/lib64/libsensor.so
+7d3cdf3b2000-7d3cdf3d2000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf3d2000-7d3cdf3db000 r--p 00000000 08:06 3848                       /system/lib64/libgralloctypes.so
+7d3cdf3db000-7d3cdf3e6000 r-xp 00008000 08:06 3848                       /system/lib64/libgralloctypes.so
+7d3cdf3e6000-7d3cdf3e8000 r--p 00012000 08:06 3848                       /system/lib64/libgralloctypes.so
+7d3cdf3e8000-7d3cdf3e9000 rw-p 00013000 08:06 3848                       /system/lib64/libgralloctypes.so
+7d3cdf408000-7d3cdf41d000 r--p 00000000 08:06 4000                       /system/lib64/libstagefright_foundation.so
+7d3cdf41d000-7d3cdf41e000 ---p 00000000 00:00 0 
+7d3cdf41e000-7d3cdf43c000 r-xp 00015000 08:06 4000                       /system/lib64/libstagefright_foundation.so
+7d3cdf43c000-7d3cdf43e000 r--p 00032000 08:06 4000                       /system/lib64/libstagefright_foundation.so
+7d3cdf43e000-7d3cdf43f000 rw-p 00033000 08:06 4000                       /system/lib64/libstagefright_foundation.so
+7d3cdf448000-7d3cdf468000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf468000-7d3cdf46d000 r--p 00000000 08:06 3248                       /system/lib64/android.hardware.memtrack-V1-ndk_platform.so
+7d3cdf46d000-7d3cdf470000 r-xp 00004000 08:06 3248                       /system/lib64/android.hardware.memtrack-V1-ndk_platform.so
+7d3cdf470000-7d3cdf472000 r--p 00006000 08:06 3248                       /system/lib64/android.hardware.memtrack-V1-ndk_platform.so
+7d3cdf472000-7d3cdf473000 rw-p 00007000 08:06 3248                       /system/lib64/android.hardware.memtrack-V1-ndk_platform.so
+7d3cdf478000-7d3cdf4b8000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf4b8000-7d3cdf4b9000 r--p 00000000 08:06 3877                       /system/lib64/libion.so
+7d3cdf4b9000-7d3cdf4bb000 r-xp 00000000 08:06 3877                       /system/lib64/libion.so
+7d3cdf4bb000-7d3cdf4bc000 r--p 00001000 08:06 3877                       /system/lib64/libion.so
+7d3cdf4bc000-7d3cdf4bd000 rw-p 00001000 08:06 3877                       /system/lib64/libion.so
+7d3cdf4da000-7d3cdf4e4000 r--p 00000000 08:06 3816                       /system/lib64/libdmabufheap.so
+7d3cdf4e4000-7d3cdf4ef000 r-xp 00009000 08:06 3816                       /system/lib64/libdmabufheap.so
+7d3cdf4ef000-7d3cdf4f1000 r--p 00013000 08:06 3816                       /system/lib64/libdmabufheap.so
+7d3cdf4f1000-7d3cdf4f2000 rw-p 00014000 08:06 3816                       /system/lib64/libdmabufheap.so
+7d3cdf50b000-7d3cdf52b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf52b000-7d3cdf52d000 r--p 00000000 08:06 3988                       /system/lib64/libspeexresampler.so
+7d3cdf52d000-7d3cdf530000 r-xp 00001000 08:06 3988                       /system/lib64/libspeexresampler.so
+7d3cdf530000-7d3cdf531000 r--p 00003000 08:06 3988                       /system/lib64/libspeexresampler.so
+7d3cdf540000-7d3cdf559000 r--p 00000000 08:06 3940                       /system/lib64/libnblog.so
+7d3cdf559000-7d3cdf57c000 r-xp 00018000 08:06 3940                       /system/lib64/libnblog.so
+7d3cdf57c000-7d3cdf57f000 r--p 0003a000 08:06 3940                       /system/lib64/libnblog.so
+7d3cdf57f000-7d3cdf580000 rw-p 0003c000 08:06 3940                       /system/lib64/libnblog.so
+7d3cdf59a000-7d3cdf59f000 r--p 00000000 08:06 3899                       /system/lib64/liblog.so
+7d3cdf59f000-7d3cdf5a9000 r-xp 00004000 08:06 3899                       /system/lib64/liblog.so
+7d3cdf5a9000-7d3cdf5aa000 r--p 0000d000 08:06 3899                       /system/lib64/liblog.so
+7d3cdf5aa000-7d3cdf5ab000 rw-p 0000d000 08:06 3899                       /system/lib64/liblog.so
+7d3cdf5ab000-7d3cdf5ac000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cdf5b0000-7d3cdf5d0000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf5d0000-7d3cdf5e4000 r--p 00000000 08:06 3924                       /system/lib64/libmediandk.so
+7d3cdf5e4000-7d3cdf5f7000 r-xp 00013000 08:06 3924                       /system/lib64/libmediandk.so
+7d3cdf5f7000-7d3cdf5f9000 r--p 00025000 08:06 3924                       /system/lib64/libmediandk.so
+7d3cdf5f9000-7d3cdf5fa000 rw-p 00026000 08:06 3924                       /system/lib64/libmediandk.so
+7d3cdf60c000-7d3cdf655000 r--p 00000000 08:06 3817                       /system/lib64/libdng_sdk.so
+7d3cdf655000-7d3cdf6dc000 r-xp 00048000 08:06 3817                       /system/lib64/libdng_sdk.so
+7d3cdf6dc000-7d3cdf6e2000 r--p 000ce000 08:06 3817                       /system/lib64/libdng_sdk.so
+7d3cdf6e2000-7d3cdf6e3000 rw-p 000d3000 08:06 3817                       /system/lib64/libdng_sdk.so
+7d3cdf6e3000-7d3cdf6e4000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cdf6f0000-7d3cdf710000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf710000-7d3cdf745000 r--p 00000000 08:06 4026                       /system/lib64/libvintf.so
+7d3cdf745000-7d3cdf7a9000 r-xp 00034000 08:06 4026                       /system/lib64/libvintf.so
+7d3cdf7a9000-7d3cdf7ae000 r--p 00097000 08:06 4026                       /system/lib64/libvintf.so
+7d3cdf7ae000-7d3cdf7af000 rw-p 0009b000 08:06 4026                       /system/lib64/libvintf.so
+7d3cdf7af000-7d3cdf7b1000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cdf7cd000-7d3cdf7d5000 r--p 00000000 08:06 3973                       /system/lib64/libselinux.so
+7d3cdf7d5000-7d3cdf7e6000 r-xp 00007000 08:06 3973                       /system/lib64/libselinux.so
+7d3cdf7e6000-7d3cdf7e8000 r--p 00017000 08:06 3973                       /system/lib64/libselinux.so
+7d3cdf7e8000-7d3cdf7e9000 rw-p 00018000 08:06 3973                       /system/lib64/libselinux.so
+7d3cdf7e9000-7d3cdf7ea000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cdf804000-7d3cdf813000 r--p 00000000 08:06 3229                       /system/lib64/android.hardware.graphics.mapper@4.0.so
+7d3cdf813000-7d3cdf821000 r-xp 0000e000 08:06 3229                       /system/lib64/android.hardware.graphics.mapper@4.0.so
+7d3cdf821000-7d3cdf824000 r--p 0001b000 08:06 3229                       /system/lib64/android.hardware.graphics.mapper@4.0.so
+7d3cdf824000-7d3cdf825000 rw-p 0001d000 08:06 3229                       /system/lib64/android.hardware.graphics.mapper@4.0.so
+7d3cdf831000-7d3cdf871000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdf871000-7d3cdf872000 r--p 00000000 08:06 488                        /apex/com.android.runtime/lib64/bionic/libdl_android.so
+7d3cdf872000-7d3cdf873000 r-xp 00000000 08:06 488                        /apex/com.android.runtime/lib64/bionic/libdl_android.so
+7d3cdf873000-7d3cdf874000 r--p 00000000 08:06 488                        /apex/com.android.runtime/lib64/bionic/libdl_android.so
+7d3cdf890000-7d3cdf992000 r--p 00000000 08:06 236                        /apex/com.android.i18n/lib64/libicui18n.so
+7d3cdf992000-7d3cdfb38000 r-xp 00101000 08:06 236                        /apex/com.android.i18n/lib64/libicui18n.so
+7d3cdfb38000-7d3cdfb4c000 r--p 002a6000 08:06 236                        /apex/com.android.i18n/lib64/libicui18n.so
+7d3cdfb4c000-7d3cdfb4d000 rw-p 002b9000 08:06 236                        /apex/com.android.i18n/lib64/libicui18n.so
+7d3cdfb4d000-7d3cdfb4e000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cdfb64000-7d3cdfb84000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdfb84000-7d3cdfb85000 r--p 00000000 08:06 3171                       /system/lib64/android.hardware.camera.common@1.0.so
+7d3cdfb85000-7d3cdfb86000 r-xp 00000000 08:06 3171                       /system/lib64/android.hardware.camera.common@1.0.so
+7d3cdfb86000-7d3cdfb88000 r--p 00000000 08:06 3171                       /system/lib64/android.hardware.camera.common@1.0.so
+7d3cdfb89000-7d3cdfbe9000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cdfbe9000-7d3cdfbf2000 r--p 00000000 08:06 3249                       /system/lib64/android.hardware.memtrack@1.0.so
+7d3cdfbf2000-7d3cdfbfa000 r-xp 00008000 08:06 3249                       /system/lib64/android.hardware.memtrack@1.0.so
+7d3cdfbfa000-7d3cdfbfc000 r--p 0000f000 08:06 3249                       /system/lib64/android.hardware.memtrack@1.0.so
+7d3cdfbfc000-7d3cdfbfd000 rw-p 00010000 08:06 3249                       /system/lib64/android.hardware.memtrack@1.0.so
+7d3cdfc00000-7d3ce1a00000 ---p 00000000 00:00 0 
+7d3ce1a0d000-7d3ce1a4d000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce1a4d000-7d3ce1a52000 r--p 00000000 08:06 3943                       /system/lib64/libnetdbpf.so
+7d3ce1a52000-7d3ce1a53000 ---p 00000000 00:00 0 
+7d3ce1a53000-7d3ce1a5d000 r-xp 00005000 08:06 3943                       /system/lib64/libnetdbpf.so
+7d3ce1a5d000-7d3ce1a5f000 r--p 0000e000 08:06 3943                       /system/lib64/libnetdbpf.so
+7d3ce1a78000-7d3ce1a98000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce1a98000-7d3ce1ac4000 r--p 00000000 08:06 3989                       /system/lib64/libsqlite.so
+7d3ce1ac4000-7d3ce1bbe000 r-xp 0002b000 08:06 3989                       /system/lib64/libsqlite.so
+7d3ce1bbe000-7d3ce1bc1000 r--p 00124000 08:06 3989                       /system/lib64/libsqlite.so
+7d3ce1bc1000-7d3ce1bc4000 rw-p 00126000 08:06 3989                       /system/lib64/libsqlite.so
+7d3ce1bc4000-7d3ce1bc5000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3ce1be0000-7d3ce1c00000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce1c00000-7d3ce3800000 ---p 00000000 00:00 0 
+7d3ce3808000-7d3ce3868000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce3868000-7d3ce386d000 r--p 00000000 08:06 3662                       /system/lib64/effect-aidl-cpp.so
+7d3ce386d000-7d3ce3871000 r-xp 00004000 08:06 3662                       /system/lib64/effect-aidl-cpp.so
+7d3ce3871000-7d3ce3874000 r--p 00007000 08:06 3662                       /system/lib64/effect-aidl-cpp.so
+7d3ce3874000-7d3ce3875000 rw-p 00009000 08:06 3662                       /system/lib64/effect-aidl-cpp.so
+7d3ce388f000-7d3ce3898000 r--p 00000000 08:06 4016                       /system/lib64/libtinyxml2.so
+7d3ce3898000-7d3ce38a3000 r-xp 00008000 08:06 4016                       /system/lib64/libtinyxml2.so
+7d3ce38a3000-7d3ce38a5000 r--p 00012000 08:06 4016                       /system/lib64/libtinyxml2.so
+7d3ce38a5000-7d3ce38a6000 rw-p 00013000 08:06 4016                       /system/lib64/libtinyxml2.so
+7d3ce38b0000-7d3ce38f0000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce38f0000-7d3ce38f1000 r--p 00000000 08:06 3981                       /system/lib64/libshmemcompat.so
+7d3ce38f1000-7d3ce38f3000 r-xp 00000000 08:06 3981                       /system/lib64/libshmemcompat.so
+7d3ce38f3000-7d3ce38f4000 r--p 00001000 08:06 3981                       /system/lib64/libshmemcompat.so
+7d3ce3913000-7d3ce393b000 r--p 00000000 08:06 3871                       /system/lib64/libinput.so
+7d3ce393b000-7d3ce3971000 r-xp 00027000 08:06 3871                       /system/lib64/libinput.so
+7d3ce3971000-7d3ce3977000 r--p 0005c000 08:06 3871                       /system/lib64/libinput.so
+7d3ce3977000-7d3ce3978000 rw-p 00061000 08:06 3871                       /system/lib64/libinput.so
+7d3ce3978000-7d3ce3979000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3ce3988000-7d3ce398e000 r--p 00000000 08:06 3858                       /system/lib64/libhidl-gen-utils.so
+7d3ce398e000-7d3ce3996000 r-xp 00005000 08:06 3858                       /system/lib64/libhidl-gen-utils.so
+7d3ce3996000-7d3ce3998000 r--p 0000c000 08:06 3858                       /system/lib64/libhidl-gen-utils.so
+7d3ce39a7000-7d3ce39c7000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce39c7000-7d3ce39cc000 r--p 00000000 08:06 3811                       /system/lib64/libdebuggerd_client.so
+7d3ce39cc000-7d3ce39d2000 r-xp 00004000 08:06 3811                       /system/lib64/libdebuggerd_client.so
+7d3ce39d2000-7d3ce39d3000 r--p 00009000 08:06 3811                       /system/lib64/libdebuggerd_client.so
+7d3ce39d9000-7d3ce39ee000 r--s 08412000 08:23 6684954                    /data/app/~~KedFN1M7-JFHVu68KBLQaw==/game.taptap.HQGAMES.TapDemons-xPHJx-NOv93-dXzGGN878w==/base.apk
+7d3ce39ee000-7d3ce3a0e000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce3a0e000-7d3ce3a10000 r--p 00000000 08:06 3915                       /system/lib64/libmedia_omx_client.so
+7d3ce3a10000-7d3ce3a11000 ---p 00000000 00:00 0 
+7d3ce3a11000-7d3ce3a14000 r-xp 00002000 08:06 3915                       /system/lib64/libmedia_omx_client.so
+7d3ce3a14000-7d3ce3a15000 r--p 00004000 08:06 3915                       /system/lib64/libmedia_omx_client.so
+7d3ce3a20000-7d3ce3a40000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce3a40000-7d3ce3a8b000 r--p 00000000 08:06 3801                       /system/lib64/libcodec2_vndk.so
+7d3ce3a8b000-7d3ce3ae9000 r-xp 0004a000 08:06 3801                       /system/lib64/libcodec2_vndk.so
+7d3ce3ae9000-7d3ce3aee000 r--p 000a7000 08:06 3801                       /system/lib64/libcodec2_vndk.so
+7d3ce3aee000-7d3ce3aef000 rw-p 000ab000 08:06 3801                       /system/lib64/libcodec2_vndk.so
+7d3ce3af0000-7d3ce3b30000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce3b30000-7d3ce3b67000 r--p 00000000 08:06 3908                       /system/lib64/libmedia.so
+7d3ce3b67000-7d3ce3b68000 ---p 00000000 00:00 0 
+7d3ce3b68000-7d3ce3bbe000 r-xp 00037000 08:06 3908                       /system/lib64/libmedia.so
+7d3ce3bbe000-7d3ce3bbf000 r-xp 0008d000 08:06 3908                       /system/lib64/libmedia.so
+7d3ce3bbf000-7d3ce3bd2000 r--p 0008d000 08:06 3908                       /system/lib64/libmedia.so
+7d3ce3bd2000-7d3ce3bd3000 rw-p 0009f000 08:06 3908                       /system/lib64/libmedia.so
+7d3ce3be0000-7d3ce3c00000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce3c00000-7d3ce4c00000 ---p 00000000 00:00 0 
+7d3ce4c04000-7d3ce4c64000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce4c64000-7d3ce4cc8000 r--p 00000000 08:06 3806                       /system/lib64/libcrypto.so
+7d3ce4cc8000-7d3ce4dd7000 r-xp 00063000 08:06 3806                       /system/lib64/libcrypto.so
+7d3ce4dd7000-7d3ce4de8000 r--p 00171000 08:06 3806                       /system/lib64/libcrypto.so
+7d3ce4de8000-7d3ce4de9000 rw-p 00181000 08:06 3806                       /system/lib64/libcrypto.so
+7d3ce4de9000-7d3ce4def000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3ce4e00000-7d3ce7400000 ---p 00000000 00:00 0 
+7d3ce7404000-7d3ce7464000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce7464000-7d3ce7465000 r--p 00000000 08:06 4027                       /system/lib64/libvndksupport.so
+7d3ce7465000-7d3ce7466000 r-xp 00000000 08:06 4027                       /system/lib64/libvndksupport.so
+7d3ce7466000-7d3ce7467000 r--p 00000000 08:06 4027                       /system/lib64/libvndksupport.so
+7d3ce7467000-7d3ce7468000 rw-p 00000000 08:06 4027                       /system/lib64/libvndksupport.so
+7d3ce746c000-7d3ce748c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce748c000-7d3ce7497000 r--p 00000000 08:06 3226                       /system/lib64/android.hardware.graphics.mapper@2.0.so
+7d3ce7497000-7d3ce74a0000 r-xp 0000a000 08:06 3226                       /system/lib64/android.hardware.graphics.mapper@2.0.so
+7d3ce74a0000-7d3ce74a3000 r--p 00012000 08:06 3226                       /system/lib64/android.hardware.graphics.mapper@2.0.so
+7d3ce74a3000-7d3ce74a4000 rw-p 00014000 08:06 3226                       /system/lib64/android.hardware.graphics.mapper@2.0.so
+7d3ce74b0000-7d3ce74d0000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce74d0000-7d3ce74dd000 r--p 00000000 08:06 3919                       /system/lib64/libmediadrmmetrics_lite.so
+7d3ce74dd000-7d3ce74ec000 r-xp 0000c000 08:06 3919                       /system/lib64/libmediadrmmetrics_lite.so
+7d3ce74ec000-7d3ce74ee000 r--p 0001a000 08:06 3919                       /system/lib64/libmediadrmmetrics_lite.so
+7d3ce74ee000-7d3ce74f0000 rw-p 0001b000 08:06 3919                       /system/lib64/libmediadrmmetrics_lite.so
+7d3ce74f1000-7d3ce74f2000 ---p 00000000 00:00 0 
+7d3ce74f2000-7d3ce74fa000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce74fa000-7d3ce74fb000 ---p 00000000 00:00 0 
+7d3ce74fb000-7d3ce7503000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce7503000-7d3ce7508000 r--p 00000000 08:06 231                        /apex/com.android.i18n/lib64/libandroidicu.so
+7d3ce7508000-7d3ce750a000 r-xp 00004000 08:06 231                        /apex/com.android.i18n/lib64/libandroidicu.so
+7d3ce750a000-7d3ce750c000 r--p 00005000 08:06 231                        /apex/com.android.i18n/lib64/libandroidicu.so
+7d3ce7513000-7d3ce7573000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce7573000-7d3ce7574000 r--p 00000000 08:06 3218                       /system/lib64/android.hardware.graphics.common@1.0.so
+7d3ce7574000-7d3ce7575000 r-xp 00000000 08:06 3218                       /system/lib64/android.hardware.graphics.common@1.0.so
+7d3ce7575000-7d3ce7576000 r--p 00000000 08:06 3218                       /system/lib64/android.hardware.graphics.common@1.0.so
+7d3ce7578000-7d3ce7579000 ---p 00000000 00:00 0 
+7d3ce7579000-7d3ce7581000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce7581000-7d3ce7582000 ---p 00000000 00:00 0 
+7d3ce7582000-7d3ce758a000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce758a000-7d3ce75aa000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce75aa000-7d3ce75af000 r--p 00000000 08:06 3751                       /system/lib64/libcamera_metadata.so
+7d3ce75af000-7d3ce75b5000 r-xp 00004000 08:06 3751                       /system/lib64/libcamera_metadata.so
+7d3ce75b5000-7d3ce75b6000 r--p 00009000 08:06 3751                       /system/lib64/libcamera_metadata.so
+7d3ce75b6000-7d3ce75b9000 rw-p 00009000 08:06 3751                       /system/lib64/libcamera_metadata.so
+7d3ce75be000-7d3ce75de000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce75de000-7d3ce75e6000 r--p 00000000 08:06 4005                       /system/lib64/libstagefright_xmlparser.so
+7d3ce75e6000-7d3ce75e7000 ---p 00000000 00:00 0 
+7d3ce75e7000-7d3ce75f7000 r-xp 00008000 08:06 4005                       /system/lib64/libstagefright_xmlparser.so
+7d3ce75f7000-7d3ce75f8000 r--p 00017000 08:06 4005                       /system/lib64/libstagefright_xmlparser.so
+7d3ce75f8000-7d3ce75f9000 rw-p 00017000 08:06 4005                       /system/lib64/libstagefright_xmlparser.so
+7d3ce75fb000-7d3ce761b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce761b000-7d3ce761c000 r--p 00000000 08:06 3709                       /system/lib64/libandroid_runtime_lazy.so
+7d3ce761c000-7d3ce761d000 r-xp 00000000 08:06 3709                       /system/lib64/libandroid_runtime_lazy.so
+7d3ce761d000-7d3ce761e000 r--p 00000000 08:06 3709                       /system/lib64/libandroid_runtime_lazy.so
+7d3ce761e000-7d3ce761f000 rw-p 00000000 08:06 3709                       /system/lib64/libandroid_runtime_lazy.so
+7d3ce7622000-7d3ce7623000 ---p 00000000 00:00 0 
+7d3ce7623000-7d3ce762b000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce762b000-7d3ce762c000 ---p 00000000 00:00 0 
+7d3ce762c000-7d3ce7634000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce7634000-7d3ce7635000 ---p 00000000 00:00 0 
+7d3ce7635000-7d3ce763d000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce763d000-7d3ce765d000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce765d000-7d3ce7661000 r--p 00000000 08:06 4011                       /system/lib64/libtimeinstate.so
+7d3ce7661000-7d3ce766d000 r-xp 00003000 08:06 4011                       /system/lib64/libtimeinstate.so
+7d3ce766d000-7d3ce766e000 r--p 0000e000 08:06 4011                       /system/lib64/libtimeinstate.so
+7d3ce766e000-7d3ce766f000 rw-p 0000e000 08:06 4011                       /system/lib64/libtimeinstate.so
+7d3ce7676000-7d3ce7677000 ---p 00000000 00:00 0 
+7d3ce7677000-7d3ce767f000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce767f000-7d3ce7680000 ---p 00000000 00:00 0 
+7d3ce7680000-7d3ce7688000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce7688000-7d3ce7698000 r--p 00000000 08:06 3868                       /system/lib64/libincfs.so
+7d3ce7698000-7d3ce76b4000 r-xp 0000f000 08:06 3868                       /system/lib64/libincfs.so
+7d3ce76b4000-7d3ce76b6000 r--p 0002a000 08:06 3868                       /system/lib64/libincfs.so
+7d3ce76b6000-7d3ce76b7000 rw-p 0002b000 08:06 3868                       /system/lib64/libincfs.so
+7d3ce76bf000-7d3ce76c0000 ---p 00000000 00:00 0 
+7d3ce76c0000-7d3ce76c8000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce76c8000-7d3ce76de000 r--p 00000000 08:06 3242                       /system/lib64/android.hardware.media.bufferpool@2.0.so
+7d3ce76de000-7d3ce76f4000 r-xp 00015000 08:06 3242                       /system/lib64/android.hardware.media.bufferpool@2.0.so
+7d3ce76f4000-7d3ce76f9000 r--p 0002a000 08:06 3242                       /system/lib64/android.hardware.media.bufferpool@2.0.so
+7d3ce76f9000-7d3ce76fa000 rw-p 0002e000 08:06 3242                       /system/lib64/android.hardware.media.bufferpool@2.0.so
+7d3ce7700000-7d3ce7720000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce7720000-7d3ce7728000 r--p 00000000 08:06 3810                       /system/lib64/libdatasource.so
+7d3ce7728000-7d3ce7729000 ---p 00000000 00:00 0 
+7d3ce7729000-7d3ce7733000 r-xp 00008000 08:06 3810                       /system/lib64/libdatasource.so
+7d3ce7733000-7d3ce7735000 r--p 00011000 08:06 3810                       /system/lib64/libdatasource.so
+7d3ce7735000-7d3ce7736000 rw-p 00012000 08:06 3810                       /system/lib64/libdatasource.so
+7d3ce7739000-7d3ce773a000 ---p 00000000 00:00 0 
+7d3ce773a000-7d3ce7742000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3ce7742000-7d3ce7791000 r--p 00000000 08:06 3746                       /system/lib64/libc++.so
+7d3ce7791000-7d3ce77ef000 r-xp 0004e000 08:06 3746                       /system/lib64/libc++.so
+7d3ce77ef000-7d3ce77f6000 r--p 000ab000 08:06 3746                       /system/lib64/libc++.so
+7d3ce77f6000-7d3ce77f7000 rw-p 000b1000 08:06 3746                       /system/lib64/libc++.so
+7d3ce77f7000-7d3ce77fa000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3ce7802000-7d3ce7822000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce7822000-7d3ce7824000 r--p 00000000 08:06 3754                       /system/lib64/libcgrouprc.so
+7d3ce7824000-7d3ce7826000 r-xp 00001000 08:06 3754                       /system/lib64/libcgrouprc.so
+7d3ce7826000-7d3ce7827000 r--p 00002000 08:06 3754                       /system/lib64/libcgrouprc.so
+7d3ce7827000-7d3ce7828000 rw-p 00002000 08:06 3754                       /system/lib64/libcgrouprc.so
+7d3ce7828000-7d3ce7848000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce7848000-7d3ce7854000 r--p 00000000 08:06 3930                       /system/lib64/libmemunreachable.so
+7d3ce7854000-7d3ce7879000 r-xp 0000b000 08:06 3930                       /system/lib64/libmemunreachable.so
+7d3ce7879000-7d3ce787c000 r--p 0002f000 08:06 3930                       /system/lib64/libmemunreachable.so
+7d3ce787c000-7d3ce787d000 rw-p 00031000 08:06 3930                       /system/lib64/libmemunreachable.so
+7d3ce787d000-7d3ce789d000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce789d000-7d3ce78b0000 r--p 00000000 08:06 3682                       /system/lib64/libGLESv2.so
+7d3ce78b0000-7d3ce78b7000 r-xp 00012000 08:06 3682                       /system/lib64/libGLESv2.so
+7d3ce78b7000-7d3ce78b8000 r--p 00018000 08:06 3682                       /system/lib64/libGLESv2.so
+7d3ce78cd000-7d3ce78e1000 r--p 00000000 08:06 3216                       /system/lib64/android.hardware.graphics.bufferqueue@2.0.so
+7d3ce78e1000-7d3ce78f6000 r-xp 00013000 08:06 3216                       /system/lib64/android.hardware.graphics.bufferqueue@2.0.so
+7d3ce78f6000-7d3ce78fb000 r--p 00027000 08:06 3216                       /system/lib64/android.hardware.graphics.bufferqueue@2.0.so
+7d3ce78fb000-7d3ce78fc000 rw-p 0002b000 08:06 3216                       /system/lib64/android.hardware.graphics.bufferqueue@2.0.so
+7d3ce7900000-7d3ce7929000 r--p 00000000 08:06 3246                       /system/lib64/android.hardware.media.omx@1.0.so
+7d3ce7929000-7d3ce795b000 r-xp 00028000 08:06 3246                       /system/lib64/android.hardware.media.omx@1.0.so
+7d3ce795b000-7d3ce7964000 r--p 00059000 08:06 3246                       /system/lib64/android.hardware.media.omx@1.0.so
+7d3ce7964000-7d3ce7965000 rw-p 00061000 08:06 3246                       /system/lib64/android.hardware.media.omx@1.0.so
+7d3ce797c000-7d3ce799c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce799c000-7d3ce79b0000 r--p 00000000 08:06 3734                       /system/lib64/libbase.so
+7d3ce79b0000-7d3ce79db000 r-xp 00013000 08:06 3734                       /system/lib64/libbase.so
+7d3ce79db000-7d3ce79dd000 r--p 0003d000 08:06 3734                       /system/lib64/libbase.so
+7d3ce79dd000-7d3ce79de000 rw-p 0003e000 08:06 3734                       /system/lib64/libbase.so
+7d3ce79e6000-7d3ce7a06000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce7a06000-7d3ce7a9a000 r--p 00000000 08:06 3992                       /system/lib64/libstagefright.so
+7d3ce7a9a000-7d3ce7a9b000 ---p 00000000 00:00 0 
+7d3ce7a9b000-7d3ce7bd9000 r-xp 00094000 08:06 3992                       /system/lib64/libstagefright.so
+7d3ce7bd9000-7d3ce7be9000 r--p 001d1000 08:06 3992                       /system/lib64/libstagefright.so
+7d3ce7be9000-7d3ce7bea000 rw-p 001e0000 08:06 3992                       /system/lib64/libstagefright.so
+7d3ce7bea000-7d3ce7beb000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3ce7c00000-7d3ce9a00000 ---p 00000000 00:00 0 
+7d3ce9a04000-7d3ce9a05000 ---p 00000000 00:00 0 
+7d3ce9a05000-7d3ce9a1a000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3ce9a1a000-7d3ce9a1b000 ---p 00000000 00:00 0 
+7d3ce9a1b000-7d3ce9a7b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce9a7b000-7d3ce9a9c000 r--p 00000000 08:06 3961                       /system/lib64/libprocessgroup.so
+7d3ce9a9c000-7d3ce9ad2000 r-xp 00020000 08:06 3961                       /system/lib64/libprocessgroup.so
+7d3ce9ad2000-7d3ce9ad5000 r--p 00055000 08:06 3961                       /system/lib64/libprocessgroup.so
+7d3ce9ad5000-7d3ce9ad6000 rw-p 00057000 08:06 3961                       /system/lib64/libprocessgroup.so
+7d3ce9ade000-7d3ce9b1e000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce9b1e000-7d3ce9b1f000 r--p 00000000 08:06 3679                       /system/lib64/libETC1.so
+7d3ce9b1f000-7d3ce9b22000 r-xp 00000000 08:06 3679                       /system/lib64/libETC1.so
+7d3ce9b22000-7d3ce9b23000 r--p 00002000 08:06 3679                       /system/lib64/libETC1.so
+7d3ce9b2c000-7d3ce9b6c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3ce9b6c000-7d3ce9b9f000 r--p 00000000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3ce9b9f000-7d3ce9bf8000 r-xp 00032000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3ce9bf8000-7d3ce9bfe000 r--p 0008a000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3ce9bfe000-7d3ce9bff000 rw-p 0008f000 08:06 4020                       /system/lib64/libunwindstack.so
+7d3ce9c00000-7d3cea000000 ---p 00000000 00:00 0 
+7d3cea002000-7d3cea019000 r--s 0037c000 08:06 2345                       /system/framework/telephony-common.jar
+7d3cea019000-7d3cea079000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cea079000-7d3cea0c8000 r--p 00000000 08:06 3746                       /system/lib64/libc++.so
+7d3cea0c8000-7d3cea126000 r-xp 0004e000 08:06 3746                       /system/lib64/libc++.so
+7d3cea126000-7d3cea12d000 r--p 000ab000 08:06 3746                       /system/lib64/libc++.so
+7d3cea12d000-7d3cea12e000 rw-p 000b1000 08:06 3746                       /system/lib64/libc++.so
+7d3cea12e000-7d3cea131000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cea138000-7d3cea19c000 rw-p 00000000 00:00 0                          [anon:linker_alloc]
+7d3cea19c000-7d3cea1a4000 r--p 00000000 08:06 3995                       /system/lib64/libstagefright_bufferqueue_helper.so
+7d3cea1a4000-7d3cea1a5000 ---p 00000000 00:00 0 
+7d3cea1a5000-7d3cea1b2000 r-xp 00008000 08:06 3995                       /system/lib64/libstagefright_bufferqueue_helper.so
+7d3cea1b2000-7d3cea1b4000 r--p 00014000 08:06 3995                       /system/lib64/libstagefright_bufferqueue_helper.so
+7d3cea1c9000-7d3cea1d2000 r--p 00000000 08:06 4039                       /system/lib64/libziparchive.so
+7d3cea1d2000-7d3cea1db000 r-xp 00008000 08:06 4039                       /system/lib64/libziparchive.so
+7d3cea1db000-7d3cea1dd000 r--p 00010000 08:06 4039                       /system/lib64/libziparchive.so
+7d3cea1e0000-7d3cea200000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cea200000-7d3cede00000 ---p 00000000 00:00 0 
+7d3cede0c000-7d3cede4c000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cede4c000-7d3cede5c000 r--p 00000000 08:06 3652                       /system/lib64/audioflinger-aidl-cpp.so
+7d3cede5c000-7d3cede77000 r-xp 0000f000 08:06 3652                       /system/lib64/audioflinger-aidl-cpp.so
+7d3cede77000-7d3cede7d000 r--p 00029000 08:06 3652                       /system/lib64/audioflinger-aidl-cpp.so
+7d3cede7d000-7d3cede7e000 rw-p 0002e000 08:06 3652                       /system/lib64/audioflinger-aidl-cpp.so
+7d3cede7f000-7d3cede9c000 r--s 001fd000 08:06 2324                       /system/framework/ext.jar
+7d3cede9c000-7d3cedec6000 r--p 00000000 08:06 3198                       /system/lib64/android.hardware.drm@1.2.so
+7d3cedec6000-7d3cedef0000 r-xp 00029000 08:06 3198                       /system/lib64/android.hardware.drm@1.2.so
+7d3cedef0000-7d3cedef9000 r--p 00052000 08:06 3198                       /system/lib64/android.hardware.drm@1.2.so
+7d3cedef9000-7d3cedefa000 rw-p 0005a000 08:06 3198                       /system/lib64/android.hardware.drm@1.2.so
+7d3cedefa000-7d3cedefb000 ---p 00000000 00:00 0 
+7d3cedefb000-7d3cedf03000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3cedf03000-7d3cedf04000 r--p 00000000 08:06 3220                       /system/lib64/android.hardware.graphics.common@1.2.so
+7d3cedf04000-7d3cedf05000 r-xp 00000000 08:06 3220                       /system/lib64/android.hardware.graphics.common@1.2.so
+7d3cedf05000-7d3cedf06000 r--p 00000000 08:06 3220                       /system/lib64/android.hardware.graphics.common@1.2.so
+7d3cedf0c000-7d3cedf0d000 ---p 00000000 00:00 0 
+7d3cedf0d000-7d3cedf22000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cedf22000-7d3cedf23000 ---p 00000000 00:00 0 
+7d3cedf23000-7d3cedf43000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cedf43000-7d3cedf92000 r--p 00000000 08:06 3746                       /system/lib64/libc++.so
+7d3cedf92000-7d3cedff0000 r-xp 0004e000 08:06 3746                       /system/lib64/libc++.so
+7d3cedff0000-7d3cedff7000 r--p 000ab000 08:06 3746                       /system/lib64/libc++.so
+7d3cedff7000-7d3cedff8000 rw-p 000b1000 08:06 3746                       /system/lib64/libc++.so
+7d3cedff8000-7d3cedffb000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cee005000-7d3cee018000 r--p 00000000 08:06 444                        /apex/com.android.permission/javalib/framework-permission-s.jar
+7d3cee018000-7d3cee05f000 r--p 00000000 08:06 486                        /apex/com.android.runtime/lib64/bionic/libc.so
+7d3cee05f000-7d3cee0ef000 r-xp 00046000 08:06 486                        /apex/com.android.runtime/lib64/bionic/libc.so
+7d3cee0ef000-7d3cee0f4000 r--p 000d5000 08:06 486                        /apex/com.android.runtime/lib64/bionic/libc.so
+7d3cee0f4000-7d3cee0f5000 rw-p 000d9000 08:06 486                        /apex/com.android.runtime/lib64/bionic/libc.so
+7d3cee0f5000-7d3cee0fa000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cee0fa000-7d3cee0fb000 r--p 00000000 00:00 0                          [anon:.bss]
+7d3cee0fb000-7d3cee650000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cee65b000-7d3cee69b000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cee69b000-7d3cee6a2000 r--p 00000000 08:06 3744                       /system/lib64/libbufferhub.so
+7d3cee6a2000-7d3cee6aa000 r-xp 00006000 08:06 3744                       /system/lib64/libbufferhub.so
+7d3cee6aa000-7d3cee6ac000 r--p 0000d000 08:06 3744                       /system/lib64/libbufferhub.so
+7d3cee6ac000-7d3cee6ad000 rw-p 0000e000 08:06 3744                       /system/lib64/libbufferhub.so
+7d3cee6af000-7d3cee6cf000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cee6cf000-7d3cee6ec000 r--p 00000000 08:06 3980                       /system/lib64/libsfplugin_ccodec_utils.so
+7d3cee6ec000-7d3cee6ed000 ---p 00000000 00:00 0 
+7d3cee6ed000-7d3cee73a000 r-xp 0001d000 08:06 3980                       /system/lib64/libsfplugin_ccodec_utils.so
+7d3cee73a000-7d3cee73d000 r--p 00069000 08:06 3980                       /system/lib64/libsfplugin_ccodec_utils.so
+7d3cee73d000-7d3cee73e000 rw-p 0006b000 08:06 3980                       /system/lib64/libsfplugin_ccodec_utils.so
+7d3cee73e000-7d3cee750000 r--p 00000000 08:06 425                        /apex/com.android.os.statsd/javalib/framework-statsd.jar
+7d3cee750000-7d3cee774000 r--p 00000000 08:06 4003                       /system/lib64/libstagefright_omx.so
+7d3cee774000-7d3cee775000 ---p 00000000 00:00 0 
+7d3cee775000-7d3cee79b000 r-xp 00024000 08:06 4003                       /system/lib64/libstagefright_omx.so
+7d3cee79b000-7d3cee7a1000 r--p 00049000 08:06 4003                       /system/lib64/libstagefright_omx.so
+7d3cee7a1000-7d3cee7a2000 rw-p 0004e000 08:06 4003                       /system/lib64/libstagefright_omx.so
+7d3cee7a4000-7d3cee7b3000 r--p 00000000 08:06 535                        /apex/com.android.tethering/javalib/framework-tethering.jar
+7d3cee7b3000-7d3cee7d3000 rw-p 00000000 00:00 0                          [anon:dalvik-LinearAlloc]
+7d3cee7d3000-7d3cee7e3000 r--p 00000000 08:06 3762                       /system/lib64/libcodec2_client.so
+7d3cee7e3000-7d3cee7fc000 r-xp 0000f000 08:06 3762                       /system/lib64/libcodec2_client.so
+7d3cee7fc000-7d3cee7fe000 r--p 00027000 08:06 3762                       /system/lib64/libcodec2_client.so
+7d3cee7fe000-7d3cee7ff000 rw-p 00028000 08:06 3762                       /system/lib64/libcodec2_client.so
+7d3cee800000-7d3cf1a00000 ---p 00000000 00:00 0 
+7d3cf1a02000-7d3cf1a0d000 r--p 00000000 08:06 410                        /apex/com.android.mediaprovider/javalib/framework-mediaprovider.jar
+7d3cf1a0d000-7d3cf1a23000 r--p 00000000 08:06 3173                       /system/lib64/android.hardware.camera.device@3.2.so
+7d3cf1a23000-7d3cf1a3a000 r-xp 00015000 08:06 3173                       /system/lib64/android.hardware.camera.device@3.2.so
+7d3cf1a3a000-7d3cf1a3f000 r--p 0002b000 08:06 3173                       /system/lib64/android.hardware.camera.device@3.2.so
+7d3cf1a3f000-7d3cf1a40000 rw-p 0002f000 08:06 3173                       /system/lib64/android.hardware.camera.device@3.2.so
+7d3cf1a41000-7d3cf1a45000 r--p 00000000 08:06 506                        /apex/com.android.scheduling/javalib/framework-scheduling.jar
+7d3cf1a45000-7d3cf1a51000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1a51000-7d3cf1a58000 r--p 00000000 08:06 3849                       /system/lib64/libgraphicsenv.so
+7d3cf1a58000-7d3cf1a5d000 r-xp 00006000 08:06 3849                       /system/lib64/libgraphicsenv.so
+7d3cf1a5d000-7d3cf1a5f000 r--p 0000a000 08:06 3849                       /system/lib64/libgraphicsenv.so
+7d3cf1a5f000-7d3cf1a60000 rw-p 0000b000 08:06 3849                       /system/lib64/libgraphicsenv.so
+7d3cf1a61000-7d3cf1a81000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1a81000-7d3cf1ab0000 r--p 00000000 08:06 3846                       /system/lib64/libft2.so
+7d3cf1ab0000-7d3cf1b23000 r-xp 0002e000 08:06 3846                       /system/lib64/libft2.so
+7d3cf1b23000-7d3cf1b29000 r--p 000a0000 08:06 3846                       /system/lib64/libft2.so
+7d3cf1b2b000-7d3cf1b6f000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1b6f000-7d3cf1b73000 r--p 00000000 08:06 171                        /apex/com.android.art/lib64/libnativebridge.so
+7d3cf1b73000-7d3cf1b78000 r-xp 00003000 08:06 171                        /apex/com.android.art/lib64/libnativebridge.so
+7d3cf1b78000-7d3cf1b79000 r--p 00007000 08:06 171                        /apex/com.android.art/lib64/libnativebridge.so
+7d3cf1b79000-7d3cf1b7a000 rw-p 00007000 08:06 171                        /apex/com.android.art/lib64/libnativebridge.so
+7d3cf1b7d000-7d3cf1b8d000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1b8d000-7d3cf1b95000 r--p 00000000 08:06 4050                       /system/lib64/spatializer-aidl-cpp.so
+7d3cf1b95000-7d3cf1b9c000 r-xp 00007000 08:06 4050                       /system/lib64/spatializer-aidl-cpp.so
+7d3cf1b9c000-7d3cf1ba0000 r--p 0000d000 08:06 4050                       /system/lib64/spatializer-aidl-cpp.so
+7d3cf1ba0000-7d3cf1ba1000 rw-p 00010000 08:06 4050                       /system/lib64/spatializer-aidl-cpp.so
+7d3cf1ba1000-7d3cf1bed000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1bed000-7d3cf1bf0000 r--p 00000000 08:06 3942                       /system/lib64/libnetd_client.so
+7d3cf1bf0000-7d3cf1bf1000 ---p 00000000 00:00 0 
+7d3cf1bf1000-7d3cf1bf5000 r-xp 00003000 08:06 3942                       /system/lib64/libnetd_client.so
+7d3cf1bf5000-7d3cf1bf7000 r--p 00006000 08:06 3942                       /system/lib64/libnetd_client.so
+7d3cf1bf7000-7d3cf1bf8000 rw-p 00007000 08:06 3942                       /system/lib64/libnetd_client.so
+7d3cf1bfa000-7d3cf1c1a000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1c1a000-7d3cf1c1c000 r--p 00000000 08:06 3963                       /system/lib64/libprocinfo.so
+7d3cf1c1c000-7d3cf1c1d000 r-xp 00001000 08:06 3963                       /system/lib64/libprocinfo.so
+7d3cf1c1d000-7d3cf1c1f000 r--p 00001000 08:06 3963                       /system/lib64/libprocinfo.so
+7d3cf1c20000-7d3cf1c5c000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1c5c000-7d3cf1c66000 r--p 00000000 08:06 3766                       /system/lib64/libcodec2_hidl_client@1.0.so
+7d3cf1c66000-7d3cf1c78000 r-xp 00009000 08:06 3766                       /system/lib64/libcodec2_hidl_client@1.0.so
+7d3cf1c78000-7d3cf1c79000 r--p 0001a000 08:06 3766                       /system/lib64/libcodec2_hidl_client@1.0.so
+7d3cf1c79000-7d3cf1c8d000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1c8d000-7d3cf1cd5000 r--p 00000000 08:06 3860                       /system/lib64/libhidlbase.so
+7d3cf1cd5000-7d3cf1d33000 r-xp 00047000 08:06 3860                       /system/lib64/libhidlbase.so
+7d3cf1d33000-7d3cf1d3f000 r--p 000a4000 08:06 3860                       /system/lib64/libhidlbase.so
+7d3cf1d3f000-7d3cf1d40000 rw-p 000af000 08:06 3860                       /system/lib64/libhidlbase.so
+7d3cf1d41000-7d3cf1d42000 r--p 00000000 08:06 3219                       /system/lib64/android.hardware.graphics.common@1.1.so
+7d3cf1d42000-7d3cf1d43000 r-xp 00000000 08:06 3219                       /system/lib64/android.hardware.graphics.common@1.1.so
+7d3cf1d43000-7d3cf1d44000 r--p 00000000 08:06 3219                       /system/lib64/android.hardware.graphics.common@1.1.so
+7d3cf1d47000-7d3cf1d9b000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1d9b000-7d3cf1da3000 r--p 00000000 08:06 3808                       /system/lib64/libcutils.so
+7d3cf1da3000-7d3cf1dac000 r-xp 00007000 08:06 3808                       /system/lib64/libcutils.so
+7d3cf1dac000-7d3cf1dae000 r--p 0000f000 08:06 3808                       /system/lib64/libcutils.so
+7d3cf1dae000-7d3cf1daf000 rw-p 00010000 08:06 3808                       /system/lib64/libcutils.so
+7d3cf1db0000-7d3cf1db2000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf1db2000-7d3cf1dd2000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1dd2000-7d3cf1de0000 r--p 00000000 08:06 3287                       /system/lib64/android.hidl.memory@1.0.so
+7d3cf1de0000-7d3cf1dee000 r-xp 0000d000 08:06 3287                       /system/lib64/android.hidl.memory@1.0.so
+7d3cf1dee000-7d3cf1df1000 r--p 0001a000 08:06 3287                       /system/lib64/android.hidl.memory@1.0.so
+7d3cf1df1000-7d3cf1df2000 rw-p 0001c000 08:06 3287                       /system/lib64/android.hidl.memory@1.0.so
+7d3cf1df2000-7d3cf1df4000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf1df4000-7d3cf1e28000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1e28000-7d3cf1e44000 r--p 00000000 08:06 157                        /apex/com.android.art/lib64/libartbase.so
+7d3cf1e44000-7d3cf1e68000 r-xp 0001b000 08:06 157                        /apex/com.android.art/lib64/libartbase.so
+7d3cf1e68000-7d3cf1e6b000 r--p 0003e000 08:06 157                        /apex/com.android.art/lib64/libartbase.so
+7d3cf1e6b000-7d3cf1e6c000 rw-p 00040000 08:06 157                        /apex/com.android.art/lib64/libartbase.so
+7d3cf1e6c000-7d3cf1e6e000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf1e6e000-7d3cf1e9e000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1e9e000-7d3cf1eab000 r--p 00000000 08:06 3193                       /system/lib64/android.hardware.configstore@1.1.so
+7d3cf1eab000-7d3cf1eb4000 r-xp 0000c000 08:06 3193                       /system/lib64/android.hardware.configstore@1.1.so
+7d3cf1eb4000-7d3cf1eb7000 r--p 00014000 08:06 3193                       /system/lib64/android.hardware.configstore@1.1.so
+7d3cf1eb7000-7d3cf1eb8000 rw-p 00016000 08:06 3193                       /system/lib64/android.hardware.configstore@1.1.so
+7d3cf1eb8000-7d3cf1eba000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf1eba000-7d3cf1ed2000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1ed2000-7d3cf1f19000 r--p 00000000 08:06 3716                       /system/lib64/libaudioclient.so
+7d3cf1f19000-7d3cf1f74000 r-xp 00046000 08:06 3716                       /system/lib64/libaudioclient.so
+7d3cf1f74000-7d3cf1f7f000 r--p 000a0000 08:06 3716                       /system/lib64/libaudioclient.so
+7d3cf1f7f000-7d3cf1f80000 rw-p 000aa000 08:06 3716                       /system/lib64/libaudioclient.so
+7d3cf1f80000-7d3cf1f81000 r--p 00000000 08:06 3936                       /system/lib64/libnativeloader_lazy.so
+7d3cf1f81000-7d3cf1f82000 r-xp 00000000 08:06 3936                       /system/lib64/libnativeloader_lazy.so
+7d3cf1f82000-7d3cf1f83000 r--p 00000000 08:06 3936                       /system/lib64/libnativeloader_lazy.so
+7d3cf1f83000-7d3cf1f84000 rw-p 00000000 08:06 3936                       /system/lib64/libnativeloader_lazy.so
+7d3cf1f84000-7d3cf1f85000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cf1f86000-7d3cf1fde000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf1fde000-7d3cf1fe4000 r--p 00000000 08:06 3957                       /system/lib64/libpiex.so
+7d3cf1fe4000-7d3cf1ff8000 r-xp 00005000 08:06 3957                       /system/lib64/libpiex.so
+7d3cf1ff8000-7d3cf1ffa000 r--p 00018000 08:06 3957                       /system/lib64/libpiex.so
+7d3cf1ffb000-7d3cf2007000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2007000-7d3cf2035000 r--p 00000000 08:06 3979                       /system/lib64/libsfplugin_ccodec.so
+7d3cf2035000-7d3cf2036000 ---p 00000000 00:00 0 
+7d3cf2036000-7d3cf20ac000 r-xp 0002e000 08:06 3979                       /system/lib64/libsfplugin_ccodec.so
+7d3cf20ac000-7d3cf20b3000 r--p 000a3000 08:06 3979                       /system/lib64/libsfplugin_ccodec.so
+7d3cf20b3000-7d3cf20b4000 rw-p 000a9000 08:06 3979                       /system/lib64/libsfplugin_ccodec.so
+7d3cf20b4000-7d3cf20b6000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf20b6000-7d3cf20c2000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf20c2000-7d3cf20d6000 r--p 00000000 08:06 3734                       /system/lib64/libbase.so
+7d3cf20d6000-7d3cf2101000 r-xp 00013000 08:06 3734                       /system/lib64/libbase.so
+7d3cf2101000-7d3cf2103000 r--p 0003d000 08:06 3734                       /system/lib64/libbase.so
+7d3cf2103000-7d3cf2104000 rw-p 0003e000 08:06 3734                       /system/lib64/libbase.so
+7d3cf2105000-7d3cf2159000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2159000-7d3cf216d000 r--p 00000000 08:06 3734                       /system/lib64/libbase.so
+7d3cf216d000-7d3cf2198000 r-xp 00013000 08:06 3734                       /system/lib64/libbase.so
+7d3cf2198000-7d3cf219a000 r--p 0003d000 08:06 3734                       /system/lib64/libbase.so
+7d3cf219a000-7d3cf219b000 rw-p 0003e000 08:06 3734                       /system/lib64/libbase.so
+7d3cf219b000-7d3cf219d000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf219d000-7d3cf21c5000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf21c5000-7d3cf21c6000 r--p 00000000 08:06 3925                       /system/lib64/libmediandk_utils.so
+7d3cf21c6000-7d3cf21c7000 ---p 00000000 00:00 0 
+7d3cf21c7000-7d3cf21c9000 r-xp 00001000 08:06 3925                       /system/lib64/libmediandk_utils.so
+7d3cf21c9000-7d3cf21ca000 r--p 00002000 08:06 3925                       /system/lib64/libmediandk_utils.so
+7d3cf21cb000-7d3cf2207000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2207000-7d3cf2216000 r--p 00000000 08:06 3731                       /system/lib64/libaudioutils.so
+7d3cf2216000-7d3cf2232000 r-xp 0000e000 08:06 3731                       /system/lib64/libaudioutils.so
+7d3cf2232000-7d3cf2234000 r--p 00029000 08:06 3731                       /system/lib64/libaudioutils.so
+7d3cf2234000-7d3cf2236000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf2236000-7d3cf224e000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf224e000-7d3cf2267000 r--p 00000000 08:06 3717                       /system/lib64/libaudioclient_aidl_conversion.so
+7d3cf2267000-7d3cf2278000 r-xp 00018000 08:06 3717                       /system/lib64/libaudioclient_aidl_conversion.so
+7d3cf2278000-7d3cf227b000 r--p 00028000 08:06 3717                       /system/lib64/libaudioclient_aidl_conversion.so
+7d3cf227c000-7d3cf227e000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf227e000-7d3cf2286000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2286000-7d3cf2287000 r--p 00000000 08:06 3768                       /system/lib64/libcodec2_hidl_client@1.2.so
+7d3cf2287000-7d3cf2288000 r-xp 00000000 08:06 3768                       /system/lib64/libcodec2_hidl_client@1.2.so
+7d3cf2288000-7d3cf2289000 r--p 00000000 08:06 3768                       /system/lib64/libcodec2_hidl_client@1.2.so
+7d3cf2289000-7d3cf228b000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf228b000-7d3cf22cf000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf22cf000-7d3cf22db000 r--p 00000000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf22db000-7d3cf22f5000 r-xp 0000b000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf22f5000-7d3cf22f9000 r--p 00024000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf22f9000-7d3cf22fa000 rw-p 00027000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf22fa000-7d3cf2336000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2336000-7d3cf2337000 r--p 00000000 08:06 3247                       /system/lib64/android.hardware.media@1.0.so
+7d3cf2337000-7d3cf2338000 r-xp 00000000 08:06 3247                       /system/lib64/android.hardware.media@1.0.so
+7d3cf2338000-7d3cf2339000 r--p 00000000 08:06 3247                       /system/lib64/android.hardware.media@1.0.so
+7d3cf233a000-7d3cf233c000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf233c000-7d3cf2360000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2360000-7d3cf2362000 r--p 00000000 08:06 3655                       /system/lib64/av-types-aidl-cpp.so
+7d3cf2362000-7d3cf2364000 r-xp 00001000 08:06 3655                       /system/lib64/av-types-aidl-cpp.so
+7d3cf2364000-7d3cf2365000 r--p 00002000 08:06 3655                       /system/lib64/av-types-aidl-cpp.so
+7d3cf2366000-7d3cf23b2000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf23b2000-7d3cf23b7000 r--p 00000000 08:06 3667                       /system/lib64/framework-permission-aidl-cpp.so
+7d3cf23b7000-7d3cf23ba000 r-xp 00004000 08:06 3667                       /system/lib64/framework-permission-aidl-cpp.so
+7d3cf23ba000-7d3cf23bc000 r--p 00006000 08:06 3667                       /system/lib64/framework-permission-aidl-cpp.so
+7d3cf23bc000-7d3cf23bd000 rw-p 00007000 08:06 3667                       /system/lib64/framework-permission-aidl-cpp.so
+7d3cf23bd000-7d3cf23e1000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf23e1000-7d3cf23ea000 r--p 00000000 08:06 3935                       /system/lib64/libnativedisplay.so
+7d3cf23ea000-7d3cf23f3000 r-xp 00008000 08:06 3935                       /system/lib64/libnativedisplay.so
+7d3cf23f3000-7d3cf23f5000 r--p 00010000 08:06 3935                       /system/lib64/libnativedisplay.so
+7d3cf23f5000-7d3cf23f6000 rw-p 00011000 08:06 3935                       /system/lib64/libnativedisplay.so
+7d3cf23f7000-7d3cf23f9000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf23f9000-7d3cf2405000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2405000-7d3cf2409000 r--p 00000000 08:06 4041                       /system/lib64/mediametricsservice-aidl-cpp.so
+7d3cf2409000-7d3cf240a000 r-xp 00003000 08:06 4041                       /system/lib64/mediametricsservice-aidl-cpp.so
+7d3cf240a000-7d3cf240c000 r--p 00003000 08:06 4041                       /system/lib64/mediametricsservice-aidl-cpp.so
+7d3cf240c000-7d3cf240d000 rw-p 00004000 08:06 4041                       /system/lib64/mediametricsservice-aidl-cpp.so
+7d3cf240d000-7d3cf240f000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf240f000-7d3cf244f000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf244f000-7d3cf2461000 r--p 00000000 08:06 4030                       /system/lib64/libvulkan.so
+7d3cf2461000-7d3cf2478000 r-xp 00011000 08:06 4030                       /system/lib64/libvulkan.so
+7d3cf2478000-7d3cf247a000 r--p 00027000 08:06 4030                       /system/lib64/libvulkan.so
+7d3cf247a000-7d3cf247b000 rw-p 00028000 08:06 4030                       /system/lib64/libvulkan.so
+7d3cf247b000-7d3cf247c000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cf247c000-7d3cf2484000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2484000-7d3cf249a000 r--p 00000000 08:06 3994                       /system/lib64/libstagefright_bufferpool@2.0.1.so
+7d3cf249a000-7d3cf24b1000 r-xp 00015000 08:06 3994                       /system/lib64/libstagefright_bufferpool@2.0.1.so
+7d3cf24b1000-7d3cf24b4000 r--p 0002b000 08:06 3994                       /system/lib64/libstagefright_bufferpool@2.0.1.so
+7d3cf24b4000-7d3cf24b5000 rw-p 0002d000 08:06 3994                       /system/lib64/libstagefright_bufferpool@2.0.1.so
+7d3cf24b5000-7d3cf24b6000 r--s 00000000 08:23 8126479                    /data/resource-cache/data@resource-cache@com.android.systemui-accent-IwRS.frro@idmap
+7d3cf24b8000-7d3cf24c4000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf24c4000-7d3cf24dc000 r--p 00000000 08:06 3189                       /system/lib64/android.hardware.cas@1.0.so
+7d3cf24dc000-7d3cf24f9000 r-xp 00017000 08:06 3189                       /system/lib64/android.hardware.cas@1.0.so
+7d3cf24f9000-7d3cf24fe000 r--p 00033000 08:06 3189                       /system/lib64/android.hardware.cas@1.0.so
+7d3cf24fe000-7d3cf24ff000 rw-p 00037000 08:06 3189                       /system/lib64/android.hardware.cas@1.0.so
+7d3cf24ff000-7d3cf250b000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf250b000-7d3cf250c000 r--p 00000000 08:06 4002                       /system/lib64/libstagefright_http_support.so
+7d3cf250c000-7d3cf250d000 ---p 00000000 00:00 0 
+7d3cf250d000-7d3cf250f000 r-xp 00001000 08:06 4002                       /system/lib64/libstagefright_http_support.so
+7d3cf250f000-7d3cf2510000 r--p 00002000 08:06 4002                       /system/lib64/libstagefright_http_support.so
+7d3cf2510000-7d3cf2540000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2540000-7d3cf2556000 r--p 00000000 08:06 3926                       /system/lib64/libmediautils.so
+7d3cf2556000-7d3cf2578000 r-xp 00015000 08:06 3926                       /system/lib64/libmediautils.so
+7d3cf2578000-7d3cf257e000 r--p 00036000 08:06 3926                       /system/lib64/libmediautils.so
+7d3cf257e000-7d3cf257f000 rw-p 0003b000 08:06 3926                       /system/lib64/libmediautils.so
+7d3cf257f000-7d3cf2580000 r--s 00000000 08:23 8126481                    /data/resource-cache/data@resource-cache@com.android.systemui-neutral-sSIF.frro@idmap
+7d3cf2580000-7d3cf2581000 r--s 00000000 00:11 2662                       /dev/cgroup_info/cgroup.rc
+7d3cf2581000-7d3cf2582000 r--s 0006d000 08:06 2337                       /system/framework/org.apache.http.legacy.jar
+7d3cf2582000-7d3cf258e000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf258e000-7d3cf2591000 r--p 00000000 08:06 3654                       /system/lib64/audiopolicy-types-aidl-cpp.so
+7d3cf2591000-7d3cf2594000 r-xp 00002000 08:06 3654                       /system/lib64/audiopolicy-types-aidl-cpp.so
+7d3cf2594000-7d3cf2595000 r--p 00004000 08:06 3654                       /system/lib64/audiopolicy-types-aidl-cpp.so
+7d3cf2595000-7d3cf2597000 r--s 0001f000 08:06 51                         /apex/com.android.appsearch/javalib/framework-appsearch.jar
+7d3cf2597000-7d3cf25eb000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf25eb000-7d3cf25ec000 r--p 00000000 08:06 3191                       /system/lib64/android.hardware.configstore-utils.so
+7d3cf25ec000-7d3cf25ee000 r-xp 00000000 08:06 3191                       /system/lib64/android.hardware.configstore-utils.so
+7d3cf25ee000-7d3cf25ef000 r--p 00001000 08:06 3191                       /system/lib64/android.hardware.configstore-utils.so
+7d3cf25ef000-7d3cf25f0000 r--s 000c5000 08:06 573                        /apex/com.android.wifi/javalib/framework-wifi.jar
+7d3cf25f0000-7d3cf25f2000 r--s 00258000 08:06 221                        /apex/com.android.i18n/javalib/core-icu4j.jar
+7d3cf25f2000-7d3cf2606000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2606000-7d3cf261c000 r--p 00000000 08:06 3720                       /system/lib64/libaudiofoundation.so
+7d3cf261c000-7d3cf263c000 r-xp 00015000 08:06 3720                       /system/lib64/libaudiofoundation.so
+7d3cf263c000-7d3cf263f000 r--p 00034000 08:06 3720                       /system/lib64/libaudiofoundation.so
+7d3cf263f000-7d3cf2640000 rw-p 00036000 08:06 3720                       /system/lib64/libaudiofoundation.so
+7d3cf2640000-7d3cf2641000 r--s 0000e000 08:06 535                        /apex/com.android.tethering/javalib/framework-tethering.jar
+7d3cf2641000-7d3cf2643000 r--s 01ef8000 08:06 2327                       /system/framework/framework.jar
+7d3cf2643000-7d3cf2653000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2653000-7d3cf265f000 r--p 00000000 08:06 3829                       /system/lib64/libexpat.so
+7d3cf265f000-7d3cf267a000 r-xp 0000b000 08:06 3829                       /system/lib64/libexpat.so
+7d3cf267a000-7d3cf267d000 r--p 00025000 08:06 3829                       /system/lib64/libexpat.so
+7d3cf267d000-7d3cf267e000 r--s 0005e000 08:06 534                        /apex/com.android.tethering/javalib/framework-connectivity.jar
+7d3cf267e000-7d3cf2680000 r--s 0007d000 08:06 82                         /apex/com.android.art/javalib/core-libart.jar
+7d3cf2680000-7d3cf26ac000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf26ac000-7d3cf26b1000 r--p 00000000 08:06 3743                       /system/lib64/libbpf_android.so
+7d3cf26b1000-7d3cf26ba000 r-xp 00004000 08:06 3743                       /system/lib64/libbpf_android.so
+7d3cf26ba000-7d3cf26bb000 r--p 0000c000 08:06 3743                       /system/lib64/libbpf_android.so
+7d3cf26bb000-7d3cf26bc000 rw-p 0000c000 08:06 3743                       /system/lib64/libbpf_android.so
+7d3cf26bc000-7d3cf26bd000 r--s 00000000 08:06 522                        /apex/com.android.sdkext/javalib/framework-sdkextensions.jar
+7d3cf26bd000-7d3cf26c9000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf26c9000-7d3cf26d2000 r--p 00000000 08:06 3286                       /system/lib64/android.hidl.memory.token@1.0.so
+7d3cf26d2000-7d3cf26d9000 r-xp 00008000 08:06 3286                       /system/lib64/android.hidl.memory.token@1.0.so
+7d3cf26d9000-7d3cf26dc000 r--p 0000e000 08:06 3286                       /system/lib64/android.hidl.memory.token@1.0.so
+7d3cf26dc000-7d3cf26dd000 rw-p 00010000 08:06 3286                       /system/lib64/android.hidl.memory.token@1.0.so
+7d3cf26dd000-7d3cf26de000 r--s 00003000 08:06 506                        /apex/com.android.scheduling/javalib/framework-scheduling.jar
+7d3cf26de000-7d3cf2766000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2766000-7d3cf2767000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_lob]
+7d3cf2767000-7d3cf2768000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf2768000-7d3cf276a000 r--s 0044a000 08:06 83                         /apex/com.android.art/javalib/core-oj.jar
+7d3cf276a000-7d3cf278a000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf278a000-7d3cf278b000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf278b000-7d3cf278c000 r--s 00012000 08:06 444                        /apex/com.android.permission/javalib/framework-permission-s.jar
+7d3cf278c000-7d3cf27a0000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf27a0000-7d3cf27a1000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf27a3000-7d3cf2825000 r--p 00000000 08:06 2328                       /system/framework/ims-common.jar
+7d3cf2825000-7d3cf28e0000 r--p 00000000 08:06 2347                       /system/framework/voip-common.jar
+7d3cf28e0000-7d3cf28e1000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf28e1000-7d3cf28e2000 r--s 00000000 08:06 445                        /apex/com.android.permission/javalib/framework-permission.jar
+7d3cf28e2000-7d3cf29f2000 r--p 00000000 08:06 80                         /apex/com.android.art/javalib/apache-xml.jar
+7d3cf29f2000-7d3cf29f3000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf29f3000-7d3cf29f4000 r--s 00011000 08:06 425                        /apex/com.android.os.statsd/javalib/framework-statsd.jar
+7d3cf29f4000-7d3cf2a60000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2a60000-7d3cf2ade000 r--p 00000000 08:06 82                         /apex/com.android.art/javalib/core-libart.jar
+7d3cf2ade000-7d3cf2adf000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf2adf000-7d3cf2ae0000 r--s 0000a000 08:06 410                        /apex/com.android.mediaprovider/javalib/framework-mediaprovider.jar
+7d3cf2ae2000-7d3cf2b1a000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2b1a000-7d3cf2b5a000 rw-p 00000000 00:00 0                          [anon:dalvik-mark stack]
+7d3cf2b5a000-7d3cf2b5e000 r--p 00000000 08:06 3714                       /system/lib64/libartpalette-system.so
+7d3cf2b5e000-7d3cf2b63000 r-xp 00003000 08:06 3714                       /system/lib64/libartpalette-system.so
+7d3cf2b63000-7d3cf2b64000 r--p 00007000 08:06 3714                       /system/lib64/libartpalette-system.so
+7d3cf2b64000-7d3cf2b65000 rw-p 00007000 08:06 3714                       /system/lib64/libartpalette-system.so
+7d3cf2b65000-7d3cf2b66000 r--s 00079000 08:06 267                        /apex/com.android.media/javalib/updatable-media.jar
+7d3cf2b66000-7d3cf2b6e000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2b6e000-7d3cf2b6f000 ---p 00000000 00:00 0 
+7d3cf2b6f000-7d3cf2bb0000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cf2bb0000-7d3cf2bb1000 ---p 00000000 00:00 0 
+7d3cf2bb1000-7d3cf2bb4000 r--p 00000000 08:06 4017                       /system/lib64/libtombstoned_client.so
+7d3cf2bb4000-7d3cf2bb8000 r-xp 00002000 08:06 4017                       /system/lib64/libtombstoned_client.so
+7d3cf2bb8000-7d3cf2bb9000 r--p 00005000 08:06 4017                       /system/lib64/libtombstoned_client.so
+7d3cf2bbb000-7d3cf2bcf000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2bcf000-7d3cf2bd4000 r--p 00000000 08:06 3904                       /system/lib64/liblz4.so
+7d3cf2bd4000-7d3cf2bf8000 r-xp 00004000 08:06 3904                       /system/lib64/liblz4.so
+7d3cf2bf8000-7d3cf2bf9000 r--p 00027000 08:06 3904                       /system/lib64/liblz4.so
+7d3cf2bf9000-7d3cf2bfa000 r--s 0008c000 08:06 248                        /apex/com.android.ipsec/javalib/android.net.ipsec.ike.jar
+7d3cf2bfa000-7d3cf2bfc000 rw-p 00000000 00:00 0 
+7d3cf2bfc000-7d3cf2c0c000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2c0c000-7d3cf2c15000 r--p 00000000 08:06 3905                       /system/lib64/liblzma.so
+7d3cf2c15000-7d3cf2c37000 r-xp 00008000 08:06 3905                       /system/lib64/liblzma.so
+7d3cf2c37000-7d3cf2c39000 r--p 00029000 08:06 3905                       /system/lib64/liblzma.so
+7d3cf2c39000-7d3cf2c3a000 rw-p 0002a000 08:06 3905                       /system/lib64/liblzma.so
+7d3cf2c3a000-7d3cf2c40000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cf2c40000-7d3cf2c41000 r--s 00068000 08:06 195                        /apex/com.android.conscrypt/javalib/conscrypt.jar
+7d3cf2c41000-7d3cf2c42000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf2c42000-7d3cf2c43000 rw-p 00000000 00:00 0                          [anon:dalvik-mod union bitmap]
+7d3cf2c43000-7d3cf2c4f000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2c4f000-7d3cf2c50000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf2c50000-7d3cf2c51000 r--s 00081000 08:06 2328                       /system/framework/ims-common.jar
+7d3cf2c51000-7d3cf2c69000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2c69000-7d3cf2cc5000 r--p 00000000 08:06 84                         /apex/com.android.art/javalib/okhttp.jar
+7d3cf2cc5000-7d3cf2cd1000 r--p 00000000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf2cd1000-7d3cf2ceb000 r-xp 0000b000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf2ceb000-7d3cf2cef000 r--p 00024000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf2cef000-7d3cf2cf0000 rw-p 00027000 08:06 3733                       /system/lib64/libbacktrace.so
+7d3cf2cf0000-7d3cf2cf1000 r--s 000ba000 08:06 2347                       /system/framework/voip-common.jar
+7d3cf2cf1000-7d3cf2cf3000 rw-p 00000000 00:00 0                          [anon:dalvik-indirect ref table]
+7d3cf2cf3000-7d3cf2d1b000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2d1b000-7d3cf2d1d000 r--p 00000000 08:06 434                        /apex/com.android.os.statsd/lib64/libstatssocket.so
+7d3cf2d1d000-7d3cf2d1f000 r-xp 00001000 08:06 434                        /apex/com.android.os.statsd/lib64/libstatssocket.so
+7d3cf2d1f000-7d3cf2d21000 r--p 00002000 08:06 434                        /apex/com.android.os.statsd/lib64/libstatssocket.so
+7d3cf2d21000-7d3cf2d22000 rw-p 00003000 08:06 434                        /apex/com.android.os.statsd/lib64/libstatssocket.so
+7d3cf2d22000-7d3cf2d23000 r--s 00000000 08:06 2325                       /system/framework/framework-graphics.jar
+7d3cf2d23000-7d3cf2d25000 rw-p 00000000 00:00 0                          [anon:dalvik-concurrent copying sweep array free buffer]
+7d3cf2d25000-7d3cf2d31000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2d31000-7d3cf2d51000 rw-p 00000000 00:00 0                          [anon:dalvik-large marked objects]
+7d3cf2d51000-7d3cf2d52000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf2d52000-7d3cf2d53000 r--s 00113000 08:06 80                         /apex/com.android.art/javalib/apache-xml.jar
+7d3cf2d53000-7d3cf2d55000 rw-p 00000000 00:00 0                          [anon:dalvik-concurrent copying sweep array free buffer]
+7d3cf2d55000-7d3cf2d61000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2d61000-7d3cf2da2000 r--p 00000000 08:06 2324                       /system/framework/ext.jar
+7d3cf2da2000-7d3cf2da3000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf2da3000-7d3cf2da4000 r--s 00148000 08:06 81                         /apex/com.android.art/javalib/bouncycastle.jar
+7d3cf2da4000-7d3cf2dc0000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2dc0000-7d3cf2de0000 rw-p 00000000 00:00 0                          [anon:dalvik-large live objects]
+7d3cf2de0000-7d3cf2e00000 r--s 00000000 00:11 2208                       /dev/__properties__/u:object_r:device_config_runtime_native_prop:s0
+7d3cf2e00000-7d3cf2e04000 r--p 00000000 08:06 3669                       /system/lib64/heapprofd_client_api.so
+7d3cf2e04000-7d3cf2e0b000 r-xp 00003000 08:06 3669                       /system/lib64/heapprofd_client_api.so
+7d3cf2e0b000-7d3cf2e0d000 r--p 00009000 08:06 3669                       /system/lib64/heapprofd_client_api.so
+7d3cf2e0d000-7d3cf2e0e000 rw-p 0000a000 08:06 3669                       /system/lib64/heapprofd_client_api.so
+7d3cf2e0e000-7d3cf2e17000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cf2e17000-7d3cf2e18000 r--p 00000000 08:06 522                        /apex/com.android.sdkext/javalib/framework-sdkextensions.jar
+7d3cf2e18000-7d3cf2e20000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2e20000-7d3cf2e36000 r--p 00372000 08:06 2380                       /system/framework/x86_64/boot-framework.art
+7d3cf2e36000-7d3cf2e56000 r--s 00000000 00:11 2232                       /dev/__properties__/u:object_r:fingerprint_prop:s0
+7d3cf2e56000-7d3cf2e63000 r--p 00000000 08:06 179                        /apex/com.android.art/lib64/libprofile.so
+7d3cf2e63000-7d3cf2e7c000 r-xp 0000c000 08:06 179                        /apex/com.android.art/lib64/libprofile.so
+7d3cf2e7c000-7d3cf2e7d000 r--p 00024000 08:06 179                        /apex/com.android.art/lib64/libprofile.so
+7d3cf2e7d000-7d3cf2e7e000 rw-p 00024000 08:06 179                        /apex/com.android.art/lib64/libprofile.so
+7d3cf2e7e000-7d3cf2e7f000 r--p 00000000 08:06 445                        /apex/com.android.permission/javalib/framework-permission.jar
+7d3cf2e7f000-7d3cf2e8b000 rw-p 00000000 00:00 0                          [anon:dalvik-thread local mark stack]
+7d3cf2e8b000-7d3cf2eab000 r--s 00000000 00:11 2287                       /dev/__properties__/u:object_r:persist_debug_prop:s0
+7d3cf2eab000-7d3cf2ecb000 r--s 00000000 00:11 2196                       /dev/__properties__/u:object_r:default_prop:s0
+7d3cf2ecb000-7d3cf2eeb000 r--s 00000000 00:11 2324                       /dev/__properties__/u:object_r:system_prop:s0
+7d3cf2eeb000-7d3cf2f0b000 r--s 00000000 00:11 2228                       /dev/__properties__/u:object_r:exported_system_prop:s0
+7d3cf2f0b000-7d3cf2f2b000 r--s 00000000 00:11 2355                       /dev/__properties__/u:object_r:vold_status_prop:s0
+7d3cf2f2b000-7d3cf2f4b000 r--s 00000000 00:11 2223                       /dev/__properties__/u:object_r:exported_config_prop:s0
+7d3cf2f4b000-7d3cf2f6b000 r--s 00000000 00:11 2280                       /dev/__properties__/u:object_r:odsign_prop:s0
+7d3cf2f6b000-7d3cf2f6e000 r--p 00000000 08:06 172                        /apex/com.android.art/lib64/libnativehelper.so
+7d3cf2f6e000-7d3cf2f71000 r-xp 00002000 08:06 172                        /apex/com.android.art/lib64/libnativehelper.so
+7d3cf2f71000-7d3cf2f72000 r--p 00004000 08:06 172                        /apex/com.android.art/lib64/libnativehelper.so
+7d3cf2f72000-7d3cf2f73000 rw-p 00004000 08:06 172                        /apex/com.android.art/lib64/libnativehelper.so
+7d3cf2f73000-7d3cf2f74000 r--p 00000000 08:06 2325                       /system/framework/framework-graphics.jar
+7d3cf2f74000-7d3cf2f75000 r--s 0005b000 08:06 84                         /apex/com.android.art/javalib/okhttp.jar
+7d3cf2f75000-7d3cf2f78000 r--p 00071000 08:06 2371                       /system/framework/x86_64/boot-core-icu4j.art
+7d3cf2f78000-7d3cf2f79000 ---p 00000000 00:00 0 
+7d3cf2f79000-7d3cf2f8a000 rw-p 00000000 00:00 0                          [anon:scudo:secondary]
+7d3cf2f8a000-7d3cf2f8b000 ---p 00000000 00:00 0 
+7d3cf2f8b000-7d3cf2f90000 r--p 000b4000 08:06 114                        /apex/com.android.art/javalib/x86_64/boot.art
+7d3cf2f90000-7d3cf2fb0000 r--s 00000000 00:11 2207                       /dev/__properties__/u:object_r:device_config_runtime_native_boot_prop:s0
+7d3cf2fb0000-7d3cf2fd0000 r--s 00000000 00:11 2189                       /dev/__properties__/u:object_r:dalvik_config_prop:s0
+7d3cf2fd0000-7d3cf2ff0000 r--s 00000000 00:11 2191                       /dev/__properties__/u:object_r:dalvik_runtime_prop:s0
+7d3cf2ff0000-7d3cf3010000 r--s 00000000 00:11 2260                       /dev/__properties__/u:object_r:log_tag_prop:s0
+7d3cf3010000-7d3cf3030000 r--s 00000000 00:11 2154                       /dev/__properties__/u:object_r:build_prop:s0
+7d3cf3030000-7d3cf3038000 r--p 00000000 00:00 0                          [anon:atexit handlers]
+7d3cf3038000-7d3cf3058000 r--s 00000000 00:11 2150                       /dev/__properties__/u:object_r:bq_config_prop:s0
+7d3cf3058000-7d3cf3059000 r--p 00013000 08:06 2383                       /system/framework/x86_64/boot-ims-common.art
+7d3cf3059000-7d3cf305c000 r--p 00075000 08:06 2386                       /system/framework/x86_64/boot-telephony-common.art
+7d3cf305c000-7d3cf307c000 r--s 00000000 00:11 2193                       /dev/__properties__/u:object_r:debug_prop:s0
+7d3cf307c000-7d3cf309c000 r--s 00000000 00:11 2366                       /dev/__properties__/properties_serial
+7d3cf309c000-7d3cf309f000 rw-p 00000000 00:00 0                          [anon:System property context nodes]
+7d3cf309f000-7d3cf30af000 r--s 00000000 00:11 2124                       /dev/__properties__/property_info
+7d3cf30af000-7d3cf30b0000 ---p 00000000 00:00 0 
+7d3cf30b0000-7d3cf30b3000 rw-p 00000000 00:00 0                          [anon:stack_and_tls:main]
+7d3cf30b3000-7d3cf30b4000 ---p 00000000 00:00 0 
+7d3cf30b4000-7d3cf30b6000 r--p 00025000 08:06 2389                       /system/framework/x86_64/boot-voip-common.art
+7d3cf30b6000-7d3cf30b7000 r--p 0000a000 08:06 2374                       /system/framework/x86_64/boot-ext.art
+7d3cf30b7000-7d3cf30b8000 r--p 00001000 08:06 2377                       /system/framework/x86_64/boot-framework-graphics.art
+7d3cf30b8000-7d3cf30d8000 r--s 00000000 00:11 2348                       /dev/__properties__/u:object_r:vendor_socket_hook_prop:s0
+7d3cf30d8000-7d3cf30f8000 r--s 00000000 00:11 2241                       /dev/__properties__/u:object_r:heapprofd_prop:s0
+7d3cf30f8000-7d3cf3118000 r--s 00000000 00:11 2254                       /dev/__properties__/u:object_r:libc_debug_prop:s0
+7d3cf3118000-7d3cf31e0000 r--p 00000000 00:00 0                          [anon:linker_alloc]
+7d3cf31e0000-7d3cf3200000 r--s 00000000 00:11 2351                       /dev/__properties__/u:object_r:vndk_prop:s0
+7d3cf3200000-7d3cf3201000 r--p 00001000 08:06 102                        /apex/com.android.art/javalib/x86_64/boot-apache-xml.art
+7d3cf3201000-7d3cf3207000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf3207000-7d3cf3208000 r--p 00011000 08:06 105                        /apex/com.android.art/javalib/x86_64/boot-bouncycastle.art
+7d3cf3208000-7d3cf3210000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf3210000-7d3cf3274000 r--p 00000000 00:00 0                          [anon:linker_alloc]
+7d3cf3274000-7d3cf3275000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf3275000-7d3cf3295000 r--s 00000000 00:11 2193                       /dev/__properties__/u:object_r:debug_prop:s0
+7d3cf3295000-7d3cf32b5000 r--s 00000000 00:11 2154                       /dev/__properties__/u:object_r:build_prop:s0
+7d3cf32b5000-7d3cf32b6000 ---p 00000000 00:00 0 
+7d3cf32b6000-7d3cf32be000 rw-p 00000000 00:00 0 
+7d3cf32be000-7d3cf32bf000 ---p 00000000 00:00 0 
+7d3cf32bf000-7d3cf32df000 r--s 00000000 00:11 2366                       /dev/__properties__/properties_serial
+7d3cf32df000-7d3cf32e2000 rw-p 00000000 00:00 0                          [anon:System property context nodes]
+7d3cf32e2000-7d3cf32f2000 r--s 00000000 00:11 2124                       /dev/__properties__/property_info
+7d3cf32f2000-7d3cf3356000 r--p 00000000 00:00 0                          [anon:linker_alloc]
+7d3cf3356000-7d3cf3358000 rw-p 00000000 00:00 0                          [anon:bionic_alloc_small_objects]
+7d3cf3358000-7d3cf3359000 r--p 00000000 00:00 0                          [anon:atexit handlers]
+7d3cf3359000-7d3cf335a000 ---p 00000000 00:00 0 
+7d3cf335a000-7d3cf3362000 rw-p 00000000 00:00 0                          [anon:thread signal stack]
+7d3cf3362000-7d3cf3363000 rw-p 00000000 00:00 0                          [anon:arc4random data]
+7d3cf3363000-7d3cf3364000 r--p 0000d000 08:06 111                        /apex/com.android.art/javalib/x86_64/boot-okhttp.art
+7d3cf3364000-7d3cf3365000 r--p 00014000 08:06 108                        /apex/com.android.art/javalib/x86_64/boot-core-libart.art
+7d3cf3365000-7d3cf3366000 rw-p 00000000 00:00 0                          [anon:arc4random data]
+7d3cf3366000-7d3cf33ac000 r--p 00000000 08:06 464                        /apex/com.android.runtime/bin/linker64
+7d3cf33ac000-7d3cf34ac000 r-xp 00045000 08:06 464                        /apex/com.android.runtime/bin/linker64
+7d3cf34ac000-7d3cf34b4000 r--p 00144000 08:06 464                        /apex/com.android.runtime/bin/linker64
+7d3cf34b4000-7d3cf34b6000 rw-p 0014b000 08:06 464                        /apex/com.android.runtime/bin/linker64
+7d3cf34b6000-7d3cf34bb000 rw-p 00000000 00:00 0                          [anon:.bss]
+7d3cf34bb000-7d3cf34bc000 r--p 00000000 00:00 0                          [anon:.bss]
+7d3cf34bc000-7d3cf34c2000 rw-p 00000000 00:00 0                          [anon:.bss]
+7ffdc02c8000-7ffdc02c9000 ---p 00000000 00:00 0 
+7ffdc02c9000-7ffdc0ac8000 rw-p 00000000 00:00 0                          [stack]
+7ffdc0bf0000-7ffdc0bf3000 r--p 00000000 00:00 0                          [vvar]
+7ffdc0bf3000-7ffdc0bf4000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]

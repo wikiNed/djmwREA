@@ -1,0 +1,16 @@
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'open'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'open64'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'openat'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'fopen'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'fopen64'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'access'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'stat'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'stat64'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'unlink'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'rename'}}
+{'type': 'send', 'payload': {'tag': 'hooked', 'what': 'write(big)'}}
+{'type': 'send', 'payload': {'tag': 'ready'}}
+full IO hook 已装，等待 240 秒...
+{'type': 'send', 'payload': {'tag': 'unlink', 'path': '/storage/emulated/0/Android/data/game.taptap.HQGAMES.TapDemons/files/SaveFile.es3', 'bt': ['0x7d3a21673687']}}
+{'type': 'send', 'payload': {'tag': 'rename', 'path': '/storage/emulated/0/Android/data/game.taptap.HQGAMES.TapDemons/files/SaveFile.es3.tmp', 'bt': ['0x7d3a21673655']}}
+{'type': 'send', 'payload': {'tag': 'unlink', 'path': '/storage/emulated/0/Android/data/game.taptap.HQGAMES.TapDemons/files/SaveFile.es3.tmp.bak', 'bt': ['0x7d3a21673687']}}
