@@ -8,11 +8,11 @@ Il2CppString:
 找到 'SaveFile.es3' 和 'AutoSave.es3' 的 Il2CppString 实例，
 再找附近（同一 object pool 区域）的短 ASCII 字符串，可能是口令。
 """
+from paths import EMU, MEMDUMP
+
 import re
 import struct
-
-MEM = r"E:\DSH\game\.rea-study\emu\memdump.bin"
-data = open(MEM, "rb").read()
+data = open(MEMDUMP, "rb").read()
 print("size:", len(data))
 
 for name in ("SaveFile.es3", "AutoSave.es3"):

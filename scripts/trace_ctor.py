@@ -5,9 +5,12 @@ IL2CPP 生成的典型模式：
   - 字符串字面量：adrp x0, page; ldr x0,[x0+off]; bl il2cpp_codegen_string_literal
 所以紧跟其后的 bl 目标能告诉我们这个槽的类型。
 """
+
+from pathlib import Path
+
+from paths import SO
 import struct
 
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 data = open(SO, "rb").read()
 
 e_phoff = struct.unpack_from("<Q", data, 0x20)[0]
@@ -41,7 +44,7 @@ KNOWN = {
 # 反汇编 ctor，找出每个 bl 的目标与前一条 ldr 的槽地址
 import sys
 
-sys.path.insert(0, r"E:\DSH\game\.rea-study\scripts")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from capstone import Cs, CS_ARCH_ARM64, CS_MODE_ARM, CS_OP_IMM, CS_OP_MEM, CS_OP_REG
 
 md = Cs(CS_ARCH_ARM64, CS_MODE_ARM)

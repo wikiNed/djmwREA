@@ -16,6 +16,8 @@ H4  ROUND_HALF_UP on exact value with quantum = ulp/2^24
 H5  .NET "R" = shortest-then-17 混合
 H6  Java Double.toString 算法 (SciNotation)
 """
+from paths import SAVES
+
 import math
 import re
 import sys
@@ -23,7 +25,6 @@ from decimal import Decimal, ROUND_HALF_UP, getcontext
 from collections import Counter
 
 getcontext().prec = 80
-SAVES = r"E:\DSH\game\.rea-study\saves"
 NUM = re.compile(r"-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?")
 
 

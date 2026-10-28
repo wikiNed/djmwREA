@@ -12,6 +12,10 @@
 133048 条 × PBKDF2(100 轮) 单线程约 15 分钟；这里先只取长度 1..64 的
 字面量（口令几乎不可能更长），并用多进程加速。
 """
+
+from paths import EMU
+SAVE_OUT = EMU / 'save_decrypted.json'
+from paths import ES3_FILE, META
 import hashlib
 import json
 import struct
@@ -19,8 +23,8 @@ import sys
 
 from Crypto.Cipher import AES
 
-MD = r"E:\DSH\game\.rea-study\lib\global-metadata.dat"
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
+MD = META
+ES3 = ES3_FILE
 
 
 def load_literals():
@@ -109,7 +113,7 @@ def main():
             print(f"\n*** 命中 *** {r}", flush=True)
             print("password =", pw, flush=True)
             print("password(hex) =", pw.hex(), flush=True)
-            open(r"E:\DSH\game\.rea-study\emu\save_decrypted.json", "wb").write(full)
+            open(str(SAVE_OUT), "wb").write(full)
             print("已写出 save_decrypted.json", len(full), "字节", flush=True)
             return 0
     print("\n未命中", flush=True)

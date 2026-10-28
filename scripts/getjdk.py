@@ -1,3 +1,4 @@
+import os
 """下载 JDK 25 Windows x64 zip。多源尝试。"""
 import sys
 import urllib.request
@@ -12,7 +13,7 @@ URLS = [
     "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25%2B36/OpenJDK25U-jdk_x64_windows_hotspot_25_36.zip",
 ]
 
-OUT = r"E:\DSH\game\.rea-study\jdk\jdk25.zip"
+OUT = os.environ.get('JAVA_HOME')
 
 hdr = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",

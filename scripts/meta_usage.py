@@ -10,9 +10,9 @@ Il2CppMetadataUsage -> 真实指针。
 我们已有 metadata 的 stringLiteral 表。如果能算出 slot 的序号，
 就能配合 metadataUsagePairs 表找到对应 literal index。
 """
-import struct
+from paths import META
 
-META = r"E:\DSH\game\.rea-study\lib\global-metadata.dat"
+import struct
 data = open(META, "rb").read()
 hdr = struct.unpack_from("<64i", data, 0)
 

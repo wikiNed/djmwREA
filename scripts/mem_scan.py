@@ -1,11 +1,13 @@
 """从设备拉回的分块里精确搜索 UTF-16 字符串（本地执行，避免 shell 引号地狱）。
 先在设备上把命中的段名报出来，这里只处理本地已有的文件。
 """
+
+from paths import EMU
 import glob
 import os
 import sys
 
-D = sys.argv[1] if len(sys.argv) > 1 else r"E:\DSH\game\.rea-study\emu\memd"
+D = sys.argv[1] if len(sys.argv) > 1 else str(EMU / 'memd')
 pats = {
     "SaveFile.es3": "SaveFile.es3".encode("utf-16-le"),
     "AutoSave.es3": "AutoSave.es3".encode("utf-16-le"),

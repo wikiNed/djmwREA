@@ -1,4 +1,6 @@
 """扫 data.unity3d 里的 TextAsset，找 ES3 口令痕迹。"""
+
+from paths import APK, unity_data_asset
 import io
 import os
 import re
@@ -6,8 +8,7 @@ import zipfile
 
 import UnityPy
 
-APK = r"E:\DSH\game\.rea-study\apk\TapDemons_v5.9.2.apk"
-OUT = r"E:\DSH\game\.rea-study\assets"
+OUT = unity_data_asset()
 os.makedirs(OUT, exist_ok=True)
 ENTRY = "assets/bin/Data/data.unity3d"
 

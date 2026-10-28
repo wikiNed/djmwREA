@@ -1,4 +1,4 @@
-# ===== 大二进制由 Git LFS 管理，见 .gitattributes =====
+# ===== 大二进制用 Git LFS 管理，见 .gitattributes =====
 # （APK / libil2cpp.so / global-metadata.dat / dump.cs 已入库于 files/）
 
 # ===== 内存 dump / frida-server（体积过大，不入库）=====
@@ -9,7 +9,7 @@ fs
 fs-arm64
 frida-server*
 
-# ===== 工具链 =====
+# ===== 工具链（本机安装，不入库；用环境变量指向）=====
 jdk/
 ghidra/
 ghidra_out/
@@ -17,7 +17,15 @@ install/
 node_modules/
 *.tgz
 pkg/
-tools/
+
+# ===== 运行时缓存 / 中间产物 =====
+# work/ 是 paths.unity_data_asset() 解 cache 的地方，不入库
+work/
+emu/memdump.bin
+emu/seg_*.bin
+emu/dump2/
+emu/mem2.bin
+emu/memd/
 
 # ===== Python =====
 __pycache__/

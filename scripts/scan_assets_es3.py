@@ -5,6 +5,8 @@
   2. 有没有可疑的十六进制/base64 长串（可能是口令）
   3. 是否有 Resources/ES3Defaults 之类的资产
 """
+
+from paths import APK, unity_data_asset
 import io
 import os
 import re
@@ -12,8 +14,7 @@ import zipfile
 
 import UnityPy
 
-APK = r"E:\DSH\game\.rea-study\apk\TapDemons_v5.9.2.apk"
-OUT = r"E:\DSH\game\.rea-study\assets"
+OUT = unity_data_asset()
 os.makedirs(OUT, exist_ok=True)
 
 z = zipfile.ZipFile(APK)

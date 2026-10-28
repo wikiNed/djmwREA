@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 """三份演示存档的横向体检：宠物拥有数 / 宝石碎片 / 已兑礼包码"""
+
+from paths import SAVES
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import savedit as S
-
-D = r"E:\DSH\game\.rea-study\saves"
-
 for p in ("01", "02", "03"):
     path = os.path.join(D, "playerDate_%s.json" % p)
     if not os.path.exists(path):

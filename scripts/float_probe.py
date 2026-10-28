@@ -24,13 +24,12 @@
     - 若 float(token) 的 repr 与 token 不同, 记为"游戏格式≠Python格式"
     - 记录游戏 token 的有效位数分布
 """
+from paths import SAVES
+
 import re
 import json
 import sys
 from collections import Counter
-
-SAVES = r"E:\DSH\game\.rea-study\saves"
-
 # 匹配 JSON 中的浮点/整数字面量
 NUM = re.compile(r'-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?')
 

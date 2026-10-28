@@ -16,10 +16,10 @@
 
 也可对其它候选偏移复用：改 OFFSETS。
 """
+from paths import SO
+
 import struct
 import sys
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 OFFSETS = [0x408, 0x100, 0x108, 0x830]
 
 try:

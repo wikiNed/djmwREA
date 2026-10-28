@@ -1,4 +1,4 @@
-"""从 ES3 文件反推口径，验证 '\\nError: ' 这个 16 字节口令是不是真的。
+"""从 ES3_FILE 文件反推口径，验证 '\\nError: ' 这个 16 字节口令是不是真的。
 
 刚才 try_key 给了个假阳性匹配：只要 key 长度恰好 16、解出来的尾字节碰巧符合 PKCS7
 就会被判为命中。13726 个候选 × 3 种 keylen，总会撞上。
@@ -6,19 +6,17 @@
 正确做法：
   1. 只把 key 长度 == len(password bytes) 的候选当作“真的用了这个口令”
   2. 更严格的验证：解出的明文必须是可读 UTF-8 / 可解析 JSON
-  3. ES3 实际格式：文件头 16 字节 IV + 密文，且明文是 ES3 的 ASCII 标签流
-     （ES3 非 JSON 模式：tag 字节 + 变量名 + 值），或者 Games/Prefabs 序列化流。
+  3. ES3_FILE 实际格式：文件头 16 字节 IV + 密文，且明文是 ES3_FILE 的 ASCII 标签流
+     （ES3_FILE 非 JSON 模式：tag 字节 + 变量名 + 值），或者 Games/Prefabs 序列化流。
 
 先看真实存档的前 64 字节密文解密后长什么样 —— 用严格判据重扫。
 """
+from paths import EMU, ES3_FILE, META
+
 import json
 import struct
 
 from Crypto.Cipher import AES
-
-META = r"E:\DSH\game\.rea-study\lib\global-metadata.dat"
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
-
 meta = open(META, "rb").read()
 SL_OFF, SL_CNT, SLD_OFF = 256, 133048, 133304
 
@@ -28,12 +26,12 @@ def lit(i):
     return meta[SLD_OFF + di : SLD_OFF + di + ln].decode("utf-8", "replace")
 
 
-blob = open(ES3, "rb").read()
+blob = open(ES3_FILE, "rb").read()
 iv, ct = blob[:16], blob[16:]
 
 
 def looks_like_es3(body: bytes) -> bool:
-    """严格判据：ES3 明文开头应是可读文本（JSON 或 ES3 标签流）。"""
+    """严格判据：ES3_FILE 明文开头应是可读文本（JSON 或 ES3_FILE 标签流）。"""
     head = body[:256]
     if not head:
         return False
@@ -41,7 +39,7 @@ def looks_like_es3(body: bytes) -> bool:
     printable = sum(1 for b in head if 32 <= b < 127 or b in (9, 10, 13))
     if printable / len(head) < 0.95:
         return False
-    # 进一步：应包含这些 ES3 常见关键字之一
+    # 进一步：应包含这些 ES3_FILE 常见关键字之一
     try:
         txt = head.decode("ascii", "replace")
     except Exception:

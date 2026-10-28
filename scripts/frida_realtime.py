@@ -9,12 +9,12 @@ hook 目标（RVA）：
     ShuJuDate.LoadGame        0x18A9374
     ShuJuDate.BaoCunDate      0x18A71B4
 """
+from paths import SO
+
 import sys
 import time
 
 import frida
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 ANCHOR_RVA = 0x174460C + 0x18
 
 

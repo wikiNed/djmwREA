@@ -5,11 +5,11 @@ ES3Defaults 序列化后含 encryptionPassword 字段。
 UnityPy 解析 MonoBehaviour 需要 TypeTree；IL2CPP 构建通常剥离了 TypeTree，
 因此改用原始字符串搜索：直接在 resource 的原始字节里找 "ES3" / 可疑长串。
 """
+from paths import APK
+
 import os
 import re
 import zipfile
-
-APK = r"E:\DSH\game\.rea-study\apk\TapDemons_v5.9.2.apk"
 z = zipfile.ZipFile(APK)
 
 targets = [

@@ -1,7 +1,7 @@
 """解析 metadata v31 的 usage 表，反查 metadata usage 槽 -> 字符串字面量。"""
-import struct
+from paths import META
 
-META = r"E:\DSH\game\.rea-study\lib\global-metadata.dat"
+import struct
 data = open(META, "rb").read()
 
 hdr = struct.unpack_from("<64i", data, 0)

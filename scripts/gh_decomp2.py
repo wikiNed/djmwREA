@@ -4,20 +4,19 @@ Ghidra 自动识别把 0x1782D44 吞进了前一个函数（FUN_01782d30）。
 用 createFunction(addr, name) 在真起点重新定义，然后反编译。
 """
 
+from paths import SO
+
 import os
 
-os.environ["GHIDRA_INSTALL_DIR"] = r"E:\DSH\game\.rea-study\ghidra\ghidra_12.2_PUBLIC"
-os.environ["JAVA_HOME"] = r"E:\DSH\game\.rea-study\jdk\jdk-25.0.5.0.3"
 os.environ["GHIDRA_JAVA_HOME"] = os.environ["JAVA_HOME"]
 
 import pyghidra
 
 pyghidra.start()
 
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 PROJ_DIR = r"E:\rea_ghidra\proj"
 PROJ_NAME = "il2cpp"
-OUT = r"E:\DSH\game\.rea-study\ghidra_out"
+OUT = os.environ.get('GHIDRA_INSTALL_DIR')
 os.makedirs(OUT, exist_ok=True)
 
 # (名字, 起始 RVA, 结束 RVA)  —— 结束用下一个方法 RVA

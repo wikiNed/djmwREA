@@ -3,18 +3,17 @@
 用 open_program(binary, project_location, project_name, analyze=True)。
 """
 
+from paths import SO
+
 import os
 import time
 
-os.environ["GHIDRA_INSTALL_DIR"] = r"E:\DSH\game\.rea-study\ghidra\ghidra_12.2_PUBLIC"
-os.environ["JAVA_HOME"] = r"E:\DSH\game\.rea-study\jdk\jdk-25.0.5.0.3"
 os.environ["GHIDRA_JAVA_HOME"] = os.environ["JAVA_HOME"]
 
 import pyghidra
 
 pyghidra.start()
 
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 PROJ_DIR = r"E:\rea_ghidra\proj"
 PROJ_NAME = "il2cpp"
 os.makedirs(PROJ_DIR, exist_ok=True)

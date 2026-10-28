@@ -1,12 +1,10 @@
 """libil2cpp.so 反汇编工具：定位 SaveManager.ctor 并追踪 ES3Settings 构造。"""
+from paths import SO
+
 import struct
 import sys
 
 from capstone import Cs, CS_ARCH_ARM64, CS_MODE_ARM, CS_OP_IMM, CS_OP_REG, CS_OP_MEM
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
-
-
 def load_so(path=SO):
     data = open(path, "rb").read()
     assert data[:4] == b"\x7fELF", "not ELF"

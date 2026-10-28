@@ -1,8 +1,8 @@
 """从 global-metadata.dat 提取 string literal，搜索口令候选。"""
+from paths import META
+
 import re
 import struct
-
-META = r"E:\DSH\game\.rea-study\lib\global-metadata.dat"
 data = open(META, "rb").read()
 
 SL_OFF, SL_CNT = 256, 133048

@@ -16,12 +16,12 @@ Unity 序列化字符串（对齐版本，m_EditorFormat 为 false 时）：
 换思路：从 0xead7a6 往回找该对象真正的起点，按 AssetFileInfo 结构走。
 更稳妥的做法：用 UnityPy 遍历全部对象，把 byte_size 与 offset 落在该区域的找出来。
 """
+from paths import APK
+
 import io
 import zipfile
 
 import UnityPy
-
-APK = r"E:\DSH\game\.rea-study\apk\TapDemons_v5.9.2.apk"
 z = zipfile.ZipFile(APK)
 raw = z.read("assets/bin/Data/data.unity3d")
 env = UnityPy.load(io.BytesIO(raw))

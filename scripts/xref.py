@@ -1,12 +1,10 @@
 """在 libil2cpp.so 里找对指定全局地址的 ldr/adrp 引用，定位给全局赋值的代码。"""
+from paths import SO
+
 import struct
 import sys
 
 from capstone import Cs, CS_ARCH_ARM64, CS_MODE_ARM
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
-
-
 def load():
     data = open(SO, "rb").read()
     e_phoff = struct.unpack_from("<Q", data, 0x20)[0]

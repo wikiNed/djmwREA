@@ -38,12 +38,14 @@ UnityPy 在这个 bundle 上不提供 byte_offset（压缩块），
 直接做法：从 "SaveFile.es3" 结尾处按 4 字节对齐继续解析整数与字符串，
 把沿途每个可疑 ASCII 串都当作 AES 口令试一遍。
 """
+
+from paths import ES3_FILE, unity_data_asset
 import struct
 
 from Crypto.Cipher import AES
 
-UNITY = r"E:\DSH\game\.rea-study\assets\data.unity3d"
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
+UNITY = unity_data_asset()
+ES3 = ES3_FILE
 
 raw = open(UNITY, "rb").read()
 blob = open(ES3, "rb").read()

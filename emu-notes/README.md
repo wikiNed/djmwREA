@@ -64,7 +64,7 @@ $S   = '127.0.0.1:16384'
 
 | 项 | 值 |
 |---|---|
-| APK | `E:\DSH\game\.rea-study\apk\TapDemons_v5.9.2.apk` (132.2 MB) |
+| APK | `files/TapDemons_v5.9.2.apk` (132.2 MB) |
 | 包名 | `game.taptap.HQGAMES.TapDemons` |
 | 版本 | 5.9.2 |
 | 登录 Activity | `.MoeNativeActivity` |
@@ -171,7 +171,7 @@ public class SaveManager
 
 ## 七、辅助脚本
 
-全部在 `E:\DSH\game\.rea-study\emu\`：
+全部在 `emu/`：
 
 | 文件 | 作用 |
 |---|---|

@@ -11,15 +11,14 @@
   4. 字符串/布尔/None 完全相等
 若全部通过 -> 存档无隐藏字段、无键重排、无截断，可安全改写。
 """
+from paths import SAVES
+
 import json
 import os
 import sys
 import math
 
 SEP = "$"
-SAVES = r"E:\DSH\game\.rea-study\saves"
-
-
 def load(text):
     if isinstance(text, bytes):
         text = text.decode("utf-8-sig")

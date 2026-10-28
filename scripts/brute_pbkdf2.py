@@ -1,4 +1,4 @@
-"""验证 ES3 = PBKDF2(password, salt, 100 iterations) + AES-CBC。
+"""验证 ES3_FILE = PBKDF2(password, salt, 100 iterations) + AES-CBC。
 
 反汇编证据（libil2cpp.so @0x1782e64）：
     mov  x24, x0        // Rfc2898DeriveBytes 实例
@@ -11,19 +11,19 @@
 
 即 key = PBKDF2-HMAC-SHA1/256(password, salt, 100 iterations, 16 bytes)
 
-ES3 的 Stream 布局（Encrypt(Stream)）实际顺序：
+ES3_FILE 的 Stream 布局（Encrypt(Stream)）实际顺序：
     salt(16) + iv(16) + cipher      或   iv(16) + salt(16) + cipher
 需要两个都试。
 
 另外 salt 也可能是固定的，或从文件头读。
 """
+from paths import EMU, ES3_FILE
+
 import hashlib
 
 from Crypto.Cipher import AES
 from Crypto.Protocol.KDF import PBKDF2
-
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
-blob = open(ES3, "rb").read()
+blob = open(ES3_FILE, "rb").read()
 print("file len", len(blob))
 
 

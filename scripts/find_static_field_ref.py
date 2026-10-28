@@ -3,12 +3,12 @@
 用途：SaveManager..ctor 用 [0x35e7000+0x408] 作为 encryptionPassword，
 要找出谁在初始化这个槽（il2cpp_codegen_initialize 里的字符串字面量装载）。
 """
+from paths import SO
+
 import struct
 import sys
 
 from capstone import CS_ARCH_ARM64, CS_MODE_ARM, Cs
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 PAGE = 0x35E7000
 OFFS = 0x408
 

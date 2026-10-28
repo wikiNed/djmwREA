@@ -6,13 +6,12 @@
   2. 在 maps 给的 base + RVA 处读 4 字节，比对文件里的期望字节
   3. 用 Memory.scan 在整个 r-x 里找该 4 字节序列（若是唯一即给出真实 base）
 """
+from paths import SO
+
 import sys
 import time
 
 import frida
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
-
 # 目标：(方法名, RVA)
 TARGETS = [
     ("AESEncryptionAlgorithm.Encrypt(Stream,Stream,string,int)", 0x1782D44),

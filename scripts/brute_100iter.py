@@ -1,6 +1,6 @@
 """深挖 AESEncryptionAlgorithm 的流式 Encrypt/Decrypt，找 100 轮 key 派生。
 
-关键假设：ES3 的 GetKey 实现大致为
+关键假设：ES3_FILE 的 GetKey 实现大致为
     byte[] key = Encoding.UTF8.GetBytes(password);
     for (int i = 0; i < pwIterations; i++) key = MD5(key);   // 或 SHA256
     // 截取 keySize(16)
@@ -10,12 +10,12 @@
 
 本脚本同时做后者：对每个候选口令做 100 轮 MD5/SHA256/SHA1 迭代，试解。
 """
+from paths import EMU, ES3_FILE
+
 import hashlib
 
 from Crypto.Cipher import AES
-
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
-blob = open(ES3, "rb").read()
+blob = open(ES3_FILE, "rb").read()
 iv, ct = blob[:16], blob[16:]
 
 PW = ["password", "Password", "PASSWORD", "SaveFile.es3", "es3", "ES3",

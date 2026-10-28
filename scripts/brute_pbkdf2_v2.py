@@ -1,4 +1,4 @@
-"""确认 ES3 文件布局 + PBKDF2-HMAC-SHA1(password, salt, 100, 16)。
+"""确认 ES3_FILE 文件布局 + PBKDF2-HMAC-SHA1(password, salt, 100, 16)。
 
 用 Crypto.Hash.SHA1 作为 hmac_hash_module（pycryptodome 需要模块而非函数）。
 
@@ -7,12 +7,12 @@
    B: iv(16) + salt(16) + cipher
    C: salt(16) + cipher（iv 从固定偏移取）
 """
+from paths import EMU, ES3_FILE
+
 from Crypto.Cipher import AES
 from Crypto.Hash import MD5, SHA1, SHA256
 from Crypto.Protocol.KDF import PBKDF2
-
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
-blob = open(ES3, "rb").read()
+blob = open(ES3_FILE, "rb").read()
 print("len", len(blob))
 
 PW = ["password", "Password", "PASSWORD", "SaveFile.es3", "es3", "ES3",

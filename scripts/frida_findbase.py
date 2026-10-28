@@ -6,13 +6,12 @@
 
 选锚点原则：取函数中部、字节熵高的 16 字节，降低偶然命中概率。
 """
+from paths import SO
+
 import sys
 import time
 
 import frida
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
-
 # (标签, RVA, 取样偏移) —— 取样偏移避开函数序言（序言在多个函数间高度相似）
 ANCHORS = [
     ("AESEncrypt_mid", 0x1782D44, 0x60),

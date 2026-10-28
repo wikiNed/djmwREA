@@ -5,12 +5,12 @@ il2cpp_codegen_initialize_runtime_metadata 之后由：
     il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GlobalVar);
 这种模式访问，或者由 .cctor 里 assignment 写入。
 """
+from paths import SO
+
 import struct
 import sys
 
 from capstone import Cs, CS_ARCH_ARM64, CS_MODE_ARM, CS_OP_IMM, CS_OP_MEM, CS_OP_REG
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 data = open(SO, "rb").read()
 
 e_phoff = struct.unpack_from("<Q", data, 0x20)[0]

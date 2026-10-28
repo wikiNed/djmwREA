@@ -1,6 +1,7 @@
 import struct, os, sys
+from pathlib import Path
 
-p = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
+p = str(Path(__file__).resolve().parent.parent / 'emu' / 'SaveFile.es3')
 data = open(p, "rb").read()
 print("size:", len(data), "first16:", data[:16].hex())
 

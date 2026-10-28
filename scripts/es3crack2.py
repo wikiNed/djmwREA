@@ -16,6 +16,8 @@
   - 密码加盐后缀组合
 判据：解出后去掉合法 PKCS7，且以 '{' 开头（可有 BOM）。
 """
+
+from paths import ES3_FILE, SAVE_PLAIN
 import hashlib
 import itertools
 import json
@@ -23,7 +25,7 @@ import sys
 
 from Crypto.Cipher import AES
 
-ES3 = sys.argv[1] if len(sys.argv) > 1 else r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
+ES3 = sys.argv[1] if len(sys.argv) > 1 else ES3_FILE
 
 PASSWORDS = [
     "", "PJSQJ678", "UJHJKOikhS", "TSHYUJKSds",
@@ -77,7 +79,7 @@ def main():
             if looks(body):
                 print(f"\n*** HIT *** pw={pwname!r} fmt={fmtname} hash={hashalg} "
                       f"iters={iters} enc={enc} dklen={dklen}")
-                open(r"E:\DSH\game\.rea-study\emu\save_plain.json", "wb").write(body)
+                open(str(SAVE_PLAIN), "wb").write(body)
                 print("head:", body[:120])
                 hits += 1
     print("hits:", hits)

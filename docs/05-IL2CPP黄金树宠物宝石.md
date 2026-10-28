@@ -1,7 +1,7 @@
 # 点击魔王 v5.9.2 — 逆向作战手册（IL2CPP 篇）
 
 > 基于 `dump.cs`（666,763 行，Il2CppDumper 实际产出）逐行核对。
-> 文中所有类名/方法名/RVA/行号均可直接在 `E:\DSH\game\.rea-study\dump\dump.cs` 里检索验证。
+> 文中所有类名/方法名/RVA/行号均可直接在 `files/dump.cs` 里检索验证。
 
 ---
 
@@ -361,7 +361,7 @@ public class SaveManager        // dump.cs:251899, TypeDefIndex 2846
    frida -U -f game.taptap.HQGAMES.TapDemons -l TapDemons.js
    ```
 
-脚本已写好：`E:\DSH\game\.rea-study\scripts\frida\TapDemons.js`
+脚本已写好：`scripts`
 其中 18 个方法名已逐一对照 dump.cs 验证存在。
 
 ---

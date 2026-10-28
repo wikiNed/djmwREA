@@ -1,4 +1,5 @@
 import frida, sys, json, time
+from pathlib import Path
 
 PID = 2808
 
@@ -22,7 +23,7 @@ def on_message(msg, data):
         print("--- 全部 ---" if len(mods) < 40 else "--- 前 40 ---")
         for m in mods[:40]:
             print("  ", m["n"])
-        with open(r"E:\DSH\game\.rea-study\emu\modules.json", "w", encoding="utf-8") as f:
+        with open(str(Path(__file__).resolve().parent.parent / 'emu' / 'modules.json'), "w", encoding="utf-8") as f:
             json.dump(mods, f, ensure_ascii=False, indent=1)
 
 dev = frida.get_device_manager().add_remote_device("127.0.0.1:27042")

@@ -7,9 +7,9 @@ IL2CPP metadata usage 编译期会生成一个 Il2CppMetadataUsage 数组，
     ldr x0, [metadata_usage_slot]
     bl  il2cpp_codegen_string_literal   -> 返回 Il2CppString*
 """
-import struct
+from paths import SO
 
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
+import struct
 data = open(SO, "rb").read()
 
 e_phoff = struct.unpack_from("<Q", data, 0x20)[0]

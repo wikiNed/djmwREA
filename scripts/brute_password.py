@@ -1,6 +1,6 @@
 """重点验证：口令候选 "password"，穷举派生/偏移/模式。
 
-ES3 的 AESEncryptionAlgorithm（官方源码）实际实现是：
+ES3_FILE 的 AESEncryptionAlgorithm（官方源码）实际实现是：
     private Aes CreateAes() {
         Aes aes = Aes.Create();
         aes.Key = GetKey(password);          // 关键
@@ -13,12 +13,12 @@ ES3 的 AESEncryptionAlgorithm（官方源码）实际实现是：
         // 新版：用 MD5 取前 16
     }
 
-而且 ES3 加密文件的写入顺序是：
+而且 ES3_FILE 加密文件的写入顺序是：
     byte[] iv = aes.IV;                  // 16 字节，随机
     byte[] encrypted = aes.CreateEncryptor().TransformFinalBlock(data);
     stream.Write(iv); stream.Write(encrypted);
 
-所以 offset 16 是对的。但注意：**ES3 可能会对 IV 做 Base64 或存为 ASCII**，
+所以 offset 16 是对的。但注意：**ES3_FILE 可能会对 IV 做 Base64 或存为 ASCII**，
 以及部分版本用的是 `File.ReadAllBytes` 全量，前面还有 4 字节长度。
 
 穷举：
@@ -27,13 +27,13 @@ ES3 的 AESEncryptionAlgorithm（官方源码）实际实现是：
   IV          : 前16 / 全零 / 从起点前16
   模式        : CBC / ECB / CFB
 """
+from paths import EMU, ES3_FILE
+
 import hashlib
 import struct
 
 from Crypto.Cipher import AES
-
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
-blob = open(ES3, "rb").read()
+blob = open(ES3_FILE, "rb").read()
 
 PW_CANDS = ["password", "Password", "PASSWORD", "passWord", "p@ssw0rd", "pass"]
 

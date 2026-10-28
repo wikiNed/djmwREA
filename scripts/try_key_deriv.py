@@ -1,6 +1,6 @@
-"""验证 ES3 密钥派生方式。
+"""验证 ES3_FILE 密钥派生方式。
 
-ES3 的 AESEncryptionAlgorithm（源码口径）：
+ES3_FILE 的 AESEncryptionAlgorithm（源码口径）：
     private static byte[] GetKey(string password) {
         // key 长度固定 16 字节（AES-128）
         // 实际实现：Encoding.UTF8.GetBytes(password)，然后 pad/truncate 到 16
@@ -17,18 +17,16 @@ ES3 的 AESEncryptionAlgorithm（源码口径）：
 
 本脚本对 metadata 全部字面量做 K2/K3/K5，用严格判据（明文可打印且以 { 开头）。
 """
+from paths import EMU, ES3_FILE, META
+
 import base64
 import hashlib
 import struct
 
 from Crypto.Cipher import AES
-
-META = r"E:\DSH\game\.rea-study\lib\global-metadata.dat"
-ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
-
 meta = open(META, "rb").read()
 SL_OFF, SL_CNT, SLD_OFF = 256, 133048, 133304
-blob = open(ES3, "rb").read()
+blob = open(ES3_FILE, "rb").read()
 iv, ct = blob[:16], blob[16:]
 
 

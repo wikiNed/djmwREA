@@ -12,6 +12,8 @@
   'SaveFile.es3'      路径
 若这些都搜不到，再退回 'DateID'、'$' 分隔符组合。
 """
+
+from paths import EMU
 import os
 import re
 import sys
@@ -59,4 +61,4 @@ def scan_dir(d):
 
 
 if __name__ == "__main__":
-    scan_dir(sys.argv[1] if len(sys.argv) > 1 else r"E:\DSH\game\.rea-study\emu\dump2")
+    scan_dir(sys.argv[1] if len(sys.argv) > 1 else str(EMU / 'dump2'))

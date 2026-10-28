@@ -1,4 +1,5 @@
 import frida, sys, json, time
+from pathlib import Path
 
 # 通过 adb forward 暴露的 frida-server 端口连接
 dev = frida.get_device_manager().add_remote_device("127.0.0.1:27042")
@@ -35,7 +36,7 @@ def on_msg(msg, data):
         for m in d:
             if "il2cpp" in m["n"].lower() or "unity" in m["n"].lower():
                 print("  ", m["n"], m["b"], m["s"])
-        with open(r"E:\DSH\game\.rea-study\emu\modules2.json","w",encoding="utf-8") as f:
+        with open(str(Path(__file__).resolve().parent.parent / 'emu' / 'modules2.json'),"w",encoding="utf-8") as f:
             json.dump(d,f,ensure_ascii=False,indent=1)
 
 script = sess.create_script(JS)

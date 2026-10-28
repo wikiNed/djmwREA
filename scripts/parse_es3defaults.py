@@ -17,9 +17,11 @@ ES3SerializableSettings（按 ES3Settings 序列化):
   safeReflection(bool), memberReferenceMode(int), referenceMode(int),
   serializationDepthLimit(int), assemblyNames(string[])
 """
+
+from paths import unity_data_asset
 import struct
 
-PATH = r"E:\DSH\game\.rea-study\assets\data.unity3d"
+PATH = unity_data_asset()
 raw = open(PATH, "rb").read()
 ANCHOR = 15390638
 

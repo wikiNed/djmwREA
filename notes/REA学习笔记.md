@@ -2,7 +2,7 @@
 
 > 学习对象：https://github.com/morluto/rea
 > 本机安装版本：rea-agents / rea CLI **6.8.0**（175 个 CLI 命令、229 个 MCP 工具、6 个 prompt）
-> 安装位置：`E:\DSH\game\.rea-study\install`（本地 `npm install rea-agents`，非全局）
+> 安装位置：`install/`（本地 `npm install rea-agents`，非全局）
 > 整理时间：2026-10-28
 
 ---

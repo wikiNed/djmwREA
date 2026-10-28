@@ -1,10 +1,8 @@
 """解析 global-metadata.dat，定位 string literal 表。"""
+from paths import META
+
 import struct
 import sys
-
-META = r"E:\DSH\game\.rea-study\lib\global-metadata.dat"
-
-
 def parse_header(data):
     consts = struct.unpack_from("<II", data, 0)
     print("sanity:", [hex(c) for c in consts])

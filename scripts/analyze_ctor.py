@@ -1,7 +1,8 @@
 """精确还原 SaveManager.ctor 的寄存器流与调用参数。"""
+
+from paths import DUMP, SO
 import struct
 
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 data = open(SO, "rb").read()
 
 e_phoff = struct.unpack_from("<Q", data, 0x20)[0]
@@ -29,7 +30,7 @@ def va2off(va):
 # 0x175226c 是前面看到的: (x0=this, w1=type, x2=password) -> +0x28
 print("=== 检查 ES3Settings 字段偏移 ===")
 # 从 dump.cs 找 ES3Settings 字段布局
-lines = open(r"E:\DSH\game\.rea-study\dump\dump.cs", encoding="utf-8", errors="replace").read().split("\n")
+lines = open(DUMP, encoding="utf-8", errors="replace").read().split("\n")
 for i, l in enumerate(lines):
     if "class ES3Settings" in l and "TypeDefIndex" in l:
         print("line", i + 1, l.strip())

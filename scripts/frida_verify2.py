@@ -4,13 +4,12 @@
 真正含 0x1782D44 的段是 `r--p`（只读不可执行），说明翻译层把 ARM 代码当"数据"读。
 本脚本只做只读校验，不 hook、不写内存，因此不会崩进程。
 """
+from paths import SO
+
 import sys
 import time
 
 import frida
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
-
 # maps 实测：libil2cpp.so 首个段（file off 0）在 0x07354000
 BASES = [0x07354000, 0x0878a000, 0x08b1c000, 0x07300000]
 

@@ -5,21 +5,20 @@ Ghidra imagebase = 0x100000，但 ELF 首 LOAD vaddr = 0。
 → 直接扫描两个候选，看哪个能拿到函数。
 """
 
+from paths import SO
+
 import os
 import sys
 
-os.environ["GHIDRA_INSTALL_DIR"] = r"E:\DSH\game\.rea-study\ghidra\ghidra_12.2_PUBLIC"
-os.environ["JAVA_HOME"] = r"E:\DSH\game\.rea-study\jdk\jdk-25.0.5.0.3"
 os.environ["GHIDRA_JAVA_HOME"] = os.environ["JAVA_HOME"]
 
 import pyghidra
 
 pyghidra.start()
 
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 PROJ_DIR = r"E:\rea_ghidra\proj"
 PROJ_NAME = "il2cpp"
-OUT = r"E:\DSH\game\.rea-study\ghidra_out"
+OUT = os.environ.get('GHIDRA_INSTALL_DIR')
 
 os.makedirs(OUT, exist_ok=True)
 

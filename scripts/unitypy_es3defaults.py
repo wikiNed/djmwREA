@@ -6,12 +6,12 @@ UnityPy 能拿到它的 raw_data（不含 TypeTree 时是原始字节流），
 
 先试读，若失败则退回 raw_data 手工解析。
 """
+from paths import APK
+
 import io
 import zipfile
 
 import UnityPy
-
-APK = r"E:\DSH\game\.rea-study\apk\TapDemons_v5.9.2.apk"
 z = zipfile.ZipFile(APK)
 raw = z.read("assets/bin/Data/data.unity3d")
 env = UnityPy.load(io.BytesIO(raw))

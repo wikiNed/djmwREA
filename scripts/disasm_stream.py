@@ -6,11 +6,11 @@
   3. 找循环结构（向后跳的分支）——  100 轮迭代会有 b.n 回到前面的循环
   4. 找立即数 0x64 (=100)
 """
+from paths import SO
+
 import struct
 
 from capstone import CS_ARCH_ARM64, CS_MODE_ARM, Cs
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 data = open(SO, "rb").read()
 e_phoff, = struct.unpack_from("<Q", data, 32)
 e_phentsize, e_phnum = struct.unpack_from("<HH", data, 54)

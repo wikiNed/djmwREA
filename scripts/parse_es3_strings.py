@@ -13,15 +13,17 @@
 策略：从 "SaveFile.es3" 之后开始，按 [len][bytes][pad] 扫描连续字符串，
         并尝试把每个"看起来是口令"的字符串当作 AES key。
 """
+
+from paths import ES3_FILE, unity_data_asset
 import struct
 
 from Crypto.Cipher import AES
 
-UNITY = r"E:\DSH\game\.rea-study\assets\data.unity3d"
-ES3 = r"E:\DSH\game\.rea-study\assets\SaveFile.es3"
+UNITY = unity_data_asset()
+ES3 = unity_data_asset()
 import os
 if not os.path.exists(ES3):
-    ES3 = r"E:\DSH\game\.rea-study\emu\SaveFile.es3"
+    ES3 = ES3_FILE
 
 raw = open(UNITY, "rb").read()
 blob = open(ES3, "rb").read()

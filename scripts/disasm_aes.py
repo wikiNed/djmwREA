@@ -15,11 +15,11 @@ dump.cs 给出的 RVA：
   2. 反汇编 Encrypt 附近的代码
   3. 搜索 AES 特征常量与 PBKDF2 调用
 """
+from paths import SO
+
 import struct
 
 from capstone import CS_ARCH_ARM64, CS_MODE_ARM, Cs
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
 data = open(SO, "rb").read()
 print("so size", len(data))
 

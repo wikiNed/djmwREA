@@ -304,25 +304,58 @@ emu-notes/                         模拟器阶段的操作脚本与结论
 evidence/                          hook 输出、maps、base 验证记录
 ```
 
-### 未入库的大文件（自行获取）
+### 大文件（已通过 Git LFS 入库）
 
-| 文件 | 大小 | 获取方式 |
+| 文件 | 大小 | 位置 |
 |---|---|---|
-| `TapDemons_v5.9.2.apk` | 132 MB | TapTap 搜索「点击魔王」下载 |
-| `libil2cpp.so` | 56 MB | 从 APK 的 `lib/arm64-v8a/` 解出。MD5 `3466135958c06c40a50d4fa8bd458d0e`，59058224 字节 |
-| `global-metadata.dat` | 10 MB | 从 APK 的 `assets/bin/Data/Managed/Metadata/` 解出 |
-| `dump.cs` | 22 MB / 666763 行 | 用 **Il2CppDumper** 对上面两个文件生成 |
-| `data.unity3d` | 20 MB | APK 的 `assets/bin/Data/` |
+| `TapDemons_v5.9.2.apk` | 132 MB | `files/TapDemons_v5.9.2.apk` |
+| `libil2cpp.so` | 56 MB | `files/libil2cpp.so`（MD5 `3466135958c06c40a50d4fa8bd458d0e`，59058224 字节） |
+| `global-metadata.dat` | 10 MB | `files/global-metadata.dat` |
+| `dump.cs` | 22 MB / 666763 行 | `files/dump.cs` |
+| `data.unity3d` | 20 MB | **不入库** — 用 `scripts/paths.py:unity_data_asset()` 从 APK 现取（已验证字节一致） |
 
 ```bash
-# dump.cs 生成
-Il2CppDumper.exe libil2cpp.so global-metadata.dat out_dir
-# 输出 out_dir/dump.cs
+git lfs install
+git clone https://github.com/wikiNed/djmwREA.git   # 会自动拉 LFS 对象
+git lfs pull                                        # 若被跳过则手动拉
+```
+
+```bash
+# dump.cs 若需重新生成
+Il2CppDumper.exe files/libil2cpp.so files/global-metadata.dat out_dir
 ```
 
 **注意**：`dump.cs` 里的 `RVA` 才是 hook 用的地址。
 `Offset` 是文件偏移，两者**不相等**（ELF 段间存在 `0x4000` / `0x8000` 的差值）。
 正确换算：`fileoff = RVA - p_vaddr + p_offset`，必须按 program header 分段算。
+
+### 脚本的路径解析（**克隆即可跑，无需改代码**）
+
+所有脚本统一走 `scripts/paths.py`，不再硬编码本机绝对路径：
+
+| 变量 | 默认位置 | 可用环境变量覆盖 |
+|---|---|---|
+| `SO` | `files/libil2cpp.so` | `IL2CPP_SO` |
+| `DUMP` | `files/dump.cs` | `IL2CPP_DUMP` |
+| `META` | `files/global-metadata.dat` | `IL2CPP_META` |
+| `APK` | `files/TapDemons_v5.9.2.apk` | `TAPDEMONS_APK` |
+| `SAVES` | `saves/` | `REA_SAVES` |
+| `EMU` | `emu/` | `REA_EMU` |
+
+派生文件：`ES3_FILE` = `emu/SaveFile.es3`，`MEMDUMP` = `emu/memdump.bin`，
+`SAVE_PLAIN` = `emu/save_plain.json`。
+Unity 资源包：`unity_data_asset()` — 优先 `assets/data.unity3d`，
+没有就从 APK 提取到 `work/assets/` 并缓存。
+
+工具链（不入库，需自行安装并设环境变量）：
+`$JAVA_HOME`（JDK 21+，Ghidra 用）、`$GHIDRA_INSTALL_DIR`（Ghidra 12.2+）。
+
+自检：
+
+```bash
+python tools/smoke_test.py        # 冒烟测试：路径解析 + 反汇编 + 未定义检查
+python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的常量
+```
 
 ---
 
@@ -356,7 +389,7 @@ Il2CppDumper.exe libil2cpp.so global-metadata.dat out_dir
 | 游戏进程名 | **`点击魔王（TapTap测试版）`**（中文，按 ASCII 匹配会失败） |
 | 存档路径 | `/sdcard/Android/data/game.taptap.HQGAMES.TapDemons/files/SaveFile.es3` |
 | Python（含 frida/UnityPy/capstone） | `C:\Users\86156\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe` |
-| JDK 25 | `E:\DSH\game\.rea-study\jdk`（Ghidra 用，可选） |
+| JDK 25 | `$JAVA_HOME` 指向的 JDK（本机工具，不入库，Ghidra 用) |
 | Ghidra 项目 | `E:\rea_ghidra\proj`，72117 个函数（但函数边界错位，实际用 capstone） |
 
 **存档写入时机**：`ShuJuDate.ziDongSaveTime = 180`（自动存档 180 秒）、

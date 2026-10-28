@@ -1,13 +1,11 @@
 """反汇编指定 RVA 区间的 ARM64 代码（capstone），自动解析 bl 目标并标注 dump.cs 方法名。"""
 
+from paths import DUMP, SO
+
 import re
 import sys
 
 from capstone import CS_ARCH_ARM64, CS_MODE_ARM, Cs
-
-SO = r"E:\DSH\game\.rea-study\lib\libil2cpp.so"
-DUMP = r"E:\DSH\game\.rea-study\dump\dump.cs"
-
 # RVA -> 文件偏移：arm64 的 .text 段 RVA==file offset（dump.cs 里 Offset 字段已验证）
 # 但从 dump 看 Offset 与 RVA 差 0x4000（.text 前有 0x4000 header）。
 FILE_DELTA = -0x4000  # dump.cs 里 RVA 0x18A7034 对应 Offset 0x18A3034，差 0x4000

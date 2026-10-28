@@ -6,10 +6,12 @@ Il2CppString (IL2CPP 标准布局):
   [0x10] int32_t     length
   [0x14] uint16_t    chars[length]
 """
+
+from paths import EMU
 import struct
 import sys
 
-path = sys.argv[1] if len(sys.argv) > 1 else r"E:\DSH\game\.rea-study\emu\mem2.bin"
+path = sys.argv[1] if len(sys.argv) > 1 else str(EMU / 'mem2.bin')
 data = open(path, "rb").read()
 print("dump:", path, len(data))
 
