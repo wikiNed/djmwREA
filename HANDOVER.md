@@ -350,6 +350,12 @@ Unity 资源包：`unity_data_asset()` — 优先 `assets/data.unity3d`，
 工具链（不入库，需自行安装并设环境变量）：
 `$JAVA_HOME`（JDK 21+，Ghidra 用）、`$GHIDRA_INSTALL_DIR`（Ghidra 12.2+）。
 
+**验证「干净机器」行为**：`paths.py` 里保留了一条指向开发机
+`E:\DSH\game\.rea-study` 的兜底路径，方便原作者本机继续用。
+在你自己机器上验证可移植性时，设 `REA_NO_LEGACY=1` 禁用这条兜底——
+否则兜底会掩盖隐藏依赖，让你误以为一切正常。
+`tools/smoke_test.py` 默认就带这个变量跑。
+
 自检：
 
 ```bash

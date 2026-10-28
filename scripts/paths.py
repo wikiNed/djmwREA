@@ -15,8 +15,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 FILES = REPO / "files"
 
-# 开发机上的原始位置，仅作最后兜底，方便原作者本机继续用
+# 开发机上的原始位置，仅作最后兜底，方便原作者本机继续用。
+# 设 REA_NO_LEGACY=1 可禁用这个兜底，用来验证「在干净机器上也能跑」——
+# 否则本机验证会被兜底掩盖，看不出是不是真有隐藏依赖。
 _LEGACY = Path(r"E:\DSH\game\.rea-study")
+_USE_LEGACY = os.environ.get("REA_NO_LEGACY", "") not in ("1", "true", "yes")
 
 
 def _pick(rel: str, env: str, legacy: str | None = None) -> Path:
@@ -30,7 +33,7 @@ def _pick(rel: str, env: str, legacy: str | None = None) -> Path:
     p = FILES / rel
     if p.exists():
         return p
-    if legacy:
+    if legacy and _USE_LEGACY:
         lp = _LEGACY / legacy
         if lp.exists():
             return lp
@@ -44,7 +47,7 @@ def _pick_dir(rel: str, env: str, legacy: str | None = None) -> Path:
     p = REPO / rel
     if p.exists():
         return p
-    if legacy:
+    if legacy and _USE_LEGACY:
         lp = _LEGACY / legacy
         if lp.exists():
             return lp
@@ -81,14 +84,14 @@ def unity_data_asset(cache_dir: Path | None = None) -> Path:
     """
     import zipfile
 
-    candidates = [
-        REPO / "assets" / "data.unity3d",
-        _LEGACY / "assets" / "data.unity3d",
-    ]
+    candidates = [REPO / "assets" / "data.unity3d"]
+    if _USE_LEGACY:
+        candidates.append(_LEGACY / "assets" / "data.unity3d")
     for c in candidates:
         if c.exists():
             return c
 
+    # work/ 下的缓存优先于重新解包（解 20MB 每次都要几秒）
     out_dir = cache_dir or (WORK / "assets")
     out = out_dir / "data.unity3d"
     if out.exists():

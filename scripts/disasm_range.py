@@ -26,8 +26,31 @@ def build_rva_map():
 
 
 def main():
-    start = int(sys.argv[1], 16) if not sys.argv[1].startswith("0x") else int(sys.argv[1], 16)
-    size = int(sys.argv[2], 16) if not sys.argv[2].startswith("0x") else int(sys.argv[2], 16)
+    if len(sys.argv) < 2:
+        print("用法: python scripts/disasm_range.py <起始RVA> [字节数]")
+        print()
+        print("  起始RVA  十六进制，可带或不带 0x 前缀，例如 0x1752288")
+        print("  字节数   默认 64，十六进制或十进制均可")
+        print()
+        print("示例:")
+        print("  python scripts/disasm_range.py 0x1752288 16")
+        print("      -> ES3Settings..ctor 里写 encryptionPassword 的那两条指令")
+        print()
+        print("自动把 bl/b 目标反查 files/dump.cs 并标注函数名。")
+        sys.exit(2)
+
+    def parse_hex(s: str) -> int:
+        # 带 0x 前缀按 16 进制解析；纯数字串先按 10 进制，失败再按 16 进制，
+        # 避免 "16" 被当成 0x16 的意外。
+        if s.lower().startswith("0x"):
+            return int(s, 16)
+        try:
+            return int(s, 10)
+        except ValueError:
+            return int(s, 16)
+
+    start = int(sys.argv[1], 16) if not sys.argv[1].lower().startswith("0x") else int(sys.argv[1], 16)
+    size = parse_hex(sys.argv[2]) if len(sys.argv) > 2 else 64
     rvamap = build_rva_map()
     inv = {}
     for r, s in rvamap.items():

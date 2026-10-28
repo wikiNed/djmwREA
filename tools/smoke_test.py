@@ -9,10 +9,8 @@
 from __future__ import annotations
 
 import os
-import shutil
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -28,26 +26,30 @@ def run(cmd: list[str], env: dict, label: str) -> tuple[bool, str]:
 
 
 def main() -> int:
-    # 模拟「干净机器」：把 legacy 路径指向不存在的目录
+    # 模拟「干净机器」：禁掉 paths.py 里指向开发机 .rea-study 的兜底。
+    # 不这样做的话，本机验证会被兜底掩盖，看不出是否真有隐藏依赖。
     env = dict(os.environ)
     env["PYTHONIOENCODING"] = "utf-8"
-    fake = Path(tempfile.mkdtemp(prefix="no_legacy_"))
-    # 通过临时改写禁止回退：直接设 REA_* 到不存在路径会让脚本报错，
-    # 所以这里改测「仓库内文件足够」——把 cwd 换到仓库、不设任何 REA_* 变量，
-    # 并验证 paths 解析结果确实落在 REPO 内。
+    env["REA_NO_LEGACY"] = "1"
     env.pop("REA_SAVES", None)
+    env.pop("REA_EMU", None)
     env.pop("IL2CPP_SO", None)
     env.pop("IL2CPP_DUMP", None)
+    env.pop("IL2CPP_META", None)
+    env.pop("TAPDEMONS_APK", None)
 
     print("=" * 60)
     print("冒烟测试")
     print("=" * 60)
 
+    repo_files = (REPO / "files").resolve()
     tests = [
+        # 断言不该写死仓库目录名（克隆目录可能叫别的名字），
+        # 只验证解析结果落在 <repo>/files/ 之下。
         ("paths 解析落在仓库内", [PY, "-X", "utf8", "-c",
             "import sys; sys.path.insert(0, 'scripts'); import paths;"
-            "assert 'djmwREA' in str(paths.SO) or 'files' in str(paths.SO), paths.SO;"
-            "assert 'djmwREA' in str(paths.DUMP), paths.DUMP;"
+            f"assert paths.SO.resolve().parent == paths.Path(r'{repo_files}'), paths.SO;"
+            f"assert paths.DUMP.resolve().parent == paths.Path(r'{repo_files}'), paths.DUMP;"
             "print('SO  =', paths.SO); print('DUMP=', paths.DUMP)"]),
         ("disasm_range 反汇编口令写入点", [PY, "-X", "utf8", "scripts/disasm_range.py",
             "0x1752288", "8"]),
@@ -66,7 +68,6 @@ def main() -> int:
     print("=" * 60)
     passed = sum(1 for _, ok, _ in results if ok)
     print(f"结果: {passed}/{len(results)} 通过")
-    shutil.rmtree(fake, ignore_errors=True)
     return 0 if passed == len(results) else 1
 
 
