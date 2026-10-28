@@ -38,13 +38,44 @@ python scripts/savedit.py baoshiall saves/playerDate_03.json --level 99
 
 `saves/playerDate_*.json` 是官方放出的**明文**演示存档，可直接编辑。
 
+实测输出（`playerDate_03.json`，497 颗宝石）：
+
+```
+各英雄宝石数 (HeroID, 名字, 颗数):
+   0   莉安卡      133
+   1   妮娅        98
+   ...
+本次强化宝石总数: 497
+段9 统计已重算 (品阶 7 项 + 品质 6 项)，最大品质计数: 497
+```
+
 ### 解密真实存档（需要先拿到口令）
 
 ```python
-from scripts.es3decrypt import decrypt
-plain = decrypt('saves/SaveFile.es3', password)
+from es3decrypt import decrypt_or_raise
+
+plain = decrypt_or_raise('saves/SaveFile.es3', password)
 # plain = b'{"DateID":0,...}${"DateID":1,...}$...'
 ```
+
+或命令行（可一次试多个口令）：
+
+```bash
+python scripts/es3decrypt.py saves/SaveFile.es3 "口令1" "口令2"
+```
+
+**口令错误时 `decrypt_or_raise()` 会抛 `PasswordError`**，不会静默返回乱码
+（AES-CBC 用错口令也会解出等长字节，所以必须校验明文形态）。
+用 `check_password(path, pw)` 可快速判定单个口令。
+
+### 依赖
+
+| 用途 | 包 |
+|---|---|
+| `savedit.py` / `es3decrypt.py` | `pycryptodome` |
+| `disasm_range.py` 反汇编 | `capstone` |
+| `unitypy_*.py` 读资源 | `UnityPy` |
+| `frida_*.py` 运行时 hook | `frida` / `frida-tools` |
 
 ### 在自己的 ARM64 真机上取口令
 
