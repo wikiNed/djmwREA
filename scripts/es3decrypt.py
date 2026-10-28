@@ -28,11 +28,18 @@ def _kdf(password: str, salt: bytes) -> bytes:
 
 
 def looks_plain(pt: bytes) -> bool:
-    """ES3 明文是 `$` 拼接的 JSON，首字符必为 { 或 [（可能带 UTF-8 BOM）。"""
+    """判断明文是否像 ES3 的 JSON。
+
+    注意：ES3 写 string 类型的顶层值时，文件开头就是 `key" : {...`，
+    **没有前导 `{`**（`{` 被 ES3 自己的写入器丢掉了，见 docs/10）。
+    所以不能只看首字符；这里改为判断"前 64 字节内出现 `" : "` 或首字符是 {/["。
+    """
     if not pt:
         return False
-    head = pt[:8].lstrip(b"\xef\xbb\xbf").lstrip()
-    return head.startswith(b"{") or head.startswith(b"[")
+    head = pt[:64].lstrip(b"\xef\xbb\xbf").lstrip()
+    if head.startswith(b"{") or head.startswith(b"["):
+        return True
+    return b'" : ' in head
 
 
 def _unpad(pt: bytes) -> bytes:

@@ -23,12 +23,28 @@
     python savedit.py tree      <archive> [--jihuo N --huangjin N --year N]
                                                                      # 黄金树永久
     python savedit.py set       <archive> <path> <json值> [--out FILE]
+    python savedit.py equip     <archive> [--level N] [--max N]      # 装备等级+LvMax
+    python savedit.py heroes    <archive> [--level N --shenqi N --moshu N
+                                          --autoskill N]              # 英雄/神器/魔石
+    python savedit.py currency  <archive> [--zuanshi N --jinyan N
+                                          --baoshi N --mowu N]        # 钻石/经验/碎片
+    python savedit.py resources <archive> [--mucai N --kuangshi N --jinhua N
+                                          --yaoshi N --siliao N]      # 木材/矿石/进化石
+    python savedit.py level     <archive> [--guanka N --taplevel N
+                                          --jianyuan N --famuchang N
+                                          --kuangshichang N]          # 各类关卡等级
+    python savedit.py chengjiu  <archive> [--level N]                 # 成就等级
 
 path 语法: 段号.字段[.子字段][.数组下标], 例如
     9.BaoShiSuiPian
     6.SuoYouChongWuDate.0.ChongWuLevel
     11.GuoQiTime
     13.LiBaoIDs
+
+密文存档: 本工具只吃解密后的 14 段明文 JSON。要处理 .es3 请先
+    python scripts/es3save.py unpack saves/SaveFile.es3 out.json
+改完再
+    python scripts/es3save.py pack out.json saves/SaveFile.es3
 """
 
 import json
@@ -406,6 +422,178 @@ def op_baoshi_recount(segs):
     return max(xy) if xy else 0
 
 
+def op_zhuangbei(segs, level=None, maxlevel=None, only_below=False):
+    """装备等级强化：段1 每个英雄的 HeroZhuangBeis。
+
+    结构（dump.cs:263040 ZhuangBeiDate TypeDefIndex 3058）：
+        uint   ZhuangBeiID;         // 0x10
+        uint   ZhuangBeiLevel;      // 0x14  当前等级
+        uint   ZhuangBeiLevelMax;   // 0x18  等级上限
+        ulong[] XiangQianBaoShiID;  // 0x20  已镶嵌的宝石 ID（5 个孔）
+
+    【实证】三份官方存档里 Level 与 LevelMax **恒相等**（playerDate_02/03 全量比对），
+    唯一例外是 _01 里 Zero 英雄的 200/230（培养中途的状态）。
+    所以只抬 Level 不抬 LevelMax，会造出"超过上限"的非法态 —— 两个必须一起抬。
+
+    返回 (总件数, 改动件数, 涉及英雄数)。
+    """
+    seg1 = _seg(segs, 1)
+    total = 0
+    changed = 0
+    heroes = set()
+    for h in seg1.get("HerosDates") or []:
+        hit = False
+        for z in h.get("HeroZhuangBeis") or []:
+            total += 1
+            cur = int(z.get("ZhuangBeiLevel", 0))
+            cmax = int(z.get("ZhuangBeiLevelMax", 0))
+            if only_below and cur >= maxlevel:
+                continue
+            new = cur if level is None else max(cur, int(level))
+            newmax = cmax if maxlevel is None else max(cmax, int(maxlevel))
+            if new != cur or newmax != cmax:
+                z["ZhuangBeiLevel"] = new
+                z["ZhuangBeiLevelMax"] = newmax
+                changed += 1
+                hit = True
+        if hit:
+            heroes.add(h.get("HeroID"))
+    return total, changed, len(heroes)
+
+
+def op_heroes(segs, level=None, shenqi=None, moshu=None, auto_skill=None):
+    """英雄本体强化：段1 每个 HeroDate。
+
+    结构（dump.cs:262999 HeroDate TypeDefIndex 3056）：
+        uint   HeroID;             // 0x10
+        string HeroName;           // 0x18
+        uint   HeroLevel;          // 0x20  ★ 只能上调
+        uint[] HeroPiFus;          // 0x28  已解锁皮肤
+        uint   HeroPiFuXuanZeID;   // 0x30
+        ZhuangBeiDate[] HeroZhuangBeis;  // 0x38
+        ShenQiBaoShiClass[] HeroBaoShis; // 0x40
+        uint   HeroShenQiLevel;    // 0x48  神器等级
+        MoShiJiNengDate[] MoShiJiNengs;  // 0x50
+        uint   ZiDongJiNengID;     // 0x58
+
+    【重要】**不要下调 HeroLevel**。
+    三份官方存档的最高英雄等级是 33 / 51 / 60，但游戏里还卡着
+    `JingYan`（经验）这条腿；单改等级不会补经验，可能被读档逻辑判为
+    "等级超出经验可解释范围" 而回退。保持 max() 语义最稳。
+    """
+    seg1 = _seg(segs, 1)
+    rows = []
+    for h in seg1.get("HerosDates") or []:
+        old = h.get("HeroLevel", 0)
+        if level is not None:
+            h["HeroLevel"] = max(int(old), int(level))
+        if shenqi is not None:
+            h["HeroShenQiLevel"] = max(int(h.get("HeroShenQiLevel", 0)), int(shenqi))
+        if moshu is not None:
+            for m in h.get("MoShiJiNengs") or []:
+                m["MoShiJiNengLevel"] = max(
+                    int(m.get("MoShiJiNengLevel", 0)), int(moshu))
+        if auto_skill is not None:
+            h["ZiDongJiNengID"] = int(auto_skill)
+        rows.append((h.get("HeroID"), h.get("HeroName"), old,
+                     h.get("HeroLevel"), h.get("HeroShenQiLevel")))
+    return rows
+
+
+def op_currency(segs, zuanshi=None, jinyan=None, baoshi=None, mowu=None):
+    """货币/经验：段13（钻石、经验）、段9（宝石碎片）、段10（魔物碎片）。"""
+    seg13 = _seg(segs, 13)
+    before = {k: seg13.get(k) for k in ("ZuanShi", "JingYan")}
+    if zuanshi is not None:
+        seg13["ZuanShi"] = int(zuanshi)
+    if jinyan is not None:
+        seg13["JingYan"] = int(jinyan)
+    if baoshi is not None:
+        _seg(segs, 9)["BaoShiSuiPian"] = int(baoshi)
+    if mowu is not None:
+        _seg(segs, 10)["MoWuSuiPian"] = int(mowu)
+    after = {k: seg13.get(k) for k in ("ZuanShi", "JingYan")}
+    return before, after
+
+
+def op_resources(segs, mucai=None, kuangshi=None, jinhua=None,
+                 yaoshi=None, siliao=None):
+    """资源：段2（木材/矿石）、段6（六种进化石/宠物饲料）、段5（盗贼钥匙）。
+
+    Date_ZiYuan（dump.cs:263070）的 MuCaiShuLiang / KuangShiShuLiang 是 ulong，
+    另有 *_LiXianKu 是离线累积池 —— 这里**同步抬离线池**，否则一读档
+    "离线收益"会把主数值覆盖回去。
+    """
+    seg2 = _seg(segs, 2)
+    out = {}
+    if mucai is not None:
+        v = int(mucai)
+        out["MuCaiShuLiang"] = (seg2.get("MuCaiShuLiang"), v)
+        seg2["MuCaiShuLiang"] = v
+        seg2["MuCaiShuLiang_LiXianKu"] = v
+    if kuangshi is not None:
+        v = int(kuangshi)
+        out["KuangShiShuLiang"] = (seg2.get("KuangShiShuLiang"), v)
+        seg2["KuangShiShuLiang"] = v
+        seg2["KuangShiShuLiang_LiXianKu"] = v
+    if jinhua is not None:
+        seg6 = _seg(segs, 6)
+        for k in ("JinHuaShi_Feng", "JinHuaShi_Huo", "JinHuaShi_Shui",
+                  "JinHuaShi_Di", "JinHuaShi_Guang", "JinHuaShi_An"):
+            out[k] = (seg6.get(k), int(jinhua))
+            seg6[k] = int(jinhua)
+    if siliao is not None:
+        seg6 = _seg(segs, 6)
+        out["ChongWuSiLiao"] = (seg6.get("ChongWuSiLiao"), int(siliao))
+        seg6["ChongWuSiLiao"] = int(siliao)
+    if yaoshi is not None:
+        seg5 = _seg(segs, 5)
+        out["DaoZeiYaoShi"] = (seg5.get("DaoZeiYaoShi"), int(yaoshi))
+        seg5["DaoZeiYaoShi"] = int(yaoshi)
+    return out
+
+
+def op_level(segs, guanka=None, taplevel=None, jianyuan=None, famuchang=None,
+             kuangshichang=None):
+    """关卡/家园/伐木场/矿石场等级：段8、段0、段2。"""
+    out = {}
+    if guanka is not None:
+        s8 = _seg(segs, 8)
+        out["GuanKaLevel"] = (s8.get("GuanKaLevel"), int(guanka))
+        s8["GuanKaLevel"] = int(guanka)
+    if taplevel is not None:
+        s0 = _seg(segs, 0)
+        out["TapLevel"] = (s0.get("TapLevel"), int(taplevel))
+        s0["TapLevel"] = int(taplevel)
+    s2 = _seg(segs, 2)
+    for key, val in (("JiaYuanLevel", jianyuan),
+                     ("FaMuChangLevel", famuchang),
+                     ("KuangShiChangLevel", kuangshichang)):
+        if val is not None:
+            out[key] = (s2.get(key), int(val))
+            s2[key] = int(val)
+    return out
+
+
+def op_chengjiu(segs, level=99):
+    """成就等级：段4 SuoYouChengJiu（Date_ChengJiu 3062）。"""
+    seg4 = _seg(segs, 4)
+    lst = seg4.get("SuoYouChengJiu") or []
+    changed = 0
+    for it in lst:
+        if int(it.get("ChengJiuLevel", 0)) < int(level):
+            it["ChengJiuLevel"] = int(level)
+            changed += 1
+    return len(lst), changed
+
+
+def _seg(segs, did):
+    for s in segs:
+        if int(s.get("DateID", -1)) == did:
+            return s
+    raise RuntimeError("找不到 DateID=%d 的段" % did)
+
+
 def op_pets(segs, level=60, jinhua=4, jinjie=10, hp=9999, dmg=9999):
     """宠物强化：提升段6 全部槽位的属性。
 
@@ -457,15 +645,42 @@ def op_pets(segs, level=60, jinhua=4, jinjie=10, hp=9999, dmg=9999):
 # ---------------------------------------------------------------- CLI
 
 def read_file(p):
+    """读存档。命中 .es3 就自动走两层解密（docs/10 + docs/11），
+    返回 14 段明文 UTF-8。这样所有子命令对 .es3 与 .json 一视同仁。
+    """
     with open(p, "rb") as f:
-        return f.read()
+        raw = f.read()
+    if p.lower().endswith(".es3") or is_es3_blob(raw):
+        try:
+            from es3save import read_save
+        except ImportError:  # 脚本被拷到别处单独跑
+            print("!! 这是 ES3 密文，需要同目录的 es3save.py 才能解密")
+            raise
+        return read_save(p)
+    return raw
+
+
+def is_es3_blob(raw):
+    """粗判是否为 ES3 密文：长度 = 32 + 16n，且第 17..32 字节像 IV（非全零）。"""
+    if len(raw) < 48 or (len(raw) - 32) % 16:
+        return False
+    head = raw[:8]
+    # 明文存档一定以 '{' 或 '$' 分隔的对象开头，密文则完全随机
+    if head.lstrip().startswith(b"{") or head.lstrip()[:1] in (b"0", b"1"):
+        return False
+    return True
 
 
 def write_file(p, text, bak=True):
+    """写存档。目标后缀是 .es3 就重新走两层加密（新随机 salt/iv）。"""
     if bak and os.path.exists(p):
         shutil.copy2(p, p + ".bak")
-    with open(p, "w", encoding="utf-8", newline="") as f:
-        f.write(text)
+    if p.lower().endswith(".es3"):
+        from es3save import write_save
+        write_save(p, text.encode("utf-8"), bak=False)
+        return p
+    with open(p, "wb") as f:
+        f.write(text.encode("utf-8"))
     return p
 
 
@@ -497,6 +712,45 @@ def cmd_roundtrip(archive):
     return 1
 
 
+def verify_archive(text):
+    """写回前自检：必须是 14 段、每段可独立解析、DateID 齐全且唯一。
+
+    返回 None 表示通过，否则返回一句人类可读的失败原因。
+    这个检查比 roundtrip 更严格 —— roundtrip 只能保证"我解析再序列化"
+    这一步没走样，而 verify_archive 保证"产出物本身是合法存档"。
+    """
+    parts = [p for p in text.split(SEP) if p.strip()]
+    if len(parts) != NUM_SEGMENTS:
+        return "段数 %d != %d" % (len(parts), NUM_SEGMENTS)
+    ids = []
+    for i, p in enumerate(parts):
+        try:
+            obj = json.loads(p)
+        except Exception as e:  # noqa: BLE001
+            return "第 %d 段 JSON 解析失败: %s" % (i, e)
+        if not isinstance(obj, dict):
+            return "第 %d 段不是对象: %s" % (i, type(obj).__name__)
+        if "DateID" not in obj:
+            return "第 %d 段缺 DateID" % i
+        ids.append(int(obj["DateID"]))
+    if ids != list(range(NUM_SEGMENTS)):
+        return "DateID 序列异常: %s" % ids
+    return None
+
+
+def _parse_opts(args, opts):
+    """把 `--key N` 形式的参数就地填进 opts（键必须是 opts 已有的）。"""
+    i = 0
+    while i < len(args):
+        a = args[i]
+        if a.startswith("--") and a[2:] in opts:
+            opts[a[2:]] = int(args[i + 1])
+            i += 2
+        else:
+            i += 1
+    return opts
+
+
 def main(argv):
     if len(argv) < 3:
         print(__doc__)
@@ -508,6 +762,9 @@ def main(argv):
         i = args.index("--out")
         out = args[i + 1]
         args = args[:i] + args[i + 2:]
+    dry_run = "--dry-run" in args
+    if dry_run:
+        args = [a for a in args if a != "--dry-run"]
 
     if cmd == "info":
         cmd_info(archive)
@@ -589,11 +846,72 @@ def main(argv):
         print("本次强化宝石总数: %d" % touched)
         print("段9 统计已重算 (品阶 7 项 + 品质 6 项)，最大品质计数: %d" % peak)
 
+    elif cmd == "equip":
+        opts = {"level": None, "max": None}
+        _parse_opts(args, opts)
+        total, changed, nhero = op_zhuangbei(
+            segs, opts["level"], opts["max"] or opts["level"])
+        print("装备总件数 %d，本次改动 %d 件（涉及 %d 个英雄）" % (total, changed, nhero))
+        print("  参数: Level=%s LevelMax=%s" % (opts["level"], opts["max"] or opts["level"]))
+
+    elif cmd == "heroes":
+        opts = {"level": None, "shenqi": None, "moshu": None, "autoskill": None}
+        _parse_opts(args, opts)
+        rows = op_heroes(segs, opts["level"], opts["shenqi"],
+                         opts["moshu"], opts["autoskill"])
+        print("英雄 (ID, 名字, 旧Lv, 新Lv, 神器Lv):")
+        for r in rows:
+            print("   %-3s %-8s %3s -> %-3s  神器%s" % r)
+
+    elif cmd == "currency":
+        opts = {"zuanshi": None, "jinyan": None, "baoshi": None, "mowu": None}
+        _parse_opts(args, opts)
+        before, after = op_currency(segs, **opts)
+        print("段13 前: %s" % before)
+        print("段13 后: %s" % after)
+        if opts["baoshi"] is not None:
+            print("段9 BaoShiSuiPian -> %s" % opts["baoshi"])
+        if opts["mowu"] is not None:
+            print("段10 MoWuSuiPian -> %s" % opts["mowu"])
+
+    elif cmd == "resources":
+        opts = {"mucai": None, "kuangshi": None, "jinhua": None,
+                "yaoshi": None, "siliao": None}
+        _parse_opts(args, opts)
+        res = op_resources(segs, **opts)
+        for k, (a, b) in res.items():
+            print("   %-24s %s -> %s" % (k, a, b))
+
+    elif cmd == "level":
+        opts = {"guanka": None, "taplevel": None, "jianyuan": None,
+                "famuchang": None, "kuangshichang": None}
+        _parse_opts(args, opts)
+        res = op_level(segs, **opts)
+        for k, (a, b) in res.items():
+            print("   %-20s %s -> %s" % (k, a, b))
+
+    elif cmd == "chengjiu":
+        opts = {"level": 99}
+        _parse_opts(args, opts)
+        total, changed = op_chengjiu(segs, opts["level"])
+        print("成就总数 %d，本次上调 %d 条" % (total, changed))
+
     else:
         print(f"未知命令: {cmd}")
         return 2
 
     new_text = dump(segs)
+
+    # ---- 写回前自检：新存档必须仍是 14 段、且每段能独立 json 解析 ----
+    bad = verify_archive(new_text)
+    if bad:
+        print("!! 自检失败，拒绝写回: %s" % bad)
+        return 1
+
+    if dry_run:
+        print("[--dry-run] 未写盘。生成 %d 字符" % len(new_text))
+        return 0
+
     dest = out or archive
     write_file(dest, new_text)
     print(f"已写入: {dest}  ({len(new_text)} 字符)")

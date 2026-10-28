@@ -56,8 +56,18 @@ def main():
     for r, s in rvamap.items():
         inv.setdefault(r, s)
 
+    # 修复：原来的 f.seek(start + FILE_DELTA) 只对 .text 段成立。
+    # 正确的换算要走 PT_LOAD：.text 的文件头 0x4000 字节被计入 RVA，
+    # 所以 .text 里 RVA-0x4000，但 .data/.got 的偏差不同，用 va2off 统一。
+    from rela_resolve import Elf
+
+    elf = Elf(SO)
+    try:
+        off = elf.va2off(start)
+    except ValueError:
+        off = start + FILE_DELTA
     with open(SO, "rb") as f:
-        f.seek(start + FILE_DELTA)
+        f.seek(off)
         code = f.read(size)
 
     md = Cs(CS_ARCH_ARM64, CS_MODE_ARM)
