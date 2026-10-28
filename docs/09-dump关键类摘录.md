@@ -4,6 +4,28 @@
 > 原文行号为完整 dump.cs 中的行号，可用 Il2CppDumper 重新生成后对照。
 
 
+## 关键方法索引（RVA -> dump.cs 行号）
+
+| RVA | dump.cs 行 | 签名 |
+|---|---|---|
+| `0x175226C` | 563937 | `public void .ctor(ES3.EncryptionType encryptionType, string encryptionPassword) { }` |
+| `0x1751F88` | 563944 | `public void .ctor(bool applyDefaults) { }` |
+| `0x1782D44` | 577436 | `public override void Encrypt(Stream input, Stream output, string password, int bufferSize) { }` |
+| `0x178329C` | 577439 | `public override void Decrypt(Stream input, Stream output, string password, int bufferSize) { }` |
+| `0x17A64D8` | 251988 | `public void .ctor() { }` |
+| `0x17A5D84` | 251910 | `public static SaveManager get_Instance() { }` |
+| `0x17A55B0` | 251913 | `public bool IsCunZai(string key) { }` |
+| `0x18A7034` | 262820 | `public void SaveGame() { }` |
+| `0x18A9374` | 262838 | `public void LoadGame() { }` |
+| `0x18A8A68` | 262876 | `private string Encrypt(string SourceText, string key) { }` |
+| `0x27A87E0` | 79554 | `public void .ctor(string password, byte[] salt, int iterations) { }` |
+| `0x27A89D8` | 79563 | `public override byte[] GetBytes(int cb) { }` |
+| `0x27A9300` | 79739 | `public void .ctor(Stream stream, ICryptoTransform transform, CryptoStreamMode mode) { }` |
+
+> 注：`dump.cs` 的 `RVA` 与文件偏移 `Offset` **不相等**（ELF 段间有 0x4000 / 0x8000 差值）。
+> hook 用 `RVA`；静态读文件用 `Offset`。
+
+---
 ## SaveManager  (line 251899-252000)
 
 ```csharp
