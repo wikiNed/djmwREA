@@ -234,6 +234,63 @@ def _plain_sample():
     return None
 
 
+def test_salt_iv_reuse():
+    r"""5. salt/iv 复用 —— 2026-10-29 真机黑屏事故的回归。
+
+    事故链：改档时用随机 salt/iv 重封 → 游戏侧 `ES3.KeyExists` 抛
+    `FormatException` → `LanguageDataManager.Load()` 中断
+    → `ChuangJianPlayer.Start()` 协程链断 → 启动画面之后永久黑屏。
+
+    这里的四项断言对应四个独立失效面，缺一不可：
+      1. 复用后 salt/iv 逐字节等于原档；
+      2. 桶的 string key 与 `_Key` 计数器原样继承（换 key = 换存档槽）；
+      3. `reuse_outer=False` 确实会换 salt（否则第 1 项是假绿）；
+      4. 一字节不改地重封，必须还原出与原档完全相同的文件。
+    """
+    print("[5] salt/iv 复用（黑屏事故回归）")
+    src = os.path.join(ROOT, "saves", "SaveFile_orig.es3")
+    if not os.path.exists(src):
+        print("  (跳过: 没有 SaveFile_orig.es3)")
+        return
+
+    orig = open(src, "rb").read()
+    plain = es3save.read_save(src)
+    o_salt, o_iv = es3save.salt_iv_of(orig)
+
+    with tmpdir() as td:
+        # 5.1 复用原档 outer 重封
+        same = os.path.join(td, "same.es3")
+        open(same, "wb").write(orig)
+        es3save.write_save(same, plain, bak=False)
+        reblob = open(same, "rb").read()
+        n_salt, n_iv = es3save.salt_iv_of(reblob)
+        check("重封后 salt 复用", n_salt == o_salt, "%s vs %s"
+              % (n_salt.hex(), o_salt.hex()))
+        check("重封后 iv 复用", n_iv == o_iv, "%s vs %s"
+              % (n_iv.hex(), o_iv.hex()))
+
+        # 5.2 桶布局继承：条目集合与顺序必须与原档完全一致
+        _, o_obj = es3save.parse_bucket(es3save.decrypt_bytes(orig))
+        _, n_obj = es3save.parse_bucket(es3save.decrypt_bytes(reblob))
+        check("桶条目集合继承", list(o_obj) == list(n_obj),
+              "%s\n      vs %s" % (list(o_obj), list(n_obj)))
+        o_key = [k for k, v in o_obj.items()
+                 if isinstance(v, dict) and v.get("__type") == "string"]
+        n_key = [k for k, v in n_obj.items()
+                 if isinstance(v, dict) and v.get("__type") == "string"]
+        check("string key 继承", o_key == n_key, "%s vs %s" % (o_key, n_key))
+
+        # 5.3 负例：显式关掉复用必须换 salt（防第 1 项假绿）
+        fresh = os.path.join(td, "fresh.es3")
+        es3save.write_save(fresh, plain, bak=False, reuse_outer=False)
+        f_salt, f_iv = es3save.salt_iv_of(open(fresh, "rb").read())
+        check("reuse_outer=False 会换 salt", f_salt != o_salt)
+
+        # 5.4 零改动往返必须逐字节还原原档
+        check("零改动重封 == 原档", reblob == orig,
+              "%d vs %d 字节" % (len(reblob), len(orig)))
+
+
 def run(argv):
     p = subprocess.run([sys.executable, os.path.join(SCRIPTS, "savedit.py")] + argv,
                        capture_output=True, text=True, encoding="utf-8",
@@ -256,6 +313,7 @@ if __name__ == "__main__":
     test_commands()
     test_es3_transparent()
     test_variants()
+    test_salt_iv_reuse()
     print()
     if FAILS:
         print("FAILED %d: %s" % (len(FAILS), FAILS))

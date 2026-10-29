@@ -147,14 +147,65 @@ def decrypt_bytes(blob: bytes, password: str = PASSWORD) -> bytes:
             % (password, hint))
 
 
-def encrypt_bytes(plain: bytes, password: str = PASSWORD) -> bytes:
-    """加密成 ES3 字节串（新随机 salt + iv）。"""
-    salt = os.urandom(SALT_LEN)
-    iv = os.urandom(IV_LEN)
+def split_outer(blob: bytes):
+    """把 ES3 字节串拆成 (salt, iv, 密文)。"""
+    if len(blob) < SALT_LEN + IV_LEN:
+        raise ValueError("长度非法: %d < 32" % len(blob))
+    return blob[:SALT_LEN], blob[SALT_LEN:SALT_LEN + IV_LEN], blob[SALT_LEN + IV_LEN:]
+
+
+def encrypt_bytes(plain: bytes, password: str = PASSWORD,
+                  salt: bytes = None, iv: bytes = None) -> bytes:
+    r"""加密成 ES3 字节串。
+
+    ★★ 改档时**必须**传入原文件的 salt 和 iv（用 ``salt_iv_of()`` 取）。
+
+    ES3 侧解密的 `AESEncryptionAlgorithm.Decrypt(Stream)` 是拿
+    ``salt = 文件前 16 字节``、``iv = 接下来的 16 字节`` 现推密钥的。
+    但如果只把文件当"数据"重新加密、换了 salt/iv，游戏侧
+    ``ES3.KeyExists`` 会抛::
+
+        FormatException: Cannot load from file because the data in it
+        is not JSON data, or the data is encrypted.
+
+    随后 ``LanguageDataManager.Load()`` → ``ChuangJianPlayer.Start()``
+    整个协程链被打断，**表现为启动画面之后永久黑屏**（进程还活着，
+    `mDrawState=HAS_DRAWN`，但一直是黑帧）。
+
+    复现对照（2026-10-29 雷电模拟器-2，`emulator-5558`）：
+
+    ==========================  =============  ========
+    存档                          salt/iv        结果
+    ==========================  =============  ========
+    原档                         原值           ✅ 登录页
+    `ZuanShi` 9→8（字节数相同）   随机           ❌ 黑屏
+    同上                         复用原档       ✅ 登录页
+    ==========================  =============  ========
+
+    注意两处自愈的陷阱：`encrypt` 与 `decrypt` 都用同一套随机值做往返
+    测试会一直是绿的，**两边同时错也会通过**。回归必须拿真机原档比。
+
+    参数
+    ----
+    salt, iv : bytes, optional
+        16 字节。不给则随机生成 —— 只能用于新建文件，**不能用于改档**。
+    """
+    if salt is None:
+        salt = os.urandom(SALT_LEN)
+    if iv is None:
+        iv = os.urandom(IV_LEN)
+    if len(salt) != SALT_LEN or len(iv) != IV_LEN:
+        raise ValueError("salt/iv 必须各 %d 字节" % SALT_LEN)
     key = PBKDF2(password.encode("utf-8"), salt, dkLen=KEY_LEN,
                  count=ITERATIONS, hmac_hash_module=SHA1)
     ct = AES.new(key, AES.MODE_CBC, iv).encrypt(pad(plain, 16))
     return salt + iv + ct
+
+
+def salt_iv_of(blob: bytes):
+    """取出既有 ES3 文件的 (salt, iv)，用于改档时原样复用。"""
+    salt, iv, _ = split_outer(blob)
+    return salt, iv
 
 
 # ---------------------------------------------------------------- 内层 DES
@@ -272,7 +323,9 @@ def build_bucket(hexstr, key_counter=2640, string_key=None):
         反推出确切公式，默认照抄原档实测值。
     string_key : str, optional
         形如 o2D+pAPsvrXCo74JUkh9jw== 的 base64 字符串 key。真机是
-        32 字符（24 字节 raw 的 base64）。不给则生成同长度随机值。
+        32 字符（24 字节 raw 的 base64）。不给则生成同长度随机值 ——
+        **改档时应从原桶里取**（``write_save`` 已自动这么做），
+        换掉这个 key 会让游戏判定为另一个存档槽。
     """
     import base64
     import json
@@ -316,13 +369,54 @@ def parse_bucket(layer1: bytes):
     return hexstr, obj
 
 
+def replace_hex(bucket: bytes, old_hex: str, new_hex: str) -> bytes:
+    """把桶里的旧 hex 值替换成新的，**其余字节一个不动**。
+
+    改档必须走这条路径，不能调 ``build_bucket`` 重拼：不同存档的桶
+    布局并不一致 —— ``SaveFile_orig.es3`` 里压根没有 ``_Key`` 条目，
+    而 ``SaveFile_device_orig.es3`` 有。重拼会凭空多写/漏写条目，
+    桶就不再是原档的桶了。
+    """
+    a = old_hex.encode("ascii")
+    b = new_hex.encode("ascii")
+    if a not in bucket:
+        raise ValueError("桶里找不到原始 hex，无法原地替换")
+    return bucket.replace(a, b, 1)
+
+
 def write_save(path: str, plain: bytes, password: str = None,
-               bak: bool = True, variant=None) -> str:
-    """把 14 段明文封成两层后写回 .es3；默认保留 .bak。"""
+               bak: bool = True, variant=None, reuse_outer=True) -> str:
+    """把 14 段明文封成两层后写回 .es3；默认保留 .bak。
+
+    ``reuse_outer=True``（默认）会从**目标文件已有内容**里取出 salt、iv
+    和整个桶布局，只把内层 hex 原地替换掉。这是改档能上机的必要条件：
+
+    - 换 salt/iv → 游戏侧 ``ES3.KeyExists`` 抛 ``FormatException`` → 黑屏；
+    - 重拼桶 → 条目集合与原档不一致（多/少 ``_Key``）。
+
+    两条都会让游戏在启动画面之后卡黑屏。详见 ``encrypt_bytes``。
+    目标文件不存在时退化为 ``build_bucket`` 新建。
+    """
     v, pw = _resolve(password, variant)
     hexstr = des_encrypt(plain, v.des_key)
-    inner = build_bucket(hexstr)
-    blob = encrypt_bytes(inner, pw)
+
+    blob = None
+    if reuse_outer and os.path.exists(path):
+        old = open(path, "rb").read()
+        try:
+            salt, iv = salt_iv_of(old)
+            old_bucket = decrypt_bytes(old, pw)
+            old_hex, _ = parse_bucket(old_bucket)
+            if old_hex is None:
+                raise ValueError("旧桶里没有 string 型 hex")
+            inner = replace_hex(old_bucket, old_hex, hexstr)
+            blob = encrypt_bytes(inner, pw, salt=salt, iv=iv)
+        except Exception:  # noqa: BLE001
+            blob = None
+
+    if blob is None:
+        blob = encrypt_bytes(build_bucket(hexstr), pw)
+
     if bak and os.path.exists(path):
         import shutil
         shutil.copy2(path, path + ".bak")

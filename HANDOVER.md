@@ -4,8 +4,20 @@
 > **包名**：`game.taptap.HQGAMES.TapDemons`
 > **引擎**：Unity + IL2CPP（ARM64）
 > **状态**：存档结构 100% 破译、**双层加密 100% 还原**、口令与 DES key 均已取得、
-> `saves/*.es3` 可直接读写、回归 30/30 通过
-> **最后更新**：2026-10-29
+> `saves/*.es3` 可直接读写、**改档在真机（雷电模拟器-2）上零异常加载**、回归 41/41 通过
+> **最后更新**：2026-10-30
+>
+> **⚠ 三个「改档后游戏异常」的坑，别混为一谈：**
+>
+> | 症状 | 根因 | 文档 |
+> |---|---|---|
+> | 卡在标题页不动 | 内层 DES 用了 NUL 填充，游戏侧 `Bad PKCS7 padding` | [docs/13](docs/13-内层DES填充与卡死根因.md) |
+> | **启动画面后永久黑屏** | **外层 AES 的 salt/iv 用了随机值，没复用原档** | [docs/19](docs/19-改档黑屏根因-salt与iv必须复用.md) |
+> | 存档被清空 / 显示红屏 | 服务器 `heiMingDan.asp` 下发了封号判定 | [docs/14 §二](docs/14-封号机制与旧版对比.md) |
+>
+> **⚠ 还有一个边界**：改档链路已证明「游戏能正常读取改过的存档」，
+> 但**没证明「进游戏后数值变了」**——游戏卡 TapTap 登录，账号服务器已失效
+> （[docs/18](docs/18-游戏自建账号系统已失效.md)）。别把这两件事当成一件。
 >
 > **⚠ 先读 [docs/14-封号机制与旧版对比.md](docs/14-封号机制与旧版对比.md)**
 > 本文档写于「三项修改真机验证 + 封号分析」之前，那部分内容：
@@ -62,6 +74,11 @@
    但**不再是必读的路障**——真机上跑 frida 只是可选的验证手段。
 4. **改档后卡标题页的坑已定位**——内层 DES 必须 PKCS7 填充，用 NUL 会导致
    游戏侧 `Bad PKCS7 padding. Invalid length 0.` 并中断 `LoadGame()`。见 [docs/13](docs/13-内层DES填充与卡死根因.md)。
+5. **改档后黑屏的坑也已定位**——外层 AES 的 **salt/iv 必须复用原档的前 32 字节**，
+   不能用新的随机值。见 [docs/19](docs/19-改档黑屏根因-salt与iv必须复用.md)。
+   `write_save()` 现默认 `reuse_outer=True`，回归里有「零改动重封 == 原档」逐字节断言。
+6. **游戏自建的账号服务器已经死了**——无法注册也无法登录，所以「改档 → 进游戏看数值」
+   这段闭环还差最后一步。见 [docs/18](docs/18-游戏自建账号系统已失效.md)。
 
 ---
 
@@ -153,6 +170,18 @@ SaveManager..ctor @ RVA 0x17A64D8
 **不是硬编码字面量赋值**——这解释了为什么 metadata 里的 133048 条字符串字面量全部试遍也没命中。
 
 详见 [`docs/07-ES3口令追踪-阶段性结论.md`](docs/07-ES3口令追踪-阶段性结论.md) 与 [`docs/07-ES3密钥攻关.md`](docs/07-ES3密钥攻关.md)。
+
+**改档时必须复用 salt/iv**（否则游戏黑屏）：
+
+```
+新档的 salt = 原档 file[0:16]    新档的 iv = 原档 file[16:32]
+```
+
+`es3save.write_save()` 的 `reuse_outer=True` 是默认行为，它会从目标文件里读取
+salt/iv 与桶布局，只原地替换内层 hex。**不要重新调用 `build_bucket()` 造容器**——
+不同存档的桶条目集合与顺序不同（例如 `saves/SaveFile_orig.es3` 的桶里没有 `_Key`，
+而 `evidence/saves/SaveFile_device_orig.es3` 有，值 2640），重拼会多出 9 字节。
+详见 [`docs/19-改档黑屏根因-salt与iv必须复用.md`](docs/19-改档黑屏根因-salt与iv必须复用.md)。
 
 ---
 
@@ -311,26 +340,42 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
 
 ## 五之二、现在该做什么
 
-1. **验证**：`python tools/test_savedit.py`（30 项）+ `python tools/smoke_test.py`（3 项）。
+1. **验证**：`python tools/test_savedit.py`（41 项，含 salt/iv 回归组）+ `python tools/smoke_test.py`（3 项）。
 2. **实战**：直接对 `.es3` 跑编辑命令，例如
    `python scripts/savedit.py currency saves/SaveFile_orig.es3 --zuanshi 888888`。
-3. **可选的延伸**：
+3. **上机**：改完直接 `adb push` 到
+   `/sdcard/Android/data/game.taptap.HQGAMES.TapDemons/files/SaveFile.es3`，
+   用 `su 0 cp` 覆盖（`emulator-5558` = 雷电模拟器-2）。
+   判定是否成功的标志：`screencap` 出来的 sha256 = `ecc30672...`（登录页），
+   而不是 `5c49fdc3...`（黑屏）；logcat 里 `FormatException` 计数为 0。
+4. **剩下唯一没打通的**：进游戏。游戏自建账号服务器已失效（[docs/18](docs/18-游戏自建账号系统已失效.md)），
+   TapTap 登录需要真实手机号。所以「改档 → 进游戏看到数值」这最后一段还没验证过。
+   已证明的是**加密管道对游戏完全透明**，不是数值生效。
+   要突破有两条路：
+   - **A**：找一个能登的 TapTap 账号（真实手机号），这是最省事的
+   - **B**：hook `DengLuChengGong @ RVA 0x1892A24` 伪造登录态。
+     但它需要有效的 `this`（`x19`）和已初始化的单例，裸调用会崩；
+     ARM 主体段在模拟器里是 `r--p`（见 §四），inline hook 走不通，只能靠 frida 的
+     Java/native 层替身或者改 `ChuShiHuaName` 之后的调用链
+5. **可选的延伸**：
    - 补全 `Date_*` 各段里尚未做编辑器的字段（现有命令覆盖了货币/装备/英雄/资源/关卡/成就/宝石/宠物/黄金树/礼包码）。
    - 若游戏后续版本改了 `PASSWORD` / `MIMA`，按 docs/10 + docs/11 的链路重跑一遍即可
      （两处都是 metadata 字面量，脚本通用）。
-   - 旧版 v5.5.7 的 `files/old/djmw_5.5.7.apk` 目前只是 LFS 指针（86925497 字节），
-     未拉到实体；`files/old/` 下的 `global-metadata_v557.dat` 与 `libil2cpp_v557_arm32.so` 是完整的。
-     如需旧版 dex，先用 `E:\DSH\game\fetch_lfs.py` 按 oid
-     `e6ed9d9a009e540223b702703f88b5d60ebc6577ab0b795da93757657b397270` 补拉。
+   - 存档主 key 是个**随每次保存变化的哈希名**（`o74JUkh9jw==` → `o2D+pAPsvrXCo74JUkh9jw==`），
+     生成规则**未解出**。目前不影响改档（原地替换 hex 即可），但如果要新建存档就得先解它。
+     相关反汇编在 `BaoCunDate @ 0x18A71B4`：`0x18A7244 bl #0x293aeec Type.GetType()`
+     + `0x18A7268 bl #0x292c170 Enum.GetNames(Type)`。
 
-**已明确不做 / 走不通的**（详见 docs/14 §六、docs/17 §三）：
+**已明确不做 / 走不通的**（详见 docs/14 §六、docs/17 §三、docs/18）：
 
 | 事项 | 结论 |
 |---|---|
+| 从官方服务器注册/登录账号 | `qingQiuID=100` 是桩（不写库，SQL 注入都能过），`111/222` 返回 `?`，**无解** |
 | 换 TapTap 账号重验三项修改 | 需真实手机号 + 验证码，无游客入口，**跳过** |
 | 客户端绕过防沉迷 / 实名 | 判定在 TapTap 服务器（`checkPlay`），改静态布尔会被覆盖；且**与封号清档无关** |
 | 红屏文字的真实来源 | 不在 metadata、不在可读资源，`FengHaoUI` 槽未实例化，**推测由服务器下发** |
 | 绕过 `heiMingDan` 清档 | 收尾无条件执行，断网也走同一分支，**客户端无解** |
+| ARM32 `.text` 里找 `SaveFile.es3` 的 GOT 槽引用 | `0x2f5a770` 在 `.text` 里 **0 处引用**（`ldr-pc`/`movw+movt`/literal 池全试过），路径未明 |
 
 ---
 
@@ -352,6 +397,8 @@ docs/
   15-双版本工具链与kug字面量否证.md --variant 用法 + kug1oghhkt71gstktf 否证
   16-魔石窟怪物表体积差是排版错觉.md 48KB 差异实为 indent 造成的假象
   17-防沉迷在TapTap-SDK而非游戏自身.md ★ 防沉迷 ≠ 封号清档
+  18-游戏自建账号系统已失效.md      ★ 服务器注册是桩、登录返回 `?`，无账号可得
+  19-改档黑屏根因-salt与iv必须复用.md ★★ 外层 AES 的 salt/iv 必须继承原档
 
 notes/
   REA学习笔记.md                    REA 工具链方法论（项目起点）
@@ -551,6 +598,20 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
     `140.82.113.4` 反而 0.26s 稳定连通，但 git 不认 `curlrc` / `--resolve`，hosts 无权限改）。
 13. **capstone 必须先 `md.detail = True`** 才能读 `insn.operands`；
     arm64 常量在 `capstone.arm64_const`，不在 `capstone.arm64`。
+14. **改档时不能重新生成外层容器**——salt/iv 必须继承原档 `file[0:16]` / `file[16:32]`，
+    桶条目集合与顺序也必须继承。用随机 salt/iv 会让游戏 `ES3.KeyExists()` 抛
+    `FormatException`，然后**永久黑屏**（进程活着、`HAS_DRAWN`、截图纯黑）。
+    见 docs/19。
+15. **「进程活着但黑屏」先查 `FormatException`**，不要先怀疑渲染管线。
+    `dumpsys` 显示 `HAS_DRAWN` 是假象——画过一次就不再画了。
+16. **模拟器会被 `ldconsole quit` 关掉且不自启**；重启后要等约 90 秒 adb 才出设备。
+    游戏黑屏 + 存档在时，`adb shell` 会**整体 hang**（`echo ok` 都不返回），
+    只能 `ldconsole quit/launch` 重启实例。
+17. **`ldconsole list2` 输出是 GBK**，PowerShell 直读乱码，要
+    `[System.Text.Encoding]::GetEncoding(936)` 解码。
+18. **判定黑屏/正常要认 sha256**：登录页 `ecc30672...`，黑屏 `5c49fdc3...`。
+    `screencap` 必须 `adb shell screencap -p /sdcard/x.png` + `adb pull`，
+    用 `adb exec-out screencap -p > file` 会被 PowerShell 破坏成非 PNG。
 
 ---
 
@@ -566,3 +627,6 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 > 前者是内层 DES 的 PKCS7 填充写错了（docs/13），后者是服务器的 `heiMingDan.asp`
 > 下发了封号判定、游戏无条件下清档（docs/14）。
 > 而 TapTap 的防沉迷/实名是第三个独立系统，全在 dex 里，跟这两者都无关（docs/17）。
+
+> 第四件事：改完档**黑屏**又是另一回事——外层 AES 的 salt/iv 被换成了随机值（docs/19）。
+> 三个坑的判定顺序：卡标题页看 DES 填充 → 黑屏看 salt/iv → 存档被清看是不是被封号。

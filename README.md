@@ -91,6 +91,28 @@ python scripts/es3save.py verify out.es3               # 回读校验
 （AES-CBC 用错口令也会解出等长字节，所以必须校验明文形态）。
 用 `check_password(path, pw)` 可快速判定单个口令。
 
+### ⚠ 改档时 salt/iv 必须复用原档
+
+`write_save()` 的 `reuse_outer=True`（默认）会自动处理，但如果你自己写封包代码，
+必须遵守这条：
+
+```python
+# 外层 AES 的参数取自文件自己的前 32 字节
+key  = PBKDF2-HMAC-SHA1(b"hqgames@2013", salt=old[0:16], iterations=100, dkLen=16)
+pt   = AES128CBC_decrypt(key, iv=old[16:32], ct=old[32:])
+
+# 重封时必须用同样的 salt / iv，不能重新生成
+new  = salt + iv + AES128CBC_encrypt(key, iv=iv, pt=new_plain)
+```
+
+用新的随机 salt/iv 会让游戏 `ES3.KeyExists()` 抛 `FormatException`，
+表现是**启动画面之后永久黑屏**（进程活着、`dumpsys` 显示 `HAS_DRAWN`、截图纯黑）。
+细节见 [docs/19](docs/19-改档黑屏根因-salt与iv必须复用.md)。
+
+同理**不要重新拼装桶结构**——不同存档的桶条目集合与顺序不同
+（`saves/SaveFile_orig.es3` 没有 `_Key`，`evidence/saves/SaveFile_device_orig.es3` 有），
+正确做法是原地替换内层 hex。
+
 ### 依赖
 
 | 用途 | 包 |
@@ -163,6 +185,8 @@ docs/
   13-内层DES填充与卡死根因.md    ★ 改档卡死的 PKCS7 根因
   14-封号机制与旧版对比.md       ★★ 必读：三项修改验证、封号链路、
                                     旧版 v5.5.7 对比、工具链全图
+  18-游戏自建账号系统已失效.md   ★ 注册是桩、登录返回 `?`，无账号可得
+  19-改档黑屏根因-salt与iv必须复用.md ★★ 黑屏根因与修复
 notes/
   REA学习笔记.md                 REA 工具链方法论
   存档修改速查表.md               ★ 字段速查
@@ -183,7 +207,7 @@ scripts/                         102 个脚本
 tools/
   smoke_test.py                 环境冒烟测试（3 项）
   find_undefined.py             AST 检查未定义常量
-  test_savedit.py               ★ 存档编辑全量回归（30 项）
+  test_savedit.py               ★ 存档编辑全量回归（41 项，含 salt/iv 组）
 saves/                           演示存档（明文）+ 真实存档样本（加密）
 emu-notes/                       模拟器操作脚本与结论
 evidence/
