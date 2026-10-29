@@ -88,16 +88,14 @@ def encrypt_bytes(plain: bytes, password: str = PASSWORD) -> bytes:
 def des_decrypt(hexstr: str, key: str = DES_KEY) -> bytes:
     """把内层 hex 串解成明文。
 
-    实测明文尾部填充是 `\\x04\\x04\\x04\\x04`（4 个 0x04），
-    说明游戏给 CryptoStream 传的 PaddingMode 让最后一字节是填充长度，
-    但 38144 是 8 的整数倍 —— 填充长度本来就该是 8 才对。
-    所以这里**不信任填充值，只按 NUL 和已知填充字节剥**，
-    并且优先走 unpad 失败后的 rstrip。
+    游戏侧是 `CryptoStream` + `PaddingMode.PKCS7`（见 ShuJuDate.DesDecrypt）。
+    实测原档密文 38184 字节、明文 38178 字节、尾部 6 个 `\\x06` —— 标准 PKCS7。
+    所以这里按 PKCS7 剥离；只有填充非法时才退化为 rstrip(b"\\x00")，
+    以兼容早期按 NUL 填充生成的历史文件。
     """
     ct = bytes.fromhex(hexstr)
     kb = key.encode("ascii")[:8].ljust(8, b"\0")
     pt = DES.new(kb, DES.MODE_CBC, kb).decrypt(ct)
-    # 去掉尾部填充：末尾若是 n 个相同字节且 n<=8 就剥
     if pt:
         n = pt[-1]
         if 1 <= n <= 8 and pt[-n:] == bytes([n]) * n:
@@ -110,13 +108,14 @@ def des_decrypt(hexstr: str, key: str = DES_KEY) -> bytes:
 def des_encrypt(plain: bytes, key: str = DES_KEY) -> str:
     """把明文封成内层 hex 串（大写，与游戏一致）。
 
-    填充用 NUL（实测 _orig 解出来末尾不带填充字节，
-    说明原文件就是 8 对齐的——这里补 NUL 最保守，
-    游戏读的时候 JSON 解析器会忽略尾部空白/零字节）。
+    **必须用 PKCS7 填充**：游戏 `ShuJuDate.DesDecrypt` 走
+    `CryptoStream.FlushFinalBlock()`，填充不合法会抛
+    `CryptographicException: Bad PKCS7 padding. Invalid length 0.`，
+    随后 `LoadGame()` 中断、游戏卡在标题页。
+    早期实现补 NUL，导致的正是这个异常。
     """
     kb = key.encode("ascii")[:8].ljust(8, b"\0")
-    if len(plain) % 8:
-        plain = plain + b"\0" * (8 - len(plain) % 8)
+    plain = pad(plain, 8)  # PKCS7，与游戏 CryptoStream 一致
     ct = DES.new(kb, DES.MODE_CBC, kb).encrypt(plain)
     return ct.hex().upper()
 
@@ -142,26 +141,53 @@ def unwrap_bucket(bucket: bytes) -> bytes:
     return des_decrypt(hexstr)
 
 
-def build_bucket(hexstr: str) -> bytes:
-    """拼出 ES3 桶的明文（逐字节对齐原文件排版）。
+#: ES3 桶里固定存在的计数器条目；_Key 之外还有 7 个英雄/宠物输出计数键。
+#: 顺序取自真机原档（SaveFile.es3.orig，2026-10-29 实测）：
+#:     _Key, <base64 string key>, ChongWu01, Hero06, Hero05, Hero04,
+#:     Hero03, Hero02, Tap
+#: 注意原档**没有** Hero01ShuChu_Key；早先版本多写了一个，是错的。
+_COUNTER_KEYS = ('ChongWu01ShuChu_Key', 'Hero06ShuChu_Key', 'Hero05ShuChu_Key',
+                 'Hero04ShuChu_Key', 'Hero03ShuChu_Key', 'Hero02ShuChu_Key',
+                 'TapShuChu_Key')
 
-    原文件形态（实测 head/tail）：
-        o74JUkh9jw==" : {\\n\\t\\t"__type" : "string",\\n\\t\\t"value" : "<HEX>"\\n\\t},
-        \\n\\t"Hero06ShuChu_Key" : {\\n\\t\\t"__type" : "long",\\n\\t\\t"value" : 0\\n\\t},
-        ...
-        \\n\\t"TapShuChu_Key" : {\\n\\t\\t"__type" : "long",\\n\\t\\t"value" : 0\\n\\t}\\n}
 
-    ★ 桶明文**缺最外层的 `{` 和第一个 key 的开引号**。
+def build_bucket(hexstr, key_counter=2640, string_key=None):
+    r"""拼出 ES3 桶的明文（逐字节对齐真机原档排版）。
+
+    真机原档 layer1 的原文（2026-10-29 实测，前 100 字节）::
+
+        _Key" : {\n\t\t"__type" : "long",\n\t\t"value" : 2640\n\t},
+        \n\t"o2D+pAPsvrXCo74JUkh9jw==" : {\n\t\t"__type" : "string",...
+
+    ★ 桶明文**缺最外层的 { 和第一个 key（_Key）的开引号**。
     这不是 bug，是 ES3 写入器的行为；补上游戏反而读不出来。
+
+    ★ 必须带 _Key 条目。早先的实现直接拿随机 base64 当第一个 key，
+    把 _Key 整个丢了，生成的文件结构上就和原档不一样 —— 这是游戏
+    读不到改档的第一个嫌疑点。
+
+    参数
+    ----
+    hexstr : str
+        内层 DES 密文的十六进制（大写）。
+    key_counter : int
+        _Key 的 long 值。真机原档为 2640；疑似与内容规模相关，但没
+        反推出确切公式，默认照抄原档实测值。
+    string_key : str, optional
+        形如 o2D+pAPsvrXCo74JUkh9jw== 的 base64 字符串 key。真机是
+        32 字符（24 字节 raw 的 base64）。不给则生成同长度随机值。
     """
     import base64
     import json
-    newkey = base64.b64encode(os.urandom(8)).decode("ascii")
-    head = '%s" : {\n\t\t"__type" : "string",\n\t\t"value" : "%s"\n\t}' % (newkey, hexstr)
-    out = [head]
-    for name in ("Hero06ShuChu_Key", "Hero05ShuChu_Key", "Hero04ShuChu_Key",
-                 "Hero03ShuChu_Key", "Hero02ShuChu_Key", "Hero01ShuChu_Key",
-                 "ChongWu01ShuChu_Key", "TapShuChu_Key"):
+
+    if string_key is None:
+        # 24 字节 -> base64 恰好 32 字符，与真机原档同宽
+        string_key = base64.b64encode(os.urandom(24)).decode("ascii")
+
+    out = ['_Key" : {\n\t\t"__type" : "long",\n\t\t"value" : %d\n\t}' % key_counter]
+    out.append('%s : {\n\t\t"__type" : "string",\n\t\t"value" : "%s"\n\t}'
+               % (json.dumps(string_key, ensure_ascii=False), hexstr))
+    for name in _COUNTER_KEYS:
         out.append('%s : {\n\t\t"__type" : "long",\n\t\t"value" : 0\n\t}'
                    % json.dumps(name, ensure_ascii=False))
     return (",\n\t".join(out) + "\n}").encode("utf-8")
