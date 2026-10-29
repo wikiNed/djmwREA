@@ -4,6 +4,10 @@
 > 存档结构与**完整加密链**已 100% 还原，`.es3` 可直接读写。
 > 口令 `hqgames@2013` 已取得 —— 见 [docs/10](docs/10-ES3口令已取得.md)；
 > 内层还有一层游戏自写的 DES —— 见 [docs/11](docs/11-存档双层加密还原.md)。
+>
+> **⚠ 三项修改已在真机验证，但触发了服务端封号** —— 封号机制、旧版本对比、
+> 工具链全图见 [docs/14](docs/14-封号机制与旧版对比.md)。
+> 一句话：**存档能改，墙在服务端账号级封禁，换号即可。**
 
 ---
 
@@ -155,24 +159,42 @@ docs/
   09-dump关键类摘录.md           9 个关键类的 dump.cs 摘录
   10-ES3口令已取得.md            ★ 口令 hqgames@2013 的完整取证链
   11-存档双层加密还原.md         ★ ES3-AES 套 DES，含双向封包
+  12-存档编辑速查.md             命令速查
+  13-内层DES填充与卡死根因.md    ★ 改档卡死的 PKCS7 根因
+  14-封号机制与旧版对比.md       ★★ 必读：三项修改验证、封号链路、
+                                    旧版 v5.5.7 对比、工具链全图
 notes/
   REA学习笔记.md                 REA 工具链方法论
   存档修改速查表.md               ★ 字段速查
   点击魔王_逆向分析报告.md        完整逆向报告
-scripts/                         80+ 个脚本
+scripts/                         102 个脚本
   savedit.py                    ★ 主工具（.json / .es3 皆可直接读写）
   es3save.py                    ★ 两层拆封/封装
   es3decrypt.py                 只解第一层（研究用）
-  des_check.py                  DES 内层模式枚举（研究用）
+  pet_from_template.py          ★ 从官方模板生成 85 只满级宠物
+  fix_pets.py / pet_diff.py     宠物字段补齐与对比
+  give_resources.py             钻石 / 肉 / 进化石 / 草丛
+  unlock_progress.py            关卡进度（门槛 GuanKaLevel > 20）
+  safe_edit.py                  只改到模板范围内的安全编辑
+  push_save.py                  ★ 推存档（正确处理 SELinux MLS 类别）
   rela_resolve.py               ★ ELF 重定位解析
   peek_literal.py               ★ 按 usage index 读 metadata 字面量
   disasm_range.py               ★ capstone 反汇编 + dump.cs 自动标注
 tools/
   smoke_test.py                 环境冒烟测试（3 项）
+  find_undefined.py             AST 检查未定义常量
   test_savedit.py               ★ 存档编辑全量回归（30 项）
 saves/                           演示存档（明文）+ 真实存档样本（加密）
 emu-notes/                       模拟器操作脚本与结论
-evidence/                        frida 输出、maps、base 验证记录
+evidence/
+  templates/                    ★ 从 data.unity3d 导出的 TextAsset 模板
+  saves/                        ★ 各阶段存档证据样本
+  web/                          PlayerPrefs / 防沉迷 USER_INFO
+  其余                           frida 输出、maps、base 验证记录
+files/
+  TapDemons_v5.9.2.apk          TapTap 版 APK（LFS）
+  libil2cpp.so / global-metadata.dat / dump.cs   （LFS）
+  old/                          旧版 v5.5.7 三大件（LFS）
 ```
 
 ---
@@ -207,10 +229,15 @@ evidence/                        frida 输出、maps、base 验证记录
 
 | 文件 | 大小 | 来源 |
 |---|---|---|
-| `TapDemons_v5.9.2.apk` | 132 MB | TapTap 搜索「点击魔王」 |
-| `libil2cpp.so` | 56 MB | APK `lib/arm64-v8a/`，MD5 `3466135958c06c40a50d4fa8bd458d0e` |
-| `global-metadata.dat` | 10 MB | APK `assets/bin/Data/Managed/Metadata/` |
-| `dump.cs` | 22 MB | `Il2CppDumper.exe libil2cpp.so global-metadata.dat out/` |
+| `TapDemons_v5.9.2.apk` | 132 MB | TapTap 搜索「点击魔王」（已入 LFS） |
+| `libil2cpp.so` | 56 MB | APK `lib/arm64-v8a/`，MD5 `3466135958c06c40a50d4fa8bd458d0e`（已入 LFS） |
+| `global-metadata.dat` | 10 MB | APK `assets/bin/Data/Managed/Metadata/`（已入 LFS） |
+| `dump.cs` | 22 MB | `Il2CppDumper.exe libil2cpp.so global-metadata.dat out/`（已入 LFS） |
+| `files/old/djmw_5.5.7.apk` | 83 MB | 旧版 v5.5.7，无 TapTap 接入（已入 LFS） |
+| `files/old/global-metadata_v557.dat` | 3.6 MB | 旧版 metadata（version 27） |
+| `files/old/libil2cpp_v557_arm32.so` | 18 MB | 旧版 32 位 libil2cpp |
+
+`data.unity3d`（20 MB）**不入库** —— 用 `scripts/paths.py:unity_data_asset()` 从 APK 现取，已验证字节一致。
 
 ---
 

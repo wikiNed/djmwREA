@@ -1,0 +1,1080 @@
+﻿{
+    "shengWu":
+    [
+        {
+            "ID": 0,
+            "Name": "绿色魔矿",
+            "MiaoShu":"魔石窟里最常见的魔矿，很容易开采，但是获得的魔石也最少。",
+            "JingHuaConst":[1,1,1],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1000,3],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1000,3],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1000,3],
+                    "DiaoLuoGaiLv":[0.5,1]
+                }
+            ],
+            "HP":[3,6,12],
+            "Damage":0,
+            "GongJiFanWei":0,
+            "HitCD":[0,0,0],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                }
+            ]
+        },
+        {
+            "ID": 1,
+            "Name": "蓝色魔矿",
+            "MiaoShu":"魔石窟里比较稀少的魔矿，开采起来有难度，但是获得的魔石还是比较可观的。",
+            "JingHuaConst":[2,2,2],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1500,6],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1500,6],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1500,6],
+                    "DiaoLuoGaiLv":[0.5,1]
+                }
+            ],
+            "HP":[6,12,24],
+            "Damage":[0,0,0],
+            "GongJiFanWei":[0,0,0],
+            "HitCD":[0,0,0],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                }
+            ]
+        },
+        {
+            "ID": 2,
+            "Name": "巨大的绿色魔矿",
+            "MiaoShu":"一堆绿色矿石，这下可以获得不少魔石了。",
+            "JingHuaConst":[3,3,3],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2000,9],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2000,9],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2000,9],
+                    "DiaoLuoGaiLv":[0.5,1]
+                }
+            ],
+            "HP":[15,30,60],
+            "Damage":[0,0,0],
+            "GongJiFanWei":[0,0,0],
+            "HitCD":[0,0,0],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                }
+            ]
+        },
+        {
+            "ID": 3,
+            "Name": "巨大的蓝色魔矿",
+            "MiaoShu":"一堆蓝色矿石，这趟没白来。",
+            "JingHuaConst":[4,4,4],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2500,12],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2500,12],
+                    "DiaoLuoGaiLv":[0.5,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["KuangShi","MoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2500,12],
+                    "DiaoLuoGaiLv":[0.5,1]
+                }
+            ],
+            "HP":[20,40,80],
+            "Damage":[0,0,0],
+            "GongJiFanWei":[0,0,0],
+            "HitCD":[0,0,0],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                }
+            ]
+        },
+        {
+            "ID": 100,
+            "Name": "痒痒鼠",
+            "MiaoShu":"魔石窟里最弱的魔物，就跟它的名字一样，即便是遇到这种魔物的精英怪应该也不会强大到你们去吧？",
+            "JingHuaConst":[1,3,6],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1000,500,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1500,800,2,1,1,5],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[1800,900,3,2,1,10,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[6000000,12000000,12000000],
+            "Damage":[20000,30000,40000],
+            "GongJiFanWei":[100,120,160],
+            "HitCD":[2.86,2.80,2.7],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["duWu_DanTi"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["duWu_DanTi","mengJi"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 101,
+            "Name": "赤狼",
+            "MiaoShu":"擅长用头上的犄角攻击的魔石窟野兽。",
+            "JingHuaConst":[2,6,6],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1000,500,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1500,800,2,1,1,5],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[1800,900,3,2,1,10,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[8000000,16000000,16000000],
+            "Damage":[30000,40000,50000],
+            "GongJiFanWei":[120,130,170],
+            "HitCD":[2.46,2.36,2.16],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["mengJi"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["duWu_DanTi","mengJi"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 102,
+            "Name": "苍蝇",
+            "MiaoShu":"并不是只有厕所才会出现的物种",
+            "JingHuaConst":[3,9,15],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1000,500,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1500,800,2,1,1,5],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[1800,900,3,2,1,10,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[9000000,18000000,18000000],
+            "Damage":[40000,50000,60000],
+            "GongJiFanWei":[190,200,210],
+            "HitCD":[1.96,1.86,1.66],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["jiSu"],
+                    "JiNengCD":4
+                },
+                {
+                    "JiNengStr":["jiSu","mengJi"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 103,
+            "Name": "黑蛇",
+            "MiaoShu":"全身发黑的蛇，一看就知道有剧毒。",
+            "JingHuaConst":[4,12,18],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1200,600,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1700,700,2,1,1,5],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2000,1000,3,2,1,10,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[10000000,20000000,40000000],
+            "Damage":[100000,200000,300000],
+            "GongJiFanWei":[210,220,230],
+            "HitCD":[1.56,1.46,1.36],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["duWu_DanTi"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["duWu_DanTi"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["duWu_DanTi","duWu_All"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 104,
+            "Name": "暗之法师",
+            "MiaoShu":"全身被魔法袍包裹着严严实实，只能透过帽檐，看到发光的眼睛。",
+            "JingHuaConst":[5,15,25],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1200,600,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1700,700,2,1,1,6],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2000,1000,3,2,1,12,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[20000000,40000000,80000000],
+            "Damage":[150000,200000,300000],
+            "GongJiFanWei":[250,260,270],
+            "HitCD":[3.56,3.46,3.36],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["xiaoHuoQiu"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["xiaoHuoQiu"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["xiaoHuoQiu","daHuoQiu"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 105,
+            "Name": "幽火",
+            "MiaoShu":"魔窟中冤屈的魔物不能得到释放而四处游荡，变成了幽火。",
+            "JingHuaConst":[6,18,30],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1200,600,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1700,700,2,1,1,6],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2000,1000,3,2,1,12,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[35000000,75000000,150000000],
+            "Damage":[200000,300000,400000],
+            "GongJiFanWei":[200,210,220],
+            "HitCD":[2.26,2.16,2.06],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["sleep_DanTi"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["sleep_DanTi"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["sleep_DanTi","sleep_All"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 106,
+            "Name": "弓箭手",
+            "MiaoShu":"在黑暗的魔石窟中，你要小心有人放暗箭！",
+            "JingHuaConst":[7,21,40],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1200,600,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1700,700,2,1,1,6],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2000,1000,3,2,1,12,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[35000000,75000000,300000000],
+            "Damage":[100000,110000,120000],
+            "GongJiFanWei":[500,500,500],
+            "HitCD":[2.3,2.1,2.0],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wangZhu"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["wangZhu"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["wangZhu","jiSu"],
+                    "JiNengCD":4
+                }
+            ]
+        },
+        {
+            "ID": 107,
+            "Name": "黄鳝",
+            "MiaoShu":"沼泽里钻出来的恶心东西，小心它咬住你的腿！",
+            "JingHuaConst":[8,24,64],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1200,600,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1700,700,2,1,1,6],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2000,1000,3,2,1,12,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[40000000,120000000,450000000],
+            "Damage":[200000,210000,220000],
+            "GongJiFanWei":[200,250,300],
+            "HitCD":[3.1,3.0,2.5],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["hunLuan_DanTi"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["hunLuan_DanTi"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["sleep_All","hunLuan_DanTi"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 108,
+            "Name": "猴塞雷",
+            "MiaoShu":"很欠扁的猴子，总是在远远的地方就想你投掷炸弹！",
+            "JingHuaConst":[9,27,81],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1200,600,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[1700,700,2,1,2,7],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2000,1000,3,2,4,14,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[41000000,123000000,500000000],
+            "Damage":[500000,510000,520000],
+            "GongJiFanWei":[450,500,600],
+            "HitCD":[4.3,4.2,4.1],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["mengJi"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["mengJi"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["mengJi","hunLuan_All"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 109,
+            "Name": "古代国王",
+            "MiaoShu":"从前有个国王想要获得强大的魔石能力，带领自己的军团来到这里。然后魔石的力量使他们的躯体再次复活。",
+            "JingHuaConst":[10,30,100],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1600,800,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2100,1000,2,1,2,7],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2200,1200,3,2,4,14,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[60000000,180000000,600000000],
+            "Damage":[600000,610000,620000],
+            "GongJiFanWei":[400,410,580],
+            "HitCD":[2.3,2.1,2.0],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["zhaoHuanKuLou"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["zhaoHuanKuLou"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["zhaoHuanKuLou","zhaoHuanJunTuan"],
+                    "JiNengCD":7
+                }
+            ]
+        },
+        {
+            "ID": 110,
+            "Name": "自爆球球",
+            "MiaoShu":"不明的绿色液体组成的一团，他们的身体慢慢在膨胀感觉快要爆炸了？",
+            "JingHuaConst":[9,27,81],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1600,800,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2100,1000,2,1,2,7],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2200,1200,3,2,4,14,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[60000000,180000000,700000000],
+            "Damage":[600000,600000,600000],
+            "GongJiFanWei":[450,500,600],
+            "HitCD":[2.1,2.1,2.1],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["ziBao"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["ziBao"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["mengJi","hunLuan_All"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 111,
+            "Name": "美杜莎",
+            "MiaoShu":"不明的绿色液体组成的一团，他们的身体慢慢在膨胀感觉快要爆炸了？",
+            "JingHuaConst":[11,33,110],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1600,800,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2100,1000,2,1,2,7],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2200,1200,3,2,4,14,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[80000000,240000000,800000000],
+            "Damage":[700000,710000,720000],
+            "GongJiFanWei":[410,520,630],
+            "HitCD":[1.5,1.4,1.2],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["shiHua"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["jiGuangYan"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["shiHua","jiGuangYan"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 112,
+            "Name": "企鹅",
+            "MiaoShu":"企鹅是这个地方最不应该去招惹的魔物，因为他们会夺取你的东西",
+            "JingHuaConst":[11,33,110],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1600,800,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2100,1000,2,1,2,7],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2200,1200,3,2,4,14,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[150000000,450000000,1200000000],
+            "Damage":[40000,41000,42000],
+            "GongJiFanWei":[350,460,570],
+            "HitCD":[1.4,1.3,1.2],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["siYao"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["touQie"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["siYao","touQie"],
+                    "JiNengCD":3
+                }
+            ]
+        },
+        {
+            "ID": 113,
+            "Name": "眼睛蛇",
+            "MiaoShu":"巨大的眼镜蛇正在注视着你，它会将你全部吞掉然后吐出骨头！",
+            "JingHuaConst":[12,36,120],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao"],
+                    "DiaoLuoShuLiang":[1600,800,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.8]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2100,1000,2,1,2,7],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.5,0.3,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MuCai","KuangShi","SiLiao","MoShiSuiPian","ZuanShi","BaoShiSuiPian","JinHuaShi_SuiJi"],
+                    "DiaoLuoShuLiang":[2200,1200,3,2,4,14,1],
+                    "DiaoLuoGaiLv":[0.5,0.4,0.7,0.6,0.4,1,0.1]
+                }
+            ],
+            "HP":[200000000,600000000,2000000000],
+            "Damage":[700000,710000,720000],
+            "GongJiFanWei":[350,460,570],
+            "HitCD":[1.4,1.3,1.2],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["tunShi_DanTi"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["tunShi_DanTi"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["tunShi_DanTi","tunShi_All"],
+                    "JiNengCD":5
+                }
+            ]
+        },
+        {
+            "ID": 114,
+            "Name": "小喽啰",
+            "MiaoShu":"古代国王召唤出来的援兵。",
+            "JingHuaConst":[0,0,0],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["Wu"],
+                    "DiaoLuoShuLiang":[0],
+                    "DiaoLuoGaiLv":[0]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["Wu"],
+                    "DiaoLuoShuLiang":[0],
+                    "DiaoLuoGaiLv":[0]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["Wu"],
+                    "DiaoLuoShuLiang":[0],
+                    "DiaoLuoGaiLv":[0]
+                }
+            ],
+            "HP":[100000,300000,1000000],
+            "Damage":[30000,61000,92000],
+            "GongJiFanWei":[450,560,670],
+            "HitCD":[1.0,0.9,0.8],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                },
+                {
+                    "JiNengStr":["wu"],
+                    "JiNengCD":0
+                }
+            ]
+        },
+        {
+            "ID": 115,
+            "Name": "宝箱怪",
+            "MiaoShu":"平时伪装成宝箱，静静的在魔石窟深处等待有人来开启，打败它有几率会成为你的宠物。",
+            "JingHuaConst":[6,18,36],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","SiLiao","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2,70,1,10],
+                    "DiaoLuoGaiLv":[0.2,0.002,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","SiLiao","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2,70,1,20],
+                    "DiaoLuoGaiLv":[0.2,0.003,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","SiLiao","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2,70,1,30],
+                    "DiaoLuoGaiLv":[0.2,0.004,0.9,1]
+                }
+            ],
+            "HP":[8000000,16000000,2000000000],
+            "Damage":[500000,510000,520000],
+            "GongJiFanWei":[300,310,320],
+            "HitCD":[2.02,1.92,1.82],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["tunShi_DanTi"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["tunShi_DanTi"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["tunShi_DanTi","tunShi_All"],
+                    "JiNengCD":3
+                }
+            ]
+        },
+        {
+            "ID": 116,
+            "Name": "小白",
+            "MiaoShu":"哇～居然会碰到如此稀缺的魔物，打败它有几率会成为你的宠物。",
+            "JingHuaConst":[6,18,36],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,71,1,1,1],
+                    "DiaoLuoGaiLv":[0.2,0.002,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,71,1,1,3],
+                    "DiaoLuoGaiLv":[0.2,0.003,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,71,1,1,6],
+                    "DiaoLuoGaiLv":[0.2,0.004,0.5,0.9,1]
+                }
+            ],
+            "HP":[10000000,20000000,2000000000],
+            "Damage":[60000,120000,180000],
+            "GongJiFanWei":[180,250,300],
+            "HitCD":[2.02,1.92,1.82],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["bingShuang"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["bingShuang"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["mengJi","bingShuang"],
+                    "JiNengCD":3
+                }
+            ]
+        },
+        {
+            "ID": 117,
+            "Name": "小青",
+            "MiaoShu":"哇～魔石窟里的稀有宠物，打败它有几率会成为你的宠物。",
+            "JingHuaConst":[6,18,36],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,71,1,1,1],
+                    "DiaoLuoGaiLv":[0.2,0.002,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,71,1,1,3],
+                    "DiaoLuoGaiLv":[0.2,0.003,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,71,1,1,6],
+                    "DiaoLuoGaiLv":[0.2,0.004,0.5,0.9,1]
+                }
+            ],
+            "HP":[10000000,20000000,2000000000],
+            "Damage":[60000,120000,180000],
+            "GongJiFanWei":[180,250,300],
+            "HitCD":[2.02,1.92,1.82],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["jiSu"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["jiSu"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["mengJi","jiSu"],
+                    "JiNengCD":3
+                }
+            ]
+        },
+        {
+            "ID": 118,
+            "Name": "小红",
+            "MiaoShu":"魔石窟里的稀有宠物，打败它有几率会成为你的宠物。",
+            "JingHuaConst":[6,18,36],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,78,1,1,1],
+                    "DiaoLuoGaiLv":[0.2,0.002,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,78,1,1,3],
+                    "DiaoLuoGaiLv":[0.2,0.003,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,78,1,1,6],
+                    "DiaoLuoGaiLv":[0.2,0.004,0.5,0.9,1]
+                }
+            ],
+            "HP":[10000000,20000000,2000000000],
+            "Damage":[60000,120000,180000],
+            "GongJiFanWei":[180,250,300],
+            "HitCD":[2.02,1.92,1.82],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["xiaoHuoQiu"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["daHuoQiu"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["xiaoHuoQiu","daHuoQiu"],
+                    "JiNengCD":3
+                }
+            ]
+        },
+        {
+            "ID": 119,
+            "Name": "小黄",
+            "MiaoShu":"魔石窟里的稀有宠物，打败它有几率会成为你的宠物。",
+            "JingHuaConst":[6,18,36],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,82,1,1,1],
+                    "DiaoLuoGaiLv":[0.2,0.002,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,82,1,1,3],
+                    "DiaoLuoGaiLv":[0.2,0.003,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ChongWu","ZuanShi","SiLiao","MoWuSuiPian"],
+                    "DiaoLuoShuLiang":[2,82,1,1,6],
+                    "DiaoLuoGaiLv":[0.2,0.004,0.5,0.9,1]
+                }
+            ],
+            "HP":[10000000,20000000,2000000000],
+            "Damage":[60000,120000,180000],
+            "GongJiFanWei":[180,250,300],
+            "HitCD":[2.02,1.92,1.82],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["shiHua"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["shiHua"],
+                    "JiNengCD":5
+                },
+                {
+                    "JiNengStr":["mengJi","shiHua"],
+                    "JiNengCD":3
+                }
+            ]
+        },
+        {
+            "ID": 120,
+            "Name": "岩石怪",
+            "MiaoShu":"全身由坚硬的岩石构成，巨大的拳头像座山。很难想想被击中一拳是什么体验，我不想尝试。",
+            "JingHuaConst":[9,25,56],
+            "DiaoLuoWuPin":
+            [
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ZuanShi","SiLiao","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2,1,1,5],
+                    "DiaoLuoGaiLv":[0.2,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ZuanShi","SiLiao","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2,1,1,10],
+                    "DiaoLuoGaiLv":[0.2,0.5,0.9,1]
+                },
+                {
+                    "DiaoLuoWuPinStr": ["MoShiSuiPian","ZuanShi","SiLiao","BaoShiSuiPian"],
+                    "DiaoLuoShuLiang":[2,1,1,20],
+                    "DiaoLuoGaiLv":[0.2,0.5,0.9,1]
+                }
+            ],
+            "HP":[10000000,30000000,3000000000],
+            "Damage":[60000,120000,180000],
+            "GongJiFanWei":[180,250,350],
+            "HitCD":[2.02,1.92,1.82],
+            "JiNengs":
+            [
+                {
+                    "JiNengStr":["jiYun"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["jiYun"],
+                    "JiNengCD":6
+                },
+                {
+                    "JiNengStr":["diZhen_All","jiYun"],
+                    "JiNengCD":5
+                }
+            ]
+        }
+    ]
+}
