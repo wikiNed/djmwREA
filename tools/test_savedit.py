@@ -172,6 +172,68 @@ def test_es3_transparent():
         check(".es3 仍是合法存档", es3save.is_14_segment(es3save.read_save(work)))
 
 
+def test_variants():
+    print("[4] 版本变体 --variant")
+    # 4.1 两版参数表本身要自洽
+    check("默认版本是 v5.9.2", es3save.get_variant(None) is es3save.V592)
+    check("v5.5.7 口令", es3save.V557.password == "65w84e4p994z3Oq")
+    check("两版 DES key 相同", es3save.V557.des_key == es3save.V592.des_key)
+    check("按名字取版本", es3save.get_variant("v5.5.7") is es3save.V557)
+
+    # 4.2 版本名容错：'5.5.7' 能补成 'v5.5.7'
+    try:
+        got = es3save.get_variant("5.5.7")
+        check("版本名可省 v 前缀", got is es3save.V557)
+    except KeyError:
+        check("版本名可省 v 前缀", False, "KeyError")
+
+    # 4.3 未知版本要报错而不是静默用默认
+    try:
+        es3save.get_variant("v9.9.9")
+        check("未知版本报错", False, "没有抛异常")
+    except KeyError:
+        check("未知版本报错", True)
+
+    # 4.4 用 v5.5.7 口令读 TapTap 存档必须失败（口令不同）
+    src = os.path.join(ROOT, "saves", "SaveFile_orig.es3")
+    if os.path.exists(src):
+        try:
+            es3save.read_save(src, variant="v5.5.7")
+            check("错版本读存档报 PasswordError", False, "居然解开了")
+        except es3save.PasswordError:
+            check("错版本读存档报 PasswordError", True)
+        # 正确版本仍可读
+        check("正确版本仍可读",
+              es3save.is_14_segment(es3save.read_save(src)))
+
+    # 4.5 合成一份「旧版」存档，验证 v5.5.7 路径可封可解
+    with tmpdir() as td:
+        plain = _plain_sample()
+        if plain:
+            p557 = os.path.join(td, "legacy.es3")
+            es3save.write_save(p557, plain, variant="v5.5.7")
+            back = es3save.read_save(p557, variant="v5.5.7")
+            check("v5.5.7 封存可回读", back == plain, "%d vs %d" % (len(back), len(plain)))
+            try:
+                es3save.read_save(p557)
+                check("v5.9.2 读 v5.5.7 档应失败", False, "居然解开了")
+            except es3save.PasswordError:
+                check("v5.9.2 读 v5.5.7 档应失败", True)
+            rc, out = run(["--variant", "v5.5.7", "info", p557])
+            check("savedit --variant 可用", rc == 0 and "14 段" in out, out[-300:])
+
+
+def _plain_sample():
+    """取一份 14 段明文样本；优先用官方演示存档。"""
+    cand = os.path.join(ROOT, "saves", "playerDate_01.json")
+    if os.path.exists(cand):
+        return open(cand, "rb").read()
+    src = os.path.join(ROOT, "saves", "SaveFile_orig.es3")
+    if os.path.exists(src):
+        return es3save.read_save(src)
+    return None
+
+
 def run(argv):
     p = subprocess.run([sys.executable, os.path.join(SCRIPTS, "savedit.py")] + argv,
                        capture_output=True, text=True, encoding="utf-8",
@@ -193,6 +255,7 @@ if __name__ == "__main__":
     test_two_layer_roundtrip()
     test_commands()
     test_es3_transparent()
+    test_variants()
     print()
     if FAILS:
         print("FAILED %d: %s" % (len(FAILS), FAILS))

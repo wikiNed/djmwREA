@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""鍙鍗曟潯 metadata 瀛楅潰閲忥紝杈撳嚭闄愰暱锛岄伩鍏嶆饭娌＄粓绔€?
-鐢ㄦ硶:
+"""只读单条 metadata 字面量，输出限长，避免淹没终端。
+用法:
     python scripts/peek_literal.py 12154
     python scripts/peek_literal.py 12154 12155 12160
 """

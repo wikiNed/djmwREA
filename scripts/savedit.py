@@ -650,6 +650,12 @@ def op_pets(segs, level=60, jinhua=4, jinjie=10, hp=9999, dmg=9999):
 
 # ---------------------------------------------------------------- CLI
 
+#: 当前生效的游戏版本（`--variant v5.5.7` 会改这个）。
+#: 用模块级全局而不是层层传参，是因为 read_file/write_file 被十几条
+#: 子命令调用，加参数会污染每个 op_* 的签名。
+_VARIANT = None
+
+
 def read_file(p):
     """读存档。命中 .es3 就自动走两层解密（docs/10 + docs/11），
     返回 14 段明文 UTF-8。这样所有子命令对 .es3 与 .json 一视同仁。
@@ -662,7 +668,7 @@ def read_file(p):
         except ImportError:  # 脚本被拷到别处单独跑
             print("!! 这是 ES3 密文，需要同目录的 es3save.py 才能解密")
             raise
-        return read_save(p)
+        return read_save(p, variant=_VARIANT)
     return raw
 
 
@@ -683,7 +689,7 @@ def write_file(p, text, bak=True):
         shutil.copy2(p, p + ".bak")
     if p.lower().endswith(".es3"):
         from es3save import write_save
-        write_save(p, text.encode("utf-8"), bak=False)
+        write_save(p, text.encode("utf-8"), bak=False, variant=_VARIANT)
         return p
     with open(p, "wb") as f:
         f.write(text.encode("utf-8"))
@@ -758,6 +764,22 @@ def _parse_opts(args, opts):
 
 
 def main(argv):
+    global _VARIANT
+    # --variant 是全局开关，先摘掉再解析子命令
+    if "--variant" in argv:
+        i = argv.index("--variant")
+        if i + 1 < len(argv):
+            _VARIANT = argv[i + 1]
+            argv = argv[:i] + argv[i + 2:]
+        else:
+            print("--variant 需要版本名，可选: v5.9.2 / v5.5.7")
+            return 2
+    elif any(a.startswith("--variant=") for a in argv):
+        for a in list(argv):
+            if a.startswith("--variant="):
+                _VARIANT = a.split("=", 1)[1]
+                argv.remove(a)
+
     if len(argv) < 3:
         print(__doc__)
         return 2

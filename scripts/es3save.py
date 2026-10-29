@@ -27,6 +27,7 @@ CLI:
     python scripts/es3save.py verify <in.es3> [password]
 """
 import os
+import struct
 import sys
 
 from Crypto.Cipher import AES, DES
@@ -47,9 +48,70 @@ IV_LEN = 16
 ITERATIONS = 100
 KEY_LEN = 16
 
+
+class Variant:
+    """一个游戏版本的加密参数集合。
+
+    TapTap v5.9.2 与旧版 v5.5.7 的存档**结构完全相同**（14 段 `$` JSON，
+    官方模板 playerDate_03 两版逐字节一致），只有外层 ES3 口令不同，
+    内层 DES 的 `PJSQJ678` 两版一致（docs/14 §3.3）。
+
+    两版口令的来源也不同，这点值得记住：
+
+    * v5.9.2：口令硬编码进代码，经 IL2CPP 字面量哨兵 `0xA0005EF3`
+      间接引用 —— usage index **12153**，metadata 里没有 `encryptionpassword`
+      这个键（docs/10）。
+    * v5.5.7：走 ES3 的默认配置机制，`ES3Defaults` 的 `encryptionpassword`
+      值 —— usage index **656**（`files/old/global-metadata_v557.dat`，
+      literal 表 `off=0x100 size=70448` → 8806 行）。
+
+    两个 index 都是实测得出，不是猜的。
+    """
+
+    __slots__ = ("name", "password", "des_key", "literal_index", "meta")
+
+    def __init__(self, name, password, des_key=DES_KEY,
+                 literal_index=None, meta=None):
+        self.name = name
+        self.password = password
+        self.des_key = des_key
+        self.literal_index = literal_index
+        self.meta = meta
+
+    def __repr__(self):
+        return "<Variant %s password=%r literal_index=%s>" % (
+            self.name, self.password, self.literal_index)
+
+
+#: TapTap v5.9.2（默认）
+V592 = Variant("v5.9.2", "hqgames@2013", literal_index=12153,
+               meta="global-metadata.dat")
+
+#: 旧版 v5.5.7（包名 com.HQGAMES.TopDemons，仅 armeabi-v7a）
+V557 = Variant("v5.5.7", "65w84e4p994z3Oq", literal_index=656,
+               meta="old/global-metadata_v557.dat")
+
+VARIANTS = {v.name: v for v in (V592, V557)}
+DEFAULT_VARIANT = V592
+
+
+def get_variant(name=None):
+    """按名字取 Variant；None 或空返回默认（v5.9.2）。"""
+    if not name:
+        return DEFAULT_VARIANT
+    key = name if name in VARIANTS else ("v" + name if "v" + name in VARIANTS else None)
+    if key is None:
+        raise KeyError("未知版本 %r，可选: %s"
+                       % (name, ", ".join(sorted(VARIANTS))))
+    return VARIANTS[key]
+
 #: ES3 明文可能是 `key" : {...` 这种缺前导 `{` 的形态
 #: （ES3 内部 Write 时把外层 `{` 吃掉了，不是解密错误）
 _JSON_HINT = b'" : '
+
+
+class PasswordError(ValueError):
+    """口令不对。与"文件损坏"区分开 —— AES-CBC 用错口令仍会吐出等长字节。"""
 
 
 def _looks_like_save(pt: bytes) -> bool:
@@ -70,7 +132,19 @@ def decrypt_bytes(blob: bytes, password: str = PASSWORD) -> bytes:
     ct = blob[SALT_LEN + IV_LEN:]
     key = PBKDF2(password.encode("utf-8"), salt, dkLen=KEY_LEN,
                  count=ITERATIONS, hmac_hash_module=SHA1)
-    return unpad(AES.new(key, AES.MODE_CBC, iv).decrypt(ct), 16)
+    try:
+        return unpad(AES.new(key, AES.MODE_CBC, iv).decrypt(ct), 16)
+    except ValueError:
+        # AES-CBC 用错口令也会解出等长字节，只是 PKCS7 校验不过。
+        # 这里转成自己的异常，免得使用者把它当成"文件损坏"。
+        hint = ""
+        if password == V592.password:
+            hint = " 若这是旧版 v5.5.7 的存档，请加 --variant v5.5.7。"
+        elif password == V557.password:
+            hint = " 这已是旧版 v5.5.7 口令；若文件来自 TapTap 版，请用 --variant v5.9.2（默认）。"
+        raise PasswordError(
+            "第一层 AES 解密失败：口令 %r 不对（PKCS7 校验不过）。%s"
+            % (password, hint))
 
 
 def encrypt_bytes(plain: bytes, password: str = PASSWORD) -> bytes:
@@ -120,15 +194,38 @@ def des_encrypt(plain: bytes, key: str = DES_KEY) -> str:
     return ct.hex().upper()
 
 
-def read_save(path: str, password: str = PASSWORD) -> bytes:
-    """读 .es3，返回 **最内层的 14 段明文**（UTF-8 字节）。"""
+def read_save(path: str, password: str = None, variant=None) -> bytes:
+    """读 .es3，返回 **最内层的 14 段明文**（UTF-8 字节）。
+
+    参数
+    ----
+    password : str, optional
+        显式指定外层口令，优先于 ``variant``。
+    variant : Variant | str, optional
+        版本对象或版本名（``'v5.9.2'`` / ``'v5.5.7'``）。不给用默认。
+    """
+    v, pw = _resolve(password, variant)
     with open(path, "rb") as f:
         blob = f.read()
-    layer1 = decrypt_bytes(blob, password)
-    return unwrap_bucket(layer1)
+    layer1 = decrypt_bytes(blob, pw)
+    return unwrap_bucket(layer1, v.des_key)
 
 
-def unwrap_bucket(bucket: bytes) -> bytes:
+def _resolve(password=None, variant=None):
+    """把 (password, variant) 归一成 (Variant, 口令字符串)。
+
+    规则：显式 password 覆盖 variant 自带的口令（方便试新口令）；
+    两者都给时 variant 仍决定 DES key。
+    """
+    if variant is None or isinstance(variant, str):
+        v = get_variant(variant)
+    else:
+        v = variant
+    pw = password if password is not None else v.password
+    return v, pw
+
+
+def unwrap_bucket(bucket: bytes, des_key: str = DES_KEY) -> bytes:
     """从 ES3 桶里取出第一个 string 型条目的 hex，再 DES 解成 14 段明文。
 
     若桶本身已经是 14 段明文（未加内层的存档），原样返回。
@@ -138,7 +235,7 @@ def unwrap_bucket(bucket: bytes) -> bytes:
     hexstr, _ = parse_bucket(bucket)
     if hexstr is None:
         raise ValueError("桶里找不到 string 型 hex 条目")
-    return des_decrypt(hexstr)
+    return des_decrypt(hexstr, des_key)
 
 
 #: ES3 桶里固定存在的计数器条目；_Key 之外还有 7 个英雄/宠物输出计数键。
@@ -219,12 +316,13 @@ def parse_bucket(layer1: bytes):
     return hexstr, obj
 
 
-def write_save(path: str, plain: bytes, password: str = PASSWORD,
-               bak: bool = True) -> str:
+def write_save(path: str, plain: bytes, password: str = None,
+               bak: bool = True, variant=None) -> str:
     """把 14 段明文封成两层后写回 .es3；默认保留 .bak。"""
-    hexstr = des_encrypt(plain)
+    v, pw = _resolve(password, variant)
+    hexstr = des_encrypt(plain, v.des_key)
     inner = build_bucket(hexstr)
-    blob = encrypt_bytes(inner, password)
+    blob = encrypt_bytes(inner, pw)
     if bak and os.path.exists(path):
         import shutil
         shutil.copy2(path, path + ".bak")
@@ -258,60 +356,121 @@ def is_14_segment(plain: bytes) -> bool:
 
 # ------------------------------------------------------------------ CLI
 
-def cmd_unpack(inp, out=None):
-    plain = read_save(inp)
+def cmd_unpack(inp, out=None, variant=None):
+    plain = read_save(inp, variant=variant)
     out = out or (inp + ".json")
     with open(out, "wb") as f:
         f.write(plain)
     ok = is_14_segment(plain)
-    print("两层拆完 %s -> %s  (%d 字节, %s)"
-          % (inp, out, len(plain), "14 段存档" if ok else "结构异常"))
+    v = get_variant(variant)
+    print("两层拆完 %s -> %s  (%d 字节, %s, 版本 %s)"
+          % (inp, out, len(plain), "14 段存档" if ok else "结构异常", v.name))
     if not ok:
         print("  首 80 字节: %r" % plain[:80])
     return 0 if ok else 1
 
 
-def cmd_pack(inp, out=None):
+def cmd_pack(inp, out=None, variant=None):
     plain = open(inp, "rb").read()
     out = out or (inp[:-5] if inp.endswith(".json") else inp + ".es3")
-    write_save(out, plain)
+    write_save(out, plain, variant=variant)
     # 立刻回读校验
-    back = read_save(out)
+    back = read_save(out, variant=variant)
     same = back == plain.rstrip(b"\0")[:len(back)]
-    print("两层封回 %s -> %s  (%d 字节明文 -> %d 字节密文)"
-          % (inp, out, len(plain), os.path.getsize(out)))
+    v = get_variant(variant)
+    print("两层封回 %s -> %s  (%d 字节明文 -> %d 字节密文, 版本 %s)"
+          % (inp, out, len(plain), os.path.getsize(out), v.name))
     print("  回读校验: %s" % ("一致" if same else "不一致（可能是尾部填充差异）"))
     return 0 if same else 1
 
 
-def cmd_verify(inp, password=PASSWORD):
+def cmd_verify(inp, password=None, variant=None):
+    v, pw = _resolve(password, variant)
     blob = open(inp, "rb").read()
-    layer1 = decrypt_bytes(blob, password)
-    print("第一层(AES) 口令 %r -> 解开 %d 字节" % (password, len(layer1)))
     try:
-        plain = unwrap_bucket(layer1)
+        layer1 = decrypt_bytes(blob, pw)
+    except ValueError as e:
+        print("第一层(AES) 失败: %s" % e)
+        return 1
+    print("第一层(AES) 口令 %r -> 解开 %d 字节" % (pw, len(layer1)))
+    try:
+        plain = unwrap_bucket(layer1, v.des_key)
     except Exception as e:  # noqa: BLE001
         print("第二层(DES) 失败: %s" % e)
         return 1
     ok = is_14_segment(plain)
     print("第二层(DES key=%r) -> %d 字节, 14段=%s"
-          % (DES_KEY, len(plain), ok))
+          % (v.des_key, len(plain), ok))
     if ok:
         print("  首 60 字节: %r" % plain[:60])
     return 0 if ok else 1
 
 
+def cmd_variants(_arg=None):
+    """列出已知版本，并核对各自 metadata 里的口令字面量是否对得上。"""
+    print("%-8s %-20s %-10s %s" % ("版本", "外层口令", "DES key", "metadata 校验"))
+    for name in sorted(VARIANTS):
+        v = VARIANTS[name]
+        chk = _check_variant(v)
+        print("%-8s %-20s %-10s %s" % (v.name, v.password, v.des_key, chk))
+    return 0
+
+
+def _check_variant(v):
+    """拿 variant 的 literal_index 去读对应 metadata，核对口令。"""
+    try:
+        from paths import META, FILES
+        import peek_literal as pl
+        meta = (FILES / v.meta) if v.meta else META
+        if not meta.exists():
+            return "跳过（找不到 %s）" % v.meta
+        data = meta.read_bytes()
+        if v.meta and v.meta.startswith("old/"):
+            # 旧版 header 布局不同，用实测的 literal 表位置
+            ln, lo = struct.unpack_from("<ii", data, 0x100 + v.literal_index * 8)
+            base = 0x100 + 70448
+            got = data[base + lo: base + lo + ln]
+        else:
+            got = pl.literal(data, v.literal_index)
+        if got and got.decode("utf-8", "replace") == v.password:
+            return "OK  index %d == %r" % (v.literal_index, v.password)
+        return "不一致 index %d -> %r" % (v.literal_index, got)
+    except Exception as e:  # noqa: BLE001
+        return "检查失败: %s" % e
+
+
 def main(argv):
-    if len(argv) < 2:
+    if not argv:
         print(__doc__)
         return 2
-    cmd = argv[0]
+    # --variant / -v 是全命令全局开关，先摘出来
+    variant = None
+    rest = []
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a in ("--variant", "-V") and i + 1 < len(argv):
+            variant = argv[i + 1]
+            i += 2
+            continue
+        if a.startswith("--variant="):
+            variant = a.split("=", 1)[1]
+            i += 1
+            continue
+        rest.append(a)
+        i += 1
+    if not rest:
+        print(__doc__)
+        return 2
+    cmd = rest[0]
     if cmd == "unpack":
-        return cmd_unpack(argv[1], argv[2] if len(argv) > 2 else None)
+        return cmd_unpack(rest[1], rest[2] if len(rest) > 2 else None, variant)
     if cmd == "pack":
-        return cmd_pack(argv[1], argv[2] if len(argv) > 2 else None)
+        return cmd_pack(rest[1], rest[2] if len(rest) > 2 else None, variant)
     if cmd == "verify":
-        return cmd_verify(argv[1], argv[2] if len(argv) > 2 else PASSWORD)
+        return cmd_verify(rest[1], rest[2] if len(rest) > 2 else None, variant)
+    if cmd in ("variants", "list"):
+        return cmd_variants()
     print("未知命令: %s" % cmd)
     return 2
 
