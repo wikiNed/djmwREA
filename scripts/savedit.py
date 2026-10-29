@@ -41,10 +41,16 @@ path 语法: 段号.字段[.子字段][.数组下标], 例如
     11.GuoQiTime
     13.LiBaoIDs
 
-密文存档: 本工具只吃解密后的 14 段明文 JSON。要处理 .es3 请先
-    python scripts/es3save.py unpack saves/SaveFile.es3 out.json
-改完再
-    python scripts/es3save.py pack out.json saves/SaveFile.es3
+密文存档: 本工具对 .es3 与 .json 一视同仁，直接改 .es3 即可：
+    读入时自动拆掉两层（ES3 AES + 游戏 DES），
+    写回时自动重新封上两层，产物仍是合法 .es3。
+    详见 docs/11-存档双层加密还原.md。
+    写回前会自动备份为 <文件名>.bak。
+
+    若要手工转成明文 JSON 审阅：
+        python scripts/es3save.py unpack saves/SaveFile.es3 out.json
+    改完再封回去：
+        python scripts/es3save.py pack out.json saves/SaveFile.es3
 """
 
 import json

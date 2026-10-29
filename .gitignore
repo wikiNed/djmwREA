@@ -27,6 +27,11 @@ emu/dump2/
 emu/mem2.bin
 emu/memd/
 
+# savedit / es3save 的中间产物：备份与解密结果随时可再生成
+*.es3.bak
+*.es3.dec.json
+*.dec.json
+
 # ===== Python =====
 __pycache__/
 *.pyc
