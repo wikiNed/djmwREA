@@ -56,9 +56,12 @@
 
 1. **存档格式与加密链都已完全搞清楚**——14 段 `$` 拼接的 JSON，
    外层 ES3 AES、内层游戏自写 DES，两层密钥都在手，`saves/*.es3` 直接改。
-2. **`savedit.py` 十几条命令 + 30 项回归全通过**，`.json` 与 `.es3` 用法完全一致。
+2. **`savedit.py` 十几条命令 + 41 项回归全通过**，`.json` 与 `.es3` 用法完全一致，
+   且支持 `--variant` 切到旧版 v5.5.7（口令 `65w84e4p994z3Oq`）。
 3. **原文档的模拟器/frida 分析仍然有价值**（作为「为什么静态更省事」的对照），
    但**不再是必读的路障**——真机上跑 frida 只是可选的验证手段。
+4. **改档后卡标题页的坑已定位**——内层 DES 必须 PKCS7 填充，用 NUL 会导致
+   游戏侧 `Bad PKCS7 padding. Invalid length 0.` 并中断 `LoadGame()`。见 [docs/13](docs/13-内层DES填充与卡死根因.md)。
 
 ---
 
@@ -315,6 +318,19 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
    - 补全 `Date_*` 各段里尚未做编辑器的字段（现有命令覆盖了货币/装备/英雄/资源/关卡/成就/宝石/宠物/黄金树/礼包码）。
    - 若游戏后续版本改了 `PASSWORD` / `MIMA`，按 docs/10 + docs/11 的链路重跑一遍即可
      （两处都是 metadata 字面量，脚本通用）。
+   - 旧版 v5.5.7 的 `files/old/djmw_5.5.7.apk` 目前只是 LFS 指针（86925497 字节），
+     未拉到实体；`files/old/` 下的 `global-metadata_v557.dat` 与 `libil2cpp_v557_arm32.so` 是完整的。
+     如需旧版 dex，先用 `E:\DSH\game\fetch_lfs.py` 按 oid
+     `e6ed9d9a009e540223b702703f88b5d60ebc6577ab0b795da93757657b397270` 补拉。
+
+**已明确不做 / 走不通的**（详见 docs/14 §六、docs/17 §三）：
+
+| 事项 | 结论 |
+|---|---|
+| 换 TapTap 账号重验三项修改 | 需真实手机号 + 验证码，无游客入口，**跳过** |
+| 客户端绕过防沉迷 / 实名 | 判定在 TapTap 服务器（`checkPlay`），改静态布尔会被覆盖；且**与封号清档无关** |
+| 红屏文字的真实来源 | 不在 metadata、不在可读资源，`FengHaoUI` 槽未实例化，**推测由服务器下发** |
+| 绕过 `heiMingDan` 清档 | 收尾无条件执行，断网也走同一分支，**客户端无解** |
 
 ---
 
@@ -330,17 +346,27 @@ docs/
   09-dump关键类摘录.md              dump.cs 中 9 个关键类的完整摘录
   10-ES3口令已取得.md               ★ 口令 hqgames@2013 的完整取证链
   11-存档双层加密还原.md            ★ ES3-AES 套 DES，含双向封包与踩坑
+  12-*.md                           双层透明读写与批量编辑命令
+  13-内层DES填充与卡死根因.md       ★ PKCS7 填充，改档后卡标题页的真正原因
+  14-封号机制与旧版对比.md          ★★ heiMingDan 清档链路 + 旧版 metadata 对比
+  15-双版本工具链与kug字面量否证.md --variant 用法 + kug1oghhkt71gstktf 否证
+  16-魔石窟怪物表体积差是排版错觉.md 48KB 差异实为 indent 造成的假象
+  17-防沉迷在TapTap-SDK而非游戏自身.md ★ 防沉迷 ≠ 封号清档
 
 notes/
   REA学习笔记.md                    REA 工具链方法论（项目起点）
   存档修改速查表.md                 字段速查 ★★★
   点击魔王_逆向分析报告.md          完整逆向报告
 
-scripts/                            78 个脚本
-  savedit.py                       ★ 主工具，五条修改命令
-  es3decrypt.py                    ★ ES3 解密（拿到口令后直接用）
+scripts/                            100+ 个脚本
+  savedit.py                       ★ 主工具，十几条命令 + .es3 透明读写
+  es3save.py                       ★ 双层封包/解包，含 --variant 双版本
+  es3decrypt.py                    ES3 解密（拿到口令后直接用）
   disasm_range.py                  ★ capstone 反汇编 + 自动标注 dump.cs 函数名
-  frida_hook_settings.py           ★ 真机上 hook 口令（改 BASE 即可）
+  rela_resolve.py                  ★ ELF 重定位解析（口令取证链的第 1 步）
+  peek_literal.py                  ★ 读 metadata stringLiteral 第 N 行
+  callers.py                       扫 .text 找 bl 调用者（证明 Enum.Parse 零调用）
+  cmp_moshiku.py / list_monsters.py 两版怪物表对比
   find_slot_writers.py             静态找静态字段写入点
   crack_es3.py                     metadata 字面量爆破
   scan_mem.py / find_plaintext.py  内存明文搜索
@@ -432,10 +458,21 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 | `ShuJuDate.SaveGame` | `0x18A7034` | |
 | `ShuJuDate.LoadGame` | `0x18A9374` | |
 | `ShuJuDate.Encrypt(string,string)` | `0x18A8A68` | 游戏自己的一套加密（非 ES3） |
+| `ShuJuDate.BaoCunDate()` | `0x18A71B4` | 逐段 `ToJson` → `ZhuanHuanString` → `Encrypt` |
+| `ShuJuDate.ZhuanHuanString(string[])` | `0x18A89D0` | 用 `$` 拼接 14 段 |
+| `ShuJuDate.DengLuChengGong()` | `0x1892A24` | 无参登录成功回调（`this+0x80` 置登录标志） |
+| `ZuoBi.Start()` | `0x18B37B0` | **封号上报**，POST `heiMingDan.asp` |
+| `ChongWuPool.DeleteSave()` | `0x1857E30` | 清档收尾之一 |
+| `SaveManager.Clear()` | `0x17A65E0` | 清档收尾之一 |
+| `PlayerPrefs.DeleteAll()` | `0x3188010` | 清档收尾之一，连账号都抹掉 |
 
 ---
 
 ## 八、环境备忘
+
+> 原表记录的是原作者 MuMu 12 的环境，保留供对照。**本轮实际验证在雷电模拟器-2 上完成**，见下表。
+
+### 8.1 原作者环境（MuMu 12）
 
 | 项 | 值 |
 |---|---|
@@ -449,6 +486,31 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 | Python（含 frida/UnityPy/capstone） | `C:\Users\86156\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe` |
 | JDK 25 | `$JAVA_HOME` 指向的 JDK（本机工具，不入库，Ghidra 用) |
 | Ghidra 项目 | `E:\rea_ghidra\proj`，72117 个函数（但函数边界错位，实际用 capstone） |
+
+### 8.2 本轮实测环境（雷电模拟器-2）
+
+| 项 | 值 |
+|---|---|
+| 模拟器 | 雷电 LDPlayer 9，实例 index 2「雷电模拟器-2」 |
+| 控制台 | `D:\leidian\LDPlayer9\ldconsole.exe`（`list2` 输出是 **GBK**，需 `[Text.Encoding]::GetEncoding(936)` 解码） |
+| adb | `D:\leidian\LDPlayer9\adb.exe`，设备 `emulator-5558` |
+| root | `ldconsole quit --index 2` → `ldconsole modify --index 2 --root 1` → `ldconsole launch --index 2`（**运行中 modify 无效**） |
+| Android | 9 / SDK 28，`ro.product.cpu.abilist` = `x86_64,x86,arm64-v8a,armeabi-v7a,armeabi` |
+| 实际 ABI | **armeabi-v7a（32 位）** — 加载 `lib/arm/libil2cpp.so` 50929944 B，MD5 `ee19bb369632e0b0bc5ca21af31ec949` |
+| Python | `C:\Users\win\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe`，第三方库走 `PYTHONPATH=E:\DSH\game\.pylibs` |
+| 已有工具 | 设备自带 `/system/bin/dexdump`（dex 分析优先用它，别自写解析器） |
+
+**ARM32 与 ARM64 的差异**（已交叉验证 `scripts/verify_arm32.py`）：
+
+| 项 | arm64（仓库 `files/libil2cpp.so`） | arm32（设备实际加载） |
+|---|---|---|
+| 大小 | 59058224 | 50929944 |
+| 哨兵项长 | 8 字节 | **4 字节** |
+| 哨兵个数 | 16623 | 16624（多 1 个 idx=0 初始项） |
+| `R_ARM_RELATIVE` | 1027 | **23**（373197 条） |
+| 同一份 metadata | `global-metadata.dat` MD5 `4bc1c23cff3baca030683238e9bba290`，**两边完全一致** |
+
+两版 ARM 主体段都是 `r--p`（不可执行），**inline hook 必 SIGILL**——MuMu 那套结论在雷电下依然成立。
 
 **存档写入时机**：`ShuJuDate.ziDongSaveTime = 180`（自动存档 180 秒）、
 `YanShiTime = 6`（切后台延迟 6 秒存档）。抓时机用这两个常量。
@@ -465,6 +527,30 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 5. **Unity 的 "missing script" 警告 ≠ 功能在用**——曾因 `ES2 Auto Save Manager` 警告误判存档走 ES2，
    实际 `dump.cs` 里**没有任何 ES2 类**。
 6. **PowerShell 会吃掉 `adb shell` 里的管道与转义**——命令写成 `.sh` 推上去执行。
+   同理 `su -c '...'` 的引号也会被吞（报 `Unknown id:`），改用 `su 0 <cmd>`。
+
+### 9.1 后续几轮新增（同样别重复踩）
+
+7. **绝不要用 PowerShell 重定向写二进制/UTF-8 文件**——`& git cat-file blob $sha > $f`
+   会把内容重编码成 UTF-16LE（带 BOM `ff fe`），二进制和 `.py` 全部损坏。
+   改仓库文本文件前**先确认原编码**（`[IO.File]::ReadAllBytes` + 指定编码解码），
+   不要用 `Add-Content` 追加。
+8. **自检必须是交叉验证，不能自己验自己**——只用「自己 encrypt + 自己 decrypt」做往返，
+   两边同时错也会通过。DES 填充那个坑就是这么漏了三天。
+9. **不要拿「解析不抛异常」当正确性判据**——自写的 dex `class_data_item` 解析器
+   在 7251 个类上「验证通过」，实际 5477 个越界（docs/17 §五）。
+   要用**已知正确的成员列表**做交叉。
+10. **比 JSON 文件大小时必须先规范化**——`MoShiKuGuaiDate` 两版差 48KB，
+    实际内容是 `indent` 不同造成的假象，真实增量只有 2 只怪（docs/16）。
+11. **`ldr xN,[xM,#imm]` 在代码里搜不到 ≠ 字段没人用**——这批槽由 il2cpp 初始化器运行时填充，
+    静态代码里永远没有 `str`（实测 10 处访问全是 `ldr`）。
+12. **本机 git 写操作会挂死**（派生 `sh.exe` 建不起 signal pipe，`Win32 error 5`），
+    只读命令（`ls-tree` / `cat-file` / `rev-parse` / `log` / `status`）可用。
+    同步远端用 `E:\DSH\game\sync_repo.py`，推送用 `E:\DSH\game\push_api.py`（走 GitHub REST API，
+    因为本机 DNS 把 `github.com` 解析到 `20.205.243.166`，该 IP 几乎连不上；
+    `140.82.113.4` 反而 0.26s 稳定连通，但 git 不认 `curlrc` / `--resolve`，hosts 无权限改）。
+13. **capstone 必须先 `md.detail = True`** 才能读 `insn.operands`；
+    arm64 常量在 `capstone.arm64_const`，不在 `capstone.arm64`。
 
 ---
 
@@ -475,3 +561,8 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 > （`hqgames@2013` 和 `PJSQJ678`），只是被 il2cpp 的 metadata-usage 哨兵机制
 > 包了四层间接：`GOT 槽 → .data 槽 → 0xA0005EF3 → usage index 12153`。
 > **找 `str` 指令是死路；解析重定位读 metadata 才是正解。**
+
+> 改完档游戏卡标题页、或者存档被清空，是**两件不同的事**：
+> 前者是内层 DES 的 PKCS7 填充写错了（docs/13），后者是服务器的 `heiMingDan.asp`
+> 下发了封号判定、游戏无条件下清档（docs/14）。
+> 而 TapTap 的防沉迷/实名是第三个独立系统，全在 dex 里，跟这两者都无关（docs/17）。
