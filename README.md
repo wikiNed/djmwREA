@@ -1,13 +1,21 @@
 # djmwREA — 《点击魔王》存档逆向工程
 
-> TapTap 独立游戏 **《点击魔王》(TapDemons) v5.9.2** 的 Unity IL2CPP 存档逆向记录。
-> 存档结构与**完整加密链**已 100% 还原，`.es3` 可直接读写。
-> 口令 `hqgames@2013` 已取得 —— 见 [docs/10](docs/10-ES3口令已取得.md)；
-> 内层还有一层游戏自写的 DES —— 见 [docs/11](docs/11-存档双层加密还原.md)。
+> **两个版本都已破解**：
 >
-> **⚠ 三项修改已在真机验证，但触发了服务端封号** —— 封号机制、旧版本对比、
-> 工具链全图见 [docs/14](docs/14-封号机制与旧版对比.md)。
-> 一句话：**存档能改，墙在服务端账号级封禁，换号即可。**
+> | 版本 | 包名 | 存档 | 状态 |
+> |---|---|---|---|
+> | TapTap 版 v5.9.2 | `game.taptap.HQGAMES.TapDemons` | `SaveFile.es3` | ✅ 双层加密全解（AES + DES） |
+> | 旧版 v5.5.7 | `com.HQGAMES.TopDemons` | `<账号名>` | ✅ 单层 DES 全解，**改档双向可读，账号未被封** |
+>
+> **TapTap 版**：口令 `hqgames@2013` 已取得 —— 见 [docs/10](docs/10-ES3口令已取得.md)；
+> 内层还有一层游戏自写的 DES —— 见 [docs/11](docs/11-存档双层加密还原.md)。
+> **⚠ 三项修改已在真机验证，但触发了服务端封号** —— 封号机制见
+> [docs/14](docs/14-封号机制与旧版对比.md)。一句话：存档能改，墙在服务端账号级封禁。
+>
+> **旧版 v5.5.7**（推荐，无 TapTap 接入、自有邮箱账号体系）：
+> 实名弹窗可用 `saveTimeStamp=0` 绕过，存档格式与 TapTap 版完全不同，
+> 破译与实装全过程见 [docs/23](docs/23-旧版v557存档格式破解与改档实装.md)。
+> 黄金树 / 宝石碎片 / 宠物 / 资源四类改动**均被游戏接受并回写**。
 
 ---
 
@@ -187,14 +195,23 @@ docs/
                                     旧版 v5.5.7 对比、工具链全图
   18-游戏自建账号系统已失效.md   ★ 注册是桩、登录返回 `?`，无账号可得
   19-改档黑屏根因-salt与iv必须复用.md ★★ 黑屏根因与修复
+  20-存档主key的真实来源.md       ★ 槽名=PlayerData.GetID()=账号名
+  21-从零构造存档与seg2-5-10编辑器.md
+  22-从零构造档的形状校验.md
+  23-旧版v557存档格式破解与改档实装.md ★★ 旧版单层 DES、header 长度编码、
+                                     实名弹窗绕过、改档双向可读
 notes/
   REA学习笔记.md                 REA 工具链方法论
   存档修改速查表.md               ★ 字段速查
   点击魔王_逆向分析报告.md        完整逆向报告
-scripts/                         102 个脚本
+scripts/                         共有 108 个脚本
   savedit.py                    ★ 主工具（.json / .es3 皆可直接读写）
   es3save.py                    ★ 两层拆封/封装
   es3decrypt.py                 只解第一层（研究用）
+  v557save.py                   ★ 旧版 v5.5.7 存档读写（单层 DES + header 长度）
+  push_save_v557.py             ★ 旧版存档推送
+  v557_fit.py                   旧版长度对齐（delta 上限 +102）
+  v557_edit.py                  旧版字段编辑
   pet_from_template.py          ★ 从官方模板生成 85 只满级宠物
   fix_pets.py / pet_diff.py     宠物字段补齐与对比
   give_resources.py             钻石 / 肉 / 进化石 / 草丛
@@ -208,6 +225,9 @@ tools/
   smoke_test.py                 环境冒烟测试（3 项）
   find_undefined.py             AST 检查未定义常量
   test_savedit.py               ★ 存档编辑全量回归（41 项，含 salt/iv 组）
+  test_new_save.py              ★ 从零构造档的回归（含模板缺字段检查）
+  dex_disasm.py                 ★ 自写 dex 反汇编器（防沉迷 SDK 用）
+  arm_show.py / arm_disasm.py   ★ ELF32 ARM32 反汇编（旧版 libil2cpp）
 saves/                           演示存档（明文）+ 真实存档样本（加密）
 emu-notes/                       模拟器操作脚本与结论
 evidence/
@@ -235,6 +255,23 @@ files/
 | `ShuJuDate.SaveGame` | `0x18A7034` |
 | `ShuJuDate.BaoCunDate` | `0x18A71B4` |
 | `ShuJuDate.Encrypt(string,string)` | `0x18A8A68` |
+
+### 旧版 v5.5.7（ELF32 ARM32，**file_offset == RVA**）
+
+| 符号 | RVA |
+|---|---|
+| `ShuJuDate.LoadGame` | `0x7C1BA0` |
+| `ShuJuDate.BaoCunDate` | `0x7BD670` |
+| `ShuJuDate.GetDate` | `0x7C10E0` |
+| `ShuJuDate.Encrypt(string,string)` | `0x7C0D98` |
+| `ShuJuDate.DesDecrypt(string,string)` | `0x7C1E38` |
+| `ShuJuDate.ZhuanHuanString` | `0x7C0CC8` |
+| `ShuJuDate.ZhuanHuanStringArry` | `0x7C12E8` |
+| `ShuJuDate.JieXiDate` | `0x7C138C` |
+| `ShuJuDate.Init` | `0x7BDF1C` |
+| `PlayerData.GetID` | `0x4322E4` |
+| `GameGUI.OpenChongWuUI` | `0xEE93C4` |
+| `ChongWuUIManager_New.OpenChongWuXinXi` | `0x7F08B0` |
 
 ### 关键静态槽
 
