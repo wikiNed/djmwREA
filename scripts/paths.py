@@ -65,6 +65,8 @@ SAVES = _pick_dir("saves", "REA_SAVES", r"saves")
 WORK = _pick_dir("work", "REA_WORK", r"work")
 EVIDENCE = _pick_dir("evidence", "REA_EVIDENCE", r"evidence")
 EMU = _pick_dir("emu", "REA_EMU", r"emu")
+#: 从 data.unity3d 导出的 TextAsset 模板（playerDate_03 等官方存档骨架）
+TEMPLATES = EVIDENCE / "templates"
 
 # ---- 常见派生文件（避免各脚本重复拼路径）----
 # 模拟器上拉下来的真实存档（ES3 AES 加密）
