@@ -64,6 +64,17 @@ BASELINE_CANDIDATES = (
     os.path.join(REPO, "evidence", "saves", "SaveFile_device_orig.es3"),
 )
 
+#: 字段补全的参考档（游戏自己写过、必定能读）。按顺序取第一份存在的。
+#:
+#: 为什么需要补全（docs/22）：唯一一份自带的满级模板 playerDate_03 缺字段。
+#:     seg12 缺 TanPai_{IOP,ZCS,DTCS,CZT}  —— 游戏实跑后写的档里有
+#:     （seg2 / seg13 的差异见 templates/template_diff.py 的输出）
+#: 缺字段会让「从零构造」与「真机档」形状不一致，所以默认从参考档补齐。
+SHAPE_REFERENCE_CANDIDATES = (
+    os.path.join(REPO, "evidence", "saves", "SaveFile_device_orig.es3"),
+    os.path.join(REPO, "evidence", "saves", "SaveFile_after_orig.es3"),
+)
+
 
 class NewSaveError(RuntimeError):
     pass
@@ -103,6 +114,60 @@ def load_template(path):
         except json.JSONDecodeError as exc:
             raise NewSaveError("模板第 %d 段不是合法 JSON: %s" % (i, exc))
     return out
+
+
+def load_reference(explicit=None):
+    """找一份「游戏自己写过」的档当字段补全基准，返回 14 段对象或 None。"""
+    cands = ([explicit] if explicit else []) + list(SHAPE_REFERENCE_CANDIDATES)
+    for p in cands:
+        if not p or not os.path.exists(p):
+            continue
+        plain = E.read_save(p)
+        txt = plain.decode("utf-8") if isinstance(plain, bytes) else plain
+        parts = txt.split("$")
+        if len(parts) != NUM_SEGMENTS:
+            continue
+        try:
+            return [json.loads(s) for s in parts], p
+        except json.JSONDecodeError:
+            continue
+    return None
+
+
+def merge_reference(segs, ref):
+    """把参考档里有、模板里没有的**整段**(整段缺失) 或**字段**补进模板。
+
+    只补不改：模板已有的字段值一律保留（模板是满级档，值是设计好的）；
+    缺的字段按参考档的位置插入，以维持与真机档一致的字段顺序。
+    """
+    added = []
+    for i in range(NUM_SEGMENTS):
+        have = set(segs[i])
+        want = list(ref[i])
+        for field in want:
+            if field in have:
+                continue
+            # 按参考档里的相对位置插入：找它后面最近的那个模板里也有的字段
+            pos = want.index(field)
+            anchor = None
+            for nxt in want[pos + 1:]:
+                if nxt in have:
+                    anchor = nxt
+                    break
+            if anchor is None:
+                # 后面没有可锚定的字段 -> 追加到末尾，保持原顺序
+                segs[i][field] = ref[i][field]
+            else:
+                rebuilt = {}
+                for k, v in segs[i].items():
+                    if k == anchor:
+                        rebuilt[field] = ref[i][field]
+                    rebuilt[k] = v
+                segs[i].clear()
+                segs[i].update(rebuilt)
+            have.add(field)
+            added.append("seg%d.%s" % (i, field))
+    return added
 
 
 def apply_sets(segs, assigns):
@@ -193,6 +258,11 @@ def main(argv=None):
     ap.add_argument("--set", action="append", default=[],
                     metavar="SEG.FIELD=VALUE",
                     help="改写模板里的值，可重复，例：13.ZuanShi=9999999")
+    ap.add_argument("--reference", default=None,
+                    help="字段补全用的参考档（游戏自己写过的档）；"
+                         "不给则自动在 evidence/saves 里找")
+    ap.add_argument("--no-merge", action="store_true",
+                    help="不做字段补全，直接用模板原样（形状可能与真机档不一致）")
     ap.add_argument("--allow-random-outer", action="store_true",
                     help="找不到原档时允许随机 salt/iv（真机表现未验证）")
     ap.add_argument("--verify", action="store_true", help="写完自检")
@@ -202,6 +272,22 @@ def main(argv=None):
         raise SystemExit("模板不存在: %s" % a.template)
 
     segs = load_template(a.template)
+
+    if not a.no_merge:
+        ref = load_reference(a.reference)
+        if ref is None:
+            print("[warn] 找不到参考档，模板形状可能缺字段（docs/22）",
+                  file=sys.stderr)
+        else:
+            ref_segs, ref_path = ref
+            added = merge_reference(segs, ref_segs)
+            if added:
+                print("[merge] 从 %s 补齐 %d 个字段: %s"
+                      % (os.path.basename(ref_path), len(added),
+                         ", ".join(added)))
+            else:
+                print("[merge] 模板字段已是参考档的超集，无需补全")
+
     apply_sets(segs, a.set)
 
     base = load_baseline(a.base)
