@@ -361,10 +361,24 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
    - 补全 `Date_*` 各段里尚未做编辑器的字段（现有命令覆盖了货币/装备/英雄/资源/关卡/成就/宝石/宠物/黄金树/礼包码）。
    - 若游戏后续版本改了 `PASSWORD` / `MIMA`，按 docs/10 + docs/11 的链路重跑一遍即可
      （两处都是 metadata 字面量，脚本通用）。
-   - 存档主 key 是个**随每次保存变化的哈希名**（`o74JUkh9jw==` → `o2D+pAPsvrXCo74JUkh9jw==`），
-     生成规则**未解出**。目前不影响改档（原地替换 hex 即可），但如果要新建存档就得先解它。
-     相关反汇编在 `BaoCunDate @ 0x18A71B4`：`0x18A7244 bl #0x293aeec Type.GetType()`
-     + `0x18A7268 bl #0x292c170 Enum.GetNames(Type)`。
+   - ~~存档主 key 是个随每次保存变化的哈希名，生成规则未解出~~ —— **已解出，见 docs/20**。
+     旧记录（`o74JUkh9jw==` → `o2D+pAPsvrXCo74JUkh9jw==`）是**槽名被截断**造成的错觉，
+     不是随机哈希：
+
+     ```
+     ES3 桶 string 槽名 = PlayerData.GetID()
+                       = ShuJuDate.get_PlayerZhangHao()      @ 0x18A6E98
+                       = PlayerPrefs["UJHJKOikhS"]
+                       = TapTap anti_addict_user_identifier
+                       = "o2D+pAPsvrXCo74JUkh9jw=="（固定值，账号不变就不变）
+     ```
+
+     证据链：`PlayerData.GetID @ 0x1896030` 只有
+     `ldr x8,[ShuJuDate]` → `ldr x8,[x8,#0xb8]` → `ldr x0,[x8]` → `b get_PlayerZhangHao`，
+     **没有任何哈希/随机调用**；调用点在 `BaoCunDate @ 0x18A71B4` 的
+     `0x18A7614 bl #0x1896030` → `0x18A7634 bl #0x1d184c8`（ES3.Save(key, gameDateStr)）。
+
+     → **新建存档是可行的**：只要知道账号名，槽名就能算出来。
 
 **已明确不做 / 走不通的**（详见 docs/14 §六、docs/17 §三、docs/18）：
 
