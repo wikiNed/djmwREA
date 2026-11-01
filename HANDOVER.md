@@ -374,8 +374,13 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
    脚本在 metadata 里（`ChongWuUI` 是 type #4313，`ChongWuUIManager_New` 是 #4316），
    但场景 UI 没有任何可达按钮挂 `GameGUI.OpenChongWuUI()`
    （`tok=0x060005a9`，public 无参，典型 Button.onClick 绑定）。
-   想看到宠物界面只能 frida 强行调用，或换 v5.9.2。见
-   [docs/26](docs/26-v557宠物系统实测-UI无入口数据层可控.md)。
+   ~~想看到宠物界面只能 frida 强行调用~~ —— **已否证**：Houdini 下 frida 虽然能读写 ARM 段内存、
+   能改段权限、能写 ARM 指令，但 `Interceptor.attach` 对翻译后的 ARM 代码**完全不生效**
+   （字节不变、`hits=0`），且 `libhoudini.so` 没有 x86→ARM 调用桥，**调不动 `OpenChongWuUI()`**。
+   运行时实测 `ChongWuUIManager_New` 的 16 个静态字段里没有任何一个是它自己的实例
+   → **UI 管理器从未实例化**，不是「打开了没渲染」。见
+   [docs/26](docs/26-v557宠物系统实测-UI无入口数据层可控.md)、
+   [docs/27](docs/27-frida在Houdini下逆向IL2CPP的方法与边界.md)。
 7. **可选的延伸**：
    - 补全 `Date_*` 各段里尚未做编辑器的字段（现有命令覆盖了货币/装备/英雄/资源/关卡/成就/宝石/宠物/黄金树/礼包码）。
    - 若游戏后续版本改了 `PASSWORD` / `MIMA`，按 docs/10 + docs/11 的链路重跑一遍即可
@@ -411,7 +416,8 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
 | 绕过 `heiMingDan` 清档 | 收尾无条件执行，断网也走同一分支，**客户端无解** |
 | ARM32 `.text` 里找 `SaveFile.es3` 的 GOT 槽引用 | `0x2f5a770` 在 `.text` 里 **0 处引用**（`ldr-pc`/`movw+movt`/literal 池全试过），路径未明 |
 | v557 ARM32 反推 `methodPointers` | `Stripping Enabled` 构建，`int32==31519` 零命中；最长连续段只 15098 / 2705 项，**不可行** |
-| v557 宠物 UI | prefab 在包里但场景无入口，点遍全部 tab/建筑/地图光点均无反应，**只能 hook 或换版本** |
+| v557 宠物 UI | prefab 在包里但场景无入口，点遍全部 tab/建筑/地图光点均无反应；运行时 `ChongWuUIManager_New` **无实例**，frida 在 Houdini 下**不能调用 ARM 函数** → **客户端无解，只能换版本**（docs/27） |
+| Houdini 下 hook / 调用 ARM 代码 | `Interceptor.attach` 登记成功但**字节不变、hits=0**；`libhoudini.so` 62 个导出无 x86→ARM 桥。**能读写数据，不能执行代码**（docs/27 §四） |
 
 ---
 
@@ -435,6 +441,14 @@ docs/
   17-防沉迷在TapTap-SDK而非游戏自身.md ★ 防沉迷 ≠ 封号清档
   18-游戏自建账号系统已失效.md      ★ 服务器注册是桩、登录返回 `?`，无账号可得
   19-改档黑屏根因-salt与iv必须复用.md ★★ 外层 AES 的 salt/iv 必须继承原档
+  20-存档主key的真实来源.md          ★ 槽名 = PlayerData.GetID() = 账号名，不是哈希
+  21-从零构造存档与seg2-5-10编辑器.md 不依赖现存存档造档
+  22-从零构造档的形状校验.md         6 组 38 条断言 + 交叉形状比对
+  23-旧版v557存档格式破解与改档实装.md ★ v5.5.7 与 TapTap 版格式完全不同
+  24-v557上机实测与长度边界.md        ★★ 改档生效实证 + header 长度不变量
+  25-v557封号边界实测-heiMingDan仍活跃.md ★★ 协议状态机 + 清档实证
+  26-v557宠物系统实测-UI无入口数据层可控.md ★ 宠物加成量化 + 无入口结论
+  27-frida在Houdini下逆向IL2CPP的方法与边界.md ★★★ 类定位法 + frida 能力边界
 
 notes/
   REA学习笔记.md                    REA 工具链方法论（项目起点）
