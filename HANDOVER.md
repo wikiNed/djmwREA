@@ -77,8 +77,14 @@
 5. **改档后黑屏的坑也已定位**——外层 AES 的 **salt/iv 必须复用原档的前 32 字节**，
    不能用新的随机值。见 [docs/19](docs/19-改档黑屏根因-salt与iv必须复用.md)。
    `write_save()` 现默认 `reuse_outer=True`，回归里有「零改动重封 == 原档」逐字节断言。
-6. **游戏自建的账号服务器已经死了**——无法注册也无法登录，所以「改档 → 进游戏看数值」
-   这段闭环还差最后一步。见 [docs/18](docs/18-游戏自建账号系统已失效.md)。
+6. **游戏自建的账号服务器已经死了**（v5.9.2 TapTap 版）——无法注册也无法登录。
+   见 [docs/18](docs/18-游戏自建账号系统已失效.md)。
+7. **旧版 v5.5.7 能进游戏**：自带邮箱账号体系，`qingQiu.asp` 的 `qingQiuID=100`
+   分支只检查「4 字段非空 + 验证码正确」就回 `222`（不写库，所以随便注册），
+   实名弹窗靠把 prefs 里 `accountType` 从 `0` 改成 `4` 即可绕过。
+   **「改档 → 进游戏看到数值」的端到端闭环已经在 v5.5.7 上跑通**：
+   `ZuanShi 0→9999` 主界面显示 9999；宠物 `IsXieDai=1` 让战斗力 1 → 3.60 万。
+   见 [docs/24](docs/24-v557上机实测与长度边界.md)、[docs/26](docs/26-v557宠物系统实测-UI无入口数据层可控.md)。
 
 ---
 
@@ -340,24 +346,37 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
 
 ## 五之二、现在该做什么
 
-1. **验证**：`python tools/test_savedit.py`（41 项，含 salt/iv 回归组）+ `python tools/smoke_test.py`（3 项）。
+1. **验证**：`python tools/test_savedit.py`（41 项，含 salt/iv 回归组）
+   + `python tools/smoke_test.py`（3 项）+ `python tools/test_new_save.py`。
 2. **实战**：直接对 `.es3` 跑编辑命令，例如
    `python scripts/savedit.py currency saves/SaveFile_orig.es3 --zuanshi 888888`。
-3. **上机**：改完直接 `adb push` 到
+3. **上机（v5.9.2 TapTap 版）**：改完直接 `adb push` 到
    `/sdcard/Android/data/game.taptap.HQGAMES.TapDemons/files/SaveFile.es3`，
    用 `su 0 cp` 覆盖（`emulator-5558` = 雷电模拟器-2）。
    判定是否成功的标志：`screencap` 出来的 sha256 = `ecc30672...`（登录页），
    而不是 `5c49fdc3...`（黑屏）；logcat 里 `FormatException` 计数为 0。
-4. **剩下唯一没打通的**：进游戏。游戏自建账号服务器已失效（[docs/18](docs/18-游戏自建账号系统已失效.md)），
-   TapTap 登录需要真实手机号。所以「改档 → 进游戏看到数值」这最后一段还没验证过。
-   已证明的是**加密管道对游戏完全透明**，不是数值生效。
+4. **上机（v5.5.7 旧版）★推荐**：这条路能真正进游戏看到数值。
+   存档路径是 `/sdcard/Android/data/com.HQGAMES.TopDemons/files/<账号名>`，
+   用 `scripts/v557save.py` / `v557_pad.py` / `v557_carry.py` 改。
+   完整坐标与流程见 docs/24、docs/26。
+   > 注意：`testwk01@163.com` 已被写入黑名单（docs/25 §三），
+   > 新测试请用 `testwk02@163.com` 或另注册。
+5. **v5.9.2 里剩下唯一没打通的**：进游戏。自建账号服务器已失效
+   （[docs/18](docs/18-游戏自建账号系统已失效.md)），TapTap 登录需要真实手机号。
    要突破有两条路：
    - **A**：找一个能登的 TapTap 账号（真实手机号），这是最省事的
    - **B**：hook `DengLuChengGong @ RVA 0x1892A24` 伪造登录态。
      但它需要有效的 `this`（`x19`）和已初始化的单例，裸调用会崩；
      ARM 主体段在模拟器里是 `r--p`（见 §四），inline hook 走不通，只能靠 frida 的
      Java/native 层替身或者改 `ChuShiHuaName` 之后的调用链
-5. **可选的延伸**：
+6. **已知的「有资源、无入口」缺口**：v5.5.7 的宠物 UI
+   （`ChongWuUI` / `ChongWuUIManager_New`）prefab 在 `data.unity3d` 里、
+   脚本在 metadata 里（`ChongWuUI` 是 type #4313，`ChongWuUIManager_New` 是 #4316），
+   但场景 UI 没有任何可达按钮挂 `GameGUI.OpenChongWuUI()`
+   （`tok=0x060005a9`，public 无参，典型 Button.onClick 绑定）。
+   想看到宠物界面只能 frida 强行调用，或换 v5.9.2。见
+   [docs/26](docs/26-v557宠物系统实测-UI无入口数据层可控.md)。
+7. **可选的延伸**：
    - 补全 `Date_*` 各段里尚未做编辑器的字段（现有命令覆盖了货币/装备/英雄/资源/关卡/成就/宝石/宠物/黄金树/礼包码）。
    - 若游戏后续版本改了 `PASSWORD` / `MIMA`，按 docs/10 + docs/11 的链路重跑一遍即可
      （两处都是 metadata 字面量，脚本通用）。
@@ -379,17 +398,20 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
      `0x18A7614 bl #0x1896030` → `0x18A7634 bl #0x1d184c8`（ES3.Save(key, gameDateStr)）。
 
      → **新建存档是可行的**：只要知道账号名，槽名就能算出来。
+   > v5.5.7 没有这层间接：**存档文件名就是账号名**，`seg13.ZhangHao` 存账号名。
 
-**已明确不做 / 走不通的**（详见 docs/14 §六、docs/17 §三、docs/18）：
+**已明确不做 / 走不通的**（详见 docs/14 §六、docs/17 §三、docs/18、docs/26 §三）：
 
 | 事项 | 结论 |
 |---|---|
 | 从官方服务器注册/登录账号 | `qingQiuID=100` 是桩（不写库，SQL 注入都能过），`111/222` 返回 `?`，**无解** |
-| 换 TapTap 账号重验三项修改 | 需真实手机号 + 验证码，无游客入口，**跳过** |
-| 客户端绕过防沉迷 / 实名 | 判定在 TapTap 服务器（`checkPlay`），改静态布尔会被覆盖；且**与封号清档无关** |
+| 换 TapTap 账号重验三项修改 | 需真实手机号 + 验证码，无游客入口，**跳过**（但 v5.5.7 能自注册） |
+| 客户端绕过防沉迷 / 实名 | TapTap 版判定在服务器；**v5.5.7 改 `accountType=4` 有效** |
 | 红屏文字的真实来源 | 不在 metadata、不在可读资源，`FengHaoUI` 槽未实例化，**推测由服务器下发** |
 | 绕过 `heiMingDan` 清档 | 收尾无条件执行，断网也走同一分支，**客户端无解** |
 | ARM32 `.text` 里找 `SaveFile.es3` 的 GOT 槽引用 | `0x2f5a770` 在 `.text` 里 **0 处引用**（`ldr-pc`/`movw+movt`/literal 池全试过），路径未明 |
+| v557 ARM32 反推 `methodPointers` | `Stripping Enabled` 构建，`int32==31519` 零命中；最长连续段只 15098 / 2705 项，**不可行** |
+| v557 宠物 UI | prefab 在包里但场景无入口，点遍全部 tab/建筑/地图光点均无反应，**只能 hook 或换版本** |
 
 ---
 
