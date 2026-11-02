@@ -226,8 +226,11 @@ tools/
   find_undefined.py             AST 检查未定义常量
   test_savedit.py               ★ 存档编辑全量回归（41 项，含 salt/iv 组）
   test_new_save.py              ★ 从零构造档的回归（含模板缺字段检查）
+  test_meta_tools.py            ★ metadata / ELF32 / 调用点 / 场景类 回归（38 项）
   dex_disasm.py                 ★ 自写 dex 反汇编器（防沉迷 SDK 用）
   arm_show.py / arm_disasm.py   ★ ELF32 ARM32 反汇编（旧版 libil2cpp）
+  find_calls_arm32.py           ★ ARM32 调用点反查（谁 bl 到了这个方法）
+  unity_scene_classes.py        ★ 场景里挂了哪些 C# 类（MonoBehaviour 分布）
 saves/                           演示存档（明文）+ 真实存档样本（加密）
 emu-notes/                       模拟器操作脚本与结论
 evidence/

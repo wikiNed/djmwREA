@@ -136,6 +136,57 @@ def test_elf():
           decode_arm_b(0x1000, 0xE1A00000) is None)
 
 
+def test_find_calls():
+    print("[6] ARM32 调用点搜索（find_calls_arm32）")
+    import find_calls_arm32 as F
+
+    so = F.DEFAULT_SO
+    if not so.exists():
+        check("v557 .so 存在", False, str(so))
+        return
+    data, secs = F.load_elf(so)
+
+    # SceneManager.LoadScene(string) 的 RVA 来自 dump.cs
+    hits = F.find_bl_to(data, secs, 0x6A4C90)
+    check("LoadScene(string) 有 10 处调用", len(hits) == 10, str(len(hits)))
+    # 封号链路里唯一的那处
+    rvas = {r for _o, r in hits}
+    check("其中包含 0x3EDB48（GetBaoName）", 0x3EDB48 in rvas)
+
+    # PLT 桩表：LoadScene 必须能在 .rel.plt 里找到
+    stubs = F.plt_stubs(data, secs, F.dynsyms(data, secs))
+    check("PLT 能解出 .rel.plt 表项",
+          len(stubs) > 0, "%d 个符号" % len(stubs))
+
+
+def test_scene_classes():
+    print("[7] Unity 场景类分布（unity_scene_classes）")
+    import unity_scene_classes as U
+
+    bundle = U.DEFAULT_BUNDLE
+    if not bundle.exists():
+        print("  (跳过：%s 不存在)" % bundle)
+        return
+
+    import UnityPy
+    env = UnityPy.load(str(bundle))
+    scripts = U.script_class_map(env)
+    # m_Name 在偏移 0 才对；按偏移 8 解会大面积失败
+    check("能解出 >1200 个 MonoScript 类名",
+          len(scripts) > 1200, "%d 个" % len(scripts))
+    check("MonoScript pid 697 是 ZuoBi",
+          scripts.get(697) == "ZuoBi", str(scripts.get(697)))
+
+    rows = U.monobehaviour_class(env, scripts)
+    lv11 = [c for s, c in rows if s == "level11"]
+    check("level11 有 6 个 MonoBehaviour", len(lv11) == 6, str(len(lv11)))
+    check("level11 里恰好 1 个 ZuoBi", lv11.count("ZuoBi") == 1)
+
+    lv7 = [c for s, c in rows if s == "level7"]
+    check("level7（Level_ChongWu）里有 ChongWuManager",
+          "ChongWuManager" in lv7)
+
+
 def main():
     print("=" * 60)
     test_header()
@@ -143,6 +194,8 @@ def main():
     test_literal()
     test_field_offset()
     test_elf()
+    test_find_calls()
+    test_scene_classes()
     print("=" * 60)
     print("结果: %d passed, %d failed" % (_passed, _failed))
     return 0 if _failed == 0 else 1

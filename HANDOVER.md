@@ -412,11 +412,11 @@ base = 0x08b1b720 - 0x174b720 = 0x073D0000
 | 从官方服务器注册/登录账号 | `qingQiuID=100` 是桩（不写库，SQL 注入都能过），`111/222` 返回 `?`，**无解** |
 | 换 TapTap 账号重验三项修改 | 需真实手机号 + 验证码，无游客入口，**跳过**（但 v5.5.7 能自注册） |
 | 客户端绕过防沉迷 / 实名 | TapTap 版判定在服务器；**v5.5.7 改 `accountType=4` 有效** |
-| 红屏文字的真实来源 | 不在 metadata、不在可读资源，`FengHaoUI` 槽未实例化，**推测由服务器下发** |
-| 绕过 `heiMingDan` 清档 | 收尾无条件执行，断网也走同一分支，**客户端无解** |
+| 红屏文字的真实来源 | **已解出（docs/29）**：不在 metadata，是 `level11` = `Level_ZuoBi.unity` 场景里 `TiShi_Text` 组件的静态字符串 |
+| 绕过 `heiMingDan` 清档 | 收档动作本身无条件执行，断网也走同一分支；**但它只在 `level11`（`Level_ZuoBi` 场景）被加载时才跑**，见 docs/29 |
 | ARM32 `.text` 里找 `SaveFile.es3` 的 GOT 槽引用 | `0x2f5a770` 在 `.text` 里 **0 处引用**（`ldr-pc`/`movw+movt`/literal 池全试过），路径未明 |
 | v557 ARM32 反推 `methodPointers` | `Stripping Enabled` 构建，`int32==31519` 零命中；最长连续段只 15098 / 2705 项，**不可行** |
-| v557 宠物 UI | prefab 在包里但场景无入口，点遍全部 tab/建筑/地图光点均无反应；运行时 `ChongWuUIManager_New` **无实例**，frida 在 Houdini 下**不能调用 ARM 函数** → **客户端无解，只能换版本**（docs/27） |
+| v557 宠物 UI | **已解出（docs/29 §六）**：入口是**场景切换**而非 UI 面板 —— 主地图草丛 → `LoadScene("Level_ChongWu")`（BuildSettings 索引 7 = `level7`），里面有 `ChongWuManager` / `HRController` / `HRSlider` / `XinTiaoSheng`（抓宠小游戏）。原「无入口」结论只针对 `level2`/`level3` 的 tab 面板 |
 | Houdini 下 hook / 调用 ARM 代码 | `Interceptor.attach` 登记成功但**字节不变、hits=0**；`libhoudini.so` 62 个导出无 x86→ARM 桥。**能读写数据，不能执行代码**（docs/27 §四） |
 
 ---
@@ -449,6 +449,8 @@ docs/
   25-v557封号边界实测-heiMingDan仍活跃.md ★★ 协议状态机 + 清档实证
   26-v557宠物系统实测-UI无入口数据层可控.md ★ 宠物加成量化 + 无入口结论
   27-frida在Houdini下逆向IL2CPP的方法与边界.md ★★★ 类定位法 + frida 能力边界
+  28-工具链整理与旧结论修正.md       ★ 四条旧结论的推翻
+  29-level11封号页与ZuoBi清档链路的完整定位.md ★★★ 红屏真身 = Level_ZuoBi 场景
 
 notes/
   REA学习笔记.md                    REA 工具链方法论（项目起点）
@@ -536,6 +538,17 @@ Unity 资源包：`unity_data_asset()` — 优先 `assets/data.unity3d`，
 ```bash
 python tools/smoke_test.py        # 冒烟测试：路径解析 + 反汇编 + 未定义检查
 python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的常量
+python tools/test_meta_tools.py   # metadata v27 / ELF32 符号 / 调用点 / 场景类（38 项）
+```
+
+逆向分析常用工具：
+
+```bash
+python tools/find_calls_arm32.py 0x6A4C90        # 谁 bl 到了这个 RVA（ARM32）
+python tools/find_calls_arm32.py --list-plt Load # 列 PLT 里名字含 Load 的符号
+python tools/unity_scene_classes.py level7 level11   # 场景里挂了哪些 C# 类
+python tools/arm_show.py 0x7C1E38 200            # ARM32 反汇编一段
+python tools/dex_disasm.py <classes.dex> '<Lcom/x/Y;>' methodName   # dex 反汇编
 ```
 
 ---
@@ -615,7 +628,6 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 ---
 
 ## 九、工程约定（本轮踩过的坑）
-
 1. **`RVA ≠ file offset`**——必须按 ELF program header 分段换算。早期脚本假设相等，导致大量误判。
 2. **`libil2cpp.so` load base 每次重启都变**——不要在脚本里硬编码，每次重新从 `/proc/PID/maps` 取。
 3. **frida 17 移除了 `Module.findExportByName` / `getExportByName`**——只能用 `Process.getModuleByName()`。
@@ -662,6 +674,16 @@ python tools/find_undefined.py    # AST 检查脚本是否引用了未定义的�
 18. **判定黑屏/正常要认 sha256**：登录页 `ecc30672...`，黑屏 `5c49fdc3...`。
     `screencap` 必须 `adb shell screencap -p /sdcard/x.png` + `adb pull`，
     用 `adb exec-out screencap -p > file` 会被 PowerShell 破坏成非 PNG。
+19. **`MonoScript` 的 `m_Name` 在 raw 偏移 0，不是 8**——按 8 解会把 1234 个类名全部读成 `None`。
+    `MonoBehaviour` 的 `m_Script.pathID` 在 raw 偏移 20（表头 = `m_GameObject`(8) + `m_Enabled`(1)+pad(3) + `m_Script`(8)）。
+20. **「场景里没有这个类」要先看是不是查错了场景**——`level11` 只有 6 个 MonoBehaviour，
+    却是整个封号红屏页（`Level_ZuoBi.unity`）；在大场景里找不到时换小场景重扫。
+21. **ARM32 下 `file_offset == RVA`，ARM64 下不等**——v557 的 `.so` 可以当 RVA 直接用，
+    但同一套脚本搬到 v5.9.2 会全错，写工具时要按 ELF class 分流。
+22. **PLT 桩的判据是 `st_shndx == 12`，不是 `st_size == 4`**——v557 的 232 个 `il2cpp_*`
+    全部 shndx==12，按 size 判会漏掉一批。
+23. **判定「解密失败」要把 `EndOfStreamException` 也纳入**——只匹配
+    `CryptographicException`/`FormatException` 会把黑屏误判成成功。
 
 ---
 
