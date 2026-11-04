@@ -23,6 +23,7 @@ import argparse
 import binascii
 import hashlib
 import os
+import struct
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -33,8 +34,6 @@ from Crypto.Util.Padding import pad, unpad  # noqa: E402
 
 #: ShuJuDate.MIMA —— 内层 DES 的 key 与 iv（同为这 8 字节）
 KEY = b"PJSQJ678"
-#: 文件头长度（内容未解析，读档保留、写档原样回填）
-HEADER_LEN = 14
 #: 文件尾标记
 FOOTER = b"{"
 #: 段分隔符
@@ -42,15 +41,79 @@ SEP = "$"
 #: 段数
 NUM_SEGMENTS = 14
 
+# ----------------------------------------------------------------- header
+#
+# 2026-11 完全解出。header 是 Easy Save 2 的记录头，长度可变：
+#
+#     header = 7e 00 | uint32 LE (文件总长 - 6) | ff ee f1 e9 fd | varint(hex 长度)
+#
+#   * 第 1、2 字节固定 `7e 00`
+#   * 偏移 2..5 是**小端 uint32**，等于「文件总长 − 6」
+#     （即从偏移 6 到文件末尾的字节数）
+#   * 偏移 6..10 是 5 字节固定常量 `ff ee f1 e9 fd`
+#   * 偏移 11.. 是 .NET 的 7-bit varint，值为 hex 字符串的字符数
+#     （= 密文字节数 × 2 = 文件总长 − header 长度 − 1）
+#
+# 因此 header 长度 = 11 + varint 长度，通常 3 字节 varint → 14 字节 header。
+# 旧的 `h[11:14] = 0xCB90 + delta` 只在 delta ≤ 96 时碰巧成立，是错的。
+HDR_PREFIX = bytes([0x7E, 0x00])
+HDR_MAGIC = bytes.fromhex("ffeef1e9fd")
+#: 兼容旧名：基线档（75167 字节）的天然头
+BASE_HEADER = bytes.fromhex("7e0099250100ffeef1e9fd90cb04")
+BASE_TOTAL = 75167
+HEADER_LEN = len(BASE_HEADER)
+
+
+def es2_varint(n):
+    """写出 .NET ``Write7BitEncodedInt`` 的 7-bit varint。"""
+    if n < 0:
+        raise ValueError("varint 不能为负: %d" % n)
+    out = bytearray()
+    while True:
+        b = n & 0x7F
+        n >>= 7
+        if n:
+            out.append(b | 0x80)
+        else:
+            out.append(b)
+            return bytes(out)
+
+
+def read_es2_varint(buf, pos):
+    """读回 7-bit varint，返回 (值, 占用字节数)。"""
+    val = 0
+    shift = 0
+    for n in range(5):
+        b = buf[pos + n]
+        val |= (b & 0x7F) << shift
+        if not (b & 0x80):
+            return val, n + 1
+        shift += 7
+    raise ValueError("varint 超过 5 字节")
+
+
+def make_header(hexlen):
+    """按 hex 字符串长度生成合法 header。"""
+    v = es2_varint(hexlen)
+    total = len(HDR_PREFIX) + 4 + len(HDR_MAGIC) + len(v) + hexlen + len(FOOTER)
+    return (HDR_PREFIX + struct.pack("<I", total - 6) + HDR_MAGIC + v)
+
+
+def header_len_of(blob):
+    """从文件字节推算出 header 的实际长度。"""
+    _, n = read_es2_varint(blob, 11)
+    return 11 + n
+
 
 # ----------------------------------------------------------------- 解析
 
 def split_parts(blob):
     """拆出 (header, des_body) 。"""
-    if len(blob) < HEADER_LEN + 2:
+    if len(blob) < 15 + 8:
         raise ValueError("文件太短: %d 字节" % len(blob))
-    header = blob[:HEADER_LEN]
-    rest = blob[HEADER_LEN:]
+    hlen = header_len_of(blob)
+    header = blob[:hlen]
+    rest = blob[hlen:]
     if rest.endswith(FOOTER):
         rest = rest[:-len(FOOTER)]
     try:
@@ -94,47 +157,34 @@ def encrypt_body(plain):
     return ct
 
 
+def un_fix_header_length(header):
+    """已废弃：保留仅为兼容旧调用。header 现在由 ``make_header`` 整份重建。"""
+    return BASE_HEADER
+
+
 def build(header, plain):
     """由 header + 明文拼出完整文件字节。
 
-    header 里第 2、11 字节编码了文件总长度（相对基线 75167 的偏移）。
-    这里会自动按实际长度重新计算这两个字节。
+    ``header`` 参数已不再被使用（长度字段由 ES2 结构唯一决定），
+    保留是为了兼容既有调用点。真正写入的 header 由 ``make_header`` 按新
+    明文长度重新生成。
     """
-    if len(header) != HEADER_LEN:
-        raise ValueError("header 必须 %d 字节" % HEADER_LEN)
     body = encrypt_body(plain)
-    total = HEADER_LEN + len(body) * 2 + len(FOOTER)
-    hdr = fix_header_length(header, total)
-    return hdr + binascii.hexlify(body).upper() + FOOTER
-
-
-#: 头部中随长度线性变化的两个小端 16 位累加器 (低字节位置)
-HDR_LEN_POS = (2, 11)
-#: 长度编码基线（原档 75167 字节对应的天然头部）
-BASE_TOTAL = 75167
+    hextext = binascii.hexlify(body).upper()
+    hdr = make_header(len(hextext))
+    return hdr + hextext + FOOTER
 
 
 def fix_header_length(header, total_len):
-    """按文件总长度修正 header 里的长度累加器。
-
-    实测：
-        总长 75167 -> header[2..3]=0x2599  header[11..12]=0x0490
-        总长 75231 -> header[2..3]=0x25D9  header[11..12]=0x04D0  (delta 0x40)
-        总长 75183 -> header[2..3]=0x25A9  header[11..12]=0x04A0  (delta 0x10)
-
-    两处都是**小端 16 位**，按 delta 直接相加（会进位到高字节）。
-    早期只把低字节 +delta 并 &0xFF，delta 超过 255 时回绕导致解密失败。
-    """
-    hdr = bytearray(header)
-    delta = total_len - BASE_TOTAL
-    if delta == 0:
-        return bytes(hdr)
-    for p in HDR_LEN_POS:
-        v = (hdr[p] | (hdr[p + 1] << 8)) + delta
-        v &= 0xFFFF
-        hdr[p] = v & 0xFF
-        hdr[p + 1] = (v >> 8) & 0xFF
-    return bytes(hdr)
+    """按文件总长度重建 header（旧的「累加器」模型已被推翻）。"""
+    hexlen = total_len - len(HDR_PREFIX) - 4 - len(HDR_MAGIC) - len(FOOTER)
+    for _ in range(4):
+        hdr = make_header(hexlen)
+        real = len(hdr) + hexlen + len(FOOTER)
+        if real == total_len:
+            return hdr
+        hexlen += total_len - real
+    raise ValueError("无法为总长 %d 解出 header" % total_len)
 
 
 def write_save(path, header, plain):
@@ -155,11 +205,15 @@ def write_segments(path, header, segs):
 # ----------------------------------------------------------------- 自检
 
 def verify(path):
-    """读回自检：解出来再重新加密，应与原文件逐字节一致。"""
+    """读回自检：解出来再重新加密，应与原文件逐字节一致。
+
+    注意不能直接 ``build(header, pt)`` —— 文件里的 header 已经带长度累加，
+    再走一遍 ``fix_header_length`` 会二次累加。先用基线头重算。
+    """
     blob = open(path, "rb").read()
     header, body = split_parts(blob)
     pt = decrypt_body(body)
-    again = build(header, pt)
+    again = build(BASE_HEADER, pt)
     ok = again == blob
     print("文件      : %s" % path)
     print("总长      : %d" % len(blob))
