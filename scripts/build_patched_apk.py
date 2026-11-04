@@ -9,12 +9,15 @@
 """
 import zipfile, struct, subprocess, os, sys
 
-ROOT = r'E:\DSH\game\djmwREA'
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_APK = ROOT + r'\files\old\djmw_5.5.7.apk'
 OUT_DIR = ROOT + r'\work\patched'
 OUT_APK = OUT_DIR + r'\djmw_5.5.7_patched17.apk'
 SO = OUT_DIR + r'\libil2cpp_v17.so'
 KEY = OUT_DIR + r'\dshmod.keystore'
+# 签名工具：优先环境变量 JARSIGNER，否则 PATH 里的 jarsigner。
+# （不要写死某台机器的 JDK 路径 —— docs/30 §9 待办 4）
+JARSIGNER = os.environ.get("JARSIGNER") or "jarsigner"
 
 WORDS = [
     # ---- 反作弊豁免 ----
@@ -45,6 +48,30 @@ WORDS = [
     (0x7AE77C, 0x03001001, 0x03001379, 'wood normal movweq r1,#1 -> #889'),
     (0x7AF4E0, 0xE3A01002, 0xE3001379, 'ore buff'),
     (0x7AF4F8, 0x03001001, 0x03001379, 'ore normal'),
+    # ---- 资源生成量定值 10000/s ----
+    # 产额函数：r0 = (1 或 2) * [this+0x14]（0x7AE780 / 0x7AF4FC 的 mul），改成常量 10000；
+    # 触发间隔函数：threshold = 基数(0.5/0.25) * 3.0f 或 5.0f，改成恒定 1.0f，
+    # 于是 Update 里「累计 >= 1.0s」时加 10000 -> 严格 10000/s（有/无 buff 都一样）。
+    (0x7AE780, 0xE0000491, 0xE3020710, 'wood 产额 mul -> movw r0,#10000'),
+    (0x7AF4FC, 0xE0000491, 0xE3020710, 'ore  产额 mul -> movw r0,#10000'),
+    (0x7AE814, 0xEEB00A08, 0xE3000000, 'wood 间隔 vmov.f32 #3.0 -> movw r0,#0'),
+    (0x7AE818, 0xEE010A10, 0xE3430F80, 'wood 间隔 -> movt r0,#0x3F80 (1.0f)'),
+    (0x7AE81C, 0xEE210A00, 0xE1A00000, 'wood 间隔 vmul -> nop'),
+    (0x7AE820, 0xEE100A10, 0xE1A00000, 'wood 间隔 vmov r0,s0 -> nop'),
+    (0x7AF530, 0xEEB10A04, 0xE3000000, 'ore  间隔 vmov.f32 #5.0 -> movw r0,#0'),
+    (0x7AF534, 0xEE010A10, 0xE3430F80, 'ore  间隔 -> movt r0,#0x3F80 (1.0f)'),
+    (0x7AF538, 0xEE210A00, 0xE1A00000, 'ore  间隔 vmul -> nop'),
+    (0x7AF53C, 0xEE100A10, 0xE1A00000, 'ore  间隔 vmov r0,s0 -> nop'),
+    # ---- 分解「实际到账」也 x100（此前 x100 只打在显示函数上，见 docs/30 §7）----
+    # FenSuiBaoShi @0x695984 才是真正加碎片的地方：
+    #   shu = JiSuanSuiPian(gem); shu/=2; AddBaoShiSuiPian(this, shu)
+    # 把 raw/2 换成 raw*50（净 x100），与显示侧 GetFenJieSuiPianShu 一致。
+    # 0x6959B0 是紧随其后的 mov r0,r5，故 b 直接跳过去。
+    (0x69599C, 0xE1B010A1, 0xE3A02032, '分解到账 x100: mov r2,#50'),
+    (0x6959A0, 0xE1A02060, 0xE0832290, '分解到账 x100: umull r2,r3,r0,r2'),
+    (0x6959A4, 0xE1923001, 0xEA000001, '分解到账 x100: b 0x6959B0'),
+    (0x6959A8, 0x03002001, 0xE1A00000, '分解到账 x100: nop'),
+    (0x6959AC, 0x11A03001, 0xE1A00000, '分解到账 x100: nop'),
 ]
 
 # 一键分解：六种颜色（红/绿/蓝/黄/紫/玉）各有一份内联 raw/2，改 raw*50 => 净 x100
@@ -83,6 +110,7 @@ for i, (old, new) in enumerate(zip(STUB_OLD, STUB_NEW)):
     struct.pack_into('<I', buf, off, new)
     print('stub @0x%X %08x -> %08x' % (off, old, new))
 
+os.makedirs(OUT_DIR, exist_ok=True)
 open(SO, 'wb').write(bytes(buf))
 
 if os.path.exists(OUT_APK):
@@ -96,8 +124,13 @@ with zipfile.ZipFile(SRC_APK) as zin, zipfile.ZipFile(OUT_APK, 'w', zipfile.ZIP_
         else:
             zout.writestr(item, zin.read(item.filename))
 
-subprocess.run([
-    r'C:\Program Files\Microsoft\jdk-25.0.5.21-hotspot\bin\jarsigner.exe',
-    '-keystore', KEY, '-storepass', 'dshmod123', OUT_APK, 'dshmod'
-], check=True, capture_output=True)
+try:
+    subprocess.run([
+        JARSIGNER,
+        '-keystore', KEY, '-storepass', 'dshmod123', OUT_APK, 'dshmod'
+    ], check=True, capture_output=True)
+except FileNotFoundError:
+    print('未找到 jarsigner（%r）。请装 JDK 并设 JARSIGNER 环境变量，或把 jarsigner 放进 PATH。' % JARSIGNER)
+    print('未签名 APK 已生成: %s' % OUT_APK)
+    sys.exit(2)
 print('signed:', os.path.getsize(OUT_APK))
