@@ -8,10 +8,14 @@
 
 | 文件 | 大小 | MD5 | 说明 |
 |---|---|---|---|
-| `djmw_v7_arm64_signed.apk` | 100,787,100 B | `9D7551988F1E8E79805670028E1DFB72` | **成品**：手机原版包 + 36 条补丁，已用 `scripts/sign_apk_v1.py` 做过 v1 签名。`adb install -r` 即可 |
-| `libil2cpp_64_patched_v7.so` | 21,504,968 B | `A09E1F90EE8B3E8D2FFE442B2B459411` | 打进上面那个 APK 的 64 位补丁库；由 `scripts/build_patched_lib64.py` 生成 |
+| `djmw_v8_arm64_signed.apk` | 100,787,103 B | `FB145DE7E65E87C253864C1BA8E9448A` | **成品（最新，v8）**：手机原版包 + 36 条补丁（资源 50,000/s），已用 `scripts/sign_apk_v1.py` 做过 v1 签名。`adb install -r` 即可 |
+| `libil2cpp_64_patched_v8.so` | 21,504,968 B | `21C0E9E16E26617CB169BFF4A8BE8EA3` | 打进上面那个 APK 的 64 位补丁库；由 `scripts/build_patched_lib64.py` 生成 |
 | `phone_base_arm64.apk` | 100,720,865 B | `D8EB6343F1C236CE7EE2E8343EAEFD30` | 手机上的**原版** `base.apk`（从 `/data/app/.../base.apk` 拉出）。重打包的底，也是补丁地址的唯一权威来源 |
 | `v7_base.save` | 84,911 B | — | 推给手机的那份存档（`ZuanShi=50000`、`ChongWuSiLiao=597`、`DangTianZhuaChongShu=0`），放在 `Android/data/com.HQGAMES.TopDemons/files/djmw@163.com` |
+
+> v7（资源 10,000/s）的 `djmw_v7_arm64_signed.apk`（`9D7551988F1E8E79805670028E1DFB72`）/
+> `libil2cpp_64_patched_v7.so`（`A09E1F90EE8B3E8D2FFE442B2B459411`）已被 v8 取代，
+> 需要的话把 `0xEBF9D0`/`0xEC0550` 的 `52986A08` 改回 `5284E208` 重新构建即可。
 
 ## 重建（三条命令，详见 docs/31 §三）
 

@@ -25,9 +25,9 @@ NOP = 0xD503201F
 # (文件偏移/VA, 原字, 新字, 说明)
 # 代码段 addr == off（.text 与 il2cpp 段都是）
 PATCHES = [
-    # ---- 资源严格 10000/s ----
-    (0xEBF9D0, 0x1B137D08, 0x5284E208, 'wood 产额 mul w8,w8,w19 -> mov w8,#10000'),
-    (0xEC0550, 0x1B137D08, 0x5284E208, 'ore  产额 mul w8,w8,w19 -> mov w8,#10000'),
+    # ---- 资源严格 50000/s ----
+    (0xEBF9D0, 0x1B137D08, 0x52986A08, 'wood 产额 mul w8,w8,w19 -> mov w8,#0xC350(50000)'),
+    (0xEC0550, 0x1B137D08, 0x52986A08, 'ore  产额 mul w8,w8,w19 -> mov w8,#0xC350(50000)'),
     (0xEBFA54, 0x1E210800, 0x1E2E1000, 'wood 间隔 fmul -> fmov s0,#1.0'),
     (0xEC057C, 0x1E210800, 0x1E2E1000, 'ore  间隔 fmul -> fmov s0,#1.0'),
     # ---- 宝石分解显示 x100（GetFenJieSuiPianShu: raw/2 -> raw*50）----
