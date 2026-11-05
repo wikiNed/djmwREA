@@ -8,10 +8,17 @@
 
 | 文件 | 大小 | MD5 | 说明 |
 |---|---|---|---|
-| `djmw_v8_arm64_signed.apk` | 100,787,103 B | `FB145DE7E65E87C253864C1BA8E9448A` | **成品（最新，v8）**：手机原版包 + 36 条补丁（资源 50,000/s），已用 `scripts/sign_apk_v1.py` 做过 v1 签名。`adb install -r` 即可 |
-| `libil2cpp_64_patched_v8.so` | 21,504,968 B | `21C0E9E16E26617CB169BFF4A8BE8EA3` | 打进上面那个 APK 的 64 位补丁库；由 `scripts/build_patched_lib64.py` 生成 |
+| `djmw_v10_arm64_signed.apk` | 100,787,040 B | `F43E7709910B43D41EB3737F95E72DB1` | **成品（最新，v10）**：v9 全部 + 派遣时长改成 3 秒。与 v9 同签名，`adb install -r` 覆盖装即可，数据不动 |
+| `djmw_v9_arm64_signed.apk` | 100,787,042 B | `889F29682948830ABE50977563ED61DC` | v8 全部 + 广告 80 次不减 / 木 50 万·矿 30 万每秒 / 六色等概率（派遗留了"改错函数"的问题，已被 v10 修） |
+| `djmw_v8_arm64_signed.apk` | 100,787,103 B | `FB145DE7E65E87C253864C1BA8E9448A` | v8：手机原版包 + 36 条补丁（资源 50,000/s）。**签名与 v9/v10 不同**，互装必须卸载 |
+| `libil2cpp_64_v10.so` | 21,504,968 B | `F89570FB093B50020D6F07488E905830` | v10 的补丁库（v9 + 7 条派遣补丁） |
+| `libil2cpp_64_v9.so` | 21,504,968 B | `7C9836B324B6245D52E8CEBB309C182E` | v9 的补丁库（`scripts/build_lib64_v9b.py` 产物） |
+| `libil2cpp_64_patched_v8.so` | 21,504,968 B | `21C0E9E16E26617CB169BFF4A8BE8EA3` | v8 的补丁库（`scripts/build_patched_lib64.py` 产物） |
 | `phone_base_arm64.apk` | 100,720,865 B | `D8EB6343F1C236CE7EE2E8343EAEFD30` | 手机上的**原版** `base.apk`（从 `/data/app/.../base.apk` 拉出）。重打包的底，也是补丁地址的唯一权威来源 |
 | `v7_base.save` | 84,911 B | — | 推给手机的那份存档（`ZuanShi=50000`、`ChongWuSiLiao=597`、`DangTianZhuaChongShu=0`），放在 `Android/data/com.HQGAMES.TopDemons/files/djmw@163.com` |
+
+> v9/v10 的改动明细（RVA 表 + 派遣公式推导）见
+> [`docs/32-v9v10-广告产量派遣与宝石颜色.md`](../../docs/32-v9v10-广告产量派遣与宝石颜色.md)。
 
 > v7（资源 10,000/s）的 `djmw_v7_arm64_signed.apk`（`9D7551988F1E8E79805670028E1DFB72`）/
 > `libil2cpp_64_patched_v7.so`（`A09E1F90EE8B3E8D2FFE442B2B459411`）已被 v8 取代，
